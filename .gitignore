@@ -52,46 +52,48 @@ Mkfile.old
 dkms.conf
 
 
-  1 # Ignore list for Eagle, a PCB layout tool
-  2
-  3 # Backup files
-  4 *.s#?
-  5 *.b#?
-  6 *.l#?
-  7
-  8 # Eagle project file
-  9 # It contains a serial number and references to the file structure
- 10 # on your computer.
- 11 # comment the following line if you want to have your project file included.
- 12 eagle.epf
- 13
- 14 # Autorouter files
- 15 *.pro
- 16 *.job
- 17
- 18 # CAM files
- 19 *.$$$
- 20 *.cmp
- 21 *.ly2
- 22 *.l15
- 23 *.sol
- 24 *.plc
- 25 *.stc
- 26 *.sts
- 27 *.crc
- 28 *.crs
- 29
- 30 *.dri
- 31 *.drl
- 32 *.gpi
- 33 *.pls
- 34
- 35 *.drd
- 36 *.drd.*
- 37
- 38 *.info
- 39
- 40 *.eps
- 41
- 42 # file locks introduced since 7.x
- 43 *.lck
+# Ignore list for Eagle, a PCB layout tool
+
+# Backup files
+*.s#?
+*.b#?
+*.l#?
+*.d#?
+
+
+# Eagle project file
+# It contains a serial number and references to the file structure
+# on your computer.
+# comment the following line if you want to have your project file included.
+eagle.epf
+
+# Autorouter files
+*.pro
+*.job
+
+# CAM files
+*.$$$
+*.cmp
+*.ly2
+*.l15
+*.sol
+*.plc
+*.stc
+*.sts
+*.crc
+*.crs
+
+*.dri
+*.drl
+*.gpi
+*.pls
+
+*.drd
+*.drd.*
+
+*.info
+
+*.eps
+
+# file locks introduced since 7.x
+*.lck
