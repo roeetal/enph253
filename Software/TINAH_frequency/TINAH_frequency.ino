@@ -5,47 +5,53 @@
 volatile unsigned int count = 0;
 volatile unsigned int overflow = 0;
 
-void enableExternalInterrupt()
+void enableTimer()
 {
-    cli();
     // set up timer
-    // no input capture noise canceller
-    // input capture edge select: rising
     // no prescaling
-    TCCR1B |= (0 << CS11);
-  
-    // initialize counter
-    TCNT1 = 0;
-  
+    TCCR0 |= (1 << CS00);
     // enable overflow interrupt
-    // enable input capture interrupt
-    TIMSK |= (1 << TICIE1) | (1 << TOIE1);
-  
-    // enable global interrupts
-    sei();
-}
-
-// Input capture interrupt
-// count = number of clock ticks per period.
-// there are 16 bits, 65535 periods per overflow
-// each clock cycle ~ 16 MHz
-ISR(TIMER1_CAPT_vect){
-    count = ICR1;
-    TCNT1 = 0;
-    count += overflow*65535;
-    overflow = 0;
+    TIMSK |= (1 << TOIE0);
+    // initialize counter
+    TCNT0 = 0;
 }
 
 // TIMER1 overflow interrupt service routine
 // called whenever TCNT1 overflows
-ISR(TIMER1_OVF_vect){
+ISR(TIM0_OVF_vect){
     overflow++;
+}
+
+void enableExternalInterrupt(unsigned int INTX, unsigned int mode)
+{
+  if (INTX > 3 || mode > 3 || mode == 1) return;
+  cli();
+  /* Allow pin to trigger interrupts        */
+  EIMSK |= (1 << INTX);
+  /* Clear the interrupt configuration bits */
+  EICRA &= ~(1 << (INTX*2+0));
+  EICRA &= ~(1 << (INTX*2+1));
+  /* Set new interrupt configuration bits   */
+  EICRA |= mode << (INTX*2);
+  sei();
+}
+
+void disableExternalInterrupt(unsigned int INTX)
+{
+  if (INTX > 3) return;
+  EIMSK &= ~(1 << INTX);
+}
+
+ISR(INT0_vect) {
+  count = TCNT0 + overflow * 255;
+  TCNT0=0;
 }
 
 void setup(){
   #include <phys253setup.txt>
   Serial.begin(9600);
-  enableExternalInterrupt();
+  enableExternalInterrupt(INT0, FALLING);
+  enableTimer();
 }
 
 
