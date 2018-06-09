@@ -2,56 +2,54 @@
 #include <LiquidCrystal.h>
 #include <avr/interrupt.h>
 
-volatile unsigned int INT_0 = 0;
-volatile unsigned int increment = 0;
+volatile unsigned int count = 0;
+volatile unsigned int overflow = 0;
 
-
-ISR(INT0_vect) {
-  ++increment;
+void enableExternalInterrupt()
+{
+    cli();
+    // set up timer
+    // no input capture noise canceller
+    // input capture edge select: rising
+    // no prescaling
+    TCCR1B |= (0 << CS11);
+  
+    // initialize counter
+    TCNT1 = 0;
+  
+    // enable overflow interrupt
+    // enable input capture interrupt
+    TIMSK |= (1 << TICIE1) | (1 << TOIE1);
+  
+    // enable global interrupts
+    sei();
 }
 
-
-/*  Enables an external interrupt pin
-INTX: Which interrupt should be configured?
-    INT0    - will trigger ISR(INT0_vect)
-    INT1    - will trigger ISR(INT1_vect)
-    INT2    - will trigger ISR(INT2_vect)
-    INT3    - will trigger ISR(INT3_vect)
-mode: Which pin state should trigger the interrupt?
-    LOW     - trigger whenever pin state is LOW
-    FALLING - trigger when pin state changes from HIGH to LOW
-    RISING  - trigger when pin state changes from LOW  to HIGH 
-*/
-void enableExternalInterrupt(unsigned int INTX, unsigned int mode)
-{
-  if (INTX > 3 || mode > 3 || mode == 1) return;
-  cli();
-  /* Allow pin to trigger interrupts        */
-  EIMSK |= (1 << INTX);
-  /* Clear the interrupt configuration bits */
-  EICRA &= ~(1 << (INTX*2+0));
-  EICRA &= ~(1 << (INTX*2+1));
-  /* Set new interrupt configuration bits   */
-  EICRA |= mode << (INTX*2);
-  sei();
+// Input capture interrupt
+// count = number of clock ticks per period.
+// there are 16 bits, 65535 periods per overflow
+// each clock cycle ~ 16 MHz
+ISR(TIMER1_CAPT_vect){
+    count = ICR1;
+    TCNT1 = 0;
+    count += overflow*65535;
+    overflow = 0;
 }
 
-void disableExternalInterrupt(unsigned int INTX)
-{
-  if (INTX > 3) return;
-  EIMSK &= ~(1 << INTX);
+// TIMER1 overflow interrupt service routine
+// called whenever TCNT1 overflows
+ISR(TIMER1_OVF_vect){
+    overflow++;
 }
 
-void setup()
-{
+void setup(){
   #include <phys253setup.txt>
   Serial.begin(9600);
-  enableExternalInterrupt(INT0, FALLING);
+  enableExternalInterrupt();
 }
 
 
-void loop()
-{
-  Serial.println(increment);
+void loop(){
+  Serial.println(count/16000000);
   delay(1000);
 }
