@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "~/.virtualenvs/robot/bin/python3",
+    "python.venvFolders": [
+        "envs",
+        ".pyenv",
+        ".direnv",
+        ".virtualenvs"
+    ],
+    "python.venvPath": "~/.virtualenvs",
+    "python.linting.pylintPath": "~/.virtualenvs/robot/bin/pylint"
+}
