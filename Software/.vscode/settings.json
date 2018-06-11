@@ -7,5 +7,6 @@
         ".virtualenvs"
     ],
     "python.venvPath": "~/.virtualenvs",
-    "python.linting.pylintPath": "~/.virtualenvs/robot/bin/pylint"
+    "python.linting.pylintPath": "~/.virtualenvs/robot/bin/pylint",
+    "python.formatting.provider": "yapf"
 }
