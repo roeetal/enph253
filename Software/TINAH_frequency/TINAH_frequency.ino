@@ -2,26 +2,26 @@
 #include <LiquidCrystal.h>
 #include <avr/interrupt.h>
 
-volatile unsigned int INT_0 = 0;
-volatile unsigned int increment = 0;
+volatile unsigned int count = 0;
+volatile unsigned int overflow = 0;
 
-
-ISR(INT0_vect) {
-  ++increment;
+void enableTimer()
+{
+    // set up timer
+    // no prescaling
+    TCCR0 |= (1 << CS00);
+    // enable overflow interrupt
+    TIMSK |= (1 << TOIE0);
+    // initialize counter
+    TCNT0 = 0;
 }
 
+// TIMER1 overflow interrupt service routine
+// called whenever TCNT1 overflows
+ISR(TIM0_OVF_vect){
+    overflow++;
+}
 
-/*  Enables an external interrupt pin
-INTX: Which interrupt should be configured?
-    INT0    - will trigger ISR(INT0_vect)
-    INT1    - will trigger ISR(INT1_vect)
-    INT2    - will trigger ISR(INT2_vect)
-    INT3    - will trigger ISR(INT3_vect)
-mode: Which pin state should trigger the interrupt?
-    LOW     - trigger whenever pin state is LOW
-    FALLING - trigger when pin state changes from HIGH to LOW
-    RISING  - trigger when pin state changes from LOW  to HIGH 
-*/
 void enableExternalInterrupt(unsigned int INTX, unsigned int mode)
 {
   if (INTX > 3 || mode > 3 || mode == 1) return;
@@ -42,16 +42,20 @@ void disableExternalInterrupt(unsigned int INTX)
   EIMSK &= ~(1 << INTX);
 }
 
-void setup()
-{
+ISR(INT0_vect) {
+  count = TCNT0 + overflow * 255;
+  TCNT0=0;
+}
+
+void setup(){
   #include <phys253setup.txt>
   Serial.begin(9600);
   enableExternalInterrupt(INT0, FALLING);
+  enableTimer();
 }
 
 
-void loop()
-{
-  Serial.println(increment);
+void loop(){
+  Serial.println(count/16000000);
   delay(1000);
 }
