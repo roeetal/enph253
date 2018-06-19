@@ -6,6 +6,8 @@ From the website and a some talking to Dylan, here is what I _think_ is what is 
 
 This is what I imagine as the general structure of the presentation:
 
+For all the shit we discuss, we need to prepare to be interrogated hard.
+
 - Intro (who are we, blah blah blah)
 - Problem (I will email/talk to Dylan about this - do we pretend like there is this issue of abducted Ewoks, or just say "we have to navigate this course..."?)
 - Why we have "our approach": We want to win, and to build a solid robot while doing so. "Short and to the point, yet necessary"
