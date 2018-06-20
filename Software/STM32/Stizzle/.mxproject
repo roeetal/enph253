@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=/Users/Ro/OneDrive/UBC/Courses/2017-2018/ENPH 253/enph253/Software/STM32/robo_brain/Inc
+HeaderPath=/Users/axeljacobsen/Documents/Programs/ENPH253/enph253/Software/STM32/Stizzle/Inc
 HeaderFiles=stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=/Users/Ro/OneDrive/UBC/Courses/2017-2018/ENPH 253/enph253/Software/STM32/robo_brain/Src
+SourcePath=/Users/axeljacobsen/Documents/Programs/ENPH253/enph253/Software/STM32/Stizzle/Src
 SourceFiles=stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]
