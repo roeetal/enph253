@@ -3255,6 +3255,14 @@ and pull up before H-bridge</text>
 <wire x1="228.6" y1="50.8" x2="228.6" y2="109.22" width="0.1524" layer="94"/>
 <text x="180.34" y="43.18" size="1.778" layer="94">Need pull down resistor from TINAH
 and pull up before H-bridge</text>
+<text x="180.34" y="2.54" size="1.778" layer="91">Notes:
+
+- Power Dissipation: 
+25mW (x4 BJT) +
+200 mW (for half resistors) = 
+300 mW
+- No need for comparators if using
+STM32 PWM input.</text>
 </plain>
 <instances>
 <instance part="SUPPLY2" gate="G$1" x="73.66" y="106.68"/>
