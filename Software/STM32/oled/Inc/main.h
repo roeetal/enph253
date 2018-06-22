@@ -49,39 +49,6 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define Pi_Analog_In_Pin GPIO_PIN_0
-#define Pi_Analog_In_GPIO_Port GPIOA
-#define Ten_kHz_Pin GPIO_PIN_1
-#define Ten_kHz_GPIO_Port GPIOA
-#define One_kHz_Pin GPIO_PIN_2
-#define One_kHz_GPIO_Port GPIOA
-#define PWM_5_Pin GPIO_PIN_5
-#define PWM_5_GPIO_Port GPIOA
-#define PWM_7_Pin GPIO_PIN_10
-#define PWM_7_GPIO_Port GPIOB
-#define R_Sonar_Out_Pin GPIO_PIN_12
-#define R_Sonar_Out_GPIO_Port GPIOB
-#define R_Sonar_In_Pin GPIO_PIN_13
-#define R_Sonar_In_GPIO_Port GPIOB
-#define L_Sonar_Out_Pin GPIO_PIN_14
-#define L_Sonar_Out_GPIO_Port GPIOB
-#define L_Sonar_In_Pin GPIO_PIN_15
-#define L_Sonar_In_GPIO_Port GPIOB
-#define QRD_R_Pin GPIO_PIN_6
-#define QRD_R_GPIO_Port GPIOC
-#define QRD_L_Pin GPIO_PIN_7
-#define QRD_L_GPIO_Port GPIOC
-#define PWM_1_Pin GPIO_PIN_8
-#define PWM_1_GPIO_Port GPIOA
-#define PWM_2_Pin GPIO_PIN_9
-#define PWM_2_GPIO_Port GPIOA
-#define PWM_3_Pin GPIO_PIN_10
-#define PWM_3_GPIO_Port GPIOA
-#define PWM_4_Pin GPIO_PIN_11
-#define PWM_4_GPIO_Port GPIOA
-#define PWM_6_Pin GPIO_PIN_3
-#define PWM_6_GPIO_Port GPIOB
-
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
