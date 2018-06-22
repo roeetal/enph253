@@ -52,7 +52,21 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+/**
+  * @brief  Sets the TIM Capture Compare Register value on runtime without
+  *         calling another time ConfigChannel function.
+  * @param  __HANDLE__: TIM handle.
+  * @param  __CHANNEL__ : TIM Channels to be configured.
+  *          This parameter can be one of the following values:
+  *            @arg TIM_CHANNEL_1: TIM Channel 1 selected
+  *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
+  *            @arg TIM_CHANNEL_3: TIM Channel 3 selected
+  *            @arg TIM_CHANNEL_4: TIM Channel 4 selected
+  * @param  __COMPARE__: specifies the Capture Compare register new value.
+  * @retval None
+  */
+#define __HAL_TIM_SET_COMPARE(__HANDLE__, __CHANNEL__, __COMPARE__) \
+(*(__IO uint32_t *)(&((__HANDLE__)->Instance->CCR1) + ((__CHANNEL__) >> 2)) = (__COMPARE__))
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -108,7 +122,10 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 100);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 750);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
