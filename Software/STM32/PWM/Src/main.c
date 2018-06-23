@@ -101,8 +101,7 @@ int main(void)
     /* USER CODE BEGIN 2 */
      
     // Need to run HAL_TIM_PWM_Start, not able to change duty cycle yet.
-  /* 
-    HAL_TIM_Base_Start(&htim1);
+    /*   
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 100);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 750);
@@ -245,7 +244,10 @@ static void MX_TIM1_Init(void)
     {
         _Error_Handler(__FILE__, __LINE__);
     }
-    memset(&sConfigOC, 0, sizeof(sConfigOC));
+    //dont need this
+    //memset(&sConfigOC, 0, sizeof(sConfigOC));
+    //TODO different sconfigoc for each pwm ch, different duty cycles.
+    //sConficOC.pulse - duty cycle with respect to htm1.init.period
 
     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
