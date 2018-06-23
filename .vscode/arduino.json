@@ -1,5 +1,5 @@
 {
     "board": "TINAH_hardware:avr:TINAH",
     "port": "/dev/cu.usbserial-A20022bM",
-    "sketch": "Software/Tape_Follower/axelroee.ino"
+    "sketch": "Software/PWMOut/PWMOut.ino"
 }

@@ -139,7 +139,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    int pc13 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+    int pc13 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_14bdb );
     if (pc13) {
       ssd1306_SetCursor(0,0);
       ssd1306_WriteChar(pc13,Font_11x18,White);
