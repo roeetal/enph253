@@ -101,12 +101,11 @@ int main(void)
     /* USER CODE BEGIN 2 */
      
     // Need to run HAL_TIM_PWM_Start, not able to change duty cycle yet.
-    /*   
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 100);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 750);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1000);
-   */
+    //TODO change duty cycle       
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 4000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 6000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
+   
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -192,7 +191,7 @@ static void MX_TIM1_Init(void)
     htim1.Instance = TIM1;
     htim1.Init.Prescaler = 0;
     htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim1.Init.Period = 500;
+    htim1.Init.Period = 10000;
     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim1.Init.RepetitionCounter = 0;
     if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
@@ -219,7 +218,7 @@ static void MX_TIM1_Init(void)
     }
 
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = 400;
+    sConfigOC.Pulse = 1000;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -244,10 +243,8 @@ static void MX_TIM1_Init(void)
     {
         _Error_Handler(__FILE__, __LINE__);
     }
-    //dont need this
+    //TODO do need this?
     //memset(&sConfigOC, 0, sizeof(sConfigOC));
-    //TODO different sconfigoc for each pwm ch, different duty cycles.
-    //sConficOC.pulse - duty cycle with respect to htm1.init.period
 
     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
