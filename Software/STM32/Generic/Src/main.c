@@ -41,7 +41,8 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "fonts.h"
+#include "ssd1306.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -121,14 +122,35 @@ int main(void)
   MX_TIM11_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
+  ssd1306_Init();
+  HAL_Delay(1000);
+  ssd1306_Fill(Black);
+  ssd1306_UpdateScreen();
 
+  HAL_Delay(1000);
+
+  ssd1306_SetCursor(0,0);
+  ssd1306_WriteString("Sup fellas",Font_11x18,White);
+
+  ssd1306_UpdateScreen();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    int pc13 = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+    if (pc13) {
+      ssd1306_SetCursor(0,0);
+      ssd1306_WriteChar(pc13,Font_11x18,White);
+      ssd1306_UpdateScreen();
+    } else {
+      ssd1306_SetCursor(0,0);
+      ssd1306_WriteString("Howdy Doo",Font_11x18,White);
 
+      ssd1306_UpdateScreen();
+    }
+    
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
