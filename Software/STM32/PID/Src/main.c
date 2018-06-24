@@ -114,12 +114,7 @@ int main(void)
 
   HAL_Delay(1000);
 
-  ssd1306_SetCursor(0,0);
-  ssd1306_WriteString("Starting",Font_11x18,White);
-
-  ssd1306_UpdateScreen();
-
-  PID_t test = pid_Init(1,1,0,1,1);
+  PID_t test = pid_Init(10,200,0,0,2);
 
   /* USER CODE END 2 */
 
@@ -132,21 +127,22 @@ int main(void)
     int right = HAL_GPIO_ReadPin(qrd_right_GPIO_Port, qrd_right_Pin);
 
     /* Get error */
-    if(left && right){ test.curr_err = 0; }
-    if(left && !right){ test.curr_err = 1; }
-    if(!left && right){ test.curr_err = -1; }
-    if(!left && !right && (test.last_err < 0)){ test.curr_err = -5; }
-    if(!left && !right && (test.last_err > 0)){ test.curr_err = 5; }
+    if(left && right){ test.err = 0; }
+    else if(left && !right){ test.err = 1; }
+    else if(!left && right){ test.err = -1; }
+    else if(!left && !right && (test.err < 0)){ test.err = -5; }
+    else if(!left && !right && (test.err > 0)){ test.err = 5; }
 
     /* Get gain */
     double gain = pid_GetGain(&test, &htim1);
 
-    sprintf(pid_err, "Err: %d", test.curr_err);
-    sprintf(pid_res, "Res: %lf", gain);
+    sprintf(pid_err, "Err: %d", (int) test.err);
+    sprintf(pid_res, "Res: %d", (int) gain);
 
+    ssd1306_Fill(Black);
     ssd1306_SetCursor(0,0);
     ssd1306_WriteString(pid_err, Font_11x18,White);
-    ssd1306_SetCursor(0,1);
+    ssd1306_SetCursor(0,20);
     ssd1306_WriteString(pid_res, Font_11x18,White);
     ssd1306_UpdateScreen();
 
@@ -240,9 +236,9 @@ static void MX_TIM1_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
 
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 40000;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 0;
+  htim1.Init.Period = 100;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
