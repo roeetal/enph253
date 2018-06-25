@@ -62,9 +62,6 @@ def get_direction(image, wait=True):
         image = image.astype("float") / 255.0
         image = img_to_array(image)
         image = np.expand_dims(image, axis=0)
-
-        # load the trained convolutional neural network
-        print("[INFO] loading network...")
         
         # classify the input image
         (notewok, ewok) = model.predict(image)[0]
