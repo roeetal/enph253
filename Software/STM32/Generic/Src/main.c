@@ -81,6 +81,26 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+uint32_t getUs(void)
+{
+  uint32_t usTicks = HAL_RCC_GetSysClockFreq() / 1000000;
+  register uint32_t ms, cycle_cnt;
+  do
+  {
+    ms = HAL_GetTick();
+    cycle_cnt = SysTick->VAL;
+  } while (ms != HAL_GetTick());
+  return (ms * 1000) + (usTicks * 1000 - cycle_cnt) / usTicks;
+}
+
+void delayUs(uint16_t micros)
+{
+  uint32_t start = getUs();
+  while (getUs() - start < (uint32_t)micros)
+  {
+    asm("nop");
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -130,14 +150,19 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   int count = 0;
   char *adc = (char *)malloc(13 * sizeof(char));
+  char *adc1 = (char *)malloc(13 * sizeof(char));
+  
   while(1)
   {
-    // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9); //Toggle the state of pin PC9
-    // HAL_Delay(100); //delay 100ms
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_13);
+    delayUs(10); //delay 10ms
     HAL_ADC_PollForConversion(&hadc1, 1000);
     value = HAL_ADC_GetValue(&hadc1);
     ssd1306_SetCursor(0, 0);
-    sprintf(adc, "%d %d", (int)value, count);
+    sprintf(adc, "val: %d    ", (int)value);
+    ssd1306_WriteString(adc, Font_11x18, White);
+    ssd1306_SetCursor(0,18);
+    sprintf(adc, "cnt: %d    ", (int)count);
     ssd1306_WriteString(adc, Font_11x18, White);
     ssd1306_UpdateScreen();
     HAL_Delay(10);
