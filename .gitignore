@@ -97,3 +97,4 @@ dkms.conf
  43 *.lck
 
 /Software/NeuralNet/images
+/Software/NeuralNet/videos
