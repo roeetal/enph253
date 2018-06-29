@@ -99,13 +99,36 @@ int main(void)
     MX_GPIO_Init();
     MX_TIM1_Init();
     /* USER CODE BEGIN 2 */
-     
+
     // Need to run HAL_TIM_PWM_Start, not able to change duty cycle yet.
     //TODO change duty cycle       
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 4000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 6000);
+    //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 800);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 800);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 800);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 800);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+    HAL_Delay(10000);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 8000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 8000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 8000);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
-   
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -118,7 +141,6 @@ int main(void)
     {
 
         /* USER CODE END WHILE */
-
         /* USER CODE BEGIN 3 */
 
     }
@@ -243,7 +265,7 @@ static void MX_TIM1_Init(void)
     {
         _Error_Handler(__FILE__, __LINE__);
     }
-    //TODO do need this?
+    //dont need this, leaving it here in case though
     //memset(&sConfigOC, 0, sizeof(sConfigOC));
 
     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
