@@ -95,3 +95,5 @@ dkms.conf
  41
  42 # file locks introduced since 7.x
  43 *.lck
+
+ Software/NeuralNet/images
