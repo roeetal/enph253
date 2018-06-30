@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   29:Src/main.c    ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/main.c    ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   31:Src/main.c    ****  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 2
 
 
   32:Src/main.c    ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -81,7 +81,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   49:Src/main.c    **** 
   50:Src/main.c    **** /* USER CODE BEGIN PV */
   51:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
-  52:Src/main.c    **** 
+  52:Src/main.c    **** #define TIMER_PERIOD 1000 
   53:Src/main.c    **** /* USER CODE END PV */
   54:Src/main.c    **** 
   55:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   86:Src/main.c    **** 
   87:Src/main.c    ****     /* USER CODE BEGIN Init */
   88:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 3
 
 
   89:Src/main.c    ****     /* USER CODE END Init */
@@ -147,10 +147,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  112:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
  113:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
  114:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
- 115:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 800);
- 116:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 800);
- 117:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 800);
- 118:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 800);
+ 115:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.1*TIMER_PERIOD);
+ 116:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.1*TIMER_PERIOD);
+ 117:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.1*TIMER_PERIOD);
+ 118:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.1*TIMER_PERIOD);
  119:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
  120:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
  121:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -160,10 +160,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  125:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
  126:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
  127:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
- 128:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 8000);
- 129:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 8000);
- 130:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 8000);
- 131:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
+ 128:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.6*TIMER_PERIOD);
+ 129:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.7*TIMER_PERIOD);
+ 130:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.8*TIMER_PERIOD);
+ 131:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.9*TIMER_PERIOD);
  132:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
  133:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
  134:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  143:Src/main.c    ****         /* USER CODE END WHILE */
  144:Src/main.c    ****         /* USER CODE BEGIN 3 */
  145:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 4
 
 
  146:Src/main.c    ****     }
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  200:Src/main.c    ****     /* SysTick_IRQn interrupt configuration */
  201:Src/main.c    ****     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
  202:Src/main.c    **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 5
 
 
  203:Src/main.c    **** 
@@ -254,7 +254,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  213:Src/main.c    ****     htim1.Instance = TIM1;
  214:Src/main.c    ****     htim1.Init.Prescaler = 0;
  215:Src/main.c    ****     htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
- 216:Src/main.c    ****     htim1.Init.Period = 10000;
+ 216:Src/main.c    ****     htim1.Init.Period = TIMER_PERIOD;
  217:Src/main.c    ****     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  218:Src/main.c    ****     htim1.Init.RepetitionCounter = 0;
  219:Src/main.c    ****     if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
@@ -281,7 +281,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  240:Src/main.c    ****     }
  241:Src/main.c    **** 
  242:Src/main.c    ****     sConfigOC.OCMode = TIM_OCMODE_PWM1;
- 243:Src/main.c    ****     sConfigOC.Pulse = 1000;
+ 243:Src/main.c    ****     sConfigOC.Pulse = 0.5*TIMER_PERIOD;
  244:Src/main.c    ****     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  245:Src/main.c    ****     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
  246:Src/main.c    ****     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  257:Src/main.c    ****     }
  258:Src/main.c    **** 
  259:Src/main.c    ****     if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 6
 
 
  260:Src/main.c    ****     {
@@ -309,30 +309,28 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  265:Src/main.c    ****     {
  266:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
  267:Src/main.c    ****     }
- 268:Src/main.c    ****     //dont need this, leaving it here in case though
- 269:Src/main.c    ****     //memset(&sConfigOC, 0, sizeof(sConfigOC));
- 270:Src/main.c    **** 
- 271:Src/main.c    ****     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
- 272:Src/main.c    ****     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
- 273:Src/main.c    ****     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
- 274:Src/main.c    ****     sBreakDeadTimeConfig.DeadTime = 0;
- 275:Src/main.c    ****     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
- 276:Src/main.c    ****     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
- 277:Src/main.c    ****     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
- 278:Src/main.c    ****     if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
- 279:Src/main.c    ****     {
- 280:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
- 281:Src/main.c    ****     }
+ 268:Src/main.c    **** 
+ 269:Src/main.c    ****     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+ 270:Src/main.c    ****     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+ 271:Src/main.c    ****     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 272:Src/main.c    ****     sBreakDeadTimeConfig.DeadTime = 0;
+ 273:Src/main.c    ****     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+ 274:Src/main.c    ****     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 275:Src/main.c    ****     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 276:Src/main.c    ****     if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 277:Src/main.c    ****     {
+ 278:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
+ 279:Src/main.c    ****     }
+ 280:Src/main.c    **** 
+ 281:Src/main.c    ****     HAL_TIM_MspPostInit(&htim1);
  282:Src/main.c    **** 
- 283:Src/main.c    ****     HAL_TIM_MspPostInit(&htim1);
+ 283:Src/main.c    **** }
  284:Src/main.c    **** 
- 285:Src/main.c    **** }
- 286:Src/main.c    **** 
- 287:Src/main.c    **** /** Pinout Configuration
- 288:Src/main.c    **** */
- 289:Src/main.c    **** static void MX_GPIO_Init(void)
- 290:Src/main.c    **** {
-  28              		.loc 1 290 0
+ 285:Src/main.c    **** /** Pinout Configuration
+ 286:Src/main.c    **** */
+ 287:Src/main.c    **** static void MX_GPIO_Init(void)
+ 288:Src/main.c    **** {
+  28              		.loc 1 288 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 8
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -341,10 +339,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   34              	.LCFI0:
   35              		.cfi_def_cfa_offset 8
   36              	.LBB2:
- 291:Src/main.c    **** 
- 292:Src/main.c    ****     /* GPIO Ports Clock Enable */
- 293:Src/main.c    ****     __HAL_RCC_GPIOA_CLK_ENABLE();
-  37              		.loc 1 293 0
+ 289:Src/main.c    **** 
+ 290:Src/main.c    ****     /* GPIO Ports Clock Enable */
+ 291:Src/main.c    ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+  37              		.loc 1 291 0
   38 0002 0023     		movs	r3, #0
   39 0004 0193     		str	r3, [sp, #4]
   40 0006 064B     		ldr	r3, .L3
@@ -356,13 +354,13 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   46 0016 0193     		str	r3, [sp, #4]
   47 0018 019B     		ldr	r3, [sp, #4]
   48              	.LBE2:
- 294:Src/main.c    **** 
- 295:Src/main.c    **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 7
-
-
-  49              		.loc 1 295 0
+ 292:Src/main.c    **** 
+ 293:Src/main.c    **** }
+  49              		.loc 1 293 0
   50 001a 02B0     		add	sp, sp, #8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 7
+
+
   51              	.LCFI1:
   52              		.cfi_def_cfa_offset 0
   53              		@ sp needed
@@ -380,20 +378,20 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   66              		.thumb_func
   68              	_Error_Handler:
   69              	.LFB127:
+ 294:Src/main.c    **** 
+ 295:Src/main.c    **** /* USER CODE BEGIN 4 */
  296:Src/main.c    **** 
- 297:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 297:Src/main.c    **** /* USER CODE END 4 */
  298:Src/main.c    **** 
- 299:Src/main.c    **** /* USER CODE END 4 */
- 300:Src/main.c    **** 
- 301:Src/main.c    **** /**
- 302:Src/main.c    ****  * @brief  This function is executed in case of error occurrence.
- 303:Src/main.c    ****  * @param  file: The file name as string.
- 304:Src/main.c    ****  * @param  line: The line in file as a number.
- 305:Src/main.c    ****  * @retval None
- 306:Src/main.c    ****  */
- 307:Src/main.c    **** void _Error_Handler(char *file, int line)
- 308:Src/main.c    **** {
-  70              		.loc 1 308 0
+ 299:Src/main.c    **** /**
+ 300:Src/main.c    ****  * @brief  This function is executed in case of error occurrence.
+ 301:Src/main.c    ****  * @param  file: The file name as string.
+ 302:Src/main.c    ****  * @param  line: The line in file as a number.
+ 303:Src/main.c    ****  * @retval None
+ 304:Src/main.c    ****  */
+ 305:Src/main.c    **** void _Error_Handler(char *file, int line)
+ 306:Src/main.c    **** {
+  70              		.loc 1 306 0
   71              		.cfi_startproc
   72              		@ Volatile: function does not return.
   73              		@ args = 0, pretend = 0, frame = 0
@@ -401,12 +399,12 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   75              		@ link register save eliminated.
   76              	.LVL0:
   77              	.L6:
- 309:Src/main.c    ****     /* USER CODE BEGIN Error_Handler_Debug */
- 310:Src/main.c    ****     /* User can add his own implementation to report the HAL error return state */
- 311:Src/main.c    ****     while(1)
- 312:Src/main.c    ****     {
- 313:Src/main.c    ****     }
-  78              		.loc 1 313 0 discriminator 1
+ 307:Src/main.c    ****     /* USER CODE BEGIN Error_Handler_Debug */
+ 308:Src/main.c    ****     /* User can add his own implementation to report the HAL error return state */
+ 309:Src/main.c    ****     while(1)
+ 310:Src/main.c    ****     {
+ 311:Src/main.c    ****     }
+  78              		.loc 1 311 0 discriminator 1
   79 0000 FEE7     		b	.L6
   80              		.cfi_endproc
   81              	.LFE127:
@@ -418,11 +416,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   89              	.LFB125:
  206:Src/main.c    **** 
   90              		.loc 1 206 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 8
-
-
   91              		.cfi_startproc
   92              		@ args = 0, pretend = 0, frame = 80
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 8
+
+
   93              		@ frame_needed = 0, uses_anonymous_args = 0
   94 0000 00B5     		push	{lr}
   95              	.LCFI2:
@@ -440,12 +438,12 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  105              		.loc 1 214 0
  106 000a 0023     		movs	r3, #0
  107 000c 4360     		str	r3, [r0, #4]
- 215:Src/main.c    ****     htim1.Init.Period = 10000;
+ 215:Src/main.c    ****     htim1.Init.Period = TIMER_PERIOD;
  108              		.loc 1 215 0
  109 000e 8360     		str	r3, [r0, #8]
  216:Src/main.c    ****     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  110              		.loc 1 216 0
- 111 0010 42F21072 		movw	r2, #10000
+ 111 0010 4FF47A72 		mov	r2, #1000
  112 0014 C260     		str	r2, [r0, #12]
  217:Src/main.c    ****     htim1.Init.RepetitionCounter = 0;
  113              		.loc 1 217 0
@@ -478,11 +476,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  135 0038 18B1     		cbz	r0, .L9
  227:Src/main.c    ****     }
  136              		.loc 1 227 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 9
-
-
  137 003a 3548     		ldr	r0, .L18+8
  138 003c E321     		movs	r1, #227
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 9
+
+
  139 003e FFF7FEFF 		bl	_Error_Handler
  140              	.LVL4:
  141              	.L9:
@@ -520,13 +518,13 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  167 0066 FFF7FEFF 		bl	_Error_Handler
  168              	.LVL8:
  169              	.L11:
- 242:Src/main.c    ****     sConfigOC.Pulse = 1000;
+ 242:Src/main.c    ****     sConfigOC.Pulse = 0.5*TIMER_PERIOD;
  170              		.loc 1 242 0
  171 006a 6023     		movs	r3, #96
  172 006c 0793     		str	r3, [sp, #28]
  243:Src/main.c    ****     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  173              		.loc 1 243 0
- 174 006e 4FF47A73 		mov	r3, #1000
+ 174 006e 4FF4FA73 		mov	r3, #500
  175 0072 0893     		str	r3, [sp, #32]
  244:Src/main.c    ****     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
  176              		.loc 1 244 0
@@ -538,11 +536,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  246:Src/main.c    ****     sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
  181              		.loc 1 246 0
  182 007a 0B92     		str	r2, [sp, #44]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 10
-
-
  247:Src/main.c    ****     sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
  183              		.loc 1 247 0
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 10
+
+
  184 007c 0C92     		str	r2, [sp, #48]
  248:Src/main.c    ****     if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
  185              		.loc 1 248 0
@@ -598,71 +596,71 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  228 00c2 0C22     		movs	r2, #12
  229 00c4 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
  230              	.LVL15:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 11
-
-
  231 00c8 20B1     		cbz	r0, .L15
  266:Src/main.c    ****     }
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 11
+
+
  232              		.loc 1 266 0
  233 00ca 1148     		ldr	r0, .L18+8
  234 00cc 4FF48571 		mov	r1, #266
  235 00d0 FFF7FEFF 		bl	_Error_Handler
  236              	.LVL16:
  237              	.L15:
- 271:Src/main.c    ****     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
- 238              		.loc 1 271 0
+ 269:Src/main.c    ****     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+ 238              		.loc 1 269 0
  239 00d4 0023     		movs	r3, #0
  240 00d6 0093     		str	r3, [sp]
- 272:Src/main.c    ****     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
- 241              		.loc 1 272 0
+ 270:Src/main.c    ****     sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 241              		.loc 1 270 0
  242 00d8 0193     		str	r3, [sp, #4]
- 273:Src/main.c    ****     sBreakDeadTimeConfig.DeadTime = 0;
- 243              		.loc 1 273 0
+ 271:Src/main.c    ****     sBreakDeadTimeConfig.DeadTime = 0;
+ 243              		.loc 1 271 0
  244 00da 0293     		str	r3, [sp, #8]
- 274:Src/main.c    ****     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
- 245              		.loc 1 274 0
+ 272:Src/main.c    ****     sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+ 245              		.loc 1 272 0
  246 00dc 0393     		str	r3, [sp, #12]
- 275:Src/main.c    ****     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
- 247              		.loc 1 275 0
+ 273:Src/main.c    ****     sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 247              		.loc 1 273 0
  248 00de 0493     		str	r3, [sp, #16]
- 276:Src/main.c    ****     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
- 249              		.loc 1 276 0
+ 274:Src/main.c    ****     sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 249              		.loc 1 274 0
  250 00e0 4FF40052 		mov	r2, #8192
  251 00e4 0592     		str	r2, [sp, #20]
- 277:Src/main.c    ****     if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
- 252              		.loc 1 277 0
+ 275:Src/main.c    ****     if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 252              		.loc 1 275 0
  253 00e6 0693     		str	r3, [sp, #24]
- 278:Src/main.c    ****     {
- 254              		.loc 1 278 0
+ 276:Src/main.c    ****     {
+ 254              		.loc 1 276 0
  255 00e8 0748     		ldr	r0, .L18
  256 00ea 6946     		mov	r1, sp
  257 00ec FFF7FEFF 		bl	HAL_TIMEx_ConfigBreakDeadTime
  258              	.LVL17:
  259 00f0 20B1     		cbz	r0, .L16
- 280:Src/main.c    ****     }
- 260              		.loc 1 280 0
+ 278:Src/main.c    ****     }
+ 260              		.loc 1 278 0
  261 00f2 0748     		ldr	r0, .L18+8
- 262 00f4 4FF48C71 		mov	r1, #280
+ 262 00f4 4FF48B71 		mov	r1, #278
  263 00f8 FFF7FEFF 		bl	_Error_Handler
  264              	.LVL18:
  265              	.L16:
- 283:Src/main.c    **** 
- 266              		.loc 1 283 0
+ 281:Src/main.c    **** 
+ 266              		.loc 1 281 0
  267 00fc 0248     		ldr	r0, .L18
  268 00fe FFF7FEFF 		bl	HAL_TIM_MspPostInit
  269              	.LVL19:
- 285:Src/main.c    **** 
- 270              		.loc 1 285 0
+ 283:Src/main.c    **** 
+ 270              		.loc 1 283 0
  271 0102 15B0     		add	sp, sp, #84
  272              	.LCFI4:
  273              		.cfi_def_cfa_offset 4
  274              		@ sp needed
  275 0104 5DF804FB 		ldr	pc, [sp], #4
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 12
-
-
  276              	.L19:
  277              		.align	2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 12
+
+
  278              	.L18:
  279 0108 00000000 		.word	htim1
  280 010c 00000140 		.word	1073807360
@@ -718,11 +716,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  329              	.LBE4:
  169:Src/main.c    ****     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
  330              		.loc 1 169 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 13
-
-
  331 0036 0223     		movs	r3, #2
  332 0038 0893     		str	r3, [sp, #32]
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 13
+
+
  170:Src/main.c    ****     RCC_OscInitStruct.HSICalibrationValue = 16;
  333              		.loc 1 170 0
  334 003a 0123     		movs	r3, #1
@@ -778,11 +776,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  373              	.LVL23:
  374              	.L22:
  194:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 14
-
-
  375              		.loc 1 194 0
  376 0072 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 14
+
+
  377              	.LVL24:
  378 0076 0C4B     		ldr	r3, .L24+12
  379 0078 A3FB0030 		umull	r3, r0, r3, r0
@@ -838,11 +836,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
   85:Src/main.c    **** 
  427              		.loc 1 85 0
  428 0002 FFF7FEFF 		bl	HAL_Init
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 15
-
-
  429              	.LVL28:
   92:Src/main.c    **** 
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 15
+
+
  430              		.loc 1 92 0
  431 0006 FFF7FEFF 		bl	SystemClock_Config
  432              	.LVL29:
@@ -856,7 +854,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  438              	.LVL31:
  106:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
  439              		.loc 1 106 0
- 440 0012 324C     		ldr	r4, .L29
+ 440 0012 344C     		ldr	r4, .L29
  441 0014 2046     		mov	r0, r4
  442 0016 0021     		movs	r1, #0
  443 0018 FFF7FEFF 		bl	HAL_TIM_PWM_Start
@@ -897,178 +895,181 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 1
  472 0046 0821     		movs	r1, #8
  473 0048 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  474              	.LVL38:
- 114:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 800);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 16
-
-
+ 114:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.1*TIMER_PERIOD);
  475              		.loc 1 114 0
  476 004c 2046     		mov	r0, r4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 16
+
+
  477 004e 0C21     		movs	r1, #12
  478 0050 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  479              	.LVL39:
- 115:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 800);
+ 115:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.1*TIMER_PERIOD);
  480              		.loc 1 115 0
  481 0054 2368     		ldr	r3, [r4]
- 482 0056 4FF44872 		mov	r2, #800
- 483 005a 5A63     		str	r2, [r3, #52]
- 116:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 800);
+ 482 0056 6422     		movs	r2, #100
+ 483 0058 5A63     		str	r2, [r3, #52]
+ 116:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.1*TIMER_PERIOD);
  484              		.loc 1 116 0
- 485 005c 9A63     		str	r2, [r3, #56]
- 117:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 800);
+ 485 005a 9A63     		str	r2, [r3, #56]
+ 117:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.1*TIMER_PERIOD);
  486              		.loc 1 117 0
- 487 005e DA63     		str	r2, [r3, #60]
+ 487 005c DA63     		str	r2, [r3, #60]
  118:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
  488              		.loc 1 118 0
- 489 0060 1A64     		str	r2, [r3, #64]
+ 489 005e 1A64     		str	r2, [r3, #64]
  119:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
  490              		.loc 1 119 0
- 491 0062 2046     		mov	r0, r4
- 492 0064 0021     		movs	r1, #0
- 493 0066 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 491 0060 2046     		mov	r0, r4
+ 492 0062 0021     		movs	r1, #0
+ 493 0064 FFF7FEFF 		bl	HAL_TIM_PWM_Start
  494              	.LVL40:
  120:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
  495              		.loc 1 120 0
- 496 006a 2046     		mov	r0, r4
- 497 006c 0421     		movs	r1, #4
- 498 006e FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 496 0068 2046     		mov	r0, r4
+ 497 006a 0421     		movs	r1, #4
+ 498 006c FFF7FEFF 		bl	HAL_TIM_PWM_Start
  499              	.LVL41:
  121:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
  500              		.loc 1 121 0
- 501 0072 2046     		mov	r0, r4
- 502 0074 0821     		movs	r1, #8
- 503 0076 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 501 0070 2046     		mov	r0, r4
+ 502 0072 0821     		movs	r1, #8
+ 503 0074 FFF7FEFF 		bl	HAL_TIM_PWM_Start
  504              	.LVL42:
  122:Src/main.c    ****     HAL_Delay(10000);
  505              		.loc 1 122 0
- 506 007a 2046     		mov	r0, r4
- 507 007c 0C21     		movs	r1, #12
- 508 007e FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 506 0078 2046     		mov	r0, r4
+ 507 007a 0C21     		movs	r1, #12
+ 508 007c FFF7FEFF 		bl	HAL_TIM_PWM_Start
  509              	.LVL43:
  123:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
  510              		.loc 1 123 0
- 511 0082 42F21070 		movw	r0, #10000
- 512 0086 FFF7FEFF 		bl	HAL_Delay
+ 511 0080 42F21070 		movw	r0, #10000
+ 512 0084 FFF7FEFF 		bl	HAL_Delay
  513              	.LVL44:
  124:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
  514              		.loc 1 124 0
- 515 008a 2046     		mov	r0, r4
- 516 008c 0021     		movs	r1, #0
- 517 008e FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 515 0088 2046     		mov	r0, r4
+ 516 008a 0021     		movs	r1, #0
+ 517 008c FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  518              	.LVL45:
  125:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
  519              		.loc 1 125 0
- 520 0092 2046     		mov	r0, r4
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 17
+ 520 0090 2046     		mov	r0, r4
+ 521 0092 0421     		movs	r1, #4
+ 522 0094 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 17
 
 
- 521 0094 0421     		movs	r1, #4
- 522 0096 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  523              	.LVL46:
  126:Src/main.c    ****     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
  524              		.loc 1 126 0
- 525 009a 2046     		mov	r0, r4
- 526 009c 0821     		movs	r1, #8
- 527 009e FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 525 0098 2046     		mov	r0, r4
+ 526 009a 0821     		movs	r1, #8
+ 527 009c FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  528              	.LVL47:
- 127:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 8000);
+ 127:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.6*TIMER_PERIOD);
  529              		.loc 1 127 0
- 530 00a2 2046     		mov	r0, r4
- 531 00a4 0C21     		movs	r1, #12
- 532 00a6 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 530 00a0 2046     		mov	r0, r4
+ 531 00a2 0C21     		movs	r1, #12
+ 532 00a4 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  533              	.LVL48:
- 128:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 8000);
+ 128:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.7*TIMER_PERIOD);
  534              		.loc 1 128 0
- 535 00aa 2368     		ldr	r3, [r4]
- 536 00ac 4FF4FA52 		mov	r2, #8000
- 537 00b0 5A63     		str	r2, [r3, #52]
- 129:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 8000);
+ 535 00a8 2368     		ldr	r3, [r4]
+ 536 00aa 4FF41672 		mov	r2, #600
+ 537 00ae 5A63     		str	r2, [r3, #52]
+ 129:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.8*TIMER_PERIOD);
  538              		.loc 1 129 0
- 539 00b2 9A63     		str	r2, [r3, #56]
- 130:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
- 540              		.loc 1 130 0
- 541 00b4 DA63     		str	r2, [r3, #60]
+ 539 00b0 4FF42F72 		mov	r2, #700
+ 540 00b4 9A63     		str	r2, [r3, #56]
+ 130:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.9*TIMER_PERIOD);
+ 541              		.loc 1 130 0
+ 542 00b6 4FF44872 		mov	r2, #800
+ 543 00ba DA63     		str	r2, [r3, #60]
  131:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
- 542              		.loc 1 131 0
- 543 00b6 1A64     		str	r2, [r3, #64]
+ 544              		.loc 1 131 0
+ 545 00bc 4FF46172 		mov	r2, #900
+ 546 00c0 1A64     		str	r2, [r3, #64]
  132:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
- 544              		.loc 1 132 0
- 545 00b8 2046     		mov	r0, r4
- 546 00ba 0021     		movs	r1, #0
- 547 00bc FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 548              	.LVL49:
+ 547              		.loc 1 132 0
+ 548 00c2 2046     		mov	r0, r4
+ 549 00c4 0021     		movs	r1, #0
+ 550 00c6 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 551              	.LVL49:
  133:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
- 549              		.loc 1 133 0
- 550 00c0 2046     		mov	r0, r4
- 551 00c2 0421     		movs	r1, #4
- 552 00c4 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 553              	.LVL50:
+ 552              		.loc 1 133 0
+ 553 00ca 2046     		mov	r0, r4
+ 554 00cc 0421     		movs	r1, #4
+ 555 00ce FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 556              	.LVL50:
  134:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
- 554              		.loc 1 134 0
- 555 00c8 2046     		mov	r0, r4
- 556 00ca 0821     		movs	r1, #8
- 557 00cc FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 558              	.LVL51:
+ 557              		.loc 1 134 0
+ 558 00d2 2046     		mov	r0, r4
+ 559 00d4 0821     		movs	r1, #8
+ 560 00d6 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 561              	.LVL51:
  135:Src/main.c    ****     /* USER CODE END 2 */
- 559              		.loc 1 135 0
- 560 00d0 2046     		mov	r0, r4
- 561 00d2 0C21     		movs	r1, #12
- 562 00d4 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 563              	.LVL52:
- 564              	.L27:
+ 562              		.loc 1 135 0
+ 563 00da 2046     		mov	r0, r4
+ 564 00dc 0C21     		movs	r1, #12
+ 565 00de FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 566              	.LVL52:
+ 567              	.L27:
  146:Src/main.c    ****     /* USER CODE END 3 */
- 565              		.loc 1 146 0 discriminator 1
- 566 00d8 FEE7     		b	.L27
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 18
+ 568              		.loc 1 146 0 discriminator 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 18
 
 
- 567              	.L30:
- 568 00da 00BF     		.align	2
- 569              	.L29:
- 570 00dc 00000000 		.word	htim1
- 571              		.cfi_endproc
- 572              	.LFE123:
- 574              		.comm	htim1,60,4
- 575              		.section	.rodata.str1.4,"aMS",%progbits,1
- 576              		.align	2
- 577              	.LC0:
- 578 0000 5372632F 		.ascii	"Src/main.c\000"
- 578      6D61696E 
- 578      2E6300
- 579              		.text
- 580              	.Letext0:
- 581              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 582              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 583              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 584              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 585              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 586              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 587              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 588              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 589              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
- 590              		.file 11 "Drivers/CMSIS/Include/core_cm4.h"
- 591              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 592              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s 			page 19
+ 569 00e2 FEE7     		b	.L27
+ 570              	.L30:
+ 571              		.align	2
+ 572              	.L29:
+ 573 00e4 00000000 		.word	htim1
+ 574              		.cfi_endproc
+ 575              	.LFE123:
+ 577              		.comm	htim1,60,4
+ 578              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 579              		.align	2
+ 580              	.LC0:
+ 581 0000 5372632F 		.ascii	"Src/main.c\000"
+ 581      6D61696E 
+ 581      2E6300
+ 582              		.text
+ 583              	.Letext0:
+ 584              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 585              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 586              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 587              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 588              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 589              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 590              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 591              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 592              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
+ 593              		.file 11 "Drivers/CMSIS/Include/core_cm4.h"
+ 594              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 595              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:21     .text.MX_GPIO_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:58     .text.MX_GPIO_Init:0000000000000020 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:63     .text._Error_Handler:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:68     .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:84     .text.MX_TIM1_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:88     .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:279    .text.MX_TIM1_Init:0000000000000108 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:21     .text.MX_GPIO_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:58     .text.MX_GPIO_Init:0000000000000020 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:63     .text._Error_Handler:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:68     .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:84     .text.MX_TIM1_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:88     .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:279    .text.MX_TIM1_Init:0000000000000108 $d
                             *COM*:000000000000003c htim1
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:286    .text.SystemClock_Config:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:291    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:402    .text.SystemClock_Config:000000000000009c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:410    .text.main:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:415    .text.main:0000000000000000 main
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:570    .text.main:00000000000000dc $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc7lblRh.s:576    .rodata.str1.4:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:286    .text.SystemClock_Config:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:291    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:402    .text.SystemClock_Config:000000000000009c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:410    .text.main:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:415    .text.main:0000000000000000 main
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:573    .text.main:00000000000000e4 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccUn5mGj.s:579    .rodata.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

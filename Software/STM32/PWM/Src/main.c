@@ -49,7 +49,7 @@ TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+#define TIMER_PERIOD 1000 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,10 +112,10 @@ int main(void)
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 800);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 800);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 800);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 800);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.1*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.1*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.1*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.1*TIMER_PERIOD);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -125,10 +125,10 @@ int main(void)
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 8000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 8000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 8000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 8000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.6*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0.7*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.8*TIMER_PERIOD);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0.9*TIMER_PERIOD);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -213,7 +213,7 @@ static void MX_TIM1_Init(void)
     htim1.Instance = TIM1;
     htim1.Init.Prescaler = 0;
     htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim1.Init.Period = 10000;
+    htim1.Init.Period = TIMER_PERIOD;
     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim1.Init.RepetitionCounter = 0;
     if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
@@ -240,7 +240,7 @@ static void MX_TIM1_Init(void)
     }
 
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = 1000;
+    sConfigOC.Pulse = 0.5*TIMER_PERIOD;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -265,8 +265,6 @@ static void MX_TIM1_Init(void)
     {
         _Error_Handler(__FILE__, __LINE__);
     }
-    //dont need this, leaving it here in case though
-    //memset(&sConfigOC, 0, sizeof(sConfigOC));
 
     sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
     sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
