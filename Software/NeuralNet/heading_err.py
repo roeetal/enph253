@@ -68,7 +68,7 @@ def main():
         frame = f.array
 
         '''
-        TODO: FIX THIS SUDO CODE
+        TODO: FIX THIS PSEUDO-CODE
         >>>>>>>>>>>>>
         '''
         bbox = YoloNet.find_ewok(frame)  # Get the location of any bounding boxes
