@@ -74,8 +74,7 @@ static void MX_TIM11_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_ADC1_Init(void);
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-                        //(101 / (72 * 10 ^ 6)) * 340 / 2         
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);        
                                 
 
 /* USER CODE BEGIN PFP */
