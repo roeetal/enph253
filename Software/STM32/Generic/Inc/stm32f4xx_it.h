@@ -37,7 +37,7 @@
 
 #ifdef __cplusplus
  extern "C" {
-#endif
+#endif 
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
@@ -56,7 +56,6 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void TIM2_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
 
 extern volatile uint32_t sonarVal;

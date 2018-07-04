@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
   29:Src/main.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   31:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 2
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 2
 
 
   32:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
   86:Src/main.c    **** {
   87:Src/main.c    ****   uint32_t usTicks = HAL_RCC_GetSysClockFreq() / 1000000;
   88:Src/main.c    ****   register uint32_t ms, cycle_cnt;
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 3
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 3
 
 
   89:Src/main.c    ****   do
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  143:Src/main.c    ****   HAL_Delay(1000);
  144:Src/main.c    ****   ssd1306_Fill(Black);
  145:Src/main.c    ****   ssd1306_WriteString("Hola Boyo", Font_11x18, White);
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 4
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 4
 
 
  146:Src/main.c    ****   ssd1306_UpdateScreen();
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  200:Src/main.c    ****   {
  201:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
  202:Src/main.c    ****   }
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 5
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 5
 
 
  203:Src/main.c    **** 
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  257:Src/main.c    ****   sConfig.Channel = ADC_CHANNEL_4;
  258:Src/main.c    ****   sConfig.Rank = 1;
  259:Src/main.c    ****   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 6
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 6
 
 
  260:Src/main.c    ****   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  314:Src/main.c    ****   {
  315:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
  316:Src/main.c    ****   }
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 7
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 7
 
 
  317:Src/main.c    **** 
@@ -418,15 +418,15 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  371:Src/main.c    **** 
  372:Src/main.c    ****   TIM_ClockConfigTypeDef sClockSourceConfig;
  373:Src/main.c    ****   TIM_MasterConfigTypeDef sMasterConfig;
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 8
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 8
 
 
  374:Src/main.c    ****   TIM_OC_InitTypeDef sConfigOC;
  375:Src/main.c    **** 
  376:Src/main.c    ****   htim2.Instance = TIM2;
- 377:Src/main.c    ****   htim2.Init.Prescaler = 2;
+ 377:Src/main.c    ****   htim2.Init.Prescaler = 100;
  378:Src/main.c    ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
- 379:Src/main.c    ****   htim2.Init.Period = 100000;
+ 379:Src/main.c    ****   htim2.Init.Period = 429496729;
  380:Src/main.c    ****   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  381:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
  382:Src/main.c    ****   {
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  428:Src/main.c    ****   HAL_TIM_MspPostInit(&htim2);
  429:Src/main.c    **** 
  430:Src/main.c    **** }
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 9
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 9
 
 
  431:Src/main.c    **** 
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  485:Src/main.c    ****   sConfigOC.OCMode = TIM_OCMODE_PWM1;
  486:Src/main.c    ****   sConfigOC.Pulse = 0;
  487:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 10
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 10
 
 
  488:Src/main.c    ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  542:Src/main.c    ****   huart6.Init.HwFlowCtl = UART_HWCONTROL_NONE;
  543:Src/main.c    ****   huart6.Init.OverSampling = UART_OVERSAMPLING_16;
  544:Src/main.c    ****   if (HAL_UART_Init(&huart6) != HAL_OK)
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 11
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 11
 
 
  545:Src/main.c    ****   {
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
   61 0020 1A6B     		ldr	r2, [r3, #48]
   62 0022 42F08002 		orr	r2, r2, #128
   63 0026 1A63     		str	r2, [r3, #48]
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 12
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 12
 
 
   64 0028 1A6B     		ldr	r2, [r3, #48]
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  575:Src/main.c    ****   HAL_GPIO_WritePin(GPIOH, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
  109              		.loc 1 575 0
  110 007c DFF83491 		ldr	r9, .L3+20
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 13
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 13
 
 
  111 0080 4846     		mov	r0, r9
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  594:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
  147              		.loc 1 594 0
  148 00c2 0326     		movs	r6, #3
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 14
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 14
 
 
  149 00c4 0696     		str	r6, [sp, #24]
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  613:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  185              		.loc 1 613 0
  186 00f6 0694     		str	r4, [sp, #24]
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 15
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 15
 
 
  614:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  221              		.loc 1 633 0
  222 012c 4FF47043 		mov	r3, #61440
  223 0130 0593     		str	r3, [sp, #20]
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 16
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 16
 
 
  634:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  651:Src/main.c    ****   /*Configure GPIO pins : PA14 PA15 */
  652:Src/main.c    ****   GPIO_InitStruct.Pin = GPIO_PIN_14|GPIO_PIN_15;
  261              		.loc 1 652 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 17
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 17
 
 
  262 0168 4FF44043 		mov	r3, #49152
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  301              	.L4:
  302              		.align	2
  303              	.L3:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 18
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 18
 
 
  304 01a0 00380240 		.word	1073887232
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  350              		.loc 1 279 0
  351 001e 0362     		str	r3, [r0, #32]
  280:Src/main.c    ****   {
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 19
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 19
 
 
  352              		.loc 1 280 0
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  401              	.LVL19:
  449:Src/main.c    ****   if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
  402              		.loc 1 449 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 20
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 20
 
 
  403 001a 06A9     		add	r1, sp, #24
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  296:Src/main.c    ****   htim1.Init.Prescaler = 0;
  453              		.loc 1 296 0
  454 0004 254D     		ldr	r5, .L15
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 21
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 21
 
 
  455 0006 264B     		ldr	r3, .L15+4
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  326:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  496              		.loc 1 326 0
  497 0042 0894     		str	r4, [sp, #32]
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 22
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 22
 
 
  327:Src/main.c    ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  539 007c 0394     		str	r4, [sp, #12]
  356:Src/main.c    ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
  540              		.loc 1 356 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 23
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 23
 
 
  541 007e 0494     		str	r4, [sp, #16]
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  590              		.loc 1 470 0
  591 0004 0E4C     		ldr	r4, .L19
  592 0006 0F4B     		ldr	r3, .L19+4
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 24
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 24
 
 
  593 0008 2360     		str	r3, [r4]
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  634              		@ sp needed
  635 003c 30BD     		pop	{r4, r5, pc}
  636              	.L20:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 25
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 25
 
 
  637 003e 00BF     		.align	2
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  519:Src/main.c    ****   sConfigOC.Pulse = 0;
  685              		.loc 1 519 0
  686 0020 6023     		movs	r3, #96
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 26
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 26
 
 
  687 0022 0193     		str	r3, [sp, #4]
@@ -1557,8 +1557,8 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  735 0002 8FB0     		sub	sp, sp, #60
  736              	.LCFI17:
  737              		.cfi_def_cfa_offset 72
- 376:Src/main.c    ****   htim2.Init.Prescaler = 2;
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 27
+ 376:Src/main.c    ****   htim2.Init.Prescaler = 100;
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 27
 
 
  738              		.loc 1 376 0
@@ -1567,9 +1567,9 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  741 000a 2360     		str	r3, [r4]
  377:Src/main.c    ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
  742              		.loc 1 377 0
- 743 000c 0223     		movs	r3, #2
+ 743 000c 6423     		movs	r3, #100
  744 000e 6360     		str	r3, [r4, #4]
- 378:Src/main.c    ****   htim2.Init.Period = 100000;
+ 378:Src/main.c    ****   htim2.Init.Period = 429496729;
  745              		.loc 1 378 0
  746 0010 0025     		movs	r5, #0
  747 0012 A560     		str	r5, [r4, #8]
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  405:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  780              		.loc 1 405 0
  781 0044 0295     		str	r5, [sp, #8]
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 28
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 28
 
 
  406:Src/main.c    ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -1671,14 +1671,14 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  821              		.align	2
  822              	.L27:
  823 007c 00000000 		.word	htim2
- 824 0080 A0860100 		.word	100000
+ 824 0080 99999919 		.word	429496729
  825              		.cfi_endproc
  826              	.LFE130:
  828              		.section	.text.MX_USART6_UART_Init,"ax",%progbits
  829              		.align	2
  830              		.thumb
  831              		.thumb_func
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 29
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 29
 
 
  833              	MX_USART6_UART_Init:
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  878              		.align	2
  879              		.thumb
  880              		.thumb_func
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 30
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 30
 
 
  882              	MX_ADC1_Init:
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  924              		.loc 1 248 0
  925 0026 2563     		str	r5, [r4, #48]
  249:Src/main.c    ****   if (HAL_ADC_Init(&hadc1) != HAL_OK)
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 31
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 31
 
 
  926              		.loc 1 249 0
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  975              		.cfi_offset 5, -12
  976              		.cfi_offset 6, -8
  977              		.cfi_offset 14, -4
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 32
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 32
 
 
   87:Src/main.c    ****   register uint32_t ms, cycle_cnt;
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1027              		.loc 1 98 0
  1028              		.cfi_startproc
  1029              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 33
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 33
 
 
  1030              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1080              		.cfi_def_cfa_offset 16
  1081              		.cfi_offset 4, -16
  1082              		.cfi_offset 5, -12
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 34
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 34
 
 
  1083              		.cfi_offset 6, -8
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1129 0048 1093     		str	r3, [sp, #64]
  196:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
  1130              		.loc 1 196 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 35
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 35
 
 
  1131 004a 4823     		movs	r3, #72
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1173 008c 4FF0FF30 		mov	r0, #-1
  1174 0090 2146     		mov	r1, r4
  1175 0092 2246     		mov	r2, r4
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 36
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 36
 
 
  1176 0094 FFF7FEFF 		bl	HAL_NVIC_SetPriority
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1225 0012 FFF7FEFF 		bl	MX_TIM1_Init
  1226              	.LVL76:
  135:Src/main.c    ****   MX_TIM3_Init();
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 37
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 37
 
 
  1227              		.loc 1 135 0
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1270 005a FFF7FEFF 		bl	HAL_GPIO_WritePin
  1271              	.LVL88:
  152:Src/main.c    **** 
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 38
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 38
 
 
  1272              		.loc 1 152 0
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1318 00aa FFF7FEFF 		bl	ssd1306_UpdateScreen
  1319              	.LVL98:
  164:Src/main.c    ****   /* USER CODE END WHILE */
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 39
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 39
 
 
  1320              		.loc 1 164 0 discriminator 1
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1363 000a 0000     		.space	2
  1364              	.LC1:
  1365 000c 76616C3A 		.ascii	"val: %d    \000"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 40
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 40
 
 
  1365      20256420 
@@ -2367,67 +2367,67 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 1
  1387              		.file 21 "<built-in>"
  1388              		.file 22 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  1389              		.file 23 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdio.h"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 41
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:21     .text.MX_GPIO_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:304    .text.MX_GPIO_Init:00000000000001a0 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:314    .text.MX_I2C1_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:318    .text.MX_I2C1_Init:0000000000000000 MX_I2C1_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:359    .text.MX_I2C1_Init:0000000000000028 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:21     .text.MX_GPIO_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:304    .text.MX_GPIO_Init:00000000000001a0 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:314    .text.MX_I2C1_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:318    .text.MX_I2C1_Init:0000000000000000 MX_I2C1_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:359    .text.MX_I2C1_Init:0000000000000028 $d
                             *COM*:0000000000000054 hi2c1
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:366    .text.MX_TIM3_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:370    .text.MX_TIM3_Init:0000000000000000 MX_TIM3_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:428    .text.MX_TIM3_Init:000000000000003c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:366    .text.MX_TIM3_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:370    .text.MX_TIM3_Init:0000000000000000 MX_TIM3_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:428    .text.MX_TIM3_Init:000000000000003c $d
                             *COM*:000000000000003c htim3
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:434    .text.MX_TIM1_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:438    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:565    .text.MX_TIM1_Init:000000000000009c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:434    .text.MX_TIM1_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:438    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:565    .text.MX_TIM1_Init:000000000000009c $d
                             *COM*:000000000000003c htim1
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:571    .text.MX_TIM10_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:575    .text.MX_TIM10_Init:0000000000000000 MX_TIM10_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:639    .text.MX_TIM10_Init:0000000000000040 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:571    .text.MX_TIM10_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:575    .text.MX_TIM10_Init:0000000000000000 MX_TIM10_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:639    .text.MX_TIM10_Init:0000000000000040 $d
                             *COM*:000000000000003c htim10
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:645    .text.MX_TIM11_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:649    .text.MX_TIM11_Init:0000000000000000 MX_TIM11_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:713    .text.MX_TIM11_Init:0000000000000040 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:645    .text.MX_TIM11_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:649    .text.MX_TIM11_Init:0000000000000000 MX_TIM11_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:713    .text.MX_TIM11_Init:0000000000000040 $d
                             *COM*:000000000000003c htim11
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:719    .text.MX_TIM2_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:723    .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:823    .text.MX_TIM2_Init:000000000000007c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:719    .text.MX_TIM2_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:723    .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:823    .text.MX_TIM2_Init:000000000000007c $d
                             *COM*:000000000000003c htim2
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:829    .text.MX_USART6_UART_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:833    .text.MX_USART6_UART_Init:0000000000000000 MX_USART6_UART_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:872    .text.MX_USART6_UART_Init:0000000000000024 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:829    .text.MX_USART6_UART_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:833    .text.MX_USART6_UART_Init:0000000000000000 MX_USART6_UART_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:872    .text.MX_USART6_UART_Init:0000000000000024 $d
                             *COM*:0000000000000040 huart6
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:878    .text.MX_ADC1_Init:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:882    .text.MX_ADC1_Init:0000000000000000 MX_ADC1_Init
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:953    .text.MX_ADC1_Init:0000000000000044 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:878    .text.MX_ADC1_Init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:882    .text.MX_ADC1_Init:0000000000000000 MX_ADC1_Init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:953    .text.MX_ADC1_Init:0000000000000044 $d
                             *COM*:0000000000000048 hadc1
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:960    .text.getUs:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:965    .text.getUs:0000000000000000 getUs
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1014   .text.getUs:0000000000000034 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1020   .text.delayUs:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1025   .text.delayUs:0000000000000000 delayUs
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1067   .text.SystemClock_Config:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1072   .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1187   .text.SystemClock_Config:000000000000009c $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1194   .text.main:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1199   .text.main:0000000000000000 main
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1325   .text.main:00000000000000b0 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1334   .text._Error_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1339   .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s:1360   .rodata.str1.4:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:960    .text.getUs:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:965    .text.getUs:0000000000000000 getUs
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1014   .text.getUs:0000000000000034 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1020   .text.delayUs:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1025   .text.delayUs:0000000000000000 delayUs
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1067   .text.SystemClock_Config:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1072   .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1187   .text.SystemClock_Config:000000000000009c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1194   .text.main:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1199   .text.main:0000000000000000 main
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1325   .text.main:00000000000000b0 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1334   .text._Error_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1339   .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s:1360   .rodata.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccbdFFvG.s 			page 42
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccNoCGPi.s 			page 42
 
 
 HAL_NVIC_EnableIRQ

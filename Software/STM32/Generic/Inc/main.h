@@ -49,8 +49,12 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define Sensor_Echo_Pin GPIO_PIN_12
+#define Sensor_Echo_GPIO_Port GPIOA
+#define Sensor_Echo_EXTI_IRQn EXTI15_10_IRQn
 #define Sensor_Trig_Pin GPIO_PIN_13
 #define Sensor_Trig_GPIO_Port GPIOA
+
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
