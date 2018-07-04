@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
   28:Src/stm32f4xx_it.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   29:Src/stm32f4xx_it.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   30:Src/stm32f4xx_it.c ****   *
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 2
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 2
 
 
   31:Src/stm32f4xx_it.c ****   ******************************************************************************
@@ -69,11 +69,11 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
   36:Src/stm32f4xx_it.c **** #include "stm32f4xx_it.h"
   37:Src/stm32f4xx_it.c **** 
   38:Src/stm32f4xx_it.c **** /* USER CODE BEGIN 0 */
-  39:Src/stm32f4xx_it.c **** 
+  39:Src/stm32f4xx_it.c **** volatile uint32_t sonarVal;
   40:Src/stm32f4xx_it.c **** /* USER CODE END 0 */
   41:Src/stm32f4xx_it.c **** 
   42:Src/stm32f4xx_it.c **** /* External variables --------------------------------------------------------*/
-  43:Src/stm32f4xx_it.c **** 
+  43:Src/stm32f4xx_it.c **** extern TIM_HandleTypeDef htim2;
   44:Src/stm32f4xx_it.c **** /******************************************************************************/
   45:Src/stm32f4xx_it.c **** /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
   46:Src/stm32f4xx_it.c **** /******************************************************************************/
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
   50              		@ frame_needed = 0, uses_anonymous_args = 0
   51              		@ link register save eliminated.
   52              	.L3:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 3
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 3
 
 
   66:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
   85              	.LFB126:
   92:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN MemoryManagement_IRQn 1 */
   93:Src/stm32f4xx_it.c **** 
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 4
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 4
 
 
   94:Src/stm32f4xx_it.c ****   /* USER CODE END MemoryManagement_IRQn 1 */
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
  123:Src/stm32f4xx_it.c ****   while (1)
  124:Src/stm32f4xx_it.c ****   {
  125:Src/stm32f4xx_it.c ****     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 5
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 5
 
 
  126:Src/stm32f4xx_it.c ****     /* USER CODE END W1_UsageFault_IRQn 0 */
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
  146              		@ frame_needed = 0, uses_anonymous_args = 0
  147              		@ link register save eliminated.
  148 0000 7047     		bx	lr
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 6
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 6
 
 
  149              		.cfi_endproc
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
  181              		.loc 1 176 0
  182 0000 08B5     		push	{r3, lr}
  183              	.LCFI0:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 7
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 7
 
 
  184              		.cfi_def_cfa_offset 8
@@ -378,38 +378,139 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 1
  193 000a 08BD     		pop	{r3, pc}
  194              		.cfi_endproc
  195              	.LFE131:
- 197              		.text
- 198              	.Letext0:
- 199              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 200              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 201              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 202              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 203              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s 			page 8
+ 197              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+ 198              		.align	2
+ 199              		.global	EXTI15_10_IRQHandler
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	EXTI15_10_IRQHandler:
+ 204              	.LFB132:
+ 182:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
+ 183:Src/stm32f4xx_it.c **** 
+ 184:Src/stm32f4xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
+ 185:Src/stm32f4xx_it.c **** }
+ 186:Src/stm32f4xx_it.c **** 
+ 187:Src/stm32f4xx_it.c **** /******************************************************************************/
+ 188:Src/stm32f4xx_it.c **** /* STM32F4xx Peripheral Interrupt Handlers                                    */
+ 189:Src/stm32f4xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 190:Src/stm32f4xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 191:Src/stm32f4xx_it.c **** /* please refer to the startup file (startup_stm32f4xx.s).                    */
+ 192:Src/stm32f4xx_it.c **** /******************************************************************************/
+ 193:Src/stm32f4xx_it.c **** 
+ 194:Src/stm32f4xx_it.c **** /**
+ 195:Src/stm32f4xx_it.c **** * @brief This function handles EXTI line[15:10] interrupts.
+ 196:Src/stm32f4xx_it.c **** */
+ 197:Src/stm32f4xx_it.c **** void EXTI15_10_IRQHandler(void)
+ 198:Src/stm32f4xx_it.c **** {
+ 205              		.loc 1 198 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0000 08B5     		push	{r3, lr}
+ 210              	.LCFI1:
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 3, -8
+ 213              		.cfi_offset 14, -4
+ 199:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+ 200:Src/stm32f4xx_it.c **** 
+ 201:Src/stm32f4xx_it.c ****   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_12)){
+ 214              		.loc 1 201 0
+ 215 0002 0C48     		ldr	r0, .L19
+ 216 0004 4FF48051 		mov	r1, #4096
+ 217 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 8
+
+
+ 218              	.LVL2:
+ 219 000c 18B1     		cbz	r0, .L16
+ 202:Src/stm32f4xx_it.c ****     HAL_TIM_Base_Start(&htim2);
+ 220              		.loc 1 202 0
+ 221 000e 0A48     		ldr	r0, .L19+4
+ 222 0010 FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 223              	.LVL3:
+ 224 0014 09E0     		b	.L17
+ 225              	.L16:
+ 203:Src/stm32f4xx_it.c ****   } else {
+ 204:Src/stm32f4xx_it.c ****     sonarVal = TIM2->CNT;
+ 226              		.loc 1 204 0
+ 227 0016 4FF08043 		mov	r3, #1073741824
+ 228 001a 596A     		ldr	r1, [r3, #36]
+ 229 001c 074A     		ldr	r2, .L19+8
+ 230 001e 1160     		str	r1, [r2]
+ 205:Src/stm32f4xx_it.c ****     TIM2->CNT = 0;
+ 231              		.loc 1 205 0
+ 232 0020 0022     		movs	r2, #0
+ 233 0022 5A62     		str	r2, [r3, #36]
+ 206:Src/stm32f4xx_it.c ****     HAL_TIM_Base_Stop(&htim2);
+ 234              		.loc 1 206 0
+ 235 0024 0448     		ldr	r0, .L19+4
+ 236 0026 FFF7FEFF 		bl	HAL_TIM_Base_Stop
+ 237              	.LVL4:
+ 238              	.L17:
+ 207:Src/stm32f4xx_it.c ****   }
+ 208:Src/stm32f4xx_it.c **** 
+ 209:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 0 */
+ 210:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
+ 239              		.loc 1 210 0
+ 240 002a 4FF48050 		mov	r0, #4096
+ 241 002e FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 242              	.LVL5:
+ 243 0032 08BD     		pop	{r3, pc}
+ 244              	.L20:
+ 245              		.align	2
+ 246              	.L19:
+ 247 0034 00000240 		.word	1073872896
+ 248 0038 00000000 		.word	htim2
+ 249 003c 00000000 		.word	sonarVal
+ 250              		.cfi_endproc
+ 251              	.LFE132:
+ 253              		.comm	sonarVal,4,4
+ 254              		.text
+ 255              	.Letext0:
+ 256              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 257              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 258              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 259              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 260              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 261              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 262              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 263              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 264              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 265              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_it.c
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:21     .text.NMI_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:39     .text.HardFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:44     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:59     .text.MemManage_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:79     .text.BusFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:84     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:99     .text.UsageFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:104    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:119    .text.SVC_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:124    .text.SVC_Handler:0000000000000000 SVC_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:136    .text.DebugMon_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:141    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:153    .text.PendSV_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:158    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:170    .text.SysTick_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cc5Ealcb.s:175    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:21     .text.NMI_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:39     .text.HardFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:44     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:59     .text.MemManage_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:79     .text.BusFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:84     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:99     .text.UsageFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:104    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:119    .text.SVC_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:124    .text.SVC_Handler:0000000000000000 SVC_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:136    .text.DebugMon_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:141    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:153    .text.PendSV_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:158    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:170    .text.SysTick_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:175    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:198    .text.EXTI15_10_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:203    .text.EXTI15_10_IRQHandler:0000000000000000 EXTI15_10_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cclvyv7z.s:247    .text.EXTI15_10_IRQHandler:0000000000000034 $d
+                            *COM*:0000000000000004 sonarVal
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
 HAL_SYSTICK_IRQHandler
+HAL_GPIO_ReadPin
+HAL_TIM_Base_Start
+HAL_TIM_Base_Stop
+HAL_GPIO_EXTI_IRQHandler
+htim2
