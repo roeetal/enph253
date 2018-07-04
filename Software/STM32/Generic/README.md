@@ -18,3 +18,7 @@ __note: I am not sure if the frequency of the timer is 72 MHz or 84 MHz - this i
 
 - Refine TIM2 Prescaler value to get best values
 - Speed it up
+
+## Sonar for Edge Detection
+
+- Playing with it, I am not sure how it will play out as an edge detector. I think it may be too inaccurate or slow for edge detection. The benefit it gives would be if the sonar is angled at a large angle (see diagram's gamma), but the largest angle it seems to give us for (moderately) accurate angles is 35 degrees (which gives 7tan(35) = 4.9 cm from edge). However, at 35 degrees, maybe a bit less than 50% of values were erronous that would have to be filtered out). I would like to test it w/ the actual robot, but it is also late right now so I am leaving.
