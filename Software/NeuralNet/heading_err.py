@@ -11,19 +11,36 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import math
 
-# TODO: Define real pin values
-BIN_OUT1 = 1
-BIN_OUT2 = 2
-BIN_OUT3 = 3
-BIN_OUT4 = 4
-BIN_OUT5 = 5
-BIN_OUT6 = 6
-BIN_OUT7 = 7
-BIN_OUT8 = 8
-INTERRUPT_PIN = 9
+
+ # 1 is MSB, 8 is LSB
+BIN_OUT1 = 5
+BIN_OUT2 = 6
+BIN_OUT3 = 13
+BIN_OUT4 = 19
+BIN_OUT5 = 26
+BIN_OUT6 = 12
+BIN_OUT7 = 16
+BIN_OUT8 = 20
+INTERRUPT_PIN = 21
 
 
-def DAC_ouput(err):
+def setup():
+
+    # GPIO Setup
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BIN_OUT1, GPIO.OUT)
+    GPIO.setup(BIN_OUT2, GPIO.OUT)
+    GPIO.setup(BIN_OUT3, GPIO.OUT)
+    GPIO.setup(BIN_OUT4, GPIO.OUT)
+    GPIO.setup(BIN_OUT5, GPIO.OUT)
+    GPIO.setup(BIN_OUT6, GPIO.OUT)
+    GPIO.setup(BIN_OUT7, GPIO.OUT)
+    GPIO.setup(BIN_OUT8, GPIO.OUT)
+    GPIO.setup(INTERRUPT_PIN, GPIO.OUT)
+
+
+
+def DAC_output(err):
     # 255 is ewok at right edge
     # 0 is ewok at left edge
     # 127 is ewok in the center
@@ -43,18 +60,6 @@ def DAC_ouput(err):
 
 
 def main():
-
-    # GPIO Setup
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(BIN_OUT1, GPIO.OUT)
-    GPIO.setup(BIN_OUT2, GPIO.OUT)
-    GPIO.setup(BIN_OUT3, GPIO.OUT)
-    GPIO.setup(BIN_OUT4, GPIO.OUT)
-    GPIO.setup(BIN_OUT5, GPIO.OUT)
-    GPIO.setup(BIN_OUT6, GPIO.OUT)
-    GPIO.setup(BIN_OUT7, GPIO.OUT)
-    GPIO.setup(BIN_OUT8, GPIO.OUT)
-    GPIO.setup(INTERRUPT_PIN, GPIO.OUT)
     
     # Camera setup
     cam = PiCamera()
