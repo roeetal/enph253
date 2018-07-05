@@ -40,7 +40,7 @@ def setup():
 
 
 
-def DAC_output(err):
+def DAC_output(err, DBG=False):
     # 255 is ewok at right edge
     # 0 is ewok at left edge
     # 127 is ewok in the center
@@ -49,6 +49,10 @@ def DAC_output(err):
 
     # Orded msb -> lsb
     out_bits = [int(x) for x in list(binary)]
+    for _ in range(len(out_bits),8):
+        out_bits.insert(0,0)
+
+    if DBG: print(out_bits)
     GPIO.output(BIN_OUT1, out_bits[0])
     GPIO.output(BIN_OUT2, out_bits[1])
     GPIO.output(BIN_OUT3, out_bits[2])
