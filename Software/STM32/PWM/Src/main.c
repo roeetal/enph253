@@ -49,7 +49,7 @@ TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-#define TIMER_PERIOD 1000 
+#define TIMER_PERIOD 1000
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
