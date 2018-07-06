@@ -49,18 +49,10 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define QRD_LEFT_Pin GPIO_PIN_6
-#define QRD_LEFT_GPIO_Port GPIOA
-#define QRD_RIGHT_Pin GPIO_PIN_7
+#define QRD_RIGHT_Pin GPIO_PIN_6
 #define QRD_RIGHT_GPIO_Port GPIOA
-#define MOTOR_LEFT_FORWARD_Pin GPIO_PIN_8
-#define MOTOR_LEFT_FORWARD_GPIO_Port GPIOA
-#define MOTOR_LEFT_BACKWARD_Pin GPIO_PIN_9
-#define MOTOR_LEFT_BACKWARD_GPIO_Port GPIOA
-#define MOTOR_RIGHT_FORWARD_Pin GPIO_PIN_10
-#define MOTOR_RIGHT_FORWARD_GPIO_Port GPIOA
-#define MOTOR_RIGHT_BACKWARD_Pin GPIO_PIN_11
-#define MOTOR_RIGHT_BACKWARD_GPIO_Port GPIOA
+#define QRD_LEFT_Pin GPIO_PIN_7
+#define QRD_LEFT_GPIO_Port GPIOA
 
 /* ########################## Assert Selection ############################## */
 /**
