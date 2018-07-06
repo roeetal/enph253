@@ -5,7 +5,7 @@
 <description>IR detection</description>
 <attributes>
 <attribute name="AIRWIRES" value="YES"/>
-<attribute name="BOARDSIZE" value="1740 x 1740 mil"/>
+<attribute name="BOARDSIZE" value="1177 x 1117 mil"/>
 <attribute name="LAYERS" value="0:"/>
 </attributes>
 <drawings>
