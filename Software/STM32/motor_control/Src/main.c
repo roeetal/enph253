@@ -52,11 +52,11 @@ TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-#define MOTOR_PWM_PERIOD 65536
+#define MOTOR_SPEED 100
 #define MOTOR_LEFT_FORWARD TIM_CHANNEL_1
-#define MOTOR_LEFT_BACKWARD TIM_CHANNEL_2 
-#define MOTOR_RIGHT_FORWARD TIM_CHANNEL_3 
-#define MOTOR_RIGHT_BACKWARD TIM_CHANNEL_4 
+#define MOTOR_LEFT_BACKWARD TIM_CHANNEL_2
+#define MOTOR_RIGHT_FORWARD TIM_CHANNEL_3
+#define MOTOR_RIGHT_BACKWARD TIM_CHANNEL_4
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -70,6 +70,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+void print(char* msg);
 
 /* USER CODE END PFP */
 
@@ -108,78 +109,57 @@ int main(void)
     MX_GPIO_Init();
     MX_I2C1_Init();
     MX_TIM1_Init();
-    /* USER CODE BEGIN 2 */
     ssd1306_Init();
-    HAL_Delay(10);
-    ssd1306_Fill(Black);
-    ssd1306_UpdateScreen();
-    HAL_Delay(10);
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("Starting...",Font_11x18,White);
-    ssd1306_UpdateScreen();
-
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_LEFT_FORWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_LEFT_BACKWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_RIGHT_BACKWARD);
-
-    //forward
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_LEFT_FORWARD, 0.7*MOTOR_PWM_PERIOD);
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_RIGHT_FORWARD, 0.7*MOTOR_PWM_PERIOD);
+    /* USER CODE BEGIN 2 */
+    print("Starting...");
     HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_FORWARD);
-    HAL_Delay(3000);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_LEFT_FORWARD);
-    ssd1306_Fill(Black);
-    ssd1306_UpdateScreen();
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("Forwards 0.7",Font_11x18,White);
-    ssd1306_UpdateScreen();
-    //backward
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_LEFT_BACKWARD, 0.7*MOTOR_PWM_PERIOD);
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_RIGHT_BACKWARD, 0.7*MOTOR_PWM_PERIOD);
     HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_BACKWARD);
+    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_FORWARD);
     HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_BACKWARD);
-    HAL_Delay(3000);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_RIGHT_BACKWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_LEFT_BACKWARD);
-    ssd1306_Fill(Black);
-    ssd1306_UpdateScreen();
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("Backwards 0.7",Font_11x18,White);
-    ssd1306_UpdateScreen();
-    //left
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_LEFT_FORWARD, 0.5*MOTOR_PWM_PERIOD);
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_RIGHT_FORWARD, 0.9*MOTOR_PWM_PERIOD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_FORWARD);
-    HAL_Delay(3000);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Stop(&htim1, MOTOR_LEFT_FORWARD);
-    ssd1306_Fill(Black);
-    ssd1306_UpdateScreen();
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("L 0.5 R 0.9",Font_11x18,White);
-    ssd1306_UpdateScreen();
-    //left
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_LEFT_FORWARD, 0.7*MOTOR_PWM_PERIOD);
-    __HAL_TIM_SET_COMPARE(&htim1, MOTOR_RIGHT_BACKWARD, 0.7*MOTOR_PWM_PERIOD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_BACKWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_FORWARD);
-    ssd1306_Fill(Black);
-    ssd1306_UpdateScreen();
-    ssd1306_SetCursor(0,0);
-    ssd1306_WriteString("Fuck yess!!",Font_11x18,White);
-    ssd1306_UpdateScreen();
+    //forward
+    print("L 0.7 R 0.7");
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_FORWARD, 0.7*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_FORWARD, 0.7*MOTOR_SPEED);
+    HAL_Delay(5000);
+    //backward
+    print("L -0.7 R -0.7");
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_FORWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_FORWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_BACKWARD, 0.7*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_BACKWARD, 0.7*MOTOR_SPEED);
+    HAL_Delay(5000);
+    //turn
+    print("L 0.9 R -0.7");
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_BACKWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_FORWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_BACKWARD, 0.7*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_FORWARD, 0.9*MOTOR_SPEED);
+    HAL_Delay(5000);
+    //spin
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_FORWARD, 0.9*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_FORWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_BACKWARD, 0.9*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_BACKWARD, 0*MOTOR_SPEED);
+    HAL_Delay(5000);
+
+    int i=0;
+    __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_BACKWARD, 0*MOTOR_SPEED);
+    __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_BACKWARD, 0*MOTOR_SPEED);
+    print("Go boy");
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-
+        if(i<=MOTOR_SPEED){
+            __HAL_TIM_SetCompare(&htim1, MOTOR_RIGHT_FORWARD, i);
+            __HAL_TIM_SetCompare(&htim1, MOTOR_LEFT_FORWARD, i);
+            HAL_Delay(500);
+            i++;
+        }
         /* USER CODE END WHILE */
+
         /* USER CODE BEGIN 3 */
 
     }
@@ -208,12 +188,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
     RCC_OscInitStruct.HSICalibrationValue = 16;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-    RCC_OscInitStruct.PLL.PLLM = 8;
-    RCC_OscInitStruct.PLL.PLLN = 72;
-    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-    RCC_OscInitStruct.PLL.PLLQ = 4;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
         _Error_Handler(__FILE__, __LINE__);
@@ -223,12 +198,12 @@ void SystemClock_Config(void)
     */
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
         |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
     {
         _Error_Handler(__FILE__, __LINE__);
     }
@@ -275,9 +250,9 @@ static void MX_TIM1_Init(void)
     TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig;
 
     htim1.Instance = TIM1;
-    htim1.Init.Prescaler = 1000;
+    htim1.Init.Prescaler = 0;
     htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim1.Init.Period = MOTOR_PWM_PERIOD;
+    htim1.Init.Period = MOTOR_SPEED;
     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim1.Init.RepetitionCounter = 0;
     if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
@@ -344,10 +319,6 @@ static void MX_TIM1_Init(void)
 
     HAL_TIM_MspPostInit(&htim1);
 
-    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_FORWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_LEFT_BACKWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_FORWARD);
-    HAL_TIM_PWM_Start(&htim1, MOTOR_RIGHT_BACKWARD);
 }
 
 /** Configure pins as 
@@ -366,8 +337,8 @@ static void MX_GPIO_Init(void)
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
-    /*Configure GPIO pins : QRD_LEFT_Pin QRD_RIGHT_Pin */
-    GPIO_InitStruct.Pin = QRD_LEFT_Pin|QRD_RIGHT_Pin;
+    /*Configure GPIO pins : QRD_RIGHT_Pin QRD_LEFT_Pin */
+    GPIO_InitStruct.Pin = QRD_RIGHT_Pin|QRD_LEFT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -375,6 +346,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void print(char* msg){
+    ssd1306_Fill(Black);
+    ssd1306_UpdateScreen();
+    ssd1306_SetCursor(0,0);
+    ssd1306_WriteString(msg,Font_11x18,White);
+    ssd1306_UpdateScreen();
+}
 
 /* USER CODE END 4 */
 
