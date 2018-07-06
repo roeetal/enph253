@@ -5,7 +5,7 @@
 <description>Opto-sensor circuit</description>
 <attributes>
 <attribute name="AIRWIRES" value="YES"/>
-<attribute name="BOARDSIZE" value="74.9 x 93 mm"/>
+<attribute name="BOARDSIZE" value="74.9 x 84.3 mm"/>
 <attribute name="LAYERS" value="1: 1"/>
 </attributes>
 <drawings>
