@@ -129,6 +129,26 @@
 <pin name="S" x="5.08" y="2.54" length="middle" rot="R270"/>
 <pin name="D" x="5.08" y="5.08" length="middle" rot="R90"/>
 </symbol>
+<symbol name="SERVO">
+<wire x1="0" y1="0" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="10.16" y2="5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="5.08" x2="10.16" y2="0" width="0.254" layer="94"/>
+<wire x1="10.16" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="SIG" x="2.54" y="7.62" length="middle" rot="R270"/>
+<pin name="PWR" x="5.08" y="7.62" length="middle" rot="R270"/>
+<pin name="GND" x="7.62" y="7.62" length="middle" rot="R270"/>
+</symbol>
+<symbol name="ENCODER">
+<wire x1="0" y1="0" x2="0" y2="10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="10.16" x2="12.7" y2="10.16" width="0.254" layer="94"/>
+<wire x1="12.7" y1="10.16" x2="12.7" y2="0" width="0.254" layer="94"/>
+<wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="1" x="2.54" y="7.62" length="middle"/>
+<pin name="2" x="2.54" y="5.08" length="middle"/>
+<pin name="GND" x="2.54" y="2.54" length="middle"/>
+<text x="2.54" y="12.7" size="1.778" layer="95">&gt;Name</text>
+<text x="2.54" y="-2.54" size="1.778" layer="95">&gt;Value</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="IRF3205PBF" prefix="U">
@@ -178,6 +198,40 @@
 <connect gate="G$1" pin="D" pad="2"/>
 <connect gate="G$1" pin="G" pad="1"/>
 <connect gate="G$1" pin="S" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="SERVO">
+<gates>
+<gate name="G$1" symbol="SERVO" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TO-220AB">
+<connects>
+<connect gate="G$1" pin="GND" pad="1"/>
+<connect gate="G$1" pin="PWR" pad="2"/>
+<connect gate="G$1" pin="SIG" pad="3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="ENCODER">
+<gates>
+<gate name="G$1" symbol="ENCODER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TO-220AB">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="GND" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
