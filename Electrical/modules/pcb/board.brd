@@ -2659,69 +2659,69 @@ design rules under a new name.</description>
 <element name="R12" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="86.08" y="22.19" rot="R270">
 <attribute name="PROD_ID" value="RES-08380" x="86.08" y="22.19" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="U$5" library="TO220" package="TO-220AB" value="ENCODER" x="6" y="32" rot="R180"/>
+<element name="U$5" library="TO220" package="TO-220AB" value="ENCODER" x="13.62" y="57.4" rot="R270"/>
 <element name="U$6" library="Raspberry_Pi_3" package="PI" value="RPI3" x="57" y="39" rot="R90"/>
-<element name="R6" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="96" rot="MR0">
+<element name="R6" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="96" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="96" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="96" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R7" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="93" rot="MR0">
+<element name="R7" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="93" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="93" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="93" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="90" rot="MR0">
+<element name="R8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="90" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="90" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="90" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R17" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="87" rot="MR0">
+<element name="R17" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="87" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="87" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="87" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R18" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="81" rot="MR0">
+<element name="R18" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="81" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="81" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="81" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R19" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="84" rot="MR0">
+<element name="R19" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="84" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="84" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="84" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R20" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="78" rot="MR0">
+<element name="R20" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="78" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="78" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="78" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R21" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="14" y="75" rot="MR0">
+<element name="R21" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="14" y="75" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="14" y="75" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="14" y="75" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R22" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="15" y="69" rot="MR180">
+<element name="R22" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="100k" x="15" y="69" rot="MR180">
 <attribute name="PROD_ID" value="RES-12182" x="15" y="69" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" value="1k" x="15" y="69" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
-<element name="R23" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="15" y="72" rot="MR0">
+<element name="R23" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="15" y="72" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="15" y="72" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="15" y="72" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R24" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="81" rot="MR0">
+<element name="R24" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="81" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="81" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="81" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R25" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="84" rot="MR0">
+<element name="R25" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="84" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="84" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="84" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R26" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="87" rot="MR0">
+<element name="R26" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="87" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="87" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="87" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R29" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="90" rot="MR180">
+<element name="R29" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="90" rot="MR180">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="90" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="90" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
-<element name="R30" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="93" rot="MR0">
+<element name="R30" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="93" rot="MR0">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="93" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="93" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="R31" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k" x="24" y="96" rot="MR180">
+<element name="R31" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="AXIAL-0.3" package3d_urn="urn:adsk.eagle:package:39658/1" value="50k" x="24" y="96" rot="MR180">
 <attribute name="PROD_ID" value="RES-12182" x="24" y="96" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" value="1k" x="24" y="96" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
