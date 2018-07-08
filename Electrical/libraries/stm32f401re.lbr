@@ -154,6 +154,11 @@
 <pad name="1" x="0" y="73.66" drill="0.7" diameter="1.6764"/>
 <pad name="3" x="63.5" y="73.66" drill="0.7" diameter="1.6764"/>
 <pad name="4" x="63.5" y="71.12" drill="0.7" diameter="1.6764"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="76.2" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="76.2" x2="5.08" y2="76.2" width="0.127" layer="21"/>
+<wire x1="5.08" y1="76.2" x2="66.04" y2="76.2" width="0.127" layer="21"/>
+<wire x1="66.04" y1="76.2" x2="66.04" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="66.04" y1="-2.54" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>

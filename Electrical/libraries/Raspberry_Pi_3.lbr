@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -159,12 +159,12 @@
 <library>
 <packages>
 <package name="PI">
-<wire x1="0" y1="0" x2="58.41" y2="0" width="0.127" layer="21"/>
-<wire x1="58.41" y1="0" x2="85" y2="0" width="0.127" layer="21"/>
-<wire x1="85" y1="0" x2="85" y2="56" width="0.127" layer="21"/>
-<wire x1="85" y1="56" x2="63.41" y2="56" width="0.127" layer="21"/>
-<wire x1="63.41" y1="56" x2="0" y2="56" width="0.127" layer="21"/>
-<wire x1="0" y1="56" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="58.41" y2="0" width="0.127" layer="22"/>
+<wire x1="58.41" y1="0" x2="85" y2="0" width="0.127" layer="22"/>
+<wire x1="85" y1="0" x2="85" y2="56" width="0.127" layer="22"/>
+<wire x1="85" y1="56" x2="63.41" y2="56" width="0.127" layer="22"/>
+<wire x1="63.41" y1="56" x2="0" y2="56" width="0.127" layer="22"/>
+<wire x1="0" y1="56" x2="0" y2="0" width="0.127" layer="22"/>
 <hole x="3.5" y="52.5" drill="2.75"/>
 <hole x="3.5" y="3.5" drill="2.75"/>
 <hole x="61.5" y="3.5" drill="2.75"/>
