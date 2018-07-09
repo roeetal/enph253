@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.6.3">
+<eagle version="9.1.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -9123,6 +9123,7 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="GND12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="" value="GND"/>
 <part name="R37" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-TRIMM" device="T93YA" package3d_urn="urn:adsk.eagle:package:26051/1" value="10k"/>
 <part name="R38" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-TRIMM" device="T93YA" package3d_urn="urn:adsk.eagle:package:26051/1" value="10k"/>
+<part name="FUSE" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="2A"/>
 </parts>
 <sheets>
 <sheet>
@@ -9341,6 +9342,7 @@ Small Lipo: ICs via linear regulator</text>
 <instance part="GND12" gate="GND" x="345.44" y="-83.82"/>
 <instance part="R37" gate="G$1" x="350.52" y="-38.1" rot="MR180"/>
 <instance part="R38" gate="G$1" x="254" y="-40.64" rot="MR180"/>
+<instance part="FUSE" gate="G$1" x="109.22" y="129.54" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -10247,25 +10249,6 @@ Small Lipo: ICs via linear regulator</text>
 </net>
 <net name="5V_DIGITAL" class="0">
 <segment>
-<pinref part="U$3" gate="G$1" pin="OUT+"/>
-<wire x1="76.2" y1="132.08" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
-<label x="78.74" y="132.08" size="1.778" layer="95"/>
-<pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="81.28" y1="132.08" x2="86.36" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="81.28" y1="132.08" x2="81.28" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="81.28" y1="129.54" x2="83.82" y2="129.54" width="0.1524" layer="91"/>
-<junction x="81.28" y="132.08"/>
-<pinref part="C4" gate="G$1" pin="1"/>
-<wire x1="83.82" y1="129.54" x2="88.9" y2="129.54" width="0.1524" layer="91"/>
-<junction x="83.82" y="129.54"/>
-<pinref part="C7" gate="G$1" pin="1"/>
-<wire x1="88.9" y1="129.54" x2="93.98" y2="129.54" width="0.1524" layer="91"/>
-<junction x="88.9" y="129.54"/>
-<pinref part="C20" gate="G$1" pin="1"/>
-<wire x1="93.98" y1="129.54" x2="99.06" y2="129.54" width="0.1524" layer="91"/>
-<junction x="93.98" y="129.54"/>
-</segment>
-<segment>
 <pinref part="U$1" gate="A" pin="P$35"/>
 <wire x1="40.64" y1="259.08" x2="45.72" y2="259.08" width="0.1524" layer="91"/>
 <label x="43.18" y="259.08" size="1.778" layer="95"/>
@@ -10277,6 +10260,12 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="185.42" y1="256.54" x2="195.58" y2="256.54" width="0.1524" layer="91"/>
 <junction x="185.42" y="256.54"/>
 <label x="187.96" y="256.54" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="FUSE" gate="G$1" pin="1"/>
+<wire x1="114.3" y1="129.54" x2="114.3" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="139.7" x2="111.76" y2="139.7" width="0.1524" layer="91"/>
+<label x="104.14" y="139.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SERVO_CLAW_2" class="0">
@@ -10961,6 +10950,28 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="IC6" gate="A" pin="+IN"/>
 <wire x1="355.6" y1="-38.1" x2="360.68" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="-38.1" x2="360.68" y2="-45.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="FUSE" class="0">
+<segment>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="81.28" y1="129.54" x2="83.82" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="83.82" y1="129.54" x2="88.9" y2="129.54" width="0.1524" layer="91"/>
+<junction x="83.82" y="129.54"/>
+<pinref part="C7" gate="G$1" pin="1"/>
+<wire x1="88.9" y1="129.54" x2="93.98" y2="129.54" width="0.1524" layer="91"/>
+<junction x="88.9" y="129.54"/>
+<pinref part="C20" gate="G$1" pin="1"/>
+<wire x1="93.98" y1="129.54" x2="99.06" y2="129.54" width="0.1524" layer="91"/>
+<junction x="93.98" y="129.54"/>
+<pinref part="FUSE" gate="G$1" pin="2"/>
+<wire x1="99.06" y1="129.54" x2="104.14" y2="129.54" width="0.1524" layer="91"/>
+<junction x="99.06" y="129.54"/>
+<pinref part="U$3" gate="G$1" pin="OUT+"/>
+<wire x1="76.2" y1="132.08" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="132.08" x2="81.28" y2="129.54" width="0.1524" layer="91"/>
+<label x="76.2" y="132.08" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
