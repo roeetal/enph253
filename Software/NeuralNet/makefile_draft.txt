@@ -1,0 +1,7 @@
+TARGET = NeuralNet
+BUILD_DIR = build
+
+C_SOURCES = \
+raspicam-0.1.6/src \
+
+C_INCLUDES
