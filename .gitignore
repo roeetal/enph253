@@ -96,4 +96,4 @@ dkms.conf
  42 # file locks introduced since 7.x
  43 *.lck
  
- .DS_Store
+ *.DS_Store
