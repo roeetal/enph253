@@ -45,6 +45,7 @@ random.shuffle(imagePaths)
 # loop over the input images
 for imagePath in imagePaths:
 	# load the image, pre-process it, and store it in the data list
+	print(imagePath)
 	image = cv2.imread(imagePath)
 	image = cv2.resize(image, (28, 28))
 	image = img_to_array(image)
