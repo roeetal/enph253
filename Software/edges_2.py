@@ -5,16 +5,16 @@ import time
 import math
 
 
-ERR_THRESH = 5
+LINE_ERR_THRESH = 5
+SLOPE_ERR_THRESH = 0.3
+INTERCEPT_ERR_THRESH = 30
+C_AVG = []
 
 
 ap = argparse.ArgumentParser()
 ap.add_argument('-v', '--video', required=False, help='Path to video file')
 ap.add_argument('-c', '--cam', required=False, help='Use live video from PiCamera')
 args = vars(ap.parse_args())
-
-lowerBound=np.array([20,100,100])
-upperBound=np.array([40,255,255])
 
 
 def smooth(image, kernel_size=15):
@@ -61,14 +61,31 @@ def get_edge_points(edge, y_samples, x_bar):
         if r: right.append((r[0],y))
         if l and r: center.append((int((r[0] + l[-1]) / 2), y))
     
-    """
-    TODO: Filter out outliers moving bottom up
-    """
+    left.reverse()
+    right.reverse()
+    center.reverse()
+
+    for i in range(3, len(left)):
+        if math.fabs(left[i][0] - (sum([x[0] for x in left[i-3:i]]) / 3)) > LINE_ERR_THRESH:
+            left = left[:i]
+            break
+
+    for i in range(3, len(right)):
+        if math.fabs(right[i][0] - (sum([x[0] for x in right[i-3:i]]) / 3)) > LINE_ERR_THRESH:
+            right = right[:i]
+            break
+
+    for i in range(3, len(center)):
+        if math.fabs(center[i][0] - (sum([x[0] for x in center[i-3:i]]) / 3)) > LINE_ERR_THRESH:
+            center = center[:i]
+            break
     
     return np.asarray(left), np.asarray(right), np.asarray(center)
 
 
 def navigate(img):
+    global C_AVG
+
     height, width, z = img.shape
     edges = get_edges(img)
 
@@ -77,47 +94,54 @@ def navigate(img):
 
     cv2.line(img, (x_bar, 0), (x_bar, height), (0,255,0), 5)    
 
-
     left, right, center = get_edge_points(edges, y_samples, x_bar)
 
-    if np.any(center):
+    ml = 0
+    mr = 0
+    if np.any(left):
+        ml, bl = np.polyfit(left[:,0], left[:,1], 1)
+
+        y1 = int(bl)
+        y2 = int(ml * width + bl)
+        cv2.line(img, (0,y1), (width, y2), (255,0,0), 5)
+
+        for x,y in left:
+            cv2.circle(img, (x,y), 4, (255,0,0), 4)
+
+    if np.any(right):
+        mr, br = np.polyfit(right[:,0], right[:,1], 1)
+
+        y3 = int(br)
+        y4 = int(mr * width + br)
+        cv2.line(img, (0,y3), (width, y4), (0,0,255), 5)
+
+        for x,y in right:
+            cv2.circle(img, (x,y), 4, (0,0,255), 4)
+
+    if center.size > 10 and math.fabs(ml + mr) < 0.7 and ml < 0:
         mc, bc = np.polyfit(center[:,0], center[:,1], 1)
-        y1 = int(bc)
-        y2 = int(mc * width + bc)
-        cv2.line(img, (0,y1), (width, y2), (0,0,0), 5)
-        for x,y in center:
-                cv2.circle(img, (x,y), 4, (0,0,0), 4)
+       
+        C_AVG.append((mc,bc))
+        C_AVG = C_AVG[-5:]
+        m_avg = sum([x[0] for x in C_AVG]) / len(C_AVG)
+        b_avg = sum([x[1] for x in C_AVG]) / len(C_AVG)
 
-    if True:
-        ml = 0
-        mr = 0
-        if np.any(left):
-            ml, bl = np.polyfit(left[:,0], left[:,1], 1)
+        print('Slope: ', m_avg, mc)
+        print('Intercept: ', b_avg, bc)
 
-            y1 = int(bl)
-            y2 = int(ml * width + bl)
-            cv2.line(img, (0,y1), (width, y2), (255,0,0), 5)
+        if math.fabs(mc - m_avg) < SLOPE_ERR_THRESH:
+            y1 = int(bc)
+            y2 = int(mc * width + bc)
+            cv2.line(img, (0,y1), (width, y2), (0,0,0), 5)
+            for x,y in center:
+                    cv2.circle(img, (x,y), 4, (0,0,0), 4)
 
-            for x,y in left:
-                cv2.circle(img, (x,y), 4, (255,0,0), 4)
-
-        if np.any(right):
-            mr, br = np.polyfit(right[:,0], right[:,1], 1)
-
-            y3 = int(br)
-            y4 = int(mr * width + br)
-            cv2.line(img, (0,y3), (width, y4), (0,0,255), 5)
-
-            for x,y in right:
-                cv2.circle(img, (x,y), 4, (0,0,255), 4)
-
-    print('ml: {}  |  mr: {}'.format(ml,mr))
     cv2.imshow('img', img)
     cv2.imshow('edges', edges)
 
     """
     TODO: 
-    1. Detect bridge or pole and advance state accordingly
+    1. Detect bridge
     2. Estimate heading err
     """
 
