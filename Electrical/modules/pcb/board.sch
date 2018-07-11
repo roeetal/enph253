@@ -9210,6 +9210,7 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="408.94" y1="-12.7" x2="208.28" y2="-12.7" width="0.1524" layer="94"/>
 <text x="307.34" y="-10.16" size="1.778" layer="94">Edge Detectors</text>
 <text x="213.36" y="-93.98" size="1.778" layer="94">431/5 = 107 mA</text>
+<text x="182.88" y="111.76" size="1.778" layer="91">Need Pull ups</text>
 </plain>
 <instances>
 <instance part="U$1" gate="A" x="40.64" y="215.9"/>
