@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   28:Src/main.c    ****  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
   29:Src/main.c    ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/main.c    ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 2
 
 
   31:Src/main.c    ****  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   85:Src/main.c    **** {
   86:Src/main.c    ****     /* USER CODE BEGIN 1 */
   87:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 3
 
 
   88:Src/main.c    ****     /* USER CODE END 1 */
@@ -172,110 +172,112 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  136:Src/main.c    ****     while (1)
  137:Src/main.c    ****     {
  138:Src/main.c    ****         if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
- 139:Src/main.c    ****             sprintf(msg, "%lu", speed[motor]);
- 140:Src/main.c    ****             print(msg, 0);
- 141:Src/main.c    ****             TIM4->CNT = speed[motor];
- 142:Src/main.c    ****             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
- 143:Src/main.c    ****                 speed[motor] = TIM4->CNT;
- 144:Src/main.c    ****                 sprintf(msg, "%lu", speed[motor]);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 4
+ 139:Src/main.c    ****             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+ 140:Src/main.c    ****             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+ 141:Src/main.c    ****             sprintf(msg, "%lu", speed[motor]);
+ 142:Src/main.c    ****             print(msg, 0);
+ 143:Src/main.c    ****             TIM4->CNT = speed[motor];
+ 144:Src/main.c    ****             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 4
 
 
- 145:Src/main.c    ****                 print(msg, 0);
- 146:Src/main.c    ****             }
- 147:Src/main.c    ****             update_motor_speed(motor, speed);
- 148:Src/main.c    ****             motor = motor==0? 1: 0;
- 149:Src/main.c    ****         }
- 150:Src/main.c    ****         sprintf(msg, "%lu", TIM1->CCR1);
- 151:Src/main.c    ****         print(msg, 0);
- 152:Src/main.c    **** 
- 153:Src/main.c    ****         /* USER CODE END WHILE */
+ 145:Src/main.c    ****                 speed[motor] = TIM4->CNT;
+ 146:Src/main.c    ****                 sprintf(msg, "%lu", speed[motor]);
+ 147:Src/main.c    ****                 print(msg, 0);
+ 148:Src/main.c    ****             }
+ 149:Src/main.c    ****             update_motor_speed(motor, speed);
+ 150:Src/main.c    ****             motor = motor==0? 1: 0;
+ 151:Src/main.c    ****             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+ 152:Src/main.c    ****             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+ 153:Src/main.c    ****         }
  154:Src/main.c    **** 
- 155:Src/main.c    ****         /* USER CODE BEGIN 3 */
+ 155:Src/main.c    ****         /* USER CODE END WHILE */
  156:Src/main.c    **** 
- 157:Src/main.c    ****     }
- 158:Src/main.c    ****     /* USER CODE END 3 */
- 159:Src/main.c    **** 
- 160:Src/main.c    **** }
+ 157:Src/main.c    ****         /* USER CODE BEGIN 3 */
+ 158:Src/main.c    **** 
+ 159:Src/main.c    ****     }
+ 160:Src/main.c    ****     /* USER CODE END 3 */
  161:Src/main.c    **** 
- 162:Src/main.c    **** void update_motor_speed(int m, uint32_t speed[]){
- 163:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
- 164:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
- 165:Src/main.c    ****     char *msg = (char*)malloc(18*sizeof(char));
- 166:Src/main.c    ****     sprintf(msg, "L: %lu", speed[0]);
- 167:Src/main.c    ****     print(msg, 0);
- 168:Src/main.c    ****     sprintf(msg, "R: %lu", speed[1]);
- 169:Src/main.c    ****     print(msg, 1);
- 170:Src/main.c    **** }
- 171:Src/main.c    **** 
- 172:Src/main.c    **** /**
- 173:Src/main.c    ****  * @brief System Clock Configuration
- 174:Src/main.c    ****  * @retval None
- 175:Src/main.c    ****  */
- 176:Src/main.c    **** void SystemClock_Config(void)
- 177:Src/main.c    **** {
- 178:Src/main.c    **** 
- 179:Src/main.c    ****     RCC_OscInitTypeDef RCC_OscInitStruct;
- 180:Src/main.c    ****     RCC_ClkInitTypeDef RCC_ClkInitStruct;
- 181:Src/main.c    **** 
- 182:Src/main.c    ****     /**Configure the main internal regulator output voltage 
- 183:Src/main.c    ****     */
- 184:Src/main.c    ****     __HAL_RCC_PWR_CLK_ENABLE();
- 185:Src/main.c    **** 
- 186:Src/main.c    ****     __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+ 162:Src/main.c    **** }
+ 163:Src/main.c    **** 
+ 164:Src/main.c    **** void update_motor_speed(int m, uint32_t speed[]){
+ 165:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
+ 166:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
+ 167:Src/main.c    ****     char *msg = (char*)malloc(18*sizeof(char));
+ 168:Src/main.c    ****     sprintf(msg, "L: %lu", speed[0]);
+ 169:Src/main.c    ****     print(msg, 0);
+ 170:Src/main.c    ****     sprintf(msg, "R: %lu", speed[1]);
+ 171:Src/main.c    ****     print(msg, 1);
+ 172:Src/main.c    **** }
+ 173:Src/main.c    **** 
+ 174:Src/main.c    **** /**
+ 175:Src/main.c    ****  * @brief System Clock Configuration
+ 176:Src/main.c    ****  * @retval None
+ 177:Src/main.c    ****  */
+ 178:Src/main.c    **** void SystemClock_Config(void)
+ 179:Src/main.c    **** {
+ 180:Src/main.c    **** 
+ 181:Src/main.c    ****     RCC_OscInitTypeDef RCC_OscInitStruct;
+ 182:Src/main.c    ****     RCC_ClkInitTypeDef RCC_ClkInitStruct;
+ 183:Src/main.c    **** 
+ 184:Src/main.c    ****     /**Configure the main internal regulator output voltage 
+ 185:Src/main.c    ****     */
+ 186:Src/main.c    ****     __HAL_RCC_PWR_CLK_ENABLE();
  187:Src/main.c    **** 
- 188:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 189:Src/main.c    ****     */
- 190:Src/main.c    ****     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
- 191:Src/main.c    ****     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 192:Src/main.c    ****     RCC_OscInitStruct.HSICalibrationValue = 16;
- 193:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 194:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 195:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLM = 8;
- 196:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLN = 72;
- 197:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
- 198:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLQ = 4;
- 199:Src/main.c    ****     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 200:Src/main.c    ****     {
- 201:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 5
+ 188:Src/main.c    ****     __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+ 189:Src/main.c    **** 
+ 190:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 191:Src/main.c    ****     */
+ 192:Src/main.c    ****     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 193:Src/main.c    ****     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 194:Src/main.c    ****     RCC_OscInitStruct.HSICalibrationValue = 16;
+ 195:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 196:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 197:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLM = 8;
+ 198:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLN = 72;
+ 199:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 200:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLQ = 4;
+ 201:Src/main.c    ****     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 5
 
 
- 202:Src/main.c    ****     }
- 203:Src/main.c    **** 
- 204:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 205:Src/main.c    ****     */
- 206:Src/main.c    ****     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 207:Src/main.c    ****         |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 208:Src/main.c    ****     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 209:Src/main.c    ****     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 210:Src/main.c    ****     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 211:Src/main.c    ****     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 212:Src/main.c    **** 
- 213:Src/main.c    ****     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
- 214:Src/main.c    ****     {
- 215:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
- 216:Src/main.c    ****     }
- 217:Src/main.c    **** 
- 218:Src/main.c    ****     /**Configure the Systick interrupt time 
- 219:Src/main.c    ****     */
- 220:Src/main.c    ****     HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
- 221:Src/main.c    **** 
- 222:Src/main.c    ****     /**Configure the Systick 
- 223:Src/main.c    ****     */
- 224:Src/main.c    ****     HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
- 225:Src/main.c    **** 
- 226:Src/main.c    ****     /* SysTick_IRQn interrupt configuration */
- 227:Src/main.c    ****     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
- 228:Src/main.c    **** }
- 229:Src/main.c    **** 
- 230:Src/main.c    **** /* USER CODE BEGIN 4 */
- 231:Src/main.c    **** /*
- 232:Src/main.c    ****  * Rows from 0 - 6
- 233:Src/main.c    ****  * Reset screen when printing from row 0
- 234:Src/main.c    ****  */
- 235:Src/main.c    **** void print(char* msg, int row){
-  29              		.loc 1 235 0
+ 202:Src/main.c    ****     {
+ 203:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
+ 204:Src/main.c    ****     }
+ 205:Src/main.c    **** 
+ 206:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 207:Src/main.c    ****     */
+ 208:Src/main.c    ****     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 209:Src/main.c    ****         |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 210:Src/main.c    ****     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 211:Src/main.c    ****     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 212:Src/main.c    ****     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 213:Src/main.c    ****     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 214:Src/main.c    **** 
+ 215:Src/main.c    ****     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ 216:Src/main.c    ****     {
+ 217:Src/main.c    ****         _Error_Handler(__FILE__, __LINE__);
+ 218:Src/main.c    ****     }
+ 219:Src/main.c    **** 
+ 220:Src/main.c    ****     /**Configure the Systick interrupt time 
+ 221:Src/main.c    ****     */
+ 222:Src/main.c    ****     HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ 223:Src/main.c    **** 
+ 224:Src/main.c    ****     /**Configure the Systick 
+ 225:Src/main.c    ****     */
+ 226:Src/main.c    ****     HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 227:Src/main.c    **** 
+ 228:Src/main.c    ****     /* SysTick_IRQn interrupt configuration */
+ 229:Src/main.c    ****     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 230:Src/main.c    **** }
+ 231:Src/main.c    **** 
+ 232:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 233:Src/main.c    **** /*
+ 234:Src/main.c    ****  * Rows from 0 - 6
+ 235:Src/main.c    ****  * Reset screen when printing from row 0
+ 236:Src/main.c    ****  */
+ 237:Src/main.c    **** void print(char* msg, int row){
+  29              		.loc 1 237 0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -288,23 +290,23 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   39              		.cfi_offset 5, -8
   40              		.cfi_offset 14, -4
   41 0002 0546     		mov	r5, r0
- 236:Src/main.c    ****     if(row==0){
-  42              		.loc 1 236 0
+ 238:Src/main.c    ****     if(row==0){
+  42              		.loc 1 238 0
   43 0004 0C46     		mov	r4, r1
   44 0006 11B9     		cbnz	r1, .L2
- 237:Src/main.c    ****         ssd1306_Fill(Black);
-  45              		.loc 1 237 0
+ 239:Src/main.c    ****         ssd1306_Fill(Black);
+  45              		.loc 1 239 0
   46 0008 0020     		movs	r0, #0
   47              	.LVL1:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 6
+
+
   48 000a FFF7FEFF 		bl	ssd1306_Fill
   49              	.LVL2:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 6
-
-
   50              	.L2:
- 238:Src/main.c    ****     }
- 239:Src/main.c    ****     ssd1306_SetCursor(0,row*10);
-  51              		.loc 1 239 0
+ 240:Src/main.c    ****     }
+ 241:Src/main.c    ****     ssd1306_SetCursor(0,row*10);
+  51              		.loc 1 241 0
   52 000e 04EB8404 		add	r4, r4, r4, lsl #2
   53              	.LVL3:
   54 0012 6100     		lsls	r1, r4, #1
@@ -312,16 +314,16 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   56 0016 01F0FE01 		and	r1, r1, #254
   57 001a FFF7FEFF 		bl	ssd1306_SetCursor
   58              	.LVL4:
- 240:Src/main.c    ****     ssd1306_WriteString(msg,Font_7x10,White);
-  59              		.loc 1 240 0
+ 242:Src/main.c    ****     ssd1306_WriteString(msg,Font_7x10,White);
+  59              		.loc 1 242 0
   60 001e 054B     		ldr	r3, .L4
   61 0020 2846     		mov	r0, r5
   62 0022 93E80600 		ldmia	r3, {r1, r2}
   63 0026 0123     		movs	r3, #1
   64 0028 FFF7FEFF 		bl	ssd1306_WriteString
   65              	.LVL5:
- 241:Src/main.c    ****     ssd1306_UpdateScreen();
-  66              		.loc 1 241 0
+ 243:Src/main.c    ****     ssd1306_UpdateScreen();
+  66              		.loc 1 243 0
   67 002c FFF7FEFF 		bl	ssd1306_UpdateScreen
   68              	.LVL6:
   69 0030 38BD     		pop	{r3, r4, r5, pc}
@@ -343,8 +345,8 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   86              		.thumb_func
   88              	update_motor_speed:
   89              	.LFB124:
- 162:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
-  90              		.loc 1 162 0
+ 164:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
+  90              		.loc 1 164 0
   91              		.cfi_startproc
   92              		@ args = 0, pretend = 0, frame = 0
   93              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -356,12 +358,12 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
   99              		.cfi_offset 4, -12
  100              		.cfi_offset 5, -8
  101              		.cfi_offset 14, -4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 7
+
+
  102 0002 0C46     		mov	r4, r1
- 163:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 7
-
-
- 103              		.loc 1 163 0
+ 165:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
+ 103              		.loc 1 165 0
  104 0004 194B     		ldr	r3, .L8
  105 0006 1D68     		ldr	r5, [r3]
  106 0008 0868     		ldr	r0, [r1]
@@ -379,8 +381,8 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  118 001e FFF7FEFF 		bl	__aeabi_d2uiz
  119              	.LVL13:
  120 0022 6863     		str	r0, [r5, #52]
- 164:Src/main.c    ****     char *msg = (char*)malloc(18*sizeof(char));
- 121              		.loc 1 164 0
+ 166:Src/main.c    ****     char *msg = (char*)malloc(18*sizeof(char));
+ 121              		.loc 1 166 0
  122 0024 6068     		ldr	r0, [r4, #4]
  123 0026 FFF7FEFF 		bl	__aeabi_ui2d
  124              	.LVL14:
@@ -395,37 +397,37 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  133 003a FFF7FEFF 		bl	__aeabi_d2uiz
  134              	.LVL17:
  135 003e E863     		str	r0, [r5, #60]
- 165:Src/main.c    ****     sprintf(msg, "L: %lu", speed[0]);
- 136              		.loc 1 165 0
+ 167:Src/main.c    ****     sprintf(msg, "L: %lu", speed[0]);
+ 136              		.loc 1 167 0
  137 0040 1220     		movs	r0, #18
  138 0042 FFF7FEFF 		bl	malloc
  139              	.LVL18:
  140 0046 0546     		mov	r5, r0
  141              	.LVL19:
- 166:Src/main.c    ****     print(msg, 0);
- 142              		.loc 1 166 0
+ 168:Src/main.c    ****     print(msg, 0);
+ 142              		.loc 1 168 0
  143 0048 0B49     		ldr	r1, .L8+12
  144 004a 2268     		ldr	r2, [r4]
  145 004c FFF7FEFF 		bl	sprintf
  146              	.LVL20:
- 167:Src/main.c    ****     sprintf(msg, "R: %lu", speed[1]);
- 147              		.loc 1 167 0
+ 169:Src/main.c    ****     sprintf(msg, "R: %lu", speed[1]);
+ 147              		.loc 1 169 0
  148 0050 2846     		mov	r0, r5
  149 0052 0021     		movs	r1, #0
  150 0054 FFF7FEFF 		bl	print
  151              	.LVL21:
- 168:Src/main.c    ****     print(msg, 1);
- 152              		.loc 1 168 0
+ 170:Src/main.c    ****     print(msg, 1);
+ 152              		.loc 1 170 0
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 8
+
+
  153 0058 2846     		mov	r0, r5
  154 005a 0849     		ldr	r1, .L8+16
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 8
-
-
  155 005c 6268     		ldr	r2, [r4, #4]
  156 005e FFF7FEFF 		bl	sprintf
  157              	.LVL22:
- 169:Src/main.c    **** }
- 158              		.loc 1 169 0
+ 171:Src/main.c    **** }
+ 158              		.loc 1 171 0
  159 0062 2846     		mov	r0, r5
  160 0064 0121     		movs	r1, #1
  161 0066 FFF7FEFF 		bl	print
@@ -449,19 +451,19 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  180              		.thumb_func
  182              	_Error_Handler:
  183              	.LFB127:
- 242:Src/main.c    **** }
- 243:Src/main.c    **** 
- 244:Src/main.c    **** /* USER CODE END 4 */
+ 244:Src/main.c    **** }
  245:Src/main.c    **** 
- 246:Src/main.c    **** /**
- 247:Src/main.c    ****  * @brief  This function is executed in case of error occurrence.
- 248:Src/main.c    ****  * @param  file: The file name as string.
- 249:Src/main.c    ****  * @param  line: The line in file as a number.
- 250:Src/main.c    ****  * @retval None
- 251:Src/main.c    ****  */
- 252:Src/main.c    **** void _Error_Handler(char *file, int line)
- 253:Src/main.c    **** {
- 184              		.loc 1 253 0
+ 246:Src/main.c    **** /* USER CODE END 4 */
+ 247:Src/main.c    **** 
+ 248:Src/main.c    **** /**
+ 249:Src/main.c    ****  * @brief  This function is executed in case of error occurrence.
+ 250:Src/main.c    ****  * @param  file: The file name as string.
+ 251:Src/main.c    ****  * @param  line: The line in file as a number.
+ 252:Src/main.c    ****  * @retval None
+ 253:Src/main.c    ****  */
+ 254:Src/main.c    **** void _Error_Handler(char *file, int line)
+ 255:Src/main.c    **** {
+ 184              		.loc 1 255 0
  185              		.cfi_startproc
  186              		@ Volatile: function does not return.
  187              		@ args = 0, pretend = 0, frame = 0
@@ -469,18 +471,18 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  189              		@ link register save eliminated.
  190              	.LVL25:
  191              	.L11:
- 254:Src/main.c    ****     /* USER CODE BEGIN Error_Handler_Debug */
- 255:Src/main.c    ****     /* User can add his own implementation to report the HAL error return state */
- 256:Src/main.c    ****     while(1)
- 257:Src/main.c    ****     {
- 258:Src/main.c    ****     }
- 192              		.loc 1 258 0 discriminator 1
+ 256:Src/main.c    ****     /* USER CODE BEGIN Error_Handler_Debug */
+ 257:Src/main.c    ****     /* User can add his own implementation to report the HAL error return state */
+ 258:Src/main.c    ****     while(1)
+ 259:Src/main.c    ****     {
+ 260:Src/main.c    ****     }
+ 192              		.loc 1 260 0 discriminator 1
  193 0000 FEE7     		b	.L11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 9
+
+
  194              		.cfi_endproc
  195              	.LFE127:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 9
-
-
  197 0002 00BF     		.section	.text.SystemClock_Config,"ax",%progbits
  198              		.align	2
  199              		.global	SystemClock_Config
@@ -488,8 +490,8 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  201              		.thumb_func
  203              	SystemClock_Config:
  204              	.LFB125:
- 177:Src/main.c    **** 
- 205              		.loc 1 177 0
+ 179:Src/main.c    **** 
+ 205              		.loc 1 179 0
  206              		.cfi_startproc
  207              		@ args = 0, pretend = 0, frame = 80
  208              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -501,8 +503,8 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  214              	.LCFI3:
  215              		.cfi_def_cfa_offset 88
  216              	.LBB2:
- 184:Src/main.c    **** 
- 217              		.loc 1 184 0
+ 186:Src/main.c    **** 
+ 217              		.loc 1 186 0
  218 0004 0022     		movs	r2, #0
  219 0006 0192     		str	r2, [sp, #4]
  220 0008 294B     		ldr	r3, .L16
@@ -515,8 +517,8 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  227 001a 019B     		ldr	r3, [sp, #4]
  228              	.LBE2:
  229              	.LBB3:
- 186:Src/main.c    **** 
- 230              		.loc 1 186 0
+ 188:Src/main.c    **** 
+ 230              		.loc 1 188 0
  231 001c 0292     		str	r2, [sp, #8]
  232 001e 2549     		ldr	r1, .L16+4
  233 0020 0B68     		ldr	r3, [r1]
@@ -528,92 +530,92 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  239 0032 0293     		str	r3, [sp, #8]
  240 0034 029B     		ldr	r3, [sp, #8]
  241              	.LBE3:
- 190:Src/main.c    ****     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 242              		.loc 1 190 0
+ 192:Src/main.c    ****     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 242              		.loc 1 192 0
  243 0036 0223     		movs	r3, #2
  244 0038 0893     		str	r3, [sp, #32]
- 191:Src/main.c    ****     RCC_OscInitStruct.HSICalibrationValue = 16;
- 245              		.loc 1 191 0
+ 193:Src/main.c    ****     RCC_OscInitStruct.HSICalibrationValue = 16;
+ 245              		.loc 1 193 0
  246 003a 0121     		movs	r1, #1
  247 003c 0B91     		str	r1, [sp, #44]
- 192:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 248              		.loc 1 192 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 10
 
 
+ 194:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 248              		.loc 1 194 0
  249 003e 1021     		movs	r1, #16
  250 0040 0C91     		str	r1, [sp, #48]
- 193:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 251              		.loc 1 193 0
+ 195:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 251              		.loc 1 195 0
  252 0042 0E93     		str	r3, [sp, #56]
- 194:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLM = 8;
- 253              		.loc 1 194 0
+ 196:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLM = 8;
+ 253              		.loc 1 196 0
  254 0044 0F92     		str	r2, [sp, #60]
- 195:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLN = 72;
- 255              		.loc 1 195 0
+ 197:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLN = 72;
+ 255              		.loc 1 197 0
  256 0046 0822     		movs	r2, #8
  257 0048 1092     		str	r2, [sp, #64]
- 196:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
- 258              		.loc 1 196 0
+ 198:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 258              		.loc 1 198 0
  259 004a 4822     		movs	r2, #72
  260 004c 1192     		str	r2, [sp, #68]
- 197:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLQ = 4;
- 261              		.loc 1 197 0
+ 199:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLQ = 4;
+ 261              		.loc 1 199 0
  262 004e 1293     		str	r3, [sp, #72]
- 198:Src/main.c    ****     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 263              		.loc 1 198 0
+ 200:Src/main.c    ****     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 263              		.loc 1 200 0
  264 0050 0423     		movs	r3, #4
  265 0052 1393     		str	r3, [sp, #76]
- 199:Src/main.c    ****     {
- 266              		.loc 1 199 0
+ 201:Src/main.c    ****     {
+ 266              		.loc 1 201 0
  267 0054 08A8     		add	r0, sp, #32
  268 0056 FFF7FEFF 		bl	HAL_RCC_OscConfig
  269              	.LVL26:
  270 005a 18B1     		cbz	r0, .L13
- 201:Src/main.c    ****     }
- 271              		.loc 1 201 0
+ 203:Src/main.c    ****     }
+ 271              		.loc 1 203 0
  272 005c 1648     		ldr	r0, .L16+8
- 273 005e C921     		movs	r1, #201
+ 273 005e CB21     		movs	r1, #203
  274 0060 FFF7FEFF 		bl	_Error_Handler
  275              	.LVL27:
  276              	.L13:
- 206:Src/main.c    ****         |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 277              		.loc 1 206 0
+ 208:Src/main.c    ****         |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 277              		.loc 1 208 0
  278 0064 0F23     		movs	r3, #15
  279 0066 0393     		str	r3, [sp, #12]
- 208:Src/main.c    ****     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 280              		.loc 1 208 0
+ 210:Src/main.c    ****     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 280              		.loc 1 210 0
  281 0068 0221     		movs	r1, #2
  282 006a 0491     		str	r1, [sp, #16]
- 209:Src/main.c    ****     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
- 283              		.loc 1 209 0
+ 211:Src/main.c    ****     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 283              		.loc 1 211 0
  284 006c 0023     		movs	r3, #0
  285 006e 0593     		str	r3, [sp, #20]
- 210:Src/main.c    ****     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 286              		.loc 1 210 0
+ 212:Src/main.c    ****     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 286              		.loc 1 212 0
  287 0070 4FF48052 		mov	r2, #4096
  288 0074 0692     		str	r2, [sp, #24]
- 211:Src/main.c    **** 
- 289              		.loc 1 211 0
+ 213:Src/main.c    **** 
+ 289              		.loc 1 213 0
  290 0076 0793     		str	r3, [sp, #28]
- 213:Src/main.c    ****     {
- 291              		.loc 1 213 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 11
 
 
+ 215:Src/main.c    ****     {
+ 291              		.loc 1 215 0
  292 0078 03A8     		add	r0, sp, #12
  293 007a FFF7FEFF 		bl	HAL_RCC_ClockConfig
  294              	.LVL28:
  295 007e 18B1     		cbz	r0, .L14
- 215:Src/main.c    ****     }
- 296              		.loc 1 215 0
+ 217:Src/main.c    ****     }
+ 296              		.loc 1 217 0
  297 0080 0D48     		ldr	r0, .L16+8
- 298 0082 D721     		movs	r1, #215
+ 298 0082 D921     		movs	r1, #217
  299 0084 FFF7FEFF 		bl	_Error_Handler
  300              	.LVL29:
  301              	.L14:
- 220:Src/main.c    **** 
- 302              		.loc 1 220 0
+ 222:Src/main.c    **** 
+ 302              		.loc 1 222 0
  303 0088 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
  304              	.LVL30:
  305 008c 0B4B     		ldr	r3, .L16+12
@@ -621,20 +623,20 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  307 0092 8009     		lsrs	r0, r0, #6
  308 0094 FFF7FEFF 		bl	HAL_SYSTICK_Config
  309              	.LVL31:
- 224:Src/main.c    **** 
- 310              		.loc 1 224 0
+ 226:Src/main.c    **** 
+ 310              		.loc 1 226 0
  311 0098 0420     		movs	r0, #4
  312 009a FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
  313              	.LVL32:
- 227:Src/main.c    **** }
- 314              		.loc 1 227 0
+ 229:Src/main.c    **** }
+ 314              		.loc 1 229 0
  315 009e 4FF0FF30 		mov	r0, #-1
  316 00a2 0021     		movs	r1, #0
  317 00a4 0A46     		mov	r2, r1
  318 00a6 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  319              	.LVL33:
- 228:Src/main.c    **** 
- 320              		.loc 1 228 0
+ 230:Src/main.c    **** 
+ 320              		.loc 1 230 0
  321 00aa 15B0     		add	sp, sp, #84
  322              	.LCFI4:
  323              		.cfi_def_cfa_offset 4
@@ -656,11 +658,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  340              		.thumb_func
  342              	main:
  343              	.LFB123:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 12
+
+
   85:Src/main.c    ****     /* USER CODE BEGIN 1 */
  344              		.loc 1 85 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 12
-
-
  345              		.cfi_startproc
  346              		@ args = 0, pretend = 0, frame = 8
  347              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -716,11 +718,11 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  387              	.LVL43:
  115:Src/main.c    ****     MX_TIM9_Init();
  388              		.loc 1 115 0
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 13
+
+
  389 002c FFF7FEFF 		bl	MX_TIM4_Init
  390              	.LVL44:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 13
-
-
  116:Src/main.c    ****     ssd1306_Init();
  391              		.loc 1 116 0
  392 0030 FFF7FEFF 		bl	MX_TIM9_Init
@@ -731,13 +733,13 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  396              	.LVL46:
  121:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
  397              		.loc 1 121 0
- 398 0038 2F48     		ldr	r0, .L24
+ 398 0038 3348     		ldr	r0, .L24
  399 003a 1821     		movs	r1, #24
  400 003c FFF7FEFF 		bl	HAL_TIM_Encoder_Start
  401              	.LVL47:
  122:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
  402              		.loc 1 122 0
- 403 0040 2E4C     		ldr	r4, .L24+4
+ 403 0040 324C     		ldr	r4, .L24+4
  404 0042 2046     		mov	r0, r4
  405 0044 0021     		movs	r1, #0
  406 0046 FFF7FEFF 		bl	HAL_TIM_PWM_Start
@@ -750,7 +752,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  412              	.LVL49:
  128:Src/main.c    ****     char *msg = (char*)malloc(18*sizeof(char));
  413              		.loc 1 128 0
- 414 0052 2B48     		ldr	r0, .L24+8
+ 414 0052 2F48     		ldr	r0, .L24+8
  415 0054 0021     		movs	r1, #0
  416 0056 FFF7FEFF 		bl	print
  417              	.LVL50:
@@ -768,207 +770,219 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 1
  427 0066 0195     		str	r5, [sp, #4]
  132:Src/main.c    ****     print("R: 0", 1);
  428              		.loc 1 132 0
- 429 0068 2648     		ldr	r0, .L24+12
+ 429 0068 2A48     		ldr	r0, .L24+12
  430              	.LVL53:
  431 006a 2946     		mov	r1, r5
  432 006c FFF7FEFF 		bl	print
  433              	.LVL54:
  133:Src/main.c    ****     /* Infinite loop */
  434              		.loc 1 133 0
- 435 0070 2548     		ldr	r0, .L24+16
+ 435 0070 2948     		ldr	r0, .L24+16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 14
+
+
  436 0072 0121     		movs	r1, #1
  437 0074 FFF7FEFF 		bl	print
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 14
-
-
  438              	.LVL55:
- 439              	.L22:
- 138:Src/main.c    ****             sprintf(msg, "%lu", speed[motor]);
+ 439              	.L19:
+ 138:Src/main.c    ****             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
  440              		.loc 1 138 0
- 441 0078 2448     		ldr	r0, .L24+20
+ 441 0078 2848     		ldr	r0, .L24+20
  442 007a 4FF40051 		mov	r1, #8192
  443 007e FFF7FEFF 		bl	HAL_GPIO_ReadPin
  444              	.LVL56:
- 445 0082 68BB     		cbnz	r0, .L19
- 139:Src/main.c    ****             print(msg, 0);
- 446              		.loc 1 139 0
- 447 0084 2046     		mov	r0, r4
- 448 0086 2249     		ldr	r1, .L24+24
- 449 0088 02AB     		add	r3, sp, #8
- 450 008a 03EB8506 		add	r6, r3, r5, lsl #2
- 451 008e 56F8082C 		ldr	r2, [r6, #-8]
- 452 0092 FFF7FEFF 		bl	sprintf
- 453              	.LVL57:
- 140:Src/main.c    ****             TIM4->CNT = speed[motor];
- 454              		.loc 1 140 0
- 455 0096 2046     		mov	r0, r4
- 456 0098 0021     		movs	r1, #0
- 457 009a FFF7FEFF 		bl	print
- 458              	.LVL58:
- 141:Src/main.c    ****             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
- 459              		.loc 1 141 0
- 460 009e 56F8082C 		ldr	r2, [r6, #-8]
- 461 00a2 1C4B     		ldr	r3, .L24+28
- 462 00a4 5A62     		str	r2, [r3, #36]
- 142:Src/main.c    ****                 speed[motor] = TIM4->CNT;
- 463              		.loc 1 142 0
- 464 00a6 0EE0     		b	.L20
- 465              	.L21:
- 143:Src/main.c    ****                 sprintf(msg, "%lu", speed[motor]);
- 466              		.loc 1 143 0
- 467 00a8 1A4B     		ldr	r3, .L24+28
- 468 00aa 5A6A     		ldr	r2, [r3, #36]
- 469 00ac 02AB     		add	r3, sp, #8
- 470 00ae 03EB8503 		add	r3, r3, r5, lsl #2
- 471 00b2 43F8082C 		str	r2, [r3, #-8]
- 144:Src/main.c    ****                 print(msg, 0);
- 472              		.loc 1 144 0
- 473 00b6 2046     		mov	r0, r4
- 474 00b8 1549     		ldr	r1, .L24+24
- 475 00ba FFF7FEFF 		bl	sprintf
- 476              	.LVL59:
- 145:Src/main.c    ****             }
- 477              		.loc 1 145 0
- 478 00be 2046     		mov	r0, r4
- 479 00c0 0021     		movs	r1, #0
- 480 00c2 FFF7FEFF 		bl	print
- 481              	.LVL60:
- 482              	.L20:
- 142:Src/main.c    ****                 speed[motor] = TIM4->CNT;
- 483              		.loc 1 142 0
- 484 00c6 1148     		ldr	r0, .L24+20
- 485 00c8 4FF40051 		mov	r1, #8192
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 15
+ 445 0082 0028     		cmp	r0, #0
+ 446 0084 F8D1     		bne	.L19
+ 139:Src/main.c    ****             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+ 447              		.loc 1 139 0
+ 448 0086 214E     		ldr	r6, .L24+4
+ 449 0088 3046     		mov	r0, r6
+ 450 008a 0021     		movs	r1, #0
+ 451 008c FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 452              	.LVL57:
+ 140:Src/main.c    ****             sprintf(msg, "%lu", speed[motor]);
+ 453              		.loc 1 140 0
+ 454 0090 3046     		mov	r0, r6
+ 455 0092 0821     		movs	r1, #8
+ 456 0094 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 457              	.LVL58:
+ 141:Src/main.c    ****             print(msg, 0);
+ 458              		.loc 1 141 0
+ 459 0098 2046     		mov	r0, r4
+ 460 009a 2149     		ldr	r1, .L24+24
+ 461 009c 02AB     		add	r3, sp, #8
+ 462 009e 03EB8506 		add	r6, r3, r5, lsl #2
+ 463 00a2 56F8082C 		ldr	r2, [r6, #-8]
+ 464 00a6 FFF7FEFF 		bl	sprintf
+ 465              	.LVL59:
+ 142:Src/main.c    ****             TIM4->CNT = speed[motor];
+ 466              		.loc 1 142 0
+ 467 00aa 2046     		mov	r0, r4
+ 468 00ac 0021     		movs	r1, #0
+ 469 00ae FFF7FEFF 		bl	print
+ 470              	.LVL60:
+ 143:Src/main.c    ****             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
+ 471              		.loc 1 143 0
+ 472 00b2 56F8082C 		ldr	r2, [r6, #-8]
+ 473 00b6 1B4B     		ldr	r3, .L24+28
+ 474 00b8 5A62     		str	r2, [r3, #36]
+ 144:Src/main.c    ****                 speed[motor] = TIM4->CNT;
+ 475              		.loc 1 144 0
+ 476 00ba 0EE0     		b	.L20
+ 477              	.L21:
+ 145:Src/main.c    ****                 sprintf(msg, "%lu", speed[motor]);
+ 478              		.loc 1 145 0
+ 479 00bc 194B     		ldr	r3, .L24+28
+ 480 00be 5A6A     		ldr	r2, [r3, #36]
+ 481 00c0 02AB     		add	r3, sp, #8
+ 482 00c2 03EB8503 		add	r3, r3, r5, lsl #2
+ 483 00c6 43F8082C 		str	r2, [r3, #-8]
+ 146:Src/main.c    ****                 print(msg, 0);
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 15
 
 
- 486 00cc FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 487              	.LVL61:
- 488 00d0 0028     		cmp	r0, #0
- 489 00d2 E9D0     		beq	.L21
- 147:Src/main.c    ****             motor = motor==0? 1: 0;
- 490              		.loc 1 147 0
- 491 00d4 2846     		mov	r0, r5
- 492 00d6 6946     		mov	r1, sp
- 493 00d8 FFF7FEFF 		bl	update_motor_speed
- 494              	.LVL62:
- 148:Src/main.c    ****         }
- 495              		.loc 1 148 0
- 496 00dc 85F00105 		eor	r5, r5, #1
- 497              	.LVL63:
- 498              	.L19:
- 150:Src/main.c    ****         print(msg, 0);
- 499              		.loc 1 150 0
- 500 00e0 0D4B     		ldr	r3, .L24+32
- 501 00e2 5A6B     		ldr	r2, [r3, #52]
- 502 00e4 2046     		mov	r0, r4
- 503 00e6 0A49     		ldr	r1, .L24+24
- 504 00e8 FFF7FEFF 		bl	sprintf
- 505              	.LVL64:
- 151:Src/main.c    **** 
- 506              		.loc 1 151 0
- 507 00ec 2046     		mov	r0, r4
- 508 00ee 0021     		movs	r1, #0
- 509 00f0 FFF7FEFF 		bl	print
- 510              	.LVL65:
- 157:Src/main.c    ****     /* USER CODE END 3 */
- 511              		.loc 1 157 0
- 512 00f4 C0E7     		b	.L22
- 513              	.L25:
- 514 00f6 00BF     		.align	2
- 515              	.L24:
- 516 00f8 00000000 		.word	htim4
- 517 00fc 00000000 		.word	htim1
- 518 0100 1C000000 		.word	.LC3
- 519 0104 28000000 		.word	.LC4
- 520 0108 30000000 		.word	.LC5
- 521 010c 00080240 		.word	1073874944
- 522 0110 38000000 		.word	.LC6
- 523 0114 00080040 		.word	1073743872
- 524 0118 00000140 		.word	1073807360
- 525              		.cfi_endproc
- 526              	.LFE123:
- 528              		.global	PUSH_BUTTON_STATE
- 529              		.section	.rodata.str1.4,"aMS",%progbits,1
- 530              		.align	2
- 531              	.LC0:
- 532 0000 4C3A2025 		.ascii	"L: %lu\000"
- 532      6C7500
- 533 0007 00       		.space	1
- 534              	.LC1:
- 535 0008 523A2025 		.ascii	"R: %lu\000"
- 535      6C7500
- 536 000f 00       		.space	1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 16
+ 484              		.loc 1 146 0
+ 485 00ca 2046     		mov	r0, r4
+ 486 00cc 1449     		ldr	r1, .L24+24
+ 487 00ce FFF7FEFF 		bl	sprintf
+ 488              	.LVL61:
+ 147:Src/main.c    ****             }
+ 489              		.loc 1 147 0
+ 490 00d2 2046     		mov	r0, r4
+ 491 00d4 0021     		movs	r1, #0
+ 492 00d6 FFF7FEFF 		bl	print
+ 493              	.LVL62:
+ 494              	.L20:
+ 144:Src/main.c    ****                 speed[motor] = TIM4->CNT;
+ 495              		.loc 1 144 0
+ 496 00da 1048     		ldr	r0, .L24+20
+ 497 00dc 4FF40051 		mov	r1, #8192
+ 498 00e0 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 499              	.LVL63:
+ 500 00e4 0028     		cmp	r0, #0
+ 501 00e6 E9D0     		beq	.L21
+ 149:Src/main.c    ****             motor = motor==0? 1: 0;
+ 502              		.loc 1 149 0
+ 503 00e8 2846     		mov	r0, r5
+ 504 00ea 6946     		mov	r1, sp
+ 505 00ec FFF7FEFF 		bl	update_motor_speed
+ 506              	.LVL64:
+ 150:Src/main.c    ****             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+ 507              		.loc 1 150 0
+ 508 00f0 85F00105 		eor	r5, r5, #1
+ 509              	.LVL65:
+ 151:Src/main.c    ****             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+ 510              		.loc 1 151 0
+ 511 00f4 054E     		ldr	r6, .L24+4
+ 512 00f6 3046     		mov	r0, r6
+ 513 00f8 0021     		movs	r1, #0
+ 514 00fa FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 515              	.LVL66:
+ 152:Src/main.c    ****         }
+ 516              		.loc 1 152 0
+ 517 00fe 3046     		mov	r0, r6
+ 518 0100 0821     		movs	r1, #8
+ 519 0102 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 520              	.LVL67:
+ 521 0106 B7E7     		b	.L19
+ 522              	.L25:
+ 523              		.align	2
+ 524              	.L24:
+ 525 0108 00000000 		.word	htim4
+ 526 010c 00000000 		.word	htim1
+ 527 0110 1C000000 		.word	.LC3
+ 528 0114 28000000 		.word	.LC4
+ 529 0118 30000000 		.word	.LC5
+ 530 011c 00080240 		.word	1073874944
+ 531 0120 38000000 		.word	.LC6
+ 532 0124 00080040 		.word	1073743872
+ 533              		.cfi_endproc
+ 534              	.LFE123:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 16
 
 
- 537              	.LC2:
- 538 0010 5372632F 		.ascii	"Src/main.c\000"
- 538      6D61696E 
- 538      2E6300
- 539 001b 00       		.space	1
- 540              	.LC3:
- 541 001c 53746172 		.ascii	"Starting\000"
- 541      74696E67 
- 541      00
- 542 0025 000000   		.space	3
- 543              	.LC4:
- 544 0028 4C3A2030 		.ascii	"L: 0\000"
- 544      00
- 545 002d 000000   		.space	3
- 546              	.LC5:
- 547 0030 523A2030 		.ascii	"R: 0\000"
- 547      00
- 548 0035 000000   		.space	3
- 549              	.LC6:
- 550 0038 256C7500 		.ascii	"%lu\000"
- 551              		.section	.bss.PUSH_BUTTON_STATE,"aw",%nobits
- 554              	PUSH_BUTTON_STATE:
- 555 0000 00       		.space	1
- 556              		.text
- 557              	.Letext0:
- 558              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 559              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 560              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 561              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 562              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 563              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 564              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 565              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 566              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 567              		.file 11 "Inc/fonts.h"
- 568              		.file 12 "Inc/ssd1306.h"
- 569              		.file 13 "<built-in>"
- 570              		.file 14 "Drivers/CMSIS/Include/core_cm4.h"
- 571              		.file 15 "Inc/tim.h"
- 572              		.file 16 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdio.h"
- 573              		.file 17 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 574              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 575              		.file 19 "Inc/gpio.h"
- 576              		.file 20 "Inc/usart.h"
- 577              		.file 21 "Inc/adc.h"
- 578              		.file 22 "Inc/i2c.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s 			page 17
+ 536              		.global	PUSH_BUTTON_STATE
+ 537              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 538              		.align	2
+ 539              	.LC0:
+ 540 0000 4C3A2025 		.ascii	"L: %lu\000"
+ 540      6C7500
+ 541 0007 00       		.space	1
+ 542              	.LC1:
+ 543 0008 523A2025 		.ascii	"R: %lu\000"
+ 543      6C7500
+ 544 000f 00       		.space	1
+ 545              	.LC2:
+ 546 0010 5372632F 		.ascii	"Src/main.c\000"
+ 546      6D61696E 
+ 546      2E6300
+ 547 001b 00       		.space	1
+ 548              	.LC3:
+ 549 001c 53746172 		.ascii	"Starting\000"
+ 549      74696E67 
+ 549      00
+ 550 0025 000000   		.space	3
+ 551              	.LC4:
+ 552 0028 4C3A2030 		.ascii	"L: 0\000"
+ 552      00
+ 553 002d 000000   		.space	3
+ 554              	.LC5:
+ 555 0030 523A2030 		.ascii	"R: 0\000"
+ 555      00
+ 556 0035 000000   		.space	3
+ 557              	.LC6:
+ 558 0038 256C7500 		.ascii	"%lu\000"
+ 559              		.section	.bss.PUSH_BUTTON_STATE,"aw",%nobits
+ 562              	PUSH_BUTTON_STATE:
+ 563 0000 00       		.space	1
+ 564              		.text
+ 565              	.Letext0:
+ 566              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 567              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 568              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 569              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 570              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 571              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 572              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 573              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 574              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 575              		.file 11 "Inc/fonts.h"
+ 576              		.file 12 "Inc/ssd1306.h"
+ 577              		.file 13 "<built-in>"
+ 578              		.file 14 "Drivers/CMSIS/Include/core_cm4.h"
+ 579              		.file 15 "Inc/tim.h"
+ 580              		.file 16 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdio.h"
+ 581              		.file 17 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 582              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 583              		.file 19 "Inc/gpio.h"
+ 584              		.file 20 "Inc/usart.h"
+ 585              		.file 21 "Inc/adc.h"
+ 586              		.file 22 "Inc/i2c.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 17
+
+
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:21     .text.print:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:26     .text.print:0000000000000000 print
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:74     .text.print:0000000000000034 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:83     .text.update_motor_speed:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:88     .text.update_motor_speed:0000000000000000 update_motor_speed
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:168    .text.update_motor_speed:000000000000006c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:177    .text._Error_Handler:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:182    .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:198    .text.SystemClock_Config:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:203    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:329    .text.SystemClock_Config:00000000000000b0 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:337    .text.main:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:342    .text.main:0000000000000000 main
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:516    .text.main:00000000000000f8 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:554    .bss.PUSH_BUTTON_STATE:0000000000000000 PUSH_BUTTON_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:530    .rodata.str1.4:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccSX0jNH.s:555    .bss.PUSH_BUTTON_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:21     .text.print:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:26     .text.print:0000000000000000 print
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:74     .text.print:0000000000000034 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:83     .text.update_motor_speed:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:88     .text.update_motor_speed:0000000000000000 update_motor_speed
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:168    .text.update_motor_speed:000000000000006c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:177    .text._Error_Handler:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:182    .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:198    .text.SystemClock_Config:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:203    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:329    .text.SystemClock_Config:00000000000000b0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:337    .text.main:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:342    .text.main:0000000000000000 main
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:525    .text.main:0000000000000108 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:562    .bss.PUSH_BUTTON_STATE:0000000000000000 PUSH_BUTTON_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:538    .rodata.str1.4:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s:563    .bss.PUSH_BUTTON_STATE:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -1005,4 +1019,8 @@ ssd1306_Init
 HAL_TIM_Encoder_Start
 HAL_TIM_PWM_Start
 HAL_GPIO_ReadPin
+HAL_TIM_PWM_Stop
 htim4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccROgdT7.s 			page 19
+
+
