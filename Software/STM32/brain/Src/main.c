@@ -136,6 +136,8 @@ int main(void)
     while (1)
     {
         if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
+            HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+            HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
             sprintf(msg, "%lu", speed[motor]);
             print(msg, 0);
             TIM4->CNT = speed[motor];
@@ -146,9 +148,9 @@ int main(void)
             }
             update_motor_speed(motor, speed);
             motor = motor==0? 1: 0;
+            HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+            HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
         }
-        sprintf(msg, "%lu", TIM1->CCR1);
-        print(msg, 0);
 
         /* USER CODE END WHILE */
 
