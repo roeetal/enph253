@@ -68,7 +68,7 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void print(char* msg, int row);
+void print(char msg[], int row);
 void update_motor_speed(int m, uint32_t speed[]);
 void do_pid(PID_t *pid_struct);
 
@@ -129,11 +129,9 @@ int main(void)
 
     /* USER CODE END 2 */
     print("Starting", 0);
-    char *msg = (char*)malloc(18*sizeof(char));
-    //char msg[100];
-    //memset(msg, '\0', sizeof(msg));
+    char msg[20] = "";
     int pid_select = 0;
-    uint32_t values[2] = {10,200,0};
+    uint32_t values[3] = {10,200,0};
     PID_t pid_s = pid_Init(values[0],values[1],values[2],5,2);
     print("P: 10", 0);
     print("I: 200", 1);
@@ -165,7 +163,6 @@ int main(void)
         /* USER CODE BEGIN 3 */
 
     }
-    free(msg);
     /* USER CODE END 3 */
 
 }
@@ -175,10 +172,6 @@ void do_pid(PID_t *pid_struct){
     uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin)? 0 : 1;
     uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin)? 0 : 1;
     char msg[20] = "";
-    sprintf(msg, "L: %u", left);
-    print(msg, 0);
-    sprintf(msg, "R: %u", right);
-    print(msg, 1);
 
     /* Get error */
     if(left && right){ pid_struct->err = 0; }
@@ -189,20 +182,29 @@ void do_pid(PID_t *pid_struct){
 
     /* Get gain */
     double gain = pid_GetGain(pid_struct, &htim9);
-    sprintf(msg, "G: %f", gain);
-    print(msg, 2);
-    free(msg);
+    int g = (int) gain;
+
+    /* Set Motor Speeds*/
+    if(g<0){
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED - g);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED - g);
+    }else if(g>0){
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED + g);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED + g);
+    }else{
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED);
+    }
 }
 
 void update_motor_speed(int m, uint32_t speed[]){
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
-    char *msg = (char*)malloc(18*sizeof(char));
+    char msg[20] = "";
     sprintf(msg, "L: %lu", speed[0]);
     print(msg, 0);
     sprintf(msg, "R: %lu", speed[1]);
     print(msg, 1);
-    free (msg);
 }
 
 /**
