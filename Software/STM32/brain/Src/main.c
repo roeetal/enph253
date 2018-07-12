@@ -155,6 +155,14 @@ int main(void)
             pid_select = pid_select==0? 1: pid_select==1? 2: 0;
             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+            if(pid_select==0){
+                sprintf(msg, "%lu", values[0]);
+                print(msg, 0);
+                sprintf(msg, "%lu", values[1]);
+                print(msg, 1);
+                sprintf(msg, "%lu", values[2]);
+                print(msg, 2);
+            }
         }
         do_pid(&pid_s);
 
@@ -171,7 +179,6 @@ void do_pid(PID_t *pid_struct){
     /* Read sensors */
     uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin)? 0 : 1;
     uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin)? 0 : 1;
-    char msg[20] = "";
 
     /* Get error */
     if(left && right){ pid_struct->err = 0; }
