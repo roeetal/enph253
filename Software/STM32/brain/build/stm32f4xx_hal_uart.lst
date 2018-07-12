@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
   29:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****             (+++) Configure the USARTx interrupt priority.
   30:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****             (+++) Enable the NVIC USART IRQ handle.
   31:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         (##) DMA Configuration if you need to use DMA process (HAL_UART_Transmit_DMA()
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 2
 
 
   32:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****              and HAL_UART_Receive_DMA() APIs):
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
   86:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****             add his own code by customization of function pointer HAL_UART_ErrorCallback
   87:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
   88:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****      *** DMA mode IO operation ***    
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 3
 
 
   89:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****      ==============================
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  143:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
  144:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
  145:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 4
 
 
  146:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  200:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   */
  201:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  202:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** /* Exported functions ---------------------------------------------------------*/
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 5
 
 
  203:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** /** @defgroup UART_Exported_Functions UART Exported Functions
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  257:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     assert_param(IS_UART_HARDWARE_FLOW_CONTROL(huart->Init.HwFlowCtl));
  258:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
  259:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   else
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 6
 
 
  260:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  314:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */ 
  315:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   assert_param(IS_UART_INSTANCE(huart->Instance));
  316:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   assert_param(IS_UART_WORD_LENGTH(huart->Init.WordLength));
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 7
 
 
  317:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   assert_param(IS_UART_OVERSAMPLING(huart->Init.OverSampling));
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  371:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     return HAL_ERROR;
  372:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
  373:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****    
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 8
 
 
  374:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  428:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *            @arg UART_WAKEUPMETHOD_IDLELINE: Wake-up by an idle line detection
  429:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *            @arg UART_WAKEUPMETHOD_ADDRESSMARK: Wake-up by an address mark
  430:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @retval HAL status
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 9
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 9
 
 
  431:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   */
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  485:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
  486:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   return HAL_OK;
  487:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 10
 
 
  488:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  542:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****  __weak void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)
  543:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** {
  544:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Prevent unused argument(s) compilation warning */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 11
 
 
  545:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   UNUSED(huart);
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  599:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       (@) In the Half duplex communication, it is forbidden to run the transmit 
  600:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****           and receive process in parallel, the UART state HAL_UART_STATE_BUSY_TX_RX 
  601:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****           can't be useful.
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 12
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 12
 
 
  602:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  656:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         { 
  657:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****           pData +=1U;
  658:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 13
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 13
 
 
  659:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       } 
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  713:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
  714:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     huart->ErrorCode = HAL_UART_ERROR_NONE;
  715:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     huart->RxState = HAL_UART_STATE_BUSY_RX;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 14
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 14
 
 
  716:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 	
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  770:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     return HAL_OK;
  771:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
  772:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   else
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 15
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 15
 
 
  773:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  827:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   */
  828:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size)
  829:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** {
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 16
 
 
  830:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check that a Rx process is not already ongoing */ 
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  884:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  885:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     /* Process Locked */
  886:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     __HAL_LOCK(huart);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 17
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 17
 
 
  887:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  941:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
  942:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check that a Rx process is not already ongoing */
  943:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   if(huart->RxState == HAL_UART_STATE_READY) 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 18
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 18
 
 
  944:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  998:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
  999:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** /**
 1000:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @brief Pauses the DMA Transfer.
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 19
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 19
 
 
 1001:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @param  huart pointer to a UART_HandleTypeDef structure that contains
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1055:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     /* Reenable PE and ERR (Frame error, noise error, overrun error) interrupts */
 1056:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     SET_BIT(huart->Instance->CR1, USART_CR1_PEIE);
 1057:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     SET_BIT(huart->Instance->CR3, USART_CR3_EIE);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 20
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 20
 
 
 1058:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1112:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   return HAL_OK;
 1113:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
 1114:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 21
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 21
 
 
 1115:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** /**
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1169:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Reset ErrorCode */
 1170:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->ErrorCode = HAL_UART_ERROR_NONE;
 1171:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 22
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 22
 
 
 1172:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Restore huart->RxState and huart->gState to Ready */
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1226:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Disable PPP Interrupts
 1227:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Disable the DMA transfer in the peripheral register (if enabled)
 1228:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Abort DMA transfer by calling HAL_DMA_Abort (in case of transfer in DMA mode)
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 23
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 23
 
 
 1229:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Set handle State to READY
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1283:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   CLEAR_BIT(huart->Instance->CR1, (USART_CR1_RXNEIE | USART_CR1_PEIE | USART_CR1_TXEIE | USART_CR1_
 1284:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   CLEAR_BIT(huart->Instance->CR3, USART_CR3_EIE);
 1285:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 24
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 24
 
 
 1286:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* If DMA Tx and/or DMA Rx Handles are associated to UART Handle, DMA Abort complete callbacks sh
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1340:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
 1341:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Disable the UART DMA Rx request if enabled */
 1342:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   if(HAL_IS_BIT_SET(huart->Instance->CR3, USART_CR3_DMAR))
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 25
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 25
 
 
 1343:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1397:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *         considered as completed only when user abort complete callback is executed (not when ex
 1398:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @retval HAL status
 1399:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 26
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 26
 
 
 1400:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** HAL_StatusTypeDef HAL_UART_AbortTransmit_IT(UART_HandleTypeDef *huart)
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1454:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @note   This procedure could be used for aborting any ongoing transfer started in Interrupt or 
 1455:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *         This procedure performs following operations :
 1456:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Disable PPP Interrupts
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 27
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 27
 
 
 1457:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *           - Disable the DMA transfer in the peripheral register (if enabled)
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1511:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     HAL_UART_AbortReceiveCpltCallback(huart);
 1512:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
 1513:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 28
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 28
 
 
 1514:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   return HAL_OK;
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1568:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     }
 1569:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
 1570:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     /* Call UART Error Call back function if need be --------------------------*/    
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 29
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 29
 
 
 1571:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     if(huart->ErrorCode != HAL_UART_ERROR_NONE)
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1625:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     }
 1626:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     return;
 1627:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   } /* End if some error occurs */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 30
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 30
 
 
 1628:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1682:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Prevent unused argument(s) compilation warning */
 1683:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   UNUSED(huart);
 1684:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* NOTE: This function Should not be modified, when the callback is needed,
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 31
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 31
 
 
 1685:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****            the HAL_UART_TxCpltCallback could be implemented in the user file
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1739:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** {
 1740:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Prevent unused argument(s) compilation warning */
 1741:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   UNUSED(huart);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 32
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 32
 
 
 1742:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1796:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   __HAL_LOCK(huart);
 1797:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
 1798:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->gState = HAL_UART_STATE_BUSY;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 33
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 33
 
 
 1799:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
@@ -1978,7 +1978,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1853:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
 1854:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Disable the USART mute mode by clearing the RWU bit in the CR1 register */
 1855:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   CLEAR_BIT(huart->Instance->CR1, USART_CR1_RWU);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 34
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 34
 
 
 1856:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
@@ -2038,7 +2038,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1910:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Process Locked */
 1911:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   __HAL_LOCK(huart);
 1912:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 35
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 35
 
 
 1913:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->gState = HAL_UART_STATE_BUSY;
@@ -2098,7 +2098,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1967:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   temp2 = huart->RxState;
 1968:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
 1969:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   return (HAL_UART_StateTypeDef)(temp1 | temp2);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 36
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 36
 
 
 1970:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
@@ -2158,7 +2158,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2024:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
 2025:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   HAL_UART_TxHalfCpltCallback(huart);
 2026:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 37
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 37
 
 
 2027:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -2218,7 +2218,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2081:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
 2082:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     huart->TxXferCount = 0U;
 2083:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     UART_EndTxTransfer(huart);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 38
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 38
 
 
 2084:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
@@ -2278,7 +2278,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2138:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @param  huart UART handle.
 2139:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @retval None
 2140:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 39
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 39
 
 
 2141:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** static void UART_EndTxTransfer(UART_HandleTypeDef *huart)
@@ -2338,7 +2338,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
   65 000a 0268     		ldr	r2, [r0]
   66 000c 5369     		ldr	r3, [r2, #20]
   67 000e 23F00103 		bic	r3, r3, #1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 40
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 40
 
 
   68 0012 5361     		str	r3, [r2, #20]
@@ -2398,7 +2398,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2201:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
 2202:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
 2203:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* No Abort process still ongoing : All DMA channels are aborted, call user Abort Complete callba
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 41
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 41
 
 
 2204:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->TxXferCount = 0x00U;
@@ -2458,7 +2458,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2258:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *         HAL_UART_AbortTransmit_IT API (Abort only Tx transfer)
 2259:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *         (This callback is executed at end of DMA Tx Abort procedure following user abort reques
 2260:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   *         and leads to user Tx Abort Complete callback execution).
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 42
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 42
 
 
 2261:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   * @param  hdma DMA handle.
@@ -2518,7 +2518,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2309:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   if(huart->gState == HAL_UART_STATE_BUSY_TX)
   89              		.loc 1 2309 0
   90 0000 90F83930 		ldrb	r3, [r0, #57]	@ zero_extendqisi2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 43
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 43
 
 
   91 0004 DBB2     		uxtb	r3, r3
@@ -2578,7 +2578,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  128 003a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  129 003c 5360     		str	r3, [r2, #4]
  130              	.L7:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 44
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 44
 
 
 2327:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     }
@@ -2638,7 +2638,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  168              		.align	2
  169              		.thumb
  170              		.thumb_func
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 45
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 45
 
 
  172              	UART_SetConfig:
@@ -2698,7 +2698,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2396:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       }
 2397:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       else
 2398:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       {
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 46
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 46
 
 
 2399:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         *huart->pRxBuffPtr++ = (uint8_t)(huart->Instance->DR & (uint8_t)0x007F);
@@ -2758,7 +2758,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2435:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
 2436:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */
 2437:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   assert_param(IS_UART_BAUDRATE(huart->Init.BaudRate));
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 47
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 47
 
 
 2438:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   assert_param(IS_UART_STOPBITS(huart->Init.StopBits));
@@ -2818,7 +2818,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  217 0022 2269     		ldr	r2, [r4, #16]
  218 0024 1143     		orrs	r1, r1, r2
  219 0026 6269     		ldr	r2, [r4, #20]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 48
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 48
 
 
  220 0028 1143     		orrs	r1, r1, r2
@@ -2878,7 +2878,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  252 0058 03F58063 		add	r3, r3, #1024
  253 005c 9E42     		cmp	r6, r3
  254 005e 54D1     		bne	.L13
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 49
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 49
 
 
  255              	.L12:
@@ -2938,7 +2938,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  307 00f0 5B09     		lsrs	r3, r3, #5
  308 00f2 09FB1383 		mls	r3, r9, r3, r8
  309 00f6 DB00     		lsls	r3, r3, #3
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 50
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 50
 
 
  310 00f8 3233     		adds	r3, r3, #50
@@ -2998,7 +2998,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  354 016e FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
  355              	.LVL34:
  356 0172 00EB8000 		add	r0, r0, r0, lsl #2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 51
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 51
 
 
  357 0176 00EB8000 		add	r0, r0, r0, lsl #2
@@ -3058,7 +3058,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  402 01e2 FFF7FEFF 		bl	HAL_RCC_GetPCLK2Freq
  403              	.LVL38:
  404 01e6 00EB8000 		add	r0, r0, r0, lsl #2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 52
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 52
 
 
  405 01ea 00EB8000 		add	r0, r0, r0, lsl #2
@@ -3118,7 +3118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2517:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     else
 2518:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     {
 2519:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       huart->Instance->BRR = UART_BRR_SAMPLING16(HAL_RCC_GetPCLK1Freq(), huart->Init.BaudRate);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 53
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 53
 
 
  452              		.loc 1 2519 0
@@ -3178,7 +3178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  506 0306 3233     		adds	r3, r3, #50
  507 0308 A7FB0323 		umull	r2, r3, r7, r3
  508 030c C3F34313 		ubfx	r3, r3, #5, #4
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 54
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 54
 
 
  509 0310 1D44     		add	r5, r5, r3
@@ -3238,7 +3238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  560 0020 A842     		cmp	r0, r5
  561 0022 14D9     		bls	.L22
  562              	.L23:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 55
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 55
 
 
 2119:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         CLEAR_BIT(huart->Instance->CR3, USART_CR3_EIE);
@@ -3298,7 +3298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  610              	.LFB128:
  528:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****    /* Prevent unused argument(s) compilation warning */
  611              		.loc 1 528 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 56
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 56
 
 
  612              		.cfi_startproc
@@ -3358,7 +3358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  660 0024 23F40053 		bic	r3, r3, #8192
  661 0028 D360     		str	r3, [r2, #12]
  280:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 57
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 57
 
 
  662              		.loc 1 280 0
@@ -3418,7 +3418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  710              	HAL_HalfDuplex_Init:
  711              	.LFB124:
  307:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the UART handle allocation */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 58
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 58
 
 
  712              		.loc 1 307 0
@@ -3478,7 +3478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  756 003c 2268     		ldr	r2, [r4]
  757 003e 5369     		ldr	r3, [r2, #20]
  758 0040 23F02203 		bic	r3, r3, #34
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 59
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 59
 
 
  759 0044 5361     		str	r3, [r2, #20]
@@ -3538,7 +3538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  806              		.loc 1 369 0
  807 0000 0028     		cmp	r0, #0
  808 0002 3CD0     		beq	.L43
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 60
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 60
 
 
  367:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the UART handle allocation */
@@ -3598,7 +3598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  853 0048 2268     		ldr	r2, [r4]
  854 004a 1369     		ldr	r3, [r2, #16]
  855 004c 43F48043 		orr	r3, r3, #16384
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 61
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 61
 
 
  856 0050 1361     		str	r3, [r2, #16]
@@ -3658,7 +3658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  904              	HAL_MultiProcessor_Init:
  905              	.LFB126:
  433:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the UART handle allocation */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 62
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 62
 
 
  906              		.loc 1 433 0
@@ -3718,7 +3718,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  951 003a 23F49043 		bic	r3, r3, #18432
  952 003e 1361     		str	r3, [r2, #16]
  467:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 63
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 63
 
 
  953              		.loc 1 467 0
@@ -3778,7 +3778,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  998              		.cfi_restore 4
  999              		.cfi_restore 5
  1000              		.cfi_restore 6
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 64
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 64
 
 
  1001              		.cfi_restore 14
@@ -3838,7 +3838,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1052              		.loc 1 509 0
  1053 000c FFF7FEFF 		bl	HAL_UART_MspDeInit
  1054              	.LVL78:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 65
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 65
 
 
  511:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->gState = HAL_UART_STATE_RESET;
@@ -3898,7 +3898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1104 0006 0446     		mov	r4, r0
  1105 0008 1E46     		mov	r6, r3
  1106              	.LVL82:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 66
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 66
 
 
  622:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   {
@@ -3958,7 +3958,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1149 004a 013B     		subs	r3, r3, #1
  1150 004c 9BB2     		uxth	r3, r3
  1151 004e E384     		strh	r3, [r4, #38]	@ movhi
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 67
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 67
 
 
  643:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       {
@@ -4018,7 +4018,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1198 0090 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
  1199 0092 5A60     		str	r2, [r3, #4]
  1200 0094 0135     		adds	r5, r5, #1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 68
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 68
 
 
  1201              	.LVL95:
@@ -4078,7 +4078,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1246 00d0 02E0     		b	.L59
  1247              	.L70:
  664:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 69
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 69
 
 
  1248              		.loc 1 664 0
@@ -4138,7 +4138,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1300 0014 0D46     		mov	r5, r1
  1301 0016 9046     		mov	r8, r2
  706:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     {
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 70
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 70
 
 
  1302              		.loc 1 706 0
@@ -4198,7 +4198,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1344 0058 0096     		str	r6, [sp]
  1345 005a 2046     		mov	r0, r4
  1346 005c 2021     		movs	r1, #32
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 71
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 71
 
 
  1347 005e 0022     		movs	r2, #0
@@ -4258,7 +4258,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1395              	.L79:
  1396              	.LVL115:
  758:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 72
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 72
 
 
  1397              		.loc 1 758 0
@@ -4318,7 +4318,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1443              		.loc 1 731 0
  1444 00d8 0320     		movs	r0, #3
  1445 00da 00E0     		b	.L74
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 73
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 73
 
 
  1446              	.L86:
@@ -4378,7 +4378,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1492 001a C284     		strh	r2, [r0, #38]	@ movhi
  803:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     huart->gState = HAL_UART_STATE_BUSY_TX;
  1493              		.loc 1 803 0 discriminator 2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 74
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 74
 
 
  1494 001c 0023     		movs	r3, #0
@@ -4438,7 +4438,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1541              		.align	2
  1542              		.global	HAL_UART_Receive_IT
  1543              		.thumb
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 75
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 75
 
 
  1544              		.thumb_func
@@ -4498,7 +4498,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1587 0032 4A61     		str	r2, [r1, #20]
  1588              	.LVL143:
  855:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 76
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 76
 
 
  1589              		.loc 1 855 0 discriminator 2
@@ -4558,7 +4558,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1639              	.LCFI18:
  1640              		.cfi_def_cfa_offset 16
  1641              		.cfi_offset 3, -16
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 77
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 77
 
 
  1642              		.cfi_offset 4, -12
@@ -4618,7 +4618,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1684 003c 226B     		ldr	r2, [r4, #48]
  1685 003e 1148     		ldr	r0, .L107+4
  1686 0040 1064     		str	r0, [r2, #64]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 78
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 78
 
 
  902:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -4678,7 +4678,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1732              	.LVL164:
  1733              	.L105:
  886:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 79
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 79
 
 
  1734              		.loc 1 886 0
@@ -4738,7 +4738,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1785 0018 002B     		cmp	r3, #0
  1786 001a 3BD0     		beq	.L113
  951:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 80
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 80
 
 
  1787              		.loc 1 951 0 is_stmt 1
@@ -4798,7 +4798,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1830              		.loc 1 976 0 discriminator 2
  1831 005a 0195     		str	r5, [sp, #4]
  1832 005c 2368     		ldr	r3, [r4]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 81
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 81
 
 
  1833 005e 1A68     		ldr	r2, [r3]
@@ -4858,7 +4858,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1879              	.LVL180:
  1880              	.L110:
  997:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 82
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 82
 
 
  1881              		.loc 1 997 0
@@ -4918,7 +4918,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1930              		.loc 1 1015 0 is_stmt 1
  1931 0022 4B69     		ldr	r3, [r1, #20]
  1932 0024 23F08003 		bic	r3, r3, #128
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 83
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 83
 
 
  1933 0028 4B61     		str	r3, [r1, #20]
@@ -4978,7 +4978,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  1977              		.cfi_endproc
  1978              	.LFE136:
  1980              		.section	.text.HAL_UART_DMAResume,"ax",%progbits
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 84
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 84
 
 
  1981              		.align	2
@@ -5038,7 +5038,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2028 0038 5A68     		ldr	r2, [r3, #4]
  2029 003a 0192     		str	r2, [sp, #4]
  2030 003c 019A     		ldr	r2, [sp, #4]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 85
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 85
 
 
  2031              	.LBE3:
@@ -5098,7 +5098,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2076 0072 1846     		mov	r0, r3
  2077              	.LVL194:
 1067:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 86
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 86
 
 
  2078              		.loc 1 1067 0
@@ -5158,7 +5158,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1095:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   }
  2127              		.loc 1 1095 0
  2128 0028 2046     		mov	r0, r4
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 87
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 87
 
 
  2129 002a FFF7FEFF 		bl	UART_EndTxTransfer
@@ -5218,7 +5218,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2176              		@ args = 0, pretend = 0, frame = 0
  2177              		@ frame_needed = 0, uses_anonymous_args = 0
  2178              	.LVL204:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 88
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 88
 
 
  2179 0000 10B5     		push	{r4, lr}
@@ -5278,7 +5278,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2224 0048 5A61     		str	r2, [r3, #20]
 1155:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     {
  2225              		.loc 1 1155 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 89
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 89
 
 
  2226 004a 636B     		ldr	r3, [r4, #52]
@@ -5338,7 +5338,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2272              		.loc 1 1194 0
  2273 0004 0268     		ldr	r2, [r0]
  2274 0006 D368     		ldr	r3, [r2, #12]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 90
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 90
 
 
  2275 0008 23F0C003 		bic	r3, r3, #192
@@ -5398,7 +5398,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2322 0000 10B5     		push	{r4, lr}
  2323              	.LCFI29:
  2324              		.cfi_def_cfa_offset 8
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 91
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 91
 
 
  2325              		.cfi_offset 4, -8
@@ -5458,7 +5458,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2370              		.section	.text.HAL_UART_TxCpltCallback,"ax",%progbits
  2371              		.align	2
  2372              		.weak	HAL_UART_TxCpltCallback
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 92
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 92
 
 
  2373              		.thumb
@@ -5518,7 +5518,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2422              		.loc 1 2005 0
  2423 001c 1A68     		ldr	r2, [r3]
  2424 001e D368     		ldr	r3, [r2, #12]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 93
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 93
 
 
  2425              	.LVL217:
@@ -5578,7 +5578,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2476              		.weak	HAL_UART_TxHalfCpltCallback
  2477              		.thumb
  2478              		.thumb_func
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 94
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 94
 
 
  2480              	HAL_UART_TxHalfCpltCallback:
@@ -5638,7 +5638,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2533              	.LVL228:
  2534 0000 7047     		bx	lr
  2535              		.cfi_endproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 95
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 95
 
 
  2536              	.LFE148:
@@ -5698,7 +5698,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2583 0030 2022     		movs	r2, #32
  2584 0032 83F83A20 		strb	r2, [r3, #58]
  2585              	.L159:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 96
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 96
 
 
 2052:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
@@ -5758,7 +5758,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2634 0026 0233     		adds	r3, r3, #2
  2635 0028 8362     		str	r3, [r0, #40]
  2636 002a 18E0     		b	.L165
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 97
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 97
 
 
  2637              	.L164:
@@ -5818,7 +5818,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2683 0072 0268     		ldr	r2, [r0]
  2684 0074 5369     		ldr	r3, [r2, #20]
  2685 0076 23F00103 		bic	r3, r3, #1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 98
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 98
 
 
  2686 007a 5361     		str	r3, [r2, #20]
@@ -5878,7 +5878,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2062:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   UART_HandleTypeDef* huart = (UART_HandleTypeDef*)((DMA_HandleTypeDef*)hdma)->Parent;
  2737              		.loc 1 2062 0
  2738              		.cfi_startproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 99
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 99
 
 
  2739              		@ args = 0, pretend = 0, frame = 0
@@ -5938,7 +5938,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2792              		.cfi_offset 4, -8
  2793              		.cfi_offset 14, -4
  2794              	.LVL248:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 100
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 100
 
 
 2076:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -5998,7 +5998,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2838              	.L176:
 2094:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   HAL_UART_ErrorCallback(huart);
  2839              		.loc 1 2094 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 101
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 101
 
 
  2840 0040 E36B     		ldr	r3, [r4, #60]
@@ -6058,7 +6058,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2888 0018 11F0200F 		tst	r1, #32
  2889 001c 03D0     		beq	.L179
 1538:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****       return;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 102
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 102
 
 
  2890              		.loc 1 1538 0 is_stmt 1
@@ -6118,7 +6118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2933 005a 13F0020F 		tst	r3, #2
  2934 005e 04D0     		beq	.L185
 1559:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****     {
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 103
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 103
 
 
  2935              		.loc 1 1559 0 is_stmt 0 discriminator 1
@@ -6178,7 +6178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  2978              	.L188:
 1587:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****         
  2979              		.loc 1 1587 0 is_stmt 1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 104
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 104
 
 
  2980 00a4 2046     		mov	r0, r4
@@ -6238,7 +6238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3025              		.loc 1 1622 0
  3026 00e4 2046     		mov	r0, r4
  3027 00e6 FFF7FEFF 		bl	HAL_UART_ErrorCallback
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 105
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 105
 
 
  3028              	.LVL276:
@@ -6298,7 +6298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3076              	UART_DMAAbortOnError:
  3077              	.LFB169:
 2172:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   UART_HandleTypeDef* huart = ( UART_HandleTypeDef* )((DMA_HandleTypeDef* )hdma)->Parent;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 106
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 106
 
 
  3078              		.loc 1 2172 0
@@ -6358,7 +6358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3130              		.cfi_startproc
  3131              		@ args = 0, pretend = 0, frame = 0
  3132              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 107
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 107
 
 
  3133              	.LVL288:
@@ -6418,7 +6418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3177              		.loc 1 1309 0
  3178 003e 214A     		ldr	r2, .L212+4
  3179 0040 1A65     		str	r2, [r3, #80]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 108
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 108
 
 
  3180 0042 01E0     		b	.L202
@@ -6478,7 +6478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3225 007a 5969     		ldr	r1, [r3, #20]
  3226 007c 11F0400F 		tst	r1, #64
  3227 0080 0ED0     		beq	.L205
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 109
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 109
 
 
 1344:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -6538,7 +6538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3269 00b6 FFF7FEFF 		bl	HAL_UART_AbortCpltCallback
  3270              	.LVL299:
  3271              	.L206:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 110
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 110
 
 
 1384:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -6598,7 +6598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2246:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  3320              		.loc 1 2246 0
  3321 0018 C363     		str	r3, [r0, #60]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 111
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 111
 
 
 2249:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   huart->RxState = HAL_UART_STATE_READY;
@@ -6658,7 +6658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 2205:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  3369              		.loc 1 2205 0
  3370 0016 C385     		strh	r3, [r0, #46]	@ movhi
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 112
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 112
 
 
 2208:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -6718,7 +6718,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3422              		.cfi_offset 14, -4
  3423 0002 0446     		mov	r4, r0
 1403:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 113
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 113
 
 
  3424              		.loc 1 1403 0
@@ -6778,7 +6778,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3469              	.L224:
 1439:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  3470              		.loc 1 1439 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 114
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 114
 
 
  3471 0048 0023     		movs	r3, #0
@@ -6838,7 +6838,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3519              	.LVL319:
  3520 0012 08BD     		pop	{r3, pc}
  3521              		.cfi_endproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 115
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 115
 
 
  3522              	.LFE172:
@@ -6898,7 +6898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3574 001a 5A69     		ldr	r2, [r3, #20]
  3575 001c 12F0400F 		tst	r2, #64
  3576 0020 17D0     		beq	.L234
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 116
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 116
 
 
 1474:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -6958,7 +6958,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3620 005c FFF7FEFF 		bl	HAL_UART_AbortReceiveCpltCallback
  3621              	.LVL328:
  3622              	.L236:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 117
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 117
 
 
 1515:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
@@ -7018,7 +7018,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1791:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */
  3675              		.loc 1 1791 0
  3676              		.cfi_startproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 118
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 118
 
 
  3677              		@ args = 0, pretend = 0, frame = 0
@@ -7078,7 +7078,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1818:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */
  3724              		.loc 1 1818 0
  3725              		.cfi_startproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 119
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 119
 
 
  3726              		@ args = 0, pretend = 0, frame = 0
@@ -7138,7 +7138,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1845:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   /* Check the parameters */
  3773              		.loc 1 1845 0
  3774              		.cfi_startproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 120
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 120
 
 
  3775              		@ args = 0, pretend = 0, frame = 0
@@ -7198,7 +7198,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1872:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c ****   uint32_t tmpreg = 0x00U;
  3822              		.loc 1 1872 0
  3823              		.cfi_startproc
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 121
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 121
 
 
  3824              		@ args = 0, pretend = 0, frame = 0
@@ -7258,7 +7258,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
 1898:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** 
  3867              		.loc 1 1898 0
  3868 0034 7047     		bx	lr
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 122
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 122
 
 
  3869              		.cfi_endproc
@@ -7318,7 +7318,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3915 002a 80F83830 		strb	r3, [r0, #56]
 1932:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
  3916              		.loc 1 1932 0 discriminator 2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 123
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 123
 
 
  3917 002e 1846     		mov	r0, r3
@@ -7378,7 +7378,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3968              		@ frame_needed = 0, uses_anonymous_args = 0
  3969              		@ link register save eliminated.
  3970              	.LVL367:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 124
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 124
 
 
 1980:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c **** }
@@ -7402,134 +7402,134 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 1
  3988              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
  3989              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  3990              		.file 11 "Drivers/CMSIS/Include/core_cm4.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 125
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 125
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_hal_uart.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:21     .text.UART_EndTxTransfer:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:25     .text.UART_EndTxTransfer:0000000000000000 UART_EndTxTransfer
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:47     .text.UART_EndRxTransfer:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:51     .text.UART_EndRxTransfer:0000000000000000 UART_EndRxTransfer
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:77     .text.UART_Transmit_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:81     .text.UART_Transmit_IT:0000000000000000 UART_Transmit_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:168    .text.UART_SetConfig:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:172    .text.UART_SetConfig:0000000000000000 UART_SetConfig
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:516    .text.UART_SetConfig:0000000000000318 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:522    .text.UART_WaitOnFlagUntilTimeout:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:526    .text.UART_WaitOnFlagUntilTimeout:0000000000000000 UART_WaitOnFlagUntilTimeout
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:604    .text.HAL_UART_MspInit:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:609    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:622    .text.HAL_UART_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:627    .text.HAL_UART_Init:0000000000000000 HAL_UART_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:705    .text.HAL_HalfDuplex_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:710    .text.HAL_HalfDuplex_Init:0000000000000000 HAL_HalfDuplex_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:794    .text.HAL_LIN_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:799    .text.HAL_LIN_Init:0000000000000000 HAL_LIN_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:899    .text.HAL_MultiProcessor_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:904    .text.HAL_MultiProcessor_Init:0000000000000000 HAL_MultiProcessor_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1010   .text.HAL_UART_MspDeInit:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1015   .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1028   .text.HAL_UART_DeInit:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1033   .text.HAL_UART_DeInit:0000000000000000 HAL_UART_DeInit
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1080   .text.HAL_UART_Transmit:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1085   .text.HAL_UART_Transmit:0000000000000000 HAL_UART_Transmit
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1267   .text.HAL_UART_Receive:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1272   .text.HAL_UART_Receive:0000000000000000 HAL_UART_Receive
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1461   .text.HAL_UART_Transmit_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1466   .text.HAL_UART_Transmit_IT:0000000000000000 HAL_UART_Transmit_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1541   .text.HAL_UART_Receive_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1546   .text.HAL_UART_Receive_IT:0000000000000000 HAL_UART_Receive_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1626   .text.HAL_UART_Transmit_DMA:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1631   .text.HAL_UART_Transmit_DMA:0000000000000000 HAL_UART_Transmit_DMA
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1743   .text.HAL_UART_Transmit_DMA:0000000000000080 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2393   .text.UART_DMATransmitCplt:0000000000000000 UART_DMATransmitCplt
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2497   .text.UART_DMATxHalfCplt:0000000000000000 UART_DMATxHalfCplt
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2781   .text.UART_DMAError:0000000000000000 UART_DMAError
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1750   .text.HAL_UART_Receive_DMA:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1755   .text.HAL_UART_Receive_DMA:0000000000000000 HAL_UART_Receive_DMA
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1891   .text.HAL_UART_Receive_DMA:00000000000000a0 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2543   .text.UART_DMAReceiveCplt:0000000000000000 UART_DMAReceiveCplt
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2735   .text.UART_DMARxHalfCplt:0000000000000000 UART_DMARxHalfCplt
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1898   .text.HAL_UART_DMAPause:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1903   .text.HAL_UART_DMAPause:0000000000000000 HAL_UART_DMAPause
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1981   .text.HAL_UART_DMAResume:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:1986   .text.HAL_UART_DMAResume:0000000000000000 HAL_UART_DMAResume
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2084   .text.HAL_UART_DMAStop:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2089   .text.HAL_UART_DMAStop:0000000000000000 HAL_UART_DMAStop
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2167   .text.HAL_UART_Abort:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2172   .text.HAL_UART_Abort:0000000000000000 HAL_UART_Abort
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2254   .text.HAL_UART_AbortTransmit:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2259   .text.HAL_UART_AbortTransmit:0000000000000000 HAL_UART_AbortTransmit
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2310   .text.HAL_UART_AbortReceive:0000000000000000 $t
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 126
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:21     .text.UART_EndTxTransfer:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:25     .text.UART_EndTxTransfer:0000000000000000 UART_EndTxTransfer
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:47     .text.UART_EndRxTransfer:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:51     .text.UART_EndRxTransfer:0000000000000000 UART_EndRxTransfer
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:77     .text.UART_Transmit_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:81     .text.UART_Transmit_IT:0000000000000000 UART_Transmit_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:168    .text.UART_SetConfig:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:172    .text.UART_SetConfig:0000000000000000 UART_SetConfig
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:516    .text.UART_SetConfig:0000000000000318 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:522    .text.UART_WaitOnFlagUntilTimeout:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:526    .text.UART_WaitOnFlagUntilTimeout:0000000000000000 UART_WaitOnFlagUntilTimeout
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:604    .text.HAL_UART_MspInit:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:609    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:622    .text.HAL_UART_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:627    .text.HAL_UART_Init:0000000000000000 HAL_UART_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:705    .text.HAL_HalfDuplex_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:710    .text.HAL_HalfDuplex_Init:0000000000000000 HAL_HalfDuplex_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:794    .text.HAL_LIN_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:799    .text.HAL_LIN_Init:0000000000000000 HAL_LIN_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:899    .text.HAL_MultiProcessor_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:904    .text.HAL_MultiProcessor_Init:0000000000000000 HAL_MultiProcessor_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1010   .text.HAL_UART_MspDeInit:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1015   .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1028   .text.HAL_UART_DeInit:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1033   .text.HAL_UART_DeInit:0000000000000000 HAL_UART_DeInit
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1080   .text.HAL_UART_Transmit:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1085   .text.HAL_UART_Transmit:0000000000000000 HAL_UART_Transmit
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1267   .text.HAL_UART_Receive:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1272   .text.HAL_UART_Receive:0000000000000000 HAL_UART_Receive
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1461   .text.HAL_UART_Transmit_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1466   .text.HAL_UART_Transmit_IT:0000000000000000 HAL_UART_Transmit_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1541   .text.HAL_UART_Receive_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1546   .text.HAL_UART_Receive_IT:0000000000000000 HAL_UART_Receive_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1626   .text.HAL_UART_Transmit_DMA:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1631   .text.HAL_UART_Transmit_DMA:0000000000000000 HAL_UART_Transmit_DMA
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1743   .text.HAL_UART_Transmit_DMA:0000000000000080 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2393   .text.UART_DMATransmitCplt:0000000000000000 UART_DMATransmitCplt
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2497   .text.UART_DMATxHalfCplt:0000000000000000 UART_DMATxHalfCplt
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2781   .text.UART_DMAError:0000000000000000 UART_DMAError
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1750   .text.HAL_UART_Receive_DMA:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1755   .text.HAL_UART_Receive_DMA:0000000000000000 HAL_UART_Receive_DMA
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1891   .text.HAL_UART_Receive_DMA:00000000000000a0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2543   .text.UART_DMAReceiveCplt:0000000000000000 UART_DMAReceiveCplt
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2735   .text.UART_DMARxHalfCplt:0000000000000000 UART_DMARxHalfCplt
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1898   .text.HAL_UART_DMAPause:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1903   .text.HAL_UART_DMAPause:0000000000000000 HAL_UART_DMAPause
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1981   .text.HAL_UART_DMAResume:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:1986   .text.HAL_UART_DMAResume:0000000000000000 HAL_UART_DMAResume
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2084   .text.HAL_UART_DMAStop:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2089   .text.HAL_UART_DMAStop:0000000000000000 HAL_UART_DMAStop
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2167   .text.HAL_UART_Abort:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2172   .text.HAL_UART_Abort:0000000000000000 HAL_UART_Abort
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2254   .text.HAL_UART_AbortTransmit:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2259   .text.HAL_UART_AbortTransmit:0000000000000000 HAL_UART_AbortTransmit
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2310   .text.HAL_UART_AbortReceive:0000000000000000 $t
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 126
 
 
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2315   .text.HAL_UART_AbortReceive:0000000000000000 HAL_UART_AbortReceive
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2371   .text.HAL_UART_TxCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2376   .text.HAL_UART_TxCpltCallback:0000000000000000 HAL_UART_TxCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2389   .text.UART_DMATransmitCplt:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2441   .text.UART_EndTransmit_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2445   .text.UART_EndTransmit_IT:0000000000000000 UART_EndTransmit_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2475   .text.HAL_UART_TxHalfCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2480   .text.HAL_UART_TxHalfCpltCallback:0000000000000000 HAL_UART_TxHalfCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2493   .text.UART_DMATxHalfCplt:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2521   .text.HAL_UART_RxCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2526   .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2539   .text.UART_DMAReceiveCplt:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2596   .text.UART_Receive_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2600   .text.UART_Receive_IT:0000000000000000 UART_Receive_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2713   .text.HAL_UART_RxHalfCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2718   .text.HAL_UART_RxHalfCpltCallback:0000000000000000 HAL_UART_RxHalfCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2731   .text.UART_DMARxHalfCplt:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2759   .text.HAL_UART_ErrorCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2764   .text.HAL_UART_ErrorCallback:0000000000000000 HAL_UART_ErrorCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2777   .text.UART_DMAError:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2852   .text.HAL_UART_IRQHandler:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:2857   .text.HAL_UART_IRQHandler:0000000000000000 HAL_UART_IRQHandler
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3067   .text.HAL_UART_IRQHandler:0000000000000118 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3076   .text.UART_DMAAbortOnError:0000000000000000 UART_DMAAbortOnError
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3072   .text.UART_DMAAbortOnError:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3104   .text.HAL_UART_AbortCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3109   .text.HAL_UART_AbortCpltCallback:0000000000000000 HAL_UART_AbortCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3122   .text.HAL_UART_Abort_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3127   .text.HAL_UART_Abort_IT:0000000000000000 HAL_UART_Abort_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3279   .text.HAL_UART_Abort_IT:00000000000000c0 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3340   .text.UART_DMATxAbortCallback:0000000000000000 UART_DMATxAbortCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3289   .text.UART_DMARxAbortCallback:0000000000000000 UART_DMARxAbortCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3285   .text.UART_DMARxAbortCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3336   .text.UART_DMATxAbortCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3387   .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3392   .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 HAL_UART_AbortTransmitCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3405   .text.HAL_UART_AbortTransmit_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3410   .text.HAL_UART_AbortTransmit_IT:0000000000000000 HAL_UART_AbortTransmit_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3487   .text.HAL_UART_AbortTransmit_IT:000000000000005c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3496   .text.UART_DMATxOnlyAbortCallback:0000000000000000 UART_DMATxOnlyAbortCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3492   .text.UART_DMATxOnlyAbortCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3525   .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3530   .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 HAL_UART_AbortReceiveCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3543   .text.HAL_UART_AbortReceive_IT:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3548   .text.HAL_UART_AbortReceive_IT:0000000000000000 HAL_UART_AbortReceive_IT
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3630   .text.HAL_UART_AbortReceive_IT:0000000000000064 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3639   .text.UART_DMARxOnlyAbortCallback:0000000000000000 UART_DMARxOnlyAbortCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3635   .text.UART_DMARxOnlyAbortCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3668   .text.HAL_LIN_SendBreak:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3673   .text.HAL_LIN_SendBreak:0000000000000000 HAL_LIN_SendBreak
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3717   .text.HAL_MultiProcessor_EnterMuteMode:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3722   .text.HAL_MultiProcessor_EnterMuteMode:0000000000000000 HAL_MultiProcessor_EnterMuteMode
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3766   .text.HAL_MultiProcessor_ExitMuteMode:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3771   .text.HAL_MultiProcessor_ExitMuteMode:0000000000000000 HAL_MultiProcessor_ExitMuteMode
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3815   .text.HAL_HalfDuplex_EnableTransmitter:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3820   .text.HAL_HalfDuplex_EnableTransmitter:0000000000000000 HAL_HalfDuplex_EnableTransmitter
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3873   .text.HAL_HalfDuplex_EnableReceiver:0000000000000000 $t
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s 			page 127
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2315   .text.HAL_UART_AbortReceive:0000000000000000 HAL_UART_AbortReceive
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2371   .text.HAL_UART_TxCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2376   .text.HAL_UART_TxCpltCallback:0000000000000000 HAL_UART_TxCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2389   .text.UART_DMATransmitCplt:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2441   .text.UART_EndTransmit_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2445   .text.UART_EndTransmit_IT:0000000000000000 UART_EndTransmit_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2475   .text.HAL_UART_TxHalfCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2480   .text.HAL_UART_TxHalfCpltCallback:0000000000000000 HAL_UART_TxHalfCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2493   .text.UART_DMATxHalfCplt:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2521   .text.HAL_UART_RxCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2526   .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2539   .text.UART_DMAReceiveCplt:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2596   .text.UART_Receive_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2600   .text.UART_Receive_IT:0000000000000000 UART_Receive_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2713   .text.HAL_UART_RxHalfCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2718   .text.HAL_UART_RxHalfCpltCallback:0000000000000000 HAL_UART_RxHalfCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2731   .text.UART_DMARxHalfCplt:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2759   .text.HAL_UART_ErrorCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2764   .text.HAL_UART_ErrorCallback:0000000000000000 HAL_UART_ErrorCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2777   .text.UART_DMAError:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2852   .text.HAL_UART_IRQHandler:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:2857   .text.HAL_UART_IRQHandler:0000000000000000 HAL_UART_IRQHandler
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3067   .text.HAL_UART_IRQHandler:0000000000000118 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3076   .text.UART_DMAAbortOnError:0000000000000000 UART_DMAAbortOnError
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3072   .text.UART_DMAAbortOnError:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3104   .text.HAL_UART_AbortCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3109   .text.HAL_UART_AbortCpltCallback:0000000000000000 HAL_UART_AbortCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3122   .text.HAL_UART_Abort_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3127   .text.HAL_UART_Abort_IT:0000000000000000 HAL_UART_Abort_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3279   .text.HAL_UART_Abort_IT:00000000000000c0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3340   .text.UART_DMATxAbortCallback:0000000000000000 UART_DMATxAbortCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3289   .text.UART_DMARxAbortCallback:0000000000000000 UART_DMARxAbortCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3285   .text.UART_DMARxAbortCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3336   .text.UART_DMATxAbortCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3387   .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3392   .text.HAL_UART_AbortTransmitCpltCallback:0000000000000000 HAL_UART_AbortTransmitCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3405   .text.HAL_UART_AbortTransmit_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3410   .text.HAL_UART_AbortTransmit_IT:0000000000000000 HAL_UART_AbortTransmit_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3487   .text.HAL_UART_AbortTransmit_IT:000000000000005c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3496   .text.UART_DMATxOnlyAbortCallback:0000000000000000 UART_DMATxOnlyAbortCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3492   .text.UART_DMATxOnlyAbortCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3525   .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3530   .text.HAL_UART_AbortReceiveCpltCallback:0000000000000000 HAL_UART_AbortReceiveCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3543   .text.HAL_UART_AbortReceive_IT:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3548   .text.HAL_UART_AbortReceive_IT:0000000000000000 HAL_UART_AbortReceive_IT
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3630   .text.HAL_UART_AbortReceive_IT:0000000000000064 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3639   .text.UART_DMARxOnlyAbortCallback:0000000000000000 UART_DMARxOnlyAbortCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3635   .text.UART_DMARxOnlyAbortCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3668   .text.HAL_LIN_SendBreak:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3673   .text.HAL_LIN_SendBreak:0000000000000000 HAL_LIN_SendBreak
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3717   .text.HAL_MultiProcessor_EnterMuteMode:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3722   .text.HAL_MultiProcessor_EnterMuteMode:0000000000000000 HAL_MultiProcessor_EnterMuteMode
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3766   .text.HAL_MultiProcessor_ExitMuteMode:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3771   .text.HAL_MultiProcessor_ExitMuteMode:0000000000000000 HAL_MultiProcessor_ExitMuteMode
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3815   .text.HAL_HalfDuplex_EnableTransmitter:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3820   .text.HAL_HalfDuplex_EnableTransmitter:0000000000000000 HAL_HalfDuplex_EnableTransmitter
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3873   .text.HAL_HalfDuplex_EnableReceiver:0000000000000000 $t
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s 			page 127
 
 
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3878   .text.HAL_HalfDuplex_EnableReceiver:0000000000000000 HAL_HalfDuplex_EnableReceiver
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3931   .text.HAL_UART_GetState:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3936   .text.HAL_UART_GetState:0000000000000000 HAL_UART_GetState
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3958   .text.HAL_UART_GetError:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2nRQGW.s:3963   .text.HAL_UART_GetError:0000000000000000 HAL_UART_GetError
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3878   .text.HAL_HalfDuplex_EnableReceiver:0000000000000000 HAL_HalfDuplex_EnableReceiver
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3931   .text.HAL_UART_GetState:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3936   .text.HAL_UART_GetState:0000000000000000 HAL_UART_GetState
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3958   .text.HAL_UART_GetError:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc4n6DTN.s:3963   .text.HAL_UART_GetError:0000000000000000 HAL_UART_GetError
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

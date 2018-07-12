@@ -49,6 +49,7 @@
 /* USER CODE BEGIN Includes */
 #include "fonts.h"
 #include "ssd1306.h"
+#include "pid.h"
 
 /* USER CODE END Includes */
 
@@ -69,6 +70,7 @@ void SystemClock_Config(void);
 /* Private function prototypes -----------------------------------------------*/
 void print(char* msg, int row);
 void update_motor_speed(int m, uint32_t speed[]);
+void do_pid(PID_t *pid_struct);
 
 /* USER CODE END PFP */
 
@@ -121,16 +123,21 @@ int main(void)
     HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_Base_Start(&htim9);
 
     // declare external variables for use with interrupts
 
     /* USER CODE END 2 */
     print("Starting", 0);
     char *msg = (char*)malloc(18*sizeof(char));
-    int motor = 0;
-    uint32_t speed[2] = {0,0};
-    print("L: 0", 0);
-    print("R: 0", 1);
+    //char msg[100];
+    //memset(msg, '\0', sizeof(msg));
+    int pid_select = 0;
+    uint32_t values[2] = {10,200,0};
+    PID_t pid_s = pid_Init(values[0],values[1],values[2],5,2);
+    print("P: 10", 0);
+    print("I: 200", 1);
+    print("D: 0", 1);
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1)
@@ -138,27 +145,53 @@ int main(void)
         if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
             HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-            sprintf(msg, "%lu", speed[motor]);
+            sprintf(msg, "%lu", values[pid_select]);
             print(msg, 0);
-            TIM4->CNT = speed[motor];
+            TIM4->CNT = values[pid_select];
             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-                speed[motor] = TIM4->CNT;
-                sprintf(msg, "%lu", speed[motor]);
+                values[pid_select] = TIM4->CNT;
+                sprintf(msg, "%lu", values[pid_select]);
                 print(msg, 0);
             }
-            update_motor_speed(motor, speed);
-            motor = motor==0? 1: 0;
+            pid_s = pid_Init(values[0],values[1],values[2],5,2);
+            pid_select = pid_select==0? 1: pid_select==1? 2: 0;
             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
             HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
         }
+        do_pid(&pid_s);
 
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
 
     }
+    free(msg);
     /* USER CODE END 3 */
 
+}
+
+void do_pid(PID_t *pid_struct){
+    /* Read sensors */
+    uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin)? 0 : 1;
+    uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin)? 0 : 1;
+    char msg[20] = "";
+    sprintf(msg, "L: %u", left);
+    print(msg, 0);
+    sprintf(msg, "R: %u", right);
+    print(msg, 1);
+
+    /* Get error */
+    if(left && right){ pid_struct->err = 0; }
+    else if(left && !right){ pid_struct->err = 1; }
+    else if(!left && right){ pid_struct->err = -1; }
+    else if(!left && !right && (pid_struct->err < 0)){ pid_struct->err = -5; }
+    else if(!left && !right && (pid_struct->err > 0)){ pid_struct->err = 5; }
+
+    /* Get gain */
+    double gain = pid_GetGain(pid_struct, &htim9);
+    sprintf(msg, "G: %f", gain);
+    print(msg, 2);
+    free(msg);
 }
 
 void update_motor_speed(int m, uint32_t speed[]){
@@ -169,6 +202,7 @@ void update_motor_speed(int m, uint32_t speed[]){
     print(msg, 0);
     sprintf(msg, "R: %lu", speed[1]);
     print(msg, 1);
+    free (msg);
 }
 
 /**
