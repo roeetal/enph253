@@ -1,0 +1,186 @@
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"encoder.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.encoder_Init,"ax",%progbits
+  21              		.align	2
+  22              		.global	encoder_Init
+  23              		.thumb
+  24              		.thumb_func
+  26              	encoder_Init:
+  27              	.LFB123:
+  28              		.file 1 "Src/encoder.c"
+   1:Src/encoder.c **** #include"encoder.h"
+   2:Src/encoder.c **** #include"stm32f4xx.h"
+   3:Src/encoder.c **** 
+   4:Src/encoder.c **** ENCODER_t encoder_Init(){
+  29              		.loc 1 4 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35 0000 30B4     		push	{r4, r5}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 5, -4
+   5:Src/encoder.c ****     ENCODER_t enc;
+   6:Src/encoder.c ****     enc.cnt = 0;
+  40              		.loc 1 6 0
+  41 0002 0022     		movs	r2, #0
+  42 0004 0260     		str	r2, [r0]
+   7:Src/encoder.c ****     enc.time = 0;
+  43              		.loc 1 7 0
+  44 0006 4260     		str	r2, [r0, #4]
+   8:Src/encoder.c ****     enc.speed = 0.0;
+  45              		.loc 1 8 0
+  46 0008 0024     		movs	r4, #0
+  47 000a 0025     		movs	r5, #0
+  48 000c C0E90245 		strd	r4, [r0, #8]
+   9:Src/encoder.c ****     return enc;    
+  10:Src/encoder.c **** }
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 2
+
+
+  49              		.loc 1 10 0
+  50 0010 30BC     		pop	{r4, r5}
+  51              	.LCFI1:
+  52              		.cfi_restore 5
+  53              		.cfi_restore 4
+  54              		.cfi_def_cfa_offset 0
+  55 0012 7047     		bx	lr
+  56              		.cfi_endproc
+  57              	.LFE123:
+  59              		.global	__aeabi_i2d
+  60              		.global	__aeabi_dmul
+  61              		.global	__aeabi_ddiv
+  62              		.section	.text.update_encoder,"ax",%progbits
+  63              		.align	2
+  64              		.global	update_encoder
+  65              		.thumb
+  66              		.thumb_func
+  68              	update_encoder:
+  69              	.LFB124:
+  11:Src/encoder.c **** 
+  12:Src/encoder.c **** double update_encoder(ENCODER_t *enc){
+  70              		.loc 1 12 0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              	.LVL1:
+  75 0000 2DE97043 		push	{r4, r5, r6, r8, r9, lr}
+  76              	.LCFI2:
+  77              		.cfi_def_cfa_offset 24
+  78              		.cfi_offset 4, -24
+  79              		.cfi_offset 5, -20
+  80              		.cfi_offset 6, -16
+  81              		.cfi_offset 8, -12
+  82              		.cfi_offset 9, -8
+  83              		.cfi_offset 14, -4
+  84 0004 0446     		mov	r4, r0
+  13:Src/encoder.c ****     int temp_time = TIM9->CNT;
+  85              		.loc 1 13 0
+  86 0006 164B     		ldr	r3, .L5+8
+  87 0008 5D6A     		ldr	r5, [r3, #36]
+  88              	.LVL2:
+  14:Src/encoder.c ****     int temp_cnt = TIM5->CNT;
+  89              		.loc 1 14 0
+  90 000a A3F59A33 		sub	r3, r3, #78848
+  91 000e 5E6A     		ldr	r6, [r3, #36]
+  92              	.LVL3:
+  15:Src/encoder.c ****     enc->speed = 2*3.14159265359*(temp_cnt - enc->cnt)/(ENCODER_N*(temp_time - enc->time))*ENCODER_
+  93              		.loc 1 15 0
+  94 0010 0068     		ldr	r0, [r0]
+  95              	.LVL4:
+  96 0012 301A     		subs	r0, r6, r0
+  97 0014 FFF7FEFF 		bl	__aeabi_i2d
+  98              	.LVL5:
+  99 0018 0FA3     		adr	r3, .L5
+ 100 001a D3E90023 		ldrd	r2, [r3]
+ 101 001e FFF7FEFF 		bl	__aeabi_dmul
+ 102              	.LVL6:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 3
+
+
+ 103 0022 8046     		mov	r8, r0
+ 104 0024 8946     		mov	r9, r1
+ 105 0026 6068     		ldr	r0, [r4, #4]
+ 106 0028 281A     		subs	r0, r5, r0
+ 107 002a 6423     		movs	r3, #100
+ 108 002c 03FB00F0 		mul	r0, r3, r0
+ 109 0030 FFF7FEFF 		bl	__aeabi_i2d
+ 110              	.LVL7:
+ 111 0034 0246     		mov	r2, r0
+ 112 0036 0B46     		mov	r3, r1
+ 113 0038 4046     		mov	r0, r8
+ 114 003a 4946     		mov	r1, r9
+ 115 003c FFF7FEFF 		bl	__aeabi_ddiv
+ 116              	.LVL8:
+ 117 0040 0022     		movs	r2, #0
+ 118 0042 084B     		ldr	r3, .L5+12
+ 119 0044 FFF7FEFF 		bl	__aeabi_dmul
+ 120              	.LVL9:
+ 121 0048 C4E90201 		strd	r0, [r4, #8]
+  16:Src/encoder.c ****     enc->cnt = temp_cnt;
+ 122              		.loc 1 16 0
+ 123 004c 2660     		str	r6, [r4]
+  17:Src/encoder.c ****     enc->time = temp_time; 
+ 124              		.loc 1 17 0
+ 125 004e 6560     		str	r5, [r4, #4]
+  18:Src/encoder.c ****     return enc->speed;
+  19:Src/encoder.c **** }
+ 126              		.loc 1 19 0
+ 127 0050 41EC100B 		fmdrr	d0, r0, r1
+ 128 0054 BDE87083 		pop	{r4, r5, r6, r8, r9, pc}
+ 129              	.LVL10:
+ 130              	.L6:
+ 131              		.align	3
+ 132              	.L5:
+ 133 0058 EA2E4454 		.word	1413754602
+ 134 005c FB211940 		.word	1075388923
+ 135 0060 00400140 		.word	1073823744
+ 136 0064 0000E03F 		.word	1071644672
+ 137              		.cfi_endproc
+ 138              	.LFE124:
+ 140              		.text
+ 141              	.Letext0:
+ 142              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 143              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 144              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 145              		.file 5 "Inc/encoder.h"
+ 146              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 encoder.c
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:21     .text.encoder_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:26     .text.encoder_Init:0000000000000000 encoder_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:63     .text.update_encoder:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:68     .text.update_encoder:0000000000000000 update_encoder
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:133    .text.update_encoder:0000000000000058 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_ddiv

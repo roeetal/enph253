@@ -50,6 +50,7 @@
 #include "fonts.h"
 #include "ssd1306.h"
 #include "pid.h"
+#include "encoder.h"
 
 /* USER CODE END Includes */
 
@@ -121,17 +122,24 @@ int main(void)
 
     /* Initialize all timer related stuffs*/
     HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
+    HAL_TIM_Encoder_Start(&htim5,TIM_CHANNEL_ALL);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
     HAL_TIM_Base_Start(&htim9);
 
-    // declare external variables for use with interrupts
 
+    /* Initialize struct stuffs*/
+    ENCODER_t left_encoder = encoder_Init();
+
+    /* declare external variables for use with interrupts*/
+
+
+    //PID_t pid_s = menu();
     /* USER CODE END 2 */
     print("Starting", 0);
-    char msg[20] = "";
+    /*char msg[20] = "";
     int pid_select = 0;
     uint32_t values[3] = {0,0,0};
     while(1){
@@ -157,11 +165,17 @@ int main(void)
     print(msg, 2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    */
     /* Infinite loop */
+    char msg[20] = "";
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        do_pid(&pid_s);
+                double speed = update_encoder(&left_encoder);
+                sprintf(msg, "%d", (int)speed);
+                print(msg, 0);
+                HAL_Delay(1);
+        //do_pid(&pid_s);
 
         /* USER CODE END WHILE */
 

@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
   40 0004 06AB     		add	r3, sp, #24
   41 0006 03F8010D 		strb	r0, [r3, #-1]!
   17:Src/ssd1306.c **** 	HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1,10);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 2
 
 
   42              		.loc 1 17 0
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
   40:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA1); //--set segment re-map 0 to 127
   41:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA6); //--set normal display
   42:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA8); //--set multiplex ratio(1 to 64)
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 3
 
 
   43:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x3F); //
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
   88 0004 08B9     		cbnz	r0, .L9
   89 0006 0021     		movs	r1, #0
   90 0008 00E0     		b	.L7
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 4
 
 
   91              	.L9:
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  134              		.loc 1 95 0
  135 0004 0024     		movs	r4, #0
  136 0006 1AE0     		b	.L13
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 5
 
 
  137              	.LVL8:
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  182              	.L17:
  183 0046 00BF     		.align	2
  184              	.L16:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 6
 
 
  185 0048 00000000 		.word	.LANCHOR0
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  233 0028 FFF7FEFF 		bl	ssd1306_WriteCommand
  234              	.LVL22:
   36:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x40); //--set start line address
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 7
 
 
  235              		.loc 1 36 0
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
   47:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xF0); //--set divide ratio
  279              		.loc 1 47 0
  280 006e D520     		movs	r0, #213
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 8
 
 
  281 0070 FFF7FEFF 		bl	ssd1306_WriteCommand
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  324 00b0 0020     		movs	r0, #0
  325 00b2 FFF7FEFF 		bl	ssd1306_Fill
  326              	.LVL45:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 9
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 9
 
 
   63:Src/ssd1306.c **** 	
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  113:Src/ssd1306.c **** 	{
  114:Src/ssd1306.c **** 		// Don't write outside the buffer
  115:Src/ssd1306.c **** 		return;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 10
 
 
  116:Src/ssd1306.c **** 	}
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  406 0042 0A5C     		ldrb	r2, [r1, r0]	@ zero_extendqisi2
  407              	.LVL56:
  408 0044 22EA0303 		bic	r3, r2, r3
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 11
 
 
  409 0048 0B54     		strb	r3, [r1, r0]
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  450              		.loc 1 146 0
  451 000c 244A     		ldr	r2, .L39
  452 000e 1288     		ldrh	r2, [r2]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 12
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 12
 
 
  453 0010 9DF80060 		ldrb	r6, [sp]	@ zero_extendqisi2
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  491 0054 2044     		add	r0, r0, r4
  492 0056 2944     		add	r1, r1, r5
  493 0058 C0B2     		uxtb	r0, r0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 13
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 13
 
 
  494 005a C9B2     		uxtb	r1, r1
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  174:Src/ssd1306.c **** 	return ch;
  532              		.loc 1 174 0
  533 0090 4846     		mov	r0, r9
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 14
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 14
 
 
  534 0092 02E0     		b	.L29
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  582 0006 02A8     		add	r0, sp, #8
  583              	.LVL70:
  584 0008 00E90600 		stmdb	r0, {r1, r2}
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 15
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 15
 
 
  585 000c 1D46     		mov	r5, r3
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  623              		.thumb_func
  625              	ssd1306_SetCursor:
  626              	.LFB130:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 16
 
 
  198:Src/ssd1306.c **** 
@@ -954,38 +954,38 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 1
  669              		.file 9 "Inc/ssd1306.h"
  670              		.file 10 "Drivers/CMSIS/Include/core_cm4.h"
  671              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s 			page 17
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ssd1306.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:21     .text.ssd1306_WriteCommand:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:25     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:64     .text.ssd1306_WriteCommand:0000000000000024 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:69     .text.ssd1306_Fill:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:74     .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:109    .text.ssd1306_Fill:000000000000001c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:114    .text.ssd1306_UpdateScreen:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:119    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:185    .text.ssd1306_UpdateScreen:0000000000000048 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:191    .text.ssd1306_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:196    .text.ssd1306_Init:0000000000000000 ssd1306_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:344    .text.ssd1306_Init:00000000000000c8 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:349    .text.ssd1306_DrawPixel:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:354    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:415    .text.ssd1306_DrawPixel:000000000000004c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:421    .text.ssd1306_WriteChar:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:426    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:555    .text.ssd1306_WriteChar:00000000000000a0 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:560    .text.ssd1306_WriteString:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:565    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:620    .text.ssd1306_SetCursor:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:625    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:642    .text.ssd1306_SetCursor:0000000000000008 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:647    .bss.SSD1306_Buffer:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:651    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:654    .bss.SSD1306:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccViMtuU.s:658    .bss.SSD1306:0000000000000000 SSD1306
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:21     .text.ssd1306_WriteCommand:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:25     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:64     .text.ssd1306_WriteCommand:0000000000000024 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:69     .text.ssd1306_Fill:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:74     .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:109    .text.ssd1306_Fill:000000000000001c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:114    .text.ssd1306_UpdateScreen:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:119    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:185    .text.ssd1306_UpdateScreen:0000000000000048 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:191    .text.ssd1306_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:196    .text.ssd1306_Init:0000000000000000 ssd1306_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:344    .text.ssd1306_Init:00000000000000c8 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:349    .text.ssd1306_DrawPixel:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:354    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:415    .text.ssd1306_DrawPixel:000000000000004c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:421    .text.ssd1306_WriteChar:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:426    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:555    .text.ssd1306_WriteChar:00000000000000a0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:560    .text.ssd1306_WriteString:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:565    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:620    .text.ssd1306_SetCursor:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:625    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:642    .text.ssd1306_SetCursor:0000000000000008 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:647    .bss.SSD1306_Buffer:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:651    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:654    .bss.SSD1306:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cceVn3Aa.s:658    .bss.SSD1306:0000000000000000 SSD1306
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
