@@ -72,6 +72,7 @@ void SystemClock_Config(void);
 void print(char msg[], int row);
 void update_motor_speed(int m, uint32_t speed[]);
 void do_pid(PID_t *pid_struct);
+PID_t menu(void);
 
 /* USER CODE END PFP */
 
@@ -131,15 +132,31 @@ int main(void)
 
 
     /* Initialize struct stuffs*/
-    ENCODER_t left_encoder = encoder_Init();
+    PID_t pid_s = menu();
 
     /* declare external variables for use with interrupts*/
 
 
-    //PID_t pid_s = menu();
     /* USER CODE END 2 */
+    
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1)
+    {
+        do_pid(&pid_s);
+
+        /* USER CODE END WHILE */
+
+        /* USER CODE BEGIN 3 */
+
+    }
+    /* USER CODE END 3 */
+
+}
+
+PID_t menu(void){
     print("Starting", 0);
-    /*char msg[20] = "";
+    char msg[20] = "";
     int pid_select = 0;
     uint32_t values[3] = {0,0,0};
     while(1){
@@ -156,7 +173,6 @@ int main(void)
         }
         if(pid_select==3) break;
     }
-    PID_t pid_s = pid_Init(values[0],values[1],values[2],5,2);
     sprintf(msg, "P %lu", values[0]);
     print(msg, 0);
     sprintf(msg, "D %lu", values[1]);
@@ -165,25 +181,7 @@ int main(void)
     print(msg, 2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    */
-    /* Infinite loop */
-    char msg[20] = "";
-    /* USER CODE BEGIN WHILE */
-    while (1)
-    {
-                double speed = update_encoder(&left_encoder);
-                sprintf(msg, "%d", (int)speed);
-                print(msg, 0);
-                HAL_Delay(1);
-        //do_pid(&pid_s);
-
-        /* USER CODE END WHILE */
-
-        /* USER CODE BEGIN 3 */
-
-    }
-    /* USER CODE END 3 */
-
+    return pid_Init(values[0],values[1],values[2],5,2);
 }
 
 void do_pid(PID_t *pid_struct){
