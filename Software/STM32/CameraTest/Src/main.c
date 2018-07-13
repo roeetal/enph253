@@ -114,6 +114,7 @@ int main(void)
 
   HAL_ADC_Start(&hadc1);
   print("Starting", 0);
+  uint16_t speed[] = {1,1};
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,12 +122,18 @@ int main(void)
   while (1)
   {
     if (HAL_ADC_PollForConversion(&hadc1, 10000) == HAL_OK){
-      int err = HAL_ADC_GetValue(&hadc1);
+      int err = HAL_ADC_GetValue(&hadc1) - 2047;
       char err_string[20]="";
       sprintf(err_string, "Err: %d", err);
       print(err_string, 0);
       // TODO: Move motors
-      uint32_t speed[] = {1,1};
+      if(err > 0){
+        speed[0] = 0.84;
+        speed[1] = 0.84 + 0.16 * err / 2047.0;
+      } else {
+        speed[0] = 0.84 - 0.16 * err / 2047.0;
+        speed[1] = 0.84;
+      }
       update_motor_speed(1, speed);
     }
   /* USER CODE END WHILE */
