@@ -123,6 +123,8 @@ int main(void)
     HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
     HAL_TIM_Base_Start(&htim9);
 
     // declare external variables for use with interrupts
@@ -131,18 +133,9 @@ int main(void)
     print("Starting", 0);
     char msg[20] = "";
     int pid_select = 0;
-    uint32_t values[3] = {10,200,0};
-    PID_t pid_s = pid_Init(values[0],values[1],values[2],5,2);
-    print("P: 10", 0);
-    print("I: 200", 1);
-    print("D: 0", 1);
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
-    while (1)
-    {
+    uint32_t values[3] = {0,0,0};
+    while(1){
         if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-            HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-            HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
             sprintf(msg, "%lu", values[pid_select]);
             print(msg, 0);
             TIM4->CNT = values[pid_select];
@@ -151,19 +144,23 @@ int main(void)
                 sprintf(msg, "%lu", values[pid_select]);
                 print(msg, 0);
             }
-            pid_s = pid_Init(values[0],values[1],values[2],5,2);
-            pid_select = pid_select==0? 1: pid_select==1? 2: 0;
-            HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-            HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-            if(pid_select==0){
-                sprintf(msg, "%lu", values[0]);
-                print(msg, 0);
-                sprintf(msg, "%lu", values[1]);
-                print(msg, 1);
-                sprintf(msg, "%lu", values[2]);
-                print(msg, 2);
-            }
+            ++pid_select;
         }
+        if(pid_select==3) break;
+    }
+    PID_t pid_s = pid_Init(values[0],values[1],values[2],5,2);
+    sprintf(msg, "P %lu", values[0]);
+    print(msg, 0);
+    sprintf(msg, "D %lu", values[1]);
+    print(msg, 1);
+    sprintf(msg, "I %lu", values[2]);
+    print(msg, 2);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1)
+    {
         do_pid(&pid_s);
 
         /* USER CODE END WHILE */
@@ -192,16 +189,15 @@ void do_pid(PID_t *pid_struct){
     int g = (int) gain;
 
     /* Set Motor Speeds*/
+    int left_speed = 840;
+    int right_speed = 840;
     if(g<0){
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED - g);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED - g);
+        left_speed -= g;
     }else if(g>0){
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED + g);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED + g);
-    }else{
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0.87*MOTOR_SPEED);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0.90*MOTOR_SPEED);
+        right_speed += g;
     }
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, left_speed);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, right_speed);
 }
 
 void update_motor_speed(int m, uint32_t speed[]){
