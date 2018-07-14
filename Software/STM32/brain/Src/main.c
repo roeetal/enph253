@@ -57,6 +57,8 @@
 /* USER CODE BEGIN GV */
 /* Global variables ---------------------------------------------------------*/
 uint8_t PUSH_BUTTON_STATE = 0;
+int LEFT_SPEED = 800;
+int RIGHT_SPEED = 800;
 /* USER CODE END GV */
 
 /* USER CODE BEGIN PV */
@@ -173,15 +175,46 @@ PID_t menu(void){
         }
         if(pid_select==3) break;
     }
+    while(1){
+        int speed = 750;
+        if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
+            if(pid_select==3){
+                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+            }else{
+                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+            }
+            sprintf(msg, "%d", speed);
+            print(msg, 0);
+            TIM4->CNT = speed;
+            while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
+                speed = TIM4->CNT;
+                sprintf(msg, "%d", speed);
+                print(msg, 0);
+                if(pid_select==3){
+                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
+                    LEFT_SPEED = speed;
+                }else{
+                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
+                    RIGHT_SPEED = speed;
+                }
+            }
+            ++pid_select;
+        }
+        if(pid_select==4){
+            break;
+        }
+    }
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
     sprintf(msg, "P %lu", values[0]);
     print(msg, 0);
     sprintf(msg, "D %lu", values[1]);
     print(msg, 1);
     sprintf(msg, "I %lu", values[2]);
     print(msg, 2);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    return pid_Init(values[0],values[1],values[2],5,2);
+    return pid_Init(values[0],values[1],values[2],5,1);
 }
 
 void do_pid(PID_t *pid_struct){
@@ -201,15 +234,13 @@ void do_pid(PID_t *pid_struct){
     int g = (int) gain;
 
     /* Set Motor Speeds*/
-    int left_speed = 840;
-    int right_speed = 840;
     if(g<0){
-        left_speed -= g;
+        LEFT_SPEED -= g;
     }else if(g>0){
-        right_speed += g;
+        RIGHT_SPEED += g;
     }
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, left_speed);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, right_speed);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, LEFT_SPEED);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, RIGHT_SPEED);
 }
 
 void update_motor_speed(int m, uint32_t speed[]){
