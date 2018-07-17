@@ -237,6 +237,8 @@ void frequency_detection(){
         sprintf(msg, "%d.%d\n", predec, postdec);
         print(msg, 0);
     }
+    HAL_ADC_Start_DMA(&hadc1);
+    IR_INT_STATE=NOT_FLAGGED;
 }
 
 /*
