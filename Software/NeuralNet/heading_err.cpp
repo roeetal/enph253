@@ -8,6 +8,8 @@ extern "C"{
 #include <wiringPi.h>
 #include <raspicam_cv.h>
 #include <opencv2/imgproc.hpp>
+#include <ctime>
+#include <sys/time.h>
 
 
 #define BIN_OUT1 5  // MSB
@@ -24,13 +26,13 @@ extern "C"{
 #define TRUE 1
 #define FALSE 0
 
-#define CFG_PATH "darknet/cfg/yolov2-tiny-voc.cfg"
-#define WEIGHT_PATH "darknet/yolov2-tiny-voc.weights"
+#define CFG_PATH "darknet/cfg/ewok-tiny.cfg"
+#define WEIGHT_PATH "darknet/ewok-tiny_50000.weights"
 
 using namespace cv;
 using std::cout;
 
-char *voc_names[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
+char *voc_names[] = {"ewok"};
 
 void setup(void);
 void binary_out(float err);
@@ -38,25 +40,24 @@ void binary_out(float err);
 
 int main(void) {
     network *net = load_network(CFG_PATH, WEIGHT_PATH, 0);
-    image img = load_image("darknet/data/eagle.jpg", 0, 0, 3);
+    image img = load_image("Images/1397.jpg", 0, 0, 3);
+    struct timeval stop, start;
     image sized = resize_image(img, net->w, net->h);
-    layer l = net->layers[net->n-1];
-    show_image(img,"Original");
 
+    layer l = net->layers[net->n-1];
     int nboxes = 0;
-    image **alphabet = load_alphabet();
+    gettimeofday(&start, NULL);
     network_predict(net, sized.data);
-    detection *dets = get_network_boxes(net, img.w, img.h, 0.005, 0, 0, 1, &nboxes);
-    draw_detections(img, dets, l.side*l.side*l.n, 0.005, voc_names, alphabet, 20);
-    save_image(img, "output");
+    detection *dets = get_network_boxes(net, img.w, img.h, 0.4, 0, 0, 1, &nboxes);
+    gettimeofday(&stop, NULL);
+
+    // do_nms_sort(dets, l.side*l.side*l.n, l.classes, 0.4);
+
     int max_i = 0;
     int max_j = 0;
     for(int i = 0; i < nboxes; i++){
-        for(int j = 0; j < 20; j++){
-            if(dets[i].prob[j] > dets[max_i].prob[max_j]){
-                max_i = i;
-                max_j = j;
-            }
+        if(dets[i].prob[0] > dets[max_i].prob[0]){
+            max_i = i;
         }
     }
 
@@ -65,18 +66,10 @@ int main(void) {
     float w = dets[max_i].bbox.w;
     float h = dets[max_i].bbox.h;
 
-    char *label = voc_names[max_j];
-
-    cout << label << " at: (" << x << ", " << y << ")" << " [" << dets[max_i].prob[max_j] << "]\n";
-
-    Rect r=Rect(x, y, w, h);
-    Mat cv2_img= Mat(img.h, img.w, CV_32F, img.data);
-    namedWindow("Origin");
-    imshow("Origin", cv2_img);
-    // rectangle(cv2_img, r, Scalar(255, 0, 0), 1, 8, 0);
-    // namedWindow("Box");
-    // imshow("Box", cv2_img);
-
+    float time_diff = (stop.tv_sec + stop.tv_usec / 1000000.0) - (start.tv_sec + start.tv_usec/1000000.0);
+    cout << "Ewok" << " found in " << time_diff << "s [" << dets[max_i].prob[max_j] << "]\n";
+    draw_bbox(img, dets[max_i].bbox, 2, 255, 0, 0);
+    save_image(img, "output");
 
 
     // float *data = img.ptr<float>();
