@@ -55,11 +55,11 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-uint8_t LEFT_SPEED;
-uint8_t RIGHT_SPEED;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+uint8_t LEFT_SPEED;
+uint8_t RIGHT_SPEED;
 
 /* USER CODE END PV */
 
