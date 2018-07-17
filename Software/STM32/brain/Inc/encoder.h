@@ -4,15 +4,15 @@
 #define encoder 
 
 #define ENCODER_N 100
-#define ENCODER_R 0.5
+#define ENCODER_R 0.6
 
 typedef struct{
-    int cnt;
-    int time;
-    double speed;
+    uint8_t cnt;
+    uint16_t time;
+    float speed;
 } ENCODER_t;
 
 ENCODER_t encoder_Init();
-double update_encoder(ENCODER_t *enc);
+float update_encoder(ENCODER_t *enc);
 
 #endif

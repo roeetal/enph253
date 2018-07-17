@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 1
 
 
    1              		.syntax unified
@@ -38,149 +38,254 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 1
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
   34              	.LVL0:
-  35 0000 30B4     		push	{r4, r5}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 8
-  38              		.cfi_offset 4, -8
-  39              		.cfi_offset 5, -4
    5:Src/encoder.c ****     ENCODER_t enc;
    6:Src/encoder.c ****     enc.cnt = 0;
-  40              		.loc 1 6 0
-  41 0002 0022     		movs	r2, #0
-  42 0004 0260     		str	r2, [r0]
+  35              		.loc 1 6 0
+  36 0000 0022     		movs	r2, #0
+  37 0002 0270     		strb	r2, [r0]
    7:Src/encoder.c ****     enc.time = 0;
-  43              		.loc 1 7 0
-  44 0006 4260     		str	r2, [r0, #4]
+  38              		.loc 1 7 0
+  39 0004 4280     		strh	r2, [r0, #2]	@ movhi
    8:Src/encoder.c ****     enc.speed = 0.0;
-  45              		.loc 1 8 0
-  46 0008 0024     		movs	r4, #0
-  47 000a 0025     		movs	r5, #0
-  48 000c C0E90245 		strd	r4, [r0, #8]
+  40              		.loc 1 8 0
+  41 0006 0022     		movs	r2, #0
+  42 0008 4260     		str	r2, [r0, #4]	@ float
    9:Src/encoder.c ****     return enc;    
   10:Src/encoder.c **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 2
+  43              		.loc 1 10 0
+  44 000a 7047     		bx	lr
+  45              		.cfi_endproc
+  46              	.LFE123:
+  48              		.global	__aeabi_i2d
+  49              		.global	__aeabi_dmul
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 2
 
 
-  49              		.loc 1 10 0
-  50 0010 30BC     		pop	{r4, r5}
-  51              	.LCFI1:
-  52              		.cfi_restore 5
-  53              		.cfi_restore 4
-  54              		.cfi_def_cfa_offset 0
-  55 0012 7047     		bx	lr
-  56              		.cfi_endproc
-  57              	.LFE123:
-  59              		.global	__aeabi_i2d
-  60              		.global	__aeabi_dmul
-  61              		.global	__aeabi_ddiv
-  62              		.section	.text.update_encoder,"ax",%progbits
-  63              		.align	2
-  64              		.global	update_encoder
-  65              		.thumb
-  66              		.thumb_func
-  68              	update_encoder:
-  69              	.LFB124:
+  50              		.global	__aeabi_ddiv
+  51              		.global	__aeabi_d2f
+  52              		.section	.text.update_encoder,"ax",%progbits
+  53              		.align	2
+  54              		.global	update_encoder
+  55              		.thumb
+  56              		.thumb_func
+  58              	update_encoder:
+  59              	.LFB124:
   11:Src/encoder.c **** 
-  12:Src/encoder.c **** double update_encoder(ENCODER_t *enc){
-  70              		.loc 1 12 0
-  71              		.cfi_startproc
-  72              		@ args = 0, pretend = 0, frame = 0
-  73              		@ frame_needed = 0, uses_anonymous_args = 0
-  74              	.LVL1:
-  75 0000 2DE97043 		push	{r4, r5, r6, r8, r9, lr}
-  76              	.LCFI2:
-  77              		.cfi_def_cfa_offset 24
-  78              		.cfi_offset 4, -24
-  79              		.cfi_offset 5, -20
-  80              		.cfi_offset 6, -16
-  81              		.cfi_offset 8, -12
-  82              		.cfi_offset 9, -8
-  83              		.cfi_offset 14, -4
-  84 0004 0446     		mov	r4, r0
-  13:Src/encoder.c ****     int temp_time = TIM9->CNT;
-  85              		.loc 1 13 0
-  86 0006 164B     		ldr	r3, .L5+8
-  87 0008 5D6A     		ldr	r5, [r3, #36]
-  88              	.LVL2:
-  14:Src/encoder.c ****     int temp_cnt = TIM5->CNT;
-  89              		.loc 1 14 0
-  90 000a A3F59A33 		sub	r3, r3, #78848
-  91 000e 5E6A     		ldr	r6, [r3, #36]
-  92              	.LVL3:
-  15:Src/encoder.c ****     enc->speed = 2*3.14159265359*(temp_cnt - enc->cnt)/(ENCODER_N*(temp_time - enc->time))*ENCODER_
-  93              		.loc 1 15 0
-  94 0010 0068     		ldr	r0, [r0]
-  95              	.LVL4:
-  96 0012 301A     		subs	r0, r6, r0
-  97 0014 FFF7FEFF 		bl	__aeabi_i2d
-  98              	.LVL5:
-  99 0018 0FA3     		adr	r3, .L5
- 100 001a D3E90023 		ldrd	r2, [r3]
- 101 001e FFF7FEFF 		bl	__aeabi_dmul
- 102              	.LVL6:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 3
+  12:Src/encoder.c **** /**
+  13:Src/encoder.c ****  * 16 bit uint for 16 bit timer
+  14:Src/encoder.c ****  * 8 bit uint for 8 bit count value
+  15:Src/encoder.c ****  * Speed of TIM9: 72MHz/65535
+  16:Src/encoder.c ****  * Angular velocity w = 2*pi*n/(N*t)*R
+  17:Src/encoder.c ****  * n: number of encoder counts
+  18:Src/encoder.c ****  * N: number of encoder counts in revolution
+  19:Src/encoder.c ****  * t: time
+  20:Src/encoder.c ****  * R: radius
+  21:Src/encoder.c ****  *
+  22:Src/encoder.c ****  *  dt is number of clock ticks, need to convert to time.
+  23:Src/encoder.c ****  *
+  24:Src/encoder.c ****  * @params  encoder struct
+  25:Src/encoder.c ****  * @modifies    speed stored in struct
+  26:Src/encoder.c ****  * @returns    speed
+  27:Src/encoder.c ****  **/
+  28:Src/encoder.c **** float update_encoder(ENCODER_t *enc){
+  60              		.loc 1 28 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              	.LVL1:
+  65 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  66              	.LCFI0:
+  67              		.cfi_def_cfa_offset 32
+  68              		.cfi_offset 3, -32
+  69              		.cfi_offset 4, -28
+  70              		.cfi_offset 5, -24
+  71              		.cfi_offset 6, -20
+  72              		.cfi_offset 7, -16
+  73              		.cfi_offset 8, -12
+  74              		.cfi_offset 9, -8
+  75              		.cfi_offset 14, -4
+  76 0004 0546     		mov	r5, r0
+  29:Src/encoder.c ****     uint16_t temp_time = TIM9->CNT;
+  77              		.loc 1 29 0
+  78 0006 3A4B     		ldr	r3, .L14+24
+  79 0008 5B6A     		ldr	r3, [r3, #36]
+  80 000a 1FFA83F8 		uxth	r8, r3
+  81              	.LVL2:
+  30:Src/encoder.c ****     uint8_t temp_cnt = TIM4->CNT;
+  82              		.loc 1 30 0
+  83 000e 394B     		ldr	r3, .L14+28
+  84 0010 5A6A     		ldr	r2, [r3, #36]
+  85 0012 5FFA82F9 		uxtb	r9, r2
+  86              	.LVL3:
+  31:Src/encoder.c ****     int8_t d_cnt;
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 3
 
 
- 103 0022 8046     		mov	r8, r0
- 104 0024 8946     		mov	r9, r1
- 105 0026 6068     		ldr	r0, [r4, #4]
- 106 0028 281A     		subs	r0, r5, r0
- 107 002a 6423     		movs	r3, #100
- 108 002c 03FB00F0 		mul	r0, r3, r0
- 109 0030 FFF7FEFF 		bl	__aeabi_i2d
- 110              	.LVL7:
- 111 0034 0246     		mov	r2, r0
- 112 0036 0B46     		mov	r3, r1
- 113 0038 4046     		mov	r0, r8
- 114 003a 4946     		mov	r1, r9
- 115 003c FFF7FEFF 		bl	__aeabi_ddiv
- 116              	.LVL8:
- 117 0040 0022     		movs	r2, #0
- 118 0042 084B     		ldr	r3, .L5+12
- 119 0044 FFF7FEFF 		bl	__aeabi_dmul
- 120              	.LVL9:
- 121 0048 C4E90201 		strd	r0, [r4, #8]
-  16:Src/encoder.c ****     enc->cnt = temp_cnt;
- 122              		.loc 1 16 0
- 123 004c 2660     		str	r6, [r4]
-  17:Src/encoder.c ****     enc->time = temp_time; 
- 124              		.loc 1 17 0
- 125 004e 6560     		str	r5, [r4, #4]
-  18:Src/encoder.c ****     return enc->speed;
-  19:Src/encoder.c **** }
- 126              		.loc 1 19 0
- 127 0050 41EC100B 		fmdrr	d0, r0, r1
- 128 0054 BDE87083 		pop	{r4, r5, r6, r8, r9, pc}
- 129              	.LVL10:
- 130              	.L6:
- 131              		.align	3
- 132              	.L5:
- 133 0058 EA2E4454 		.word	1413754602
- 134 005c FB211940 		.word	1075388923
- 135 0060 00400140 		.word	1073823744
- 136 0064 0000E03F 		.word	1071644672
- 137              		.cfi_endproc
- 138              	.LFE124:
- 140              		.text
- 141              	.Letext0:
- 142              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 143              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 144              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 145              		.file 5 "Inc/encoder.h"
- 146              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s 			page 4
+  32:Src/encoder.c ****     uint16_t d_t = temp_time<enc->time? temp_time+1+(enc->time^255): temp_time - enc->time;
+  87              		.loc 1 32 0
+  88 0016 4488     		ldrh	r4, [r0, #2]
+  89 0018 4445     		cmp	r4, r8
+  90 001a 05D9     		bls	.L3
+  91              		.loc 1 32 0 is_stmt 0 discriminator 1
+  92 001c 84F0FF04 		eor	r4, r4, #255
+  93 0020 4444     		add	r4, r4, r8
+  94 0022 0134     		adds	r4, r4, #1
+  95 0024 A4B2     		uxth	r4, r4
+  96 0026 02E0     		b	.L4
+  97              	.L3:
+  98              		.loc 1 32 0 discriminator 2
+  99 0028 C4EB0804 		rsb	r4, r4, r8
+ 100 002c A4B2     		uxth	r4, r4
+ 101              	.L4:
+ 102              	.LVL4:
+  33:Src/encoder.c ****     //uint8_t dt = temp_time - time;
+  34:Src/encoder.c ****     if(enc->speed>0 && temp_cnt<enc->cnt){
+ 103              		.loc 1 34 0 is_stmt 1 discriminator 4
+ 104 002e D5ED017A 		flds	s15, [r5, #4]
+ 105 0032 F5EEC07A 		fcmpezs	s15
+ 106 0036 F1EE10FA 		fmstat
+ 107 003a 06DD     		ble	.L5
+ 108              		.loc 1 34 0 is_stmt 0 discriminator 1
+ 109 003c 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 110              	.LVL5:
+ 111 003e 4845     		cmp	r0, r9
+ 112 0040 03D9     		bls	.L5
+  35:Src/encoder.c ****         d_cnt = temp_cnt+1+(enc->cnt^255);
+ 113              		.loc 1 35 0 is_stmt 1
+ 114 0042 C0EB0900 		rsb	r0, r0, r9
+ 115 0046 C0B2     		uxtb	r0, r0
+ 116              	.LVL6:
+ 117 0048 1BE0     		b	.L7
+ 118              	.LVL7:
+ 119              	.L5:
+  36:Src/encoder.c ****     }else if(enc->speed<0 && temp_cnt>enc->cnt){
+ 120              		.loc 1 36 0
+ 121 004a F5EEC07A 		fcmpezs	s15
+ 122 004e F1EE10FA 		fmstat
+ 123 0052 06D5     		bpl	.L8
+ 124              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 125 0054 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 126 0056 4B45     		cmp	r3, r9
+ 127 0058 03D2     		bcs	.L8
+  37:Src/encoder.c ****         d_cnt = -(enc->cnt+1+(temp_cnt^255));
+ 128              		.loc 1 37 0 is_stmt 1
+ 129 005a C3EB0900 		rsb	r0, r3, r9
+ 130 005e C0B2     		uxtb	r0, r0
+ 131              	.LVL8:
+ 132 0060 0FE0     		b	.L7
+ 133              	.LVL9:
+ 134              	.L8:
+  38:Src/encoder.c ****     }else if(temp_cnt>200 && enc->cnt == 0 && enc->speed==0){
+ 135              		.loc 1 38 0
+ 136 0062 B9F1C80F 		cmp	r9, #200
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 4
+
+
+ 137 0066 08D9     		bls	.L10
+ 138              		.loc 1 38 0 is_stmt 0 discriminator 1
+ 139 0068 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 140 006a 33B9     		cbnz	r3, .L10
+ 141              		.loc 1 38 0 discriminator 2
+ 142 006c F5EE407A 		fcmpzs	s15
+ 143 0070 F1EE10FA 		fmstat
+ 144 0074 01D1     		bne	.L10
+  39:Src/encoder.c ****         d_cnt = -(1+(temp_cnt^255));
+ 145              		.loc 1 39 0 is_stmt 1
+ 146 0076 D0B2     		uxtb	r0, r2
+ 147              	.LVL10:
+ 148 0078 03E0     		b	.L7
+ 149              	.LVL11:
+ 150              	.L10:
+  40:Src/encoder.c ****     }else{
+  41:Src/encoder.c ****         d_cnt = temp_cnt - enc->cnt;
+ 151              		.loc 1 41 0
+ 152 007a 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 153 007c C0EB0900 		rsb	r0, r0, r9
+ 154 0080 C0B2     		uxtb	r0, r0
+ 155              	.LVL12:
+ 156              	.L7:
+  42:Src/encoder.c ****     }
+  43:Src/encoder.c ****     enc->speed = 2*3.14159265359*d_cnt/(ENCODER_N*d_t/(72000000.0/65535))*ENCODER_R;
+ 157              		.loc 1 43 0
+ 158 0082 40B2     		sxtb	r0, r0
+ 159 0084 FFF7FEFF 		bl	__aeabi_i2d
+ 160              	.LVL13:
+ 161 0088 13A3     		adr	r3, .L14
+ 162 008a D3E90023 		ldrd	r2, [r3]
+ 163 008e FFF7FEFF 		bl	__aeabi_dmul
+ 164              	.LVL14:
+ 165 0092 0646     		mov	r6, r0
+ 166 0094 0F46     		mov	r7, r1
+ 167 0096 6420     		movs	r0, #100
+ 168 0098 00FB04F0 		mul	r0, r0, r4
+ 169 009c FFF7FEFF 		bl	__aeabi_i2d
+ 170              	.LVL15:
+ 171 00a0 0FA3     		adr	r3, .L14+8
+ 172 00a2 D3E90023 		ldrd	r2, [r3]
+ 173 00a6 FFF7FEFF 		bl	__aeabi_ddiv
+ 174              	.LVL16:
+ 175 00aa 0246     		mov	r2, r0
+ 176 00ac 0B46     		mov	r3, r1
+ 177 00ae 3046     		mov	r0, r6
+ 178 00b0 3946     		mov	r1, r7
+ 179 00b2 FFF7FEFF 		bl	__aeabi_ddiv
+ 180              	.LVL17:
+ 181 00b6 0CA3     		adr	r3, .L14+16
+ 182 00b8 D3E90023 		ldrd	r2, [r3]
+ 183 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 184              	.LVL18:
+ 185 00c0 FFF7FEFF 		bl	__aeabi_d2f
+ 186              	.LVL19:
+ 187 00c4 6860     		str	r0, [r5, #4]	@ float
+  44:Src/encoder.c ****     enc->cnt = temp_cnt;
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 5
+
+
+ 188              		.loc 1 44 0
+ 189 00c6 85F80090 		strb	r9, [r5]
+  45:Src/encoder.c ****     enc->time = temp_time; 
+ 190              		.loc 1 45 0
+ 191 00ca A5F80280 		strh	r8, [r5, #2]	@ movhi
+  46:Src/encoder.c ****     return enc->speed;
+  47:Src/encoder.c **** }
+ 192              		.loc 1 47 0
+ 193 00ce 00EE100A 		fmsr	s0, r0
+ 194 00d2 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 195              	.LVL20:
+ 196              	.L15:
+ 197 00d6 00BF     		.align	3
+ 198              	.L14:
+ 199 00d8 EA2E4454 		.word	1413754602
+ 200 00dc FB211940 		.word	1075388923
+ 201 00e0 992A992A 		.word	714680985
+ 202 00e4 992A9140 		.word	1083255449
+ 203 00e8 33333333 		.word	858993459
+ 204 00ec 3333E33F 		.word	1071854387
+ 205 00f0 00400140 		.word	1073823744
+ 206 00f4 00080040 		.word	1073743872
+ 207              		.cfi_endproc
+ 208              	.LFE124:
+ 210              		.text
+ 211              	.Letext0:
+ 212              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 213              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 214              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 215              		.file 5 "Inc/encoder.h"
+ 216              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:21     .text.encoder_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:26     .text.encoder_Init:0000000000000000 encoder_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:63     .text.update_encoder:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:68     .text.update_encoder:0000000000000000 update_encoder
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccaLmU2D.s:133    .text.update_encoder:0000000000000058 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s:21     .text.encoder_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s:26     .text.encoder_Init:0000000000000000 encoder_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s:53     .text.update_encoder:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s:58     .text.update_encoder:0000000000000000 update_encoder
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccoxoeEB.s:199    .text.update_encoder:00000000000000d8 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2d
 __aeabi_dmul
 __aeabi_ddiv
+__aeabi_d2f

@@ -134,19 +134,48 @@ int main(void)
 
 
     /* Initialize struct stuffs*/
-    PID_t pid_s = menu();
+    //PID_t pid_s = menu();
+    ENCODER_t LEFT_ENCODER = encoder_Init();
 
     /* declare external variables for use with interrupts*/
 
 
     /* USER CODE END 2 */
-    
+    char msg[20] = "";
+
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        do_pid(&pid_s);
-
+        //do_pid(&pid_s);
+/*        uint8_t temp_cnt = TIM4->CNT;
+        uint16_t temp_time = TIM9->CNT;
+        uint16_t dt = temp_time<time? temp_time+1+(time^255): temp_time - time;
+        
+        int8_t dcnt;
+        if(speed>0 && temp_cnt<cnt){
+                dcnt = temp_cnt+1+(cnt^255);
+        }else if(speed<0 && temp_cnt>cnt){
+            dcnt = -(cnt+1+(temp_cnt^255));
+        }else if(temp_cnt>200 && cnt == 0 && speed==0){
+            dcnt = -(1+(temp_cnt^255));
+        }else{
+            dcnt = temp_cnt - cnt;
+        }
+        speed = 2*3.14159265359*dcnt/100.0*0.6/(dt/(72000000/65535.0)); //cm/s
+        
+        sprintf(msg, "dC: %d", dcnt);
+        print(msg, 0);
+        sprintf(msg, "dT: %u", dt);
+        print(msg, 1);
+        sprintf(msg, "S: %d", (int)speed);
+        print(msg, 2);
+        cnt = temp_cnt;
+        time = temp_time;
+        HAL_Delay(50);
+*/
+    sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER));
+    print(msg, 0);
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
