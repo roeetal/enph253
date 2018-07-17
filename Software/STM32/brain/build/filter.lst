@@ -1,0 +1,328 @@
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"filter.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.global	__aeabi_ui2d
+  21              		.global	__aeabi_ddiv
+  22              		.global	__aeabi_i2d
+  23              		.global	__aeabi_dmul
+  24              		.global	__aeabi_dadd
+  25              		.global	__aeabi_dsub
+  26              		.section	.text.goertzel,"ax",%progbits
+  27              		.align	2
+  28              		.global	goertzel
+  29              		.thumb
+  30              		.thumb_func
+  32              	goertzel:
+  33              	.LFB123:
+  34              		.file 1 "Src/filter.c"
+   1:Src/filter.c  **** #include "stm32f4xx.h"
+   2:Src/filter.c  **** #include "math.h"
+   3:Src/filter.c  **** #include "filter.h"
+   4:Src/filter.c  **** 
+   5:Src/filter.c  **** double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t window_size)
+   6:Src/filter.c  **** {
+  35              		.loc 1 6 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 8
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              	.LVL0:
+  40 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 36
+  43              		.cfi_offset 4, -36
+  44              		.cfi_offset 5, -32
+  45              		.cfi_offset 6, -28
+  46              		.cfi_offset 7, -24
+  47              		.cfi_offset 8, -20
+  48              		.cfi_offset 9, -16
+  49              		.cfi_offset 10, -12
+  50              		.cfi_offset 11, -8
+  51              		.cfi_offset 14, -4
+  52 0004 2DED048B 		fstmfdd	sp!, {d8, d9}
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 2
+
+
+  53              	.LCFI1:
+  54              		.cfi_def_cfa_offset 52
+  55              		.cfi_offset 80, -52
+  56              		.cfi_offset 81, -48
+  57              		.cfi_offset 82, -44
+  58              		.cfi_offset 83, -40
+  59 0008 83B0     		sub	sp, sp, #12
+  60              	.LCFI2:
+  61              		.cfi_def_cfa_offset 64
+  62 000a 0546     		mov	r5, r0
+  63 000c 9246     		mov	r10, r2
+  64 000e 1C46     		mov	r4, r3
+   7:Src/filter.c  ****   // Set up initial parameters
+   8:Src/filter.c  ****   double f_step = sample_rate / (double)window_size;
+  65              		.loc 1 8 0
+  66 0010 0846     		mov	r0, r1
+  67              	.LVL1:
+  68 0012 FFF7FEFF 		bl	__aeabi_ui2d
+  69              	.LVL2:
+  70 0016 8046     		mov	r8, r0
+  71 0018 8946     		mov	r9, r1
+  72 001a 2046     		mov	r0, r4
+  73 001c FFF7FEFF 		bl	__aeabi_ui2d
+  74              	.LVL3:
+  75 0020 0646     		mov	r6, r0
+  76 0022 0F46     		mov	r7, r1
+  77 0024 4046     		mov	r0, r8
+  78 0026 4946     		mov	r1, r9
+  79 0028 3246     		mov	r2, r6
+  80 002a 3B46     		mov	r3, r7
+  81 002c FFF7FEFF 		bl	__aeabi_ddiv
+  82              	.LVL4:
+  83 0030 8046     		mov	r8, r0
+  84 0032 8946     		mov	r9, r1
+  85              	.LVL5:
+   9:Src/filter.c  ****   double f_step_normalized = 1.0 / (double)window_size;
+  86              		.loc 1 9 0
+  87 0034 0020     		movs	r0, #0
+  88 0036 4E49     		ldr	r1, .L5+16
+  89 0038 3246     		mov	r2, r6
+  90 003a 3B46     		mov	r3, r7
+  91 003c FFF7FEFF 		bl	__aeabi_ddiv
+  92              	.LVL6:
+  93 0040 0646     		mov	r6, r0
+  94 0042 0F46     		mov	r7, r1
+  95              	.LVL7:
+  10:Src/filter.c  ****   double k = freq / f_step;
+  96              		.loc 1 10 0
+  97 0044 5046     		mov	r0, r10
+  98 0046 FFF7FEFF 		bl	__aeabi_i2d
+  99              	.LVL8:
+ 100 004a 4246     		mov	r2, r8
+ 101 004c 4B46     		mov	r3, r9
+ 102 004e FFF7FEFF 		bl	__aeabi_ddiv
+ 103              	.LVL9:
+  11:Src/filter.c  **** 
+  12:Src/filter.c  ****   // number of frequencies is the same size as the number of
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 3
+
+
+  13:Src/filter.c  ****   // upper and lower bin limits; loop through bin limits (i.e.
+  14:Src/filter.c  ****   // k_start and k_end pairs, and evaluate goertzel from there)
+  15:Src/filter.c  ****   double normalizedfreq, w_real;
+  16:Src/filter.c  **** 
+  17:Src/filter.c  ****   normalizedfreq = k * f_step_normalized;
+ 104              		.loc 1 17 0
+ 105 0052 3246     		mov	r2, r6
+ 106 0054 3B46     		mov	r3, r7
+ 107 0056 FFF7FEFF 		bl	__aeabi_dmul
+ 108              	.LVL10:
+  18:Src/filter.c  ****   w_real = 2.0 * cos(2.0 * PI * normalizedfreq);
+ 109              		.loc 1 18 0
+ 110 005a 41A3     		adr	r3, .L5
+ 111 005c D3E90023 		ldrd	r2, [r3]
+ 112 0060 FFF7FEFF 		bl	__aeabi_dmul
+ 113              	.LVL11:
+ 114 0064 41EC100B 		fmdrr	d0, r0, r1
+ 115 0068 FFF7FEFF 		bl	cos
+ 116              	.LVL12:
+ 117 006c 53EC102B 		fmrrd	r2, r3, d0
+ 118 0070 10EE100A 		fmrs	r0, s0	@ int
+ 119 0074 1946     		mov	r1, r3
+ 120 0076 FFF7FEFF 		bl	__aeabi_dadd
+ 121              	.LVL13:
+ 122 007a CDE90001 		strd	r0, [sp]
+ 123              	.LVL14:
+  19:Src/filter.c  ****   double d1 = 0, d2 = 0, y = 0, tot_power = 1;
+  20:Src/filter.c  ****   uint16_t n = 0;
+ 124              		.loc 1 20 0
+ 125 007e 4FF0000A 		mov	r10, #0
+  19:Src/filter.c  ****   double d1 = 0, d2 = 0, y = 0, tot_power = 1;
+ 126              		.loc 1 19 0
+ 127 0082 4FF00008 		mov	r8, #0
+ 128              	.LVL15:
+ 129 0086 DFF8E890 		ldr	r9, .L5+16
+ 130 008a 9FED379B 		fldd	d9, .L5+8
+ 131 008e B0EE498A 		fcpys	s16, s18
+ 132 0092 F0EE698A 		fcpys	s17, s19
+ 133 0096 A346     		mov	fp, r4
+  21:Src/filter.c  ****   while (n < window_size)
+ 134              		.loc 1 21 0
+ 135 0098 2CE0     		b	.L2
+ 136              	.LVL16:
+ 137              	.L3:
+  22:Src/filter.c  ****   {
+  23:Src/filter.c  ****     y = x[n] + w_real * d1 - d2;
+ 138              		.loc 1 23 0
+ 139 009a 55F82A40 		ldr	r4, [r5, r10, lsl #2]
+ 140 009e DDE90001 		ldrd	r0, [sp]
+ 141 00a2 53EC182B 		fmrrd	r2, r3, d8
+ 142 00a6 FFF7FEFF 		bl	__aeabi_dmul
+ 143              	.LVL17:
+ 144 00aa 0646     		mov	r6, r0
+ 145 00ac 0F46     		mov	r7, r1
+ 146 00ae 2046     		mov	r0, r4
+ 147 00b0 FFF7FEFF 		bl	__aeabi_ui2d
+ 148              	.LVL18:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 4
+
+
+ 149 00b4 3246     		mov	r2, r6
+ 150 00b6 3B46     		mov	r3, r7
+ 151 00b8 FFF7FEFF 		bl	__aeabi_dadd
+ 152              	.LVL19:
+ 153 00bc 53EC192B 		fmrrd	r2, r3, d9
+ 154 00c0 FFF7FEFF 		bl	__aeabi_dsub
+ 155              	.LVL20:
+ 156 00c4 0646     		mov	r6, r0
+ 157 00c6 0F46     		mov	r7, r1
+ 158              	.LVL21:
+  24:Src/filter.c  ****     d2 = d1;
+  25:Src/filter.c  ****     d1 = y;
+  26:Src/filter.c  ****     tot_power += x[n] * x[n];
+ 159              		.loc 1 26 0
+ 160 00c8 04FB04F0 		mul	r0, r4, r4
+ 161 00cc FFF7FEFF 		bl	__aeabi_ui2d
+ 162              	.LVL22:
+ 163 00d0 0246     		mov	r2, r0
+ 164 00d2 0B46     		mov	r3, r1
+ 165 00d4 4046     		mov	r0, r8
+ 166 00d6 4946     		mov	r1, r9
+ 167 00d8 FFF7FEFF 		bl	__aeabi_dadd
+ 168              	.LVL23:
+ 169 00dc 8046     		mov	r8, r0
+ 170              	.LVL24:
+ 171 00de 8946     		mov	r9, r1
+ 172              	.LVL25:
+  27:Src/filter.c  ****     ++n;
+ 173              		.loc 1 27 0
+ 174 00e0 0AF1010A 		add	r10, r10, #1
+ 175              	.LVL26:
+ 176 00e4 1FFA8AFA 		uxth	r10, r10
+ 177              	.LVL27:
+  24:Src/filter.c  ****     d2 = d1;
+ 178              		.loc 1 24 0
+ 179 00e8 B0EE489A 		fcpys	s18, s16
+ 180 00ec F0EE689A 		fcpys	s19, s17
+  25:Src/filter.c  ****     tot_power += x[n] * x[n];
+ 181              		.loc 1 25 0
+ 182 00f0 47EC186B 		fmdrr	d8, r6, r7
+ 183              	.LVL28:
+ 184              	.L2:
+  21:Src/filter.c  ****   {
+ 185              		.loc 1 21 0
+ 186 00f4 DA45     		cmp	r10, fp
+ 187 00f6 D0D3     		bcc	.L3
+  28:Src/filter.c  ****   }
+  29:Src/filter.c  **** 
+  30:Src/filter.c  ****   return (d2 * d2 + d1 * d1 - w_real * d1 * d2) / tot_power;
+ 188              		.loc 1 30 0
+ 189 00f8 51EC190B 		fmrrd	r0, r1, d9
+ 190 00fc 53EC192B 		fmrrd	r2, r3, d9
+ 191 0100 FFF7FEFF 		bl	__aeabi_dmul
+ 192              	.LVL29:
+ 193 0104 0446     		mov	r4, r0
+ 194 0106 0D46     		mov	r5, r1
+ 195              	.LVL30:
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 5
+
+
+ 196 0108 51EC180B 		fmrrd	r0, r1, d8
+ 197 010c 53EC182B 		fmrrd	r2, r3, d8
+ 198 0110 FFF7FEFF 		bl	__aeabi_dmul
+ 199              	.LVL31:
+ 200 0114 0246     		mov	r2, r0
+ 201 0116 0B46     		mov	r3, r1
+ 202 0118 2046     		mov	r0, r4
+ 203 011a 2946     		mov	r1, r5
+ 204 011c FFF7FEFF 		bl	__aeabi_dadd
+ 205              	.LVL32:
+ 206 0120 0446     		mov	r4, r0
+ 207 0122 0D46     		mov	r5, r1
+ 208 0124 DDE90001 		ldrd	r0, [sp]
+ 209 0128 53EC182B 		fmrrd	r2, r3, d8
+ 210 012c FFF7FEFF 		bl	__aeabi_dmul
+ 211              	.LVL33:
+ 212 0130 53EC192B 		fmrrd	r2, r3, d9
+ 213 0134 FFF7FEFF 		bl	__aeabi_dmul
+ 214              	.LVL34:
+ 215 0138 0246     		mov	r2, r0
+ 216 013a 0B46     		mov	r3, r1
+ 217 013c 2046     		mov	r0, r4
+ 218 013e 2946     		mov	r1, r5
+ 219 0140 FFF7FEFF 		bl	__aeabi_dsub
+ 220              	.LVL35:
+ 221 0144 4246     		mov	r2, r8
+ 222 0146 4B46     		mov	r3, r9
+ 223 0148 FFF7FEFF 		bl	__aeabi_ddiv
+ 224              	.LVL36:
+  31:Src/filter.c  **** }...
+ 225              		.loc 1 31 0
+ 226 014c 41EC100B 		fmdrr	d0, r0, r1
+ 227 0150 03B0     		add	sp, sp, #12
+ 228              	.LCFI3:
+ 229              		.cfi_def_cfa_offset 52
+ 230              	.LVL37:
+ 231              		@ sp needed
+ 232 0152 BDEC048B 		fldmfdd	sp!, {d8-d9}
+ 233              	.LCFI4:
+ 234              		.cfi_restore 82
+ 235              		.cfi_restore 83
+ 236              		.cfi_restore 80
+ 237              		.cfi_restore 81
+ 238              		.cfi_def_cfa_offset 36
+ 239              	.LVL38:
+ 240 0156 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 241              	.LVL39:
+ 242              	.L6:
+ 243 015a 00BFAFF3 		.align	3
+ 243      0080
+ 244              	.L5:
+ 245 0160 182D4454 		.word	1413754136
+ 246 0164 FB211940 		.word	1075388923
+ 247 0168 00000000 		.word	0
+ 248 016c 00000000 		.word	0
+ 249 0170 0000F03F 		.word	1072693248
+ 250              		.cfi_endproc
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 6
+
+
+ 251              	.LFE123:
+ 253              		.text
+ 254              	.Letext0:
+ 255              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 256              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 257              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 258              		.file 5 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/math.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 filter.c
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s:27     .text.goertzel:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s:32     .text.goertzel:0000000000000000 goertzel
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccP60vwq.s:245    .text.goertzel:0000000000000160 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ui2d
+__aeabi_ddiv
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_dsub
+cos
