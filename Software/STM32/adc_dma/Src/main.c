@@ -43,7 +43,9 @@
 /* USER CODE BEGIN Includes */
 #include "fonts.h"
 #include "ssd1306.h"
+#include "filter.h"
 
+#define PI 3.141592653589793
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -69,16 +71,16 @@ static void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void print(char* msg, int row);
+void print(char *msg, int row);
 
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint32_t value[2], adc_buffer[2], read_value[2];
+uint32_t adc_buffer[1024];
+uint32_t read_value[1024];
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-    value[0] = adc_buffer[0];  // store the values in adc_val from buffer
-    value[1] = adc_buffer[1];  // store the values in adc_val from buffer
+    memcpy(read_value, adc_buffer, sizeof(adc_buffer));
 }
 
 /* USER CODE END 0 */
@@ -117,27 +119,28 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-    ssd1306_Init();
+  ssd1306_Init();
 
-    HAL_ADC_Start_DMA (&hadc1, adc_buffer, 2);
+  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    while (1)
-    {
+  while (1)
+  {
+    char msg[20] = "";
+    double val = goertzel(read_value, 8080, 1000, 1024);
+    int predec = (int)(val / 1);
+    int postdec = (int)((val - predec) * 1000);
+    sprintf(msg, "%d.%d\n", predec, postdec);
+    HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
 
-  /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
+    // /* USER CODE BEGIN 3 */
 
-  /* USER CODE BEGIN 3 */
-        read_value[0] = value[0];
-        char msg[20] = "";
-        sprintf(msg, "%lu\n", read_value[0]);
-        HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
-    }
+  }
   /* USER CODE END 3 */
-
 }
 
 /**
@@ -150,13 +153,13 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
-    /**Configure the main internal regulator output voltage 
+  /**Configure the main internal regulator output voltage 
     */
   __HAL_RCC_PWR_CLK_ENABLE();
 
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+  /**Initializes the CPU, AHB and APB busses clocks 
     */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -167,10 +170,9 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Initializes the CPU, AHB and APB busses clocks 
+  /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
@@ -181,11 +183,11 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Configure the Systick interrupt time 
+  /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
-    /**Configure the Systick 
+  /**Configure the Systick 
     */
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
@@ -199,7 +201,7 @@ static void MX_ADC1_Init(void)
 
   ADC_ChannelConfTypeDef sConfig;
 
-    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+  /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
   hadc1.Instance = ADC1;
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
@@ -210,7 +212,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 2;
+  hadc1.Init.NbrOfConversion = 1;
   hadc1.Init.DMAContinuousRequests = ENABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
@@ -218,7 +220,7 @@ static void MX_ADC1_Init(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = 1;
@@ -227,16 +229,6 @@ static void MX_ADC1_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
-    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
-    */
-  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-  sConfig.Rank = 2;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
 }
 
 /* I2C1 init function */
@@ -256,7 +248,6 @@ static void MX_I2C1_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
 }
 
 /* USART2 init function */
@@ -275,13 +266,12 @@ static void MX_USART2_UART_Init(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
 }
 
 /** 
   * Enable DMA controller clock
   */
-static void MX_DMA_Init(void) 
+static void MX_DMA_Init(void)
 {
   /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
@@ -290,7 +280,6 @@ static void MX_DMA_Init(void)
   /* DMA2_Stream0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
-
 }
 
 /** Pinout Configuration
@@ -301,17 +290,18 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
 }
 
 /* USER CODE BEGIN 4 */
-void print(char* msg, int row){
-    if(row==0){
-        ssd1306_Fill(Black);
-    }
-    ssd1306_SetCursor(0,row*10);
-    ssd1306_WriteString(msg,Font_7x10,White);
-    ssd1306_UpdateScreen();
+void print(char *msg, int row)
+{
+  if (row == 0)
+  {
+    ssd1306_Fill(Black);
+  }
+  ssd1306_SetCursor(0, row * 10);
+  ssd1306_WriteString(msg, Font_7x10, White);
+  ssd1306_UpdateScreen();
 }
 
 /* USER CODE END 4 */
@@ -325,14 +315,14 @@ void print(char* msg, int row){
 void _Error_Handler(char *file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-    /* User can add his own implementation to report the HAL error return state */
-    while(1)
-    {
-    }
+  /* User can add his own implementation to report the HAL error return state */
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -340,10 +330,10 @@ void _Error_Handler(char *file, int line)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
+void assert_failed(uint8_t *file, uint32_t line)
+{
   /* USER CODE BEGIN 6 */
-    /* User can add his own implementation to report the file name and line number,
+  /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
