@@ -38,6 +38,7 @@ BUILD_DIR = build
 C_SOURCES =  \
 Src/main.c \
 Src/gpio.c \
+Src/dma.c \
 Src/adc.c \
 Src/i2c.c \
 Src/tim.c \

@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * File Name          : dma.h
+  * Description        : This file contains all the function prototypes for
+  *                      the dma.c file
   ******************************************************************************
   ** This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -36,87 +36,43 @@
   *
   ******************************************************************************
   */
-
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __dma_H
+#define __dma_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "main.h"
+
+/* DMA memory to memory transfer handles -------------------------------------*/
+extern void _Error_Handler(char*, int);
 
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
-/* Private define ------------------------------------------------------------*/
-
-#define PI_INT_Pin GPIO_PIN_0
-#define PI_INT_GPIO_Port GPIOC
-#define PI_INT_EXTI_IRQn EXTI0_IRQn
-#define IR_INT_Pin GPIO_PIN_1
-#define IR_INT_GPIO_Port GPIOC
-#define IR_INT_EXTI_IRQn EXTI1_IRQn
-#define EDGE_LEFT_Pin GPIO_PIN_2
-#define EDGE_LEFT_GPIO_Port GPIOC
-#define EDGE_LEFT_EXTI_IRQn EXTI2_IRQn
-#define EDGE_RIGHT_Pin GPIO_PIN_3
-#define EDGE_RIGHT_GPIO_Port GPIOC
-#define EDGE_RIGHT_EXTI_IRQn EXTI3_IRQn
-#define ENCODER_RIGHT_1_Pin GPIO_PIN_0
-#define ENCODER_RIGHT_1_GPIO_Port GPIOA
-#define ENCODER_RIGHT_2_Pin GPIO_PIN_1
-#define ENCODER_RIGHT_2_GPIO_Port GPIOA
-#define PI_ANALOG_Pin GPIO_PIN_2
-#define PI_ANALOG_GPIO_Port GPIOA
-#define IR_1_Pin GPIO_PIN_3
-#define IR_1_GPIO_Port GPIOA
-#define IR_2_Pin GPIO_PIN_4
-#define IR_2_GPIO_Port GPIOA
-#define SERVO_CLAW_1_Pin GPIO_PIN_6
-#define SERVO_CLAW_1_GPIO_Port GPIOA
-#define SERVO_CLAW_2_Pin GPIO_PIN_7
-#define SERVO_CLAW_2_GPIO_Port GPIOA
-#define SERVO_BASKET_Pin GPIO_PIN_0
-#define SERVO_BASKET_GPIO_Port GPIOB
-#define TAPE_LEFT_Pin GPIO_PIN_14
-#define TAPE_LEFT_GPIO_Port GPIOB
-#define TAPE_RIGHT_Pin GPIO_PIN_15
-#define TAPE_RIGHT_GPIO_Port GPIOB
-#define MOTOR_LEFT_1_Pin GPIO_PIN_8
-#define MOTOR_LEFT_1_GPIO_Port GPIOA
-#define MOTOR_LEFT_2_Pin GPIO_PIN_9
-#define MOTOR_LEFT_2_GPIO_Port GPIOA
-#define MOTOR_RIGHT_1_Pin GPIO_PIN_10
-#define MOTOR_RIGHT_1_GPIO_Port GPIOA
-#define MOTOR_RIGHT_2_Pin GPIO_PIN_11
-#define MOTOR_RIGHT_2_GPIO_Port GPIOA
-#define ENCODER_LEFT_1_Pin GPIO_PIN_6
-#define ENCODER_LEFT_1_GPIO_Port GPIOB
-#define ENCODER_LEFT_2_Pin GPIO_PIN_7
-#define ENCODER_LEFT_2_GPIO_Port GPIOB
-
-/* ########################## Assert Selection ############################## */
-/**
-  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
-  *        HAL drivers code
-  */
-/* #define USE_FULL_ASSERT    1U */
-
 /* USER CODE BEGIN Private defines */
-#define MOTOR_SPEED 1000
 
 /* USER CODE END Private defines */
 
-#ifdef __cplusplus
- extern "C" {
-#endif
-void _Error_Handler(char *, int);
+void MX_DMA_Init(void);
 
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
+/* USER CODE BEGIN Prototypes */
+
+/* USER CODE END Prototypes */
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAIN_H__ */
+#endif /* __dma_H */
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
