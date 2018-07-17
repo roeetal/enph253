@@ -134,48 +134,24 @@ int main(void)
 
 
     /* Initialize struct stuffs*/
-    //PID_t pid_s = menu();
-    ENCODER_t LEFT_ENCODER = encoder_Init();
-
+    PID_t pid_s = menu();
+    HAL_Delay(100);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    //ENCODER_t LEFT_ENCODER = encoder_Init();
+    
     /* declare external variables for use with interrupts*/
 
 
     /* USER CODE END 2 */
-    char msg[20] = "";
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        //do_pid(&pid_s);
-/*        uint8_t temp_cnt = TIM4->CNT;
-        uint16_t temp_time = TIM9->CNT;
-        uint16_t dt = temp_time<time? temp_time+1+(time^255): temp_time - time;
-        
-        int8_t dcnt;
-        if(speed>0 && temp_cnt<cnt){
-                dcnt = temp_cnt+1+(cnt^255);
-        }else if(speed<0 && temp_cnt>cnt){
-            dcnt = -(cnt+1+(temp_cnt^255));
-        }else if(temp_cnt>200 && cnt == 0 && speed==0){
-            dcnt = -(1+(temp_cnt^255));
-        }else{
-            dcnt = temp_cnt - cnt;
-        }
-        speed = 2*3.14159265359*dcnt/100.0*0.6/(dt/(72000000/65535.0)); //cm/s
-        
-        sprintf(msg, "dC: %d", dcnt);
-        print(msg, 0);
-        sprintf(msg, "dT: %u", dt);
-        print(msg, 1);
-        sprintf(msg, "S: %d", (int)speed);
-        print(msg, 2);
-        cnt = temp_cnt;
-        time = temp_time;
-        HAL_Delay(50);
-*/
-    sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER, &htim4));
-    print(msg, 0);
+        do_pid(&pid_s);
+        //sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER, &htim4));
+        //print(msg, 0);
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
@@ -278,7 +254,7 @@ PID_t menu(void){
         if(pid_select==3) break;
     }
     while(1){
-        int speed = 750;
+        int speed = 400;
         if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
             if(pid_select==3){
                 HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -304,7 +280,7 @@ PID_t menu(void){
             }
             ++pid_select;
         }
-        if(pid_select==4){
+        if(pid_select==5){
             break;
         }
     }
@@ -316,6 +292,10 @@ PID_t menu(void){
     print(msg, 1);
     sprintf(msg, "I %lu", values[2]);
     print(msg, 2);
+    sprintf(msg, "L %d", LEFT_SPEED);
+    print(msg, 3);
+    sprintf(msg, "R %d", RIGHT_SPEED);
+    print(msg, 4);
     return pid_Init(values[0],values[1],values[2],5,1);
 }
 
