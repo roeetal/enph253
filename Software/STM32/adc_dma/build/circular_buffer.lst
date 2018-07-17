@@ -1,0 +1,564 @@
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"circular_buffer.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.circ_bufsum_init,"ax",%progbits
+  21              		.align	2
+  22              		.global	circ_bufsum_init
+  23              		.thumb
+  24              		.thumb_func
+  26              	circ_bufsum_init:
+  27              	.LFB0:
+  28              		.file 1 "Src/circular_buffer.c"
+   1:Src/circular_buffer.c **** #include "stdlib.h"
+   2:Src/circular_buffer.c **** #include "stdio.h"
+   3:Src/circular_buffer.c **** #include "circular_buffer.h"
+   4:Src/circular_buffer.c **** 
+   5:Src/circular_buffer.c **** /*
+   6:Src/circular_buffer.c **** Implementation from https://embeddedartistry.com/blog/2017/4/6/circular-buffers-in-cc
+   7:Src/circular_buffer.c **** */
+   8:Src/circular_buffer.c **** 
+   9:Src/circular_buffer.c **** int circ_bufsum_init(circ_bufsum_t *cbuf, int window_size)
+  10:Src/circular_buffer.c **** {
+  29              		.loc 1 10 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  11:Src/circular_buffer.c ****     int r = -1;
+  12:Src/circular_buffer.c **** 
+  13:Src/circular_buffer.c ****     if (cbuf)
+  34              		.loc 1 13 0
+  35 0000 70B1     		cbz	r0, .L3
+  10:Src/circular_buffer.c ****     int r = -1;
+  36              		.loc 1 10 0
+  37 0002 38B5     		push	{r3, r4, r5, lr}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 16
+  40              		.cfi_offset 3, -16
+  41              		.cfi_offset 4, -12
+  42              		.cfi_offset 5, -8
+  43              		.cfi_offset 14, -4
+  44 0004 0446     		mov	r4, r0
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 2
+
+
+  14:Src/circular_buffer.c ****     {
+  15:Src/circular_buffer.c ****         cbuf->head    = 0;
+  45              		.loc 1 15 0
+  46 0006 0023     		movs	r3, #0
+  47 0008 E360     		str	r3, [r4, #12]
+  16:Src/circular_buffer.c ****         cbuf->tail    = 0; 
+  48              		.loc 1 16 0
+  49 000a 2361     		str	r3, [r4, #16]
+  17:Src/circular_buffer.c ****         cbuf->size    = window_size;
+  50              		.loc 1 17 0
+  51 000c 6161     		str	r1, [r4, #20]
+  18:Src/circular_buffer.c ****         cbuf->num_els = 0;
+  52              		.loc 1 18 0
+  53 000e A360     		str	r3, [r4, #8]
+  19:Src/circular_buffer.c ****         cbuf->empty   = 1;
+  54              		.loc 1 19 0
+  55 0010 0125     		movs	r5, #1
+  56 0012 2571     		strb	r5, [r4, #4]
+  20:Src/circular_buffer.c ****         cbuf->buffer  = (int *)malloc(window_size * sizeof (double));
+  57              		.loc 1 20 0
+  58 0014 C800     		lsls	r0, r1, #3
+  59              	.LVL1:
+  60 0016 FFF7FEFF 		bl	malloc
+  61              	.LVL2:
+  62 001a 2060     		str	r0, [r4]
+  63              	.LVL3:
+  21:Src/circular_buffer.c ****         r = 1;
+  64              		.loc 1 21 0
+  65 001c 2846     		mov	r0, r5
+  66 001e 38BD     		pop	{r3, r4, r5, pc}
+  67              	.LVL4:
+  68              	.L3:
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 0
+  71              		.cfi_restore 3
+  72              		.cfi_restore 4
+  73              		.cfi_restore 5
+  74              		.cfi_restore 14
+  11:Src/circular_buffer.c **** 
+  75              		.loc 1 11 0
+  76 0020 4FF0FF30 		mov	r0, #-1
+  77              	.LVL5:
+  78 0024 7047     		bx	lr
+  79              		.cfi_endproc
+  80              	.LFE0:
+  82 0026 00BF     		.section	.text.circ_bufsum_reset,"ax",%progbits
+  83              		.align	2
+  84              		.global	circ_bufsum_reset
+  85              		.thumb
+  86              		.thumb_func
+  88              	circ_bufsum_reset:
+  89              	.LFB1:
+  22:Src/circular_buffer.c ****     }
+  23:Src/circular_buffer.c **** 
+  24:Src/circular_buffer.c ****     return r;
+  25:Src/circular_buffer.c **** }
+  26:Src/circular_buffer.c **** 
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 3
+
+
+  27:Src/circular_buffer.c **** int circ_bufsum_reset(circ_bufsum_t *cbuf)
+  28:Src/circular_buffer.c **** {
+  90              		.loc 1 28 0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  95              	.LVL6:
+  29:Src/circular_buffer.c ****     int r = -1;
+  30:Src/circular_buffer.c **** 
+  31:Src/circular_buffer.c ****     if (cbuf)
+  96              		.loc 1 31 0
+  97 0000 0346     		mov	r3, r0
+  98 0002 18B1     		cbz	r0, .L8
+  32:Src/circular_buffer.c ****     {
+  33:Src/circular_buffer.c ****         cbuf->head = 0;
+  99              		.loc 1 33 0
+ 100 0004 0020     		movs	r0, #0
+ 101              	.LVL7:
+ 102 0006 D860     		str	r0, [r3, #12]
+  34:Src/circular_buffer.c ****         cbuf->tail = 0;
+ 103              		.loc 1 34 0
+ 104 0008 1861     		str	r0, [r3, #16]
+ 105              	.LVL8:
+ 106 000a 7047     		bx	lr
+ 107              	.LVL9:
+ 108              	.L8:
+  29:Src/circular_buffer.c ****     int r = -1;
+ 109              		.loc 1 29 0
+ 110 000c 4FF0FF30 		mov	r0, #-1
+ 111              	.LVL10:
+  35:Src/circular_buffer.c ****         r = 0;
+  36:Src/circular_buffer.c ****     }
+  37:Src/circular_buffer.c **** 
+  38:Src/circular_buffer.c ****     return r;
+  39:Src/circular_buffer.c **** }
+ 112              		.loc 1 39 0
+ 113 0010 7047     		bx	lr
+ 114              		.cfi_endproc
+ 115              	.LFE1:
+ 117 0012 00BF     		.section	.text.circ_bufsum_empty,"ax",%progbits
+ 118              		.align	2
+ 119              		.global	circ_bufsum_empty
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	circ_bufsum_empty:
+ 124              	.LFB2:
+  40:Src/circular_buffer.c **** 
+  41:Src/circular_buffer.c **** /*
+  42:Src/circular_buffer.c **** Returns emptyness of cbuf - 1 for empty 
+  43:Src/circular_buffer.c **** */
+  44:Src/circular_buffer.c **** int circ_bufsum_empty(circ_bufsum_t *cbuf)
+  45:Src/circular_buffer.c **** {
+ 125              		.loc 1 45 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 4
+
+
+ 129              		@ link register save eliminated.
+ 130              	.LVL11:
+  46:Src/circular_buffer.c ****     return (cbuf->tail +1) == cbuf->head;
+ 131              		.loc 1 46 0
+ 132 0000 0369     		ldr	r3, [r0, #16]
+ 133 0002 0133     		adds	r3, r3, #1
+ 134 0004 C068     		ldr	r0, [r0, #12]
+ 135              	.LVL12:
+  47:Src/circular_buffer.c **** }
+ 136              		.loc 1 47 0
+ 137 0006 8342     		cmp	r3, r0
+ 138 0008 14BF     		ite	ne
+ 139 000a 0020     		movne	r0, #0
+ 140 000c 0120     		moveq	r0, #1
+ 141 000e 7047     		bx	lr
+ 142              		.cfi_endproc
+ 143              	.LFE2:
+ 145              		.section	.text.circ_bufsum_full,"ax",%progbits
+ 146              		.align	2
+ 147              		.global	circ_bufsum_full
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	circ_bufsum_full:
+ 152              	.LFB3:
+  48:Src/circular_buffer.c **** 
+  49:Src/circular_buffer.c **** int circ_bufsum_full(circ_bufsum_t *cbuf)
+  50:Src/circular_buffer.c **** {
+ 153              		.loc 1 50 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+ 158              	.LVL13:
+  51:Src/circular_buffer.c ****     return ((cbuf->head + 1) % cbuf->size) == cbuf->tail;
+ 159              		.loc 1 51 0
+ 160 0000 C368     		ldr	r3, [r0, #12]
+ 161 0002 0133     		adds	r3, r3, #1
+ 162 0004 4169     		ldr	r1, [r0, #20]
+ 163 0006 B3FBF1F2 		udiv	r2, r3, r1
+ 164 000a 01FB1233 		mls	r3, r1, r2, r3
+ 165 000e 0069     		ldr	r0, [r0, #16]
+ 166              	.LVL14:
+  52:Src/circular_buffer.c **** }
+ 167              		.loc 1 52 0
+ 168 0010 8342     		cmp	r3, r0
+ 169 0012 14BF     		ite	ne
+ 170 0014 0020     		movne	r0, #0
+ 171 0016 0120     		moveq	r0, #1
+ 172 0018 7047     		bx	lr
+ 173              		.cfi_endproc
+ 174              	.LFE3:
+ 176 001a 00BF     		.section	.text.circ_bufsum_put,"ax",%progbits
+ 177              		.align	2
+ 178              		.global	circ_bufsum_put
+ 179              		.thumb
+ 180              		.thumb_func
+ 182              	circ_bufsum_put:
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 5
+
+
+ 183              	.LFB4:
+  53:Src/circular_buffer.c **** 
+  54:Src/circular_buffer.c **** int circ_bufsum_put(circ_bufsum_t * cbuf, int data)
+  55:Src/circular_buffer.c **** {
+ 184              		.loc 1 55 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 189              	.LVL15:
+  56:Src/circular_buffer.c ****     int r = -1;
+  57:Src/circular_buffer.c **** 
+  58:Src/circular_buffer.c ****     if (cbuf)
+ 190              		.loc 1 58 0
+ 191 0000 0346     		mov	r3, r0
+ 192 0002 D8B1     		cbz	r0, .L14
+ 193              	.LVL16:
+  59:Src/circular_buffer.c ****     {
+  60:Src/circular_buffer.c ****         r = 1;
+  61:Src/circular_buffer.c ****         cbuf->buffer[cbuf->head] = data;
+ 194              		.loc 1 61 0
+ 195 0004 0268     		ldr	r2, [r0]
+ 196 0006 C068     		ldr	r0, [r0, #12]
+ 197              	.LVL17:
+ 198 0008 42F82010 		str	r1, [r2, r0, lsl #2]
+  62:Src/circular_buffer.c ****         cbuf->head = (cbuf->head + 1) % cbuf->size;
+ 199              		.loc 1 62 0
+ 200 000c DA68     		ldr	r2, [r3, #12]
+ 201 000e 511C     		adds	r1, r2, #1
+ 202              	.LVL18:
+ 203 0010 5869     		ldr	r0, [r3, #20]
+ 204 0012 B1FBF0F2 		udiv	r2, r1, r0
+ 205 0016 00FB1212 		mls	r2, r0, r2, r1
+ 206 001a DA60     		str	r2, [r3, #12]
+  63:Src/circular_buffer.c ****         if (cbuf->head == cbuf->tail)
+ 207              		.loc 1 63 0
+ 208 001c 1969     		ldr	r1, [r3, #16]
+ 209 001e 8A42     		cmp	r2, r1
+ 210 0020 07D1     		bne	.L13
+  64:Src/circular_buffer.c ****         {
+  65:Src/circular_buffer.c ****             cbuf->tail = (cbuf->tail + 1) % cbuf->size;
+ 211              		.loc 1 65 0
+ 212 0022 0131     		adds	r1, r1, #1
+ 213 0024 B1FBF0F2 		udiv	r2, r1, r0
+ 214 0028 00FB1211 		mls	r1, r0, r2, r1
+ 215 002c 1961     		str	r1, [r3, #16]
+  60:Src/circular_buffer.c ****         cbuf->buffer[cbuf->head] = data;
+ 216              		.loc 1 60 0
+ 217 002e 0120     		movs	r0, #1
+ 218 0030 7047     		bx	lr
+ 219              	.L13:
+  66:Src/circular_buffer.c ****         }
+  67:Src/circular_buffer.c ****         else
+  68:Src/circular_buffer.c ****         {
+  69:Src/circular_buffer.c ****             cbuf->num_els++;
+ 220              		.loc 1 69 0
+ 221 0032 9A68     		ldr	r2, [r3, #8]
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 6
+
+
+ 222 0034 0132     		adds	r2, r2, #1
+ 223 0036 9A60     		str	r2, [r3, #8]
+  60:Src/circular_buffer.c ****         cbuf->buffer[cbuf->head] = data;
+ 224              		.loc 1 60 0
+ 225 0038 0120     		movs	r0, #1
+ 226 003a 7047     		bx	lr
+ 227              	.LVL19:
+ 228              	.L14:
+  56:Src/circular_buffer.c **** 
+ 229              		.loc 1 56 0
+ 230 003c 4FF0FF30 		mov	r0, #-1
+ 231              	.LVL20:
+  70:Src/circular_buffer.c ****         }
+  71:Src/circular_buffer.c ****     }
+  72:Src/circular_buffer.c **** 
+  73:Src/circular_buffer.c ****     return r;
+  74:Src/circular_buffer.c **** }
+ 232              		.loc 1 74 0
+ 233 0040 7047     		bx	lr
+ 234              		.cfi_endproc
+ 235              	.LFE4:
+ 237              		.global	__aeabi_d2iz
+ 238              		.global	__aeabi_i2d
+ 239 0042 00BF     		.section	.text.circ_bufsum_add_sample,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	circ_bufsum_add_sample
+ 242              		.thumb
+ 243              		.thumb_func
+ 245              	circ_bufsum_add_sample:
+ 246              	.LFB5:
+  75:Src/circular_buffer.c **** 
+  76:Src/circular_buffer.c **** /*
+  77:Src/circular_buffer.c **** Add a new sample to the buffer - add it to the sum of the buffer, and remove the value that is over
+  78:Src/circular_buffer.c **** */
+  79:Src/circular_buffer.c **** double circ_bufsum_add_sample(circ_bufsum_t * cbuf, double data)
+  80:Src/circular_buffer.c **** {
+ 247              		.loc 1 80 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251              	.LVL21:
+  81:Src/circular_buffer.c ****     double r = -1.0;
+  82:Src/circular_buffer.c **** 
+  83:Src/circular_buffer.c ****     if (cbuf)
+ 252              		.loc 1 83 0
+ 253 0000 40B3     		cbz	r0, .L18
+  80:Src/circular_buffer.c ****     double r = -1.0;
+ 254              		.loc 1 80 0
+ 255 0002 70B5     		push	{r4, r5, r6, lr}
+ 256              	.LCFI2:
+ 257              		.cfi_def_cfa_offset 16
+ 258              		.cfi_offset 4, -16
+ 259              		.cfi_offset 5, -12
+ 260              		.cfi_offset 6, -8
+ 261              		.cfi_offset 14, -4
+ 262 0004 0446     		mov	r4, r0
+ 263 0006 51EC100B 		fmrrd	r0, r1, d0
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 7
+
+
+ 264              	.LVL22:
+  84:Src/circular_buffer.c ****     {
+  85:Src/circular_buffer.c ****         r = 0.0;
+  86:Src/circular_buffer.c ****         cbuf->buffer[cbuf->head] = data;
+ 265              		.loc 1 86 0
+ 266 000a 2568     		ldr	r5, [r4]
+ 267 000c E668     		ldr	r6, [r4, #12]
+ 268 000e FFF7FEFF 		bl	__aeabi_d2iz
+ 269              	.LVL23:
+ 270 0012 45F82600 		str	r0, [r5, r6, lsl #2]
+  87:Src/circular_buffer.c ****         cbuf->head = (cbuf->head + 1) % cbuf->size;
+ 271              		.loc 1 87 0
+ 272 0016 E368     		ldr	r3, [r4, #12]
+ 273 0018 5A1C     		adds	r2, r3, #1
+ 274 001a 6569     		ldr	r5, [r4, #20]
+ 275 001c B2FBF5F3 		udiv	r3, r2, r5
+ 276 0020 05FB1323 		mls	r3, r5, r3, r2
+ 277 0024 E360     		str	r3, [r4, #12]
+  88:Src/circular_buffer.c **** 
+  89:Src/circular_buffer.c ****         if (cbuf->head == cbuf->tail)
+ 278              		.loc 1 89 0
+ 279 0026 2669     		ldr	r6, [r4, #16]
+ 280 0028 B342     		cmp	r3, r6
+ 281 002a 0DD1     		bne	.L17
+  90:Src/circular_buffer.c ****         {
+  91:Src/circular_buffer.c ****             r = cbuf->buffer[cbuf->tail];
+ 282              		.loc 1 91 0
+ 283 002c 2368     		ldr	r3, [r4]
+ 284 002e 53F82600 		ldr	r0, [r3, r6, lsl #2]
+ 285 0032 FFF7FEFF 		bl	__aeabi_i2d
+ 286              	.LVL24:
+ 287 0036 41EC100B 		fmdrr	d0, r0, r1
+ 288              	.LVL25:
+  92:Src/circular_buffer.c ****             cbuf->tail = (cbuf->tail + 1) % cbuf->size;
+ 289              		.loc 1 92 0
+ 290 003a 0136     		adds	r6, r6, #1
+ 291 003c B6FBF5F3 		udiv	r3, r6, r5
+ 292 0040 05FB1366 		mls	r6, r5, r3, r6
+ 293 0044 2661     		str	r6, [r4, #16]
+ 294 0046 70BD     		pop	{r4, r5, r6, pc}
+ 295              	.LVL26:
+ 296              	.L17:
+  93:Src/circular_buffer.c ****         }
+  94:Src/circular_buffer.c ****         else
+  95:Src/circular_buffer.c ****         {
+  96:Src/circular_buffer.c ****             cbuf->num_els += 1;
+ 297              		.loc 1 96 0
+ 298 0048 A368     		ldr	r3, [r4, #8]
+ 299 004a 0133     		adds	r3, r3, #1
+ 300 004c A360     		str	r3, [r4, #8]
+  85:Src/circular_buffer.c ****         cbuf->buffer[cbuf->head] = data;
+ 301              		.loc 1 85 0
+ 302 004e 9FED040B 		fldd	d0, .L21
+ 303 0052 70BD     		pop	{r4, r5, r6, pc}
+ 304              	.LVL27:
+ 305              	.L18:
+ 306              	.LCFI3:
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 8
+
+
+ 307              		.cfi_def_cfa_offset 0
+ 308              		.cfi_restore 4
+ 309              		.cfi_restore 5
+ 310              		.cfi_restore 6
+ 311              		.cfi_restore 14
+  81:Src/circular_buffer.c **** 
+ 312              		.loc 1 81 0
+ 313 0054 9FED040B 		fldd	d0, .L21+8
+ 314              	.LVL28:
+ 315 0058 7047     		bx	lr
+ 316              	.L22:
+ 317 005a 00BFAFF3 		.align	3
+ 317      0080
+ 318              	.L21:
+ 319 0060 00000000 		.word	0
+ 320 0064 00000000 		.word	0
+ 321 0068 00000000 		.word	0
+ 322 006c 0000F0BF 		.word	-1074790400
+ 323              		.cfi_endproc
+ 324              	.LFE5:
+ 326              		.section	.text.circ_bufsum_read_head,"ax",%progbits
+ 327              		.align	2
+ 328              		.global	circ_bufsum_read_head
+ 329              		.thumb
+ 330              		.thumb_func
+ 332              	circ_bufsum_read_head:
+ 333              	.LFB6:
+  97:Src/circular_buffer.c ****         }
+  98:Src/circular_buffer.c ****     }
+  99:Src/circular_buffer.c **** 
+ 100:Src/circular_buffer.c ****     return r;
+ 101:Src/circular_buffer.c **** }
+ 102:Src/circular_buffer.c **** 
+ 103:Src/circular_buffer.c **** int inline circ_bufsum_read_head(circ_bufsum_t *cbuf)
+ 104:Src/circular_buffer.c **** {
+ 334              		.loc 1 104 0
+ 335              		.cfi_startproc
+ 336              		@ args = 0, pretend = 0, frame = 0
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338              		@ link register save eliminated.
+ 339              	.LVL29:
+ 105:Src/circular_buffer.c ****     if (cbuf)
+ 340              		.loc 1 105 0
+ 341 0000 20B1     		cbz	r0, .L25
+ 106:Src/circular_buffer.c ****     {
+ 107:Src/circular_buffer.c ****         return cbuf->buffer[cbuf->head];
+ 342              		.loc 1 107 0
+ 343 0002 0268     		ldr	r2, [r0]
+ 344 0004 C368     		ldr	r3, [r0, #12]
+ 345 0006 52F82300 		ldr	r0, [r2, r3, lsl #2]
+ 346              	.LVL30:
+ 347 000a 7047     		bx	lr
+ 348              	.LVL31:
+ 349              	.L25:
+ 108:Src/circular_buffer.c ****     }
+ 109:Src/circular_buffer.c ****     return -1;
+ 350              		.loc 1 109 0
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 9
+
+
+ 351 000c 4FF0FF30 		mov	r0, #-1
+ 352              	.LVL32:
+ 110:Src/circular_buffer.c **** }
+ 353              		.loc 1 110 0
+ 354 0010 7047     		bx	lr
+ 355              		.cfi_endproc
+ 356              	.LFE6:
+ 358 0012 00BF     		.section	.text.circ_bufsum_read_tail,"ax",%progbits
+ 359              		.align	2
+ 360              		.global	circ_bufsum_read_tail
+ 361              		.thumb
+ 362              		.thumb_func
+ 364              	circ_bufsum_read_tail:
+ 365              	.LFB7:
+ 111:Src/circular_buffer.c **** 
+ 112:Src/circular_buffer.c **** int inline circ_bufsum_read_tail(circ_bufsum_t *cbuf)
+ 113:Src/circular_buffer.c **** {
+ 366              		.loc 1 113 0
+ 367              		.cfi_startproc
+ 368              		@ args = 0, pretend = 0, frame = 0
+ 369              		@ frame_needed = 0, uses_anonymous_args = 0
+ 370              		@ link register save eliminated.
+ 371              	.LVL33:
+ 114:Src/circular_buffer.c ****     if (cbuf)
+ 372              		.loc 1 114 0
+ 373 0000 20B1     		cbz	r0, .L28
+ 115:Src/circular_buffer.c ****     {
+ 116:Src/circular_buffer.c ****         return cbuf->buffer[cbuf->tail];
+ 374              		.loc 1 116 0
+ 375 0002 0268     		ldr	r2, [r0]
+ 376 0004 0369     		ldr	r3, [r0, #16]
+ 377 0006 52F82300 		ldr	r0, [r2, r3, lsl #2]
+ 378              	.LVL34:
+ 379 000a 7047     		bx	lr
+ 380              	.LVL35:
+ 381              	.L28:
+ 117:Src/circular_buffer.c ****     }
+ 118:Src/circular_buffer.c ****     return -1;
+ 382              		.loc 1 118 0
+ 383 000c 4FF0FF30 		mov	r0, #-1
+ 384              	.LVL36:
+ 119:Src/circular_buffer.c **** }
+ 385              		.loc 1 119 0
+ 386 0010 7047     		bx	lr
+ 387              		.cfi_endproc
+ 388              	.LFE7:
+ 390 0012 00BF     		.text
+ 391              	.Letext0:
+ 392              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h
+ 393              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 394              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 395              		.file 5 "Inc/circular_buffer.h"
+ 396              		.file 6 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdlib.h"
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 circular_buffer.c
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:21     .text.circ_bufsum_init:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:26     .text.circ_bufsum_init:0000000000000000 circ_bufsum_init
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:83     .text.circ_bufsum_reset:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:88     .text.circ_bufsum_reset:0000000000000000 circ_bufsum_reset
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:118    .text.circ_bufsum_empty:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:123    .text.circ_bufsum_empty:0000000000000000 circ_bufsum_empty
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:146    .text.circ_bufsum_full:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:151    .text.circ_bufsum_full:0000000000000000 circ_bufsum_full
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:177    .text.circ_bufsum_put:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:182    .text.circ_bufsum_put:0000000000000000 circ_bufsum_put
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:240    .text.circ_bufsum_add_sample:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:245    .text.circ_bufsum_add_sample:0000000000000000 circ_bufsum_add_sample
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:319    .text.circ_bufsum_add_sample:0000000000000060 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:327    .text.circ_bufsum_read_head:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:332    .text.circ_bufsum_read_head:0000000000000000 circ_bufsum_read_head
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:359    .text.circ_bufsum_read_tail:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//cckGU4Cz.s:364    .text.circ_bufsum_read_tail:0000000000000000 circ_bufsum_read_tail
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+malloc
+__aeabi_d2iz
+__aeabi_i2d
