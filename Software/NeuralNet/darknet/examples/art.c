@@ -9,19 +9,18 @@ void demo_art(char *cfgfile, char *weightfile, int cam_index)
     set_batch_network(net, 1);
 
     srand(2222222);
-    CvCapture * cap;
+    Mat frame;
+    VideoCapture cap;
 
-    cap = cvCaptureFromCAM(cam_index);
-
+    cap.open(cam_index);
     char *window = "ArtJudgementBot9000!!!";
-    if(!cap) error("Couldn't connect to webcam.\n");
     cvNamedWindow(window, CV_WINDOW_NORMAL); 
     cvResizeWindow(window, 512, 512);
     int i;
     int idx[] = {37, 401, 434};
     int n = sizeof(idx)/sizeof(idx[0]);
 
-    while(1){
+    while(cap.isOpened() && cp.read(frame)){
         image in = get_image_from_stream(cap);
         image in_s = resize_image(in, net->w, net->h);
         show_image(in, window);

@@ -41,13 +41,6 @@ else()
 endif()
 
 #BOOST
-set(Boost_NO_SYSTEM_PATHS TRUE) 
-if (Boost_NO_SYSTEM_PATHS)
-  set(BOOST_ROOT "/usr/local/Cellar/boost/1.67.0_1")
-  # set(BOOST_ROOT "/usr/local/Cellar/boost-python/1.67.0")
-  set(Boost_INCLUDE_DIR "${BOOST_ROOT}/include")
-  set(BOOST_LIBRARY_DIR "${BOOST_ROOT}/lib")
-endif (Boost_NO_SYSTEM_PATHS)
 FIND_PACKAGE(Boost REQUIRED python)
 FIND_PACKAGE(PythonLibs REQUIRED)
 FIND_PACKAGE(OpenCV REQUIRED)
@@ -56,7 +49,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR})
 include_directories(SYSTEM ${PYTHON_INCLUDE_DIR})
 include_directories(SYSTEM ${OpenCV_INCLUDE_DIR})
 
-include_directories(src)
+include_directories(../src)
 set(SRC_DIR src)
 
 FILE(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/${SRC_DIR}/*.c)
@@ -74,7 +67,7 @@ CUDA_INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(CUDA_ARCH_BIN "20 30 32 35 37 50 52" CACHE STRING "Specify 'real' GPU arch to build binaries for, BIN(PTX) format is supported. Example: 1.3 2.1(1.3) or 13 21(13)")
 set(CUDA_ARCH_PTX "" CACHE STRING "Specify 'virtual' PTX arch to build PTX intermediate code for. Example: 1.0 1.2 or 10 12")              
 
-include(CudaComputeTargetFlags)
+include(/usr/local/lib/cmake/CudaComputeTargetFlags.cmake)
 APPEND_TARGET_ARCH_FLAGS()
 
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}  "-Xcompiler;-fPIC;")           
@@ -85,6 +78,12 @@ CUDA_COMPILE(cuda_objs ${CU_SRC_FILES})
     
 message(STATUS "CUDA FOUND")
 endif()
+
+
+CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/config.cmake.in" "${PROJECT_BINARY_DIR}/Find${PROJECT_NAME}.cmake")
+CONFIGURE_FILE("${PROJECT_SOURCE_DIR}/config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+INSTALL(FILES "${PROJECT_BINARY_DIR}/Find${PROJECT_NAME}.cmake" DESTINATION lib/cmake/ )
+INSTALL(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION lib/cmake/ )
 
 
 add_library(dnl SHARED ${SRC_FILES} ${CU_SRC_FILES} ${cuda_objs})
