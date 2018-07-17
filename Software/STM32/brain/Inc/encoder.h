@@ -13,6 +13,6 @@ typedef struct{
 } ENCODER_t;
 
 ENCODER_t encoder_Init();
-float update_encoder(ENCODER_t *enc);
+float update_encoder(ENCODER_t *enc, TIM_HandleTypeDef *htim);
 
 #endif

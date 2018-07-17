@@ -21,13 +21,14 @@ ENCODER_t encoder_Init(){
  *
  *  dt is number of clock ticks, need to convert to time.
  *
- * @params  encoder struct
+ * @param   pointer to encoder struct
+ * @param   pointer to encoder timer handle
  * @modifies    speed stored in struct
  * @returns    speed
  **/
-float update_encoder(ENCODER_t *enc){
+float update_encoder(ENCODER_t *enc, TIM_HandleTypeDef *htim){
     uint16_t temp_time = TIM9->CNT;
-    uint8_t temp_cnt = TIM4->CNT;
+    uint8_t temp_cnt = __HAL_TIM_GetCounter(htim);
     int8_t d_cnt;
     uint16_t d_t = temp_time<enc->time? temp_time+1+(enc->time^255): temp_time - enc->time;
     //uint8_t dt = temp_time - time;

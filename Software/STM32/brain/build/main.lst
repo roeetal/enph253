@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
   27:Src/main.c    ****  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
   28:Src/main.c    ****  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
   29:Src/main.c    ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 2
 
 
   30:Src/main.c    ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
   84:Src/main.c    **** 
   85:Src/main.c    **** /**
   86:Src/main.c    ****  * @brief  The application entry point.
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 3
 
 
   87:Src/main.c    ****  *
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  141:Src/main.c    **** 
  142:Src/main.c    **** 
  143:Src/main.c    ****     /* USER CODE END 2 */
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 4
 
 
  144:Src/main.c    ****     char msg[20] = "";
@@ -214,7 +214,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  174:Src/main.c    ****         time = temp_time;
  175:Src/main.c    ****         HAL_Delay(50);
  176:Src/main.c    **** */
- 177:Src/main.c    ****     sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER));
+ 177:Src/main.c    ****     sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER, &htim4));
  178:Src/main.c    ****     print(msg, 0);
  179:Src/main.c    ****         /* USER CODE END WHILE */
  180:Src/main.c    **** 
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  198:Src/main.c    ****             while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
  199:Src/main.c    ****                 values[pid_select] = TIM4->CNT;
  200:Src/main.c    ****                 sprintf(msg, "%lu", values[pid_select]);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 5
 
 
  201:Src/main.c    ****                 print(msg, 0);
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
   35 0000 70B5     		push	{r4, r5, r6, lr}
   36              	.LCFI0:
   37              		.cfi_def_cfa_offset 16
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 6
 
 
   38              		.cfi_offset 4, -16
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
   84 003e 4FF0FF33 		mov	r3, #-1
   85 0042 3362     		str	r3, [r6, #32]
   86 0044 0FE0     		b	.L3
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 7
 
 
   87              	.L5:
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  131 0080 1060     		str	r0, [r2]
  132 0082 05E0     		b	.L8
  133              	.LVL10:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 8
 
 
  134              	.L7:
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  282:Src/main.c    ****     print(msg, 1);
  283:Src/main.c    **** }
  284:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 9
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 9
 
 
  285:Src/main.c    **** /**
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  339:Src/main.c    ****     /* SysTick_IRQn interrupt configuration */
  340:Src/main.c    ****     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
  341:Src/main.c    **** }
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 10
 
 
  342:Src/main.c    **** 
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  217              	.LVL20:
  218              	.L16:
  219 0032 00BF     		.align	2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 11
 
 
  220              	.L15:
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  271 0020 5948     		ldr	r0, .L31+4
  272 0022 4FF40051 		mov	r1, #8192
  273 0026 FFF7FEFF 		bl	HAL_GPIO_ReadPin
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 12
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 12
 
 
  274              	.LVL26:
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  203:Src/main.c    ****         }
  320              		.loc 1 203 0
  321 007a 0135     		adds	r5, r5, #1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 13
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 13
 
 
  322              	.LVL32:
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  368 00bc 40F2EE22 		movw	r2, #750
  369 00c0 FFF7FEFF 		bl	sprintf
  370              	.LVL39:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 14
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 14
 
 
  218:Src/main.c    ****             TIM4->CNT = speed;
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  229:Src/main.c    ****                 }
  415              		.loc 1 229 0
  416 0102 274B     		ldr	r3, .L31+28
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 15
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 15
 
 
  417 0104 1C60     		str	r4, [r3]
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  463 0146 2A46     		mov	r2, r5
  464 0148 FFF7FEFF 		bl	sprintf
  465              	.LVL53:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 16
 
 
  243:Src/main.c    ****     sprintf(msg, "I %lu", values[2]);
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  515 01ac 24000000 		.word	.LC5
  516              		.cfi_endproc
  517              	.LFE124:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 17
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 17
 
 
  519              		.global	__aeabi_ui2d
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  571              	.LVL66:
  572 0034 0022     		movs	r2, #0
  573 0036 124B     		ldr	r3, .L35+8
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 18
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 18
 
 
  574 0038 FFF7FEFF 		bl	__aeabi_dmul
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  622 0088 34000000 		.word	.LC7
  623              		.cfi_endproc
  624              	.LFE126:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 19
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 19
 
 
  626              		.section	.text._Error_Handler,"ax",%progbits
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  665              		.cfi_def_cfa_offset 88
  666              	.LBB3:
  297:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 20
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 20
 
 
  667              		.loc 1 297 0
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  712 004e 1293     		str	r3, [sp, #72]
  311:Src/main.c    ****     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
  713              		.loc 1 311 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 21
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 21
 
 
  714 0050 0423     		movs	r3, #4
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  758 0098 FFF7FEFF 		bl	HAL_SYSTICK_Config
  759              	.LVL80:
  337:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 22
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 22
 
 
  760              		.loc 1 337 0
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  811              	.LVL84:
  113:Src/main.c    ****     MX_TIM3_Init();
  812              		.loc 1 113 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 23
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 23
 
 
  813 000c FFF7FEFF 		bl	MX_GPIO_Init
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  129:Src/main.c    ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
  855              		.loc 1 129 0
  856 0048 184C     		ldr	r4, .L48+8
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 24
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 24
 
 
  857 004a 2046     		mov	r0, r4
@@ -1425,149 +1425,150 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 1
  177:Src/main.c    ****     print(msg, 0);
  892              		.loc 1 177 0 discriminator 1
  893 0082 06A8     		add	r0, sp, #24
- 894 0084 FFF7FEFF 		bl	update_encoder
- 895              	.LVL104:
- 896 0088 01A8     		add	r0, sp, #4
- 897 008a 0A49     		ldr	r1, .L48+16
- 898 008c FDEEC07A 		ftosizs	s15, s0
- 899 0090 17EE902A 		fmrs	r2, s15	@ int
- 900 0094 FFF7FEFF 		bl	sprintf
- 901              	.LVL105:
+ 894 0084 0749     		ldr	r1, .L48
+ 895 0086 FFF7FEFF 		bl	update_encoder
+ 896              	.LVL104:
+ 897 008a 01A8     		add	r0, sp, #4
+ 898 008c 0949     		ldr	r1, .L48+16
+ 899 008e FDEEC07A 		ftosizs	s15, s0
+ 900 0092 17EE902A 		fmrs	r2, s15	@ int
+ 901 0096 FFF7FEFF 		bl	sprintf
+ 902              	.LVL105:
  178:Src/main.c    ****         /* USER CODE END WHILE */
- 902              		.loc 1 178 0 discriminator 1
- 903 0098 01A8     		add	r0, sp, #4
- 904 009a 0021     		movs	r1, #0
- 905 009c FFF7FEFF 		bl	print
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 25
+ 903              		.loc 1 178 0 discriminator 1
+ 904 009a 01A8     		add	r0, sp, #4
+ 905 009c 0021     		movs	r1, #0
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 25
 
 
- 906              	.LVL106:
+ 906 009e FFF7FEFF 		bl	print
+ 907              	.LVL106:
  183:Src/main.c    ****     /* USER CODE END 3 */
- 907              		.loc 1 183 0 discriminator 1
- 908 00a0 EFE7     		b	.L46
- 909              	.L49:
- 910 00a2 00BF     		.align	2
- 911              	.L48:
- 912 00a4 00000000 		.word	htim4
- 913 00a8 00000000 		.word	htim5
- 914 00ac 00000000 		.word	htim1
- 915 00b0 00000000 		.word	htim9
- 916 00b4 10000000 		.word	.LC2
- 917              		.cfi_endproc
- 918              	.LFE123:
- 920              		.global	RIGHT_SPEED
- 921              		.global	LEFT_SPEED
- 922              		.global	PUSH_BUTTON_STATE
- 923              		.comm	last_time,4,4
- 924              		.section	.data.RIGHT_SPEED,"aw",%progbits
- 925              		.align	2
- 926              		.set	.LANCHOR1,. + 0
- 929              	RIGHT_SPEED:
- 930 0000 20030000 		.word	800
- 931              		.section	.data.LEFT_SPEED,"aw",%progbits
- 932              		.align	2
- 933              		.set	.LANCHOR0,. + 0
- 936              	LEFT_SPEED:
- 937 0000 20030000 		.word	800
- 938              		.section	.rodata.str1.4,"aMS",%progbits,1
- 939              		.align	2
- 940              	.LC0:
- 941 0000 53746172 		.ascii	"Starting\000"
- 941      74696E67 
- 941      00
- 942 0009 000000   		.space	3
- 943              	.LC1:
- 944 000c 256C7500 		.ascii	"%lu\000"
- 945              	.LC2:
- 946 0010 256400   		.ascii	"%d\000"
- 947 0013 00       		.space	1
- 948              	.LC3:
- 949 0014 5020256C 		.ascii	"P %lu\000"
- 949      7500
- 950 001a 0000     		.space	2
- 951              	.LC4:
- 952 001c 4420256C 		.ascii	"D %lu\000"
- 952      7500
- 953 0022 0000     		.space	2
- 954              	.LC5:
- 955 0024 4920256C 		.ascii	"I %lu\000"
- 955      7500
- 956 002a 0000     		.space	2
- 957              	.LC6:
- 958 002c 4C3A2025 		.ascii	"L: %lu\000"
- 958      6C7500
- 959 0033 00       		.space	1
- 960              	.LC7:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 26
+ 908              		.loc 1 183 0 discriminator 1
+ 909 00a2 EEE7     		b	.L46
+ 910              	.L49:
+ 911              		.align	2
+ 912              	.L48:
+ 913 00a4 00000000 		.word	htim4
+ 914 00a8 00000000 		.word	htim5
+ 915 00ac 00000000 		.word	htim1
+ 916 00b0 00000000 		.word	htim9
+ 917 00b4 10000000 		.word	.LC2
+ 918              		.cfi_endproc
+ 919              	.LFE123:
+ 921              		.global	RIGHT_SPEED
+ 922              		.global	LEFT_SPEED
+ 923              		.global	PUSH_BUTTON_STATE
+ 924              		.comm	last_time,4,4
+ 925              		.section	.data.RIGHT_SPEED,"aw",%progbits
+ 926              		.align	2
+ 927              		.set	.LANCHOR1,. + 0
+ 930              	RIGHT_SPEED:
+ 931 0000 20030000 		.word	800
+ 932              		.section	.data.LEFT_SPEED,"aw",%progbits
+ 933              		.align	2
+ 934              		.set	.LANCHOR0,. + 0
+ 937              	LEFT_SPEED:
+ 938 0000 20030000 		.word	800
+ 939              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 940              		.align	2
+ 941              	.LC0:
+ 942 0000 53746172 		.ascii	"Starting\000"
+ 942      74696E67 
+ 942      00
+ 943 0009 000000   		.space	3
+ 944              	.LC1:
+ 945 000c 256C7500 		.ascii	"%lu\000"
+ 946              	.LC2:
+ 947 0010 256400   		.ascii	"%d\000"
+ 948 0013 00       		.space	1
+ 949              	.LC3:
+ 950 0014 5020256C 		.ascii	"P %lu\000"
+ 950      7500
+ 951 001a 0000     		.space	2
+ 952              	.LC4:
+ 953 001c 4420256C 		.ascii	"D %lu\000"
+ 953      7500
+ 954 0022 0000     		.space	2
+ 955              	.LC5:
+ 956 0024 4920256C 		.ascii	"I %lu\000"
+ 956      7500
+ 957 002a 0000     		.space	2
+ 958              	.LC6:
+ 959 002c 4C3A2025 		.ascii	"L: %lu\000"
+ 959      6C7500
+ 960 0033 00       		.space	1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 26
 
 
- 961 0034 523A2025 		.ascii	"R: %lu\000"
- 961      6C7500
- 962 003b 00       		.space	1
- 963              	.LC8:
- 964 003c 5372632F 		.ascii	"Src/main.c\000"
- 964      6D61696E 
- 964      2E6300
- 965              		.section	.bss.PUSH_BUTTON_STATE,"aw",%nobits
- 968              	PUSH_BUTTON_STATE:
- 969 0000 00       		.space	1
- 970              		.text
- 971              	.Letext0:
- 972              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 973              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 974              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 975              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 976              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 977              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 978              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 979              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 980              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 981              		.file 11 "Inc/fonts.h"
- 982              		.file 12 "Inc/ssd1306.h"
- 983              		.file 13 "Inc/pid.h"
- 984              		.file 14 "Inc/encoder.h"
- 985              		.file 15 "Drivers/CMSIS/Include/core_cm4.h"
- 986              		.file 16 "Inc/tim.h"
- 987              		.file 17 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdio.h"
- 988              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 989              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 990              		.file 20 "Inc/gpio.h"
- 991              		.file 21 "Inc/usart.h"
- 992              		.file 22 "Inc/adc.h"
- 993              		.file 23 "Inc/i2c.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 27
+ 961              	.LC7:
+ 962 0034 523A2025 		.ascii	"R: %lu\000"
+ 962      6C7500
+ 963 003b 00       		.space	1
+ 964              	.LC8:
+ 965 003c 5372632F 		.ascii	"Src/main.c\000"
+ 965      6D61696E 
+ 965      2E6300
+ 966              		.section	.bss.PUSH_BUTTON_STATE,"aw",%nobits
+ 969              	PUSH_BUTTON_STATE:
+ 970 0000 00       		.space	1
+ 971              		.text
+ 972              	.Letext0:
+ 973              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 974              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 975              		.file 4 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 976              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 977              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 978              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 979              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 980              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 981              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 982              		.file 11 "Inc/fonts.h"
+ 983              		.file 12 "Inc/ssd1306.h"
+ 984              		.file 13 "Inc/pid.h"
+ 985              		.file 14 "Inc/encoder.h"
+ 986              		.file 15 "Drivers/CMSIS/Include/core_cm4.h"
+ 987              		.file 16 "Inc/tim.h"
+ 988              		.file 17 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/stdio.h"
+ 989              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 990              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 991              		.file 20 "Inc/gpio.h"
+ 992              		.file 21 "Inc/usart.h"
+ 993              		.file 22 "Inc/adc.h"
+ 994              		.file 23 "Inc/i2c.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 27
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:22     .text.do_pid:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:27     .text.do_pid:0000000000000000 do_pid
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:160    .text.do_pid:00000000000000a4 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:169    .text.print:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:174    .text.print:0000000000000000 print
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:221    .text.print:0000000000000034 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:226    .text.menu:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:231    .text.menu:0000000000000000 menu
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:505    .text.menu:0000000000000184 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:524    .text.update_motor_speed:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:529    .text.update_motor_speed:0000000000000000 update_motor_speed
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:618    .text.update_motor_speed:0000000000000078 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:627    .text._Error_Handler:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:632    .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:648    .text.SystemClock_Config:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:653    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:779    .text.SystemClock_Config:00000000000000b4 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:787    .text.main:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:792    .text.main:0000000000000000 main
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:912    .text.main:00000000000000a4 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:929    .data.RIGHT_SPEED:0000000000000000 RIGHT_SPEED
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:936    .data.LEFT_SPEED:0000000000000000 LEFT_SPEED
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:968    .bss.PUSH_BUTTON_STATE:0000000000000000 PUSH_BUTTON_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:22     .text.do_pid:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:27     .text.do_pid:0000000000000000 do_pid
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:160    .text.do_pid:00000000000000a4 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:169    .text.print:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:174    .text.print:0000000000000000 print
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:221    .text.print:0000000000000034 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:226    .text.menu:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:231    .text.menu:0000000000000000 menu
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:505    .text.menu:0000000000000184 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:524    .text.update_motor_speed:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:529    .text.update_motor_speed:0000000000000000 update_motor_speed
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:618    .text.update_motor_speed:0000000000000078 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:627    .text._Error_Handler:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:632    .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:648    .text.SystemClock_Config:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:653    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:779    .text.SystemClock_Config:00000000000000b4 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:787    .text.main:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:792    .text.main:0000000000000000 main
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:913    .text.main:00000000000000a4 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:930    .data.RIGHT_SPEED:0000000000000000 RIGHT_SPEED
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:937    .data.LEFT_SPEED:0000000000000000 LEFT_SPEED
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:969    .bss.PUSH_BUTTON_STATE:0000000000000000 PUSH_BUTTON_STATE
                             *COM*:0000000000000004 last_time
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:925    .data.RIGHT_SPEED:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:932    .data.LEFT_SPEED:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:939    .rodata.str1.4:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s:969    .bss.PUSH_BUTTON_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:926    .data.RIGHT_SPEED:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:933    .data.LEFT_SPEED:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:940    .rodata.str1.4:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s:970    .bss.PUSH_BUTTON_STATE:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -1595,7 +1596,7 @@ HAL_RCC_GetHCLKFreq
 HAL_SYSTICK_Config
 HAL_SYSTICK_CLKSourceConfig
 HAL_NVIC_SetPriority
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccNOI6rD.s 			page 28
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccsJqtOH.s 			page 28
 
 
 HAL_Init

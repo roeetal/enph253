@@ -174,7 +174,7 @@ int main(void)
         time = temp_time;
         HAL_Delay(50);
 */
-    sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER));
+    sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER, &htim4));
     print(msg, 0);
         /* USER CODE END WHILE */
 
