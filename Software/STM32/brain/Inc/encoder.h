@@ -7,7 +7,7 @@
 #define ENCODER_R 0.6
 
 typedef struct{
-    uint8_t cnt;
+    uint16_t cnt;
     uint16_t time;
     float speed;
 } ENCODER_t;

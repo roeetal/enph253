@@ -28,16 +28,18 @@ ENCODER_t encoder_Init(){
  **/
 float update_encoder(ENCODER_t *enc, TIM_HandleTypeDef *htim){
     uint16_t temp_time = TIM9->CNT;
-    uint8_t temp_cnt = __HAL_TIM_GetCounter(htim);
-    int8_t d_cnt;
-    uint16_t d_t = temp_time<enc->time? temp_time+1+(enc->time^255): temp_time - enc->time;
+    uint16_t temp_cnt = __HAL_TIM_GetCounter(htim);
+    int16_t d_cnt;
+    uint16_t d_t = temp_time<enc->time? temp_time+1+(enc->time^65535): temp_time - enc->time;
     //uint8_t dt = temp_time - time;
     if(enc->speed>0 && temp_cnt<enc->cnt){
-        d_cnt = temp_cnt+1+(enc->cnt^255);
+        d_cnt = temp_cnt+1+(enc->cnt^65535);
     }else if(enc->speed<0 && temp_cnt>enc->cnt){
-        d_cnt = -(enc->cnt+1+(temp_cnt^255));
-    }else if(temp_cnt>200 && enc->cnt == 0 && enc->speed==0){
-        d_cnt = -(1+(temp_cnt^255));
+        d_cnt = -(enc->cnt+1+(temp_cnt^65535));
+    }else if(temp_cnt>65000 && enc->cnt == 0 && enc->speed==0){
+        d_cnt = -(1+(temp_cnt^65535));
+    }else if(temp_cnt<500 && enc->cnt == 65535 && enc->speed==0){
+        d_cnt = 1+temp_cnt;
     }else{
         d_cnt = temp_cnt - enc->cnt;
     }
