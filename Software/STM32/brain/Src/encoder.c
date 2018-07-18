@@ -11,7 +11,7 @@ ENCODER_t encoder_Init(){
 
 /**
  * 16 bit uint for 16 bit timer
- * 8 bit uint for 8 bit count value
+ * 16 bit uint for 16 bit count value
  * Speed of TIM9: 72MHz/65535
  * Angular velocity w = 2*pi*n/(N*t)*R
  * n: number of encoder counts
