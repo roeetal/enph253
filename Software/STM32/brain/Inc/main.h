@@ -66,8 +66,12 @@
 #define ENCODER_RIGHT_1_GPIO_Port GPIOA
 #define ENCODER_RIGHT_2_Pin GPIO_PIN_1
 #define ENCODER_RIGHT_2_GPIO_Port GPIOA
+#define PI_ANALOG_Pin GPIO_PIN_2
+#define PI_ANALOG_GPIO_Port GPIOA
 #define IR_1_Pin GPIO_PIN_3
 #define IR_1_GPIO_Port GPIOA
+#define IR_2_Pin GPIO_PIN_4
+#define IR_2_GPIO_Port GPIOA
 #define SERVO_CLAW_1_Pin GPIO_PIN_6
 #define SERVO_CLAW_1_GPIO_Port GPIOA
 #define SERVO_CLAW_2_Pin GPIO_PIN_7

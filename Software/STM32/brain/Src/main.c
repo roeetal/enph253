@@ -63,8 +63,8 @@
 /* Private variables ---------------------------------------------------------*/
 uint8_t LEFT_SPEED;
 uint8_t RIGHT_SPEED;
-uint32_t adc_buffer[1];
-uint32_t read_value[1];
+uint32_t adc_buffer[1024];
+uint32_t read_value[1024];
 
 /* USER CODE END PV */
 
@@ -82,10 +82,10 @@ void frequency_detection(uint16_t freq1, uint16_t freq2);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    memcpy(read_value, adc_buffer, sizeof(adc_buffer));
-    // IR_INT_STATE = FLAGGED;
+  memcpy(read_value, adc_buffer, sizeof(adc_buffer));
+  // IR_INT_STATE = FLAGGED;
 }
 /* USER CODE END 0 */
 
@@ -120,7 +120,6 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM3_Init();
-  MX_TIM5_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_USART6_UART_Init();
@@ -128,52 +127,49 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM4_Init();
   MX_TIM9_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 
-    /* Initialize all timer related stuffs*/
-    HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
-    HAL_TIM_Encoder_Start(&htim5,TIM_CHANNEL_ALL);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-    HAL_TIM_Base_Start(&htim9);
-    ssd1306_Init();
+  /* Initialize all timer related stuffs*/
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+  HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_Base_Start(&htim9);
+  ssd1306_Init();
 
-    /* Initialize other stuffs*/
-    // PID_t pid_s = menu();
-    // HAL_Delay(100);
-    // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    //ENCODER_t LEFT_ENCODER = encoder_Init();
+  /* Initialize other stuffs*/
+  // PID_t pid_s = menu();
+  // HAL_Delay(100);
+  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  //ENCODER_t LEFT_ENCODER = encoder_Init();
 
-    /* declare external variables for use with interrupts*/
+  /* declare external variables for use with interrupts*/
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   print("here we go!", 0);
-  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1);
+  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
 
-  HAL_Delay(100);
-    while (1)
-    {
-        char msg[20] = "";
-        sprintf(msg, "%d", (int)read_value[0]);
-        print(msg, 0);
-        // do_pid(&pid_s);
-        // if (IR_INT_STATE == FLAGGED) {
-            // frequency_detection(1000, 10000);
-        //     IR_INT_STATE = FLAGGED;
-        // }
-        //sprintf(msg, "%d", (int)update_encoder(&LEFT_ENCODER, &htim4));
-        //print(msg, 0);
+  HAL_Delay(1000);
+  while (1)
+  {
+    char msg[20] = "";
+    double val = goertzel(read_value, 36400, 1000, 1024);
+    int predec = (int)(val / 1);
+    int postdec = (int)((val - predec) * 1000);
+    sprintf(msg, "%d.%d\n", predec, postdec);
+    HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
+
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-
-    }
+  }
   /* USER CODE END 3 */
 
 }
@@ -199,7 +195,12 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 72;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -209,12 +210,12 @@ void SystemClock_Config(void)
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
@@ -233,139 +234,177 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void frequency_detection(uint16_t freq1, uint16_t freq2){
-    // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
-    // HAL_ADC_Stop_DMA(&hadc1);
-    // IR_INT_STATE = NOT_FLAGGED;
-    // HAL_Delay(3 * (14 + 10));
-    // HAL_ADC_Stop_DMA(&hadc1);
-    char msg[20] = "";
-    double val = goertzel(read_value, 12121, freq1, 1024);
-    int predec = (int)(val / 1);
-    int postdec = (int)((val - predec) * 1000);
-    sprintf(msg, "%d.%d", predec, postdec);
-    print(msg, 0);
+void frequency_detection(uint16_t freq1, uint16_t freq2)
+{
+  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
+  // HAL_ADC_Stop_DMA(&hadc1);
+  // IR_INT_STATE = NOT_FLAGGED;
+  // HAL_Delay(3 * (14 + 10));
+  // HAL_ADC_Stop_DMA(&hadc1);
+  char msg[20] = "";
+  double val = goertzel(read_value, 12121, freq1, 1024);
+  int predec = (int)(val / 1);
+  int postdec = (int)((val - predec) * 1000);
+  sprintf(msg, "%d.%d", predec, postdec);
+  print(msg, 0);
 
-    // val = goertzel(read_value, 24242, freq2, 1024);
-    // predec = (int)(val / 1);
-    // postdec = (int)((val - predec) * 1000);
-    // sprintf(msg, "%d.%d", predec, postdec);
-    // print(msg, 1);
-    // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
+  // val = goertzel(read_value, 24242, freq2, 1024);
+  // predec = (int)(val / 1);
+  // postdec = (int)((val - predec) * 1000);
+  // sprintf(msg, "%d.%d", predec, postdec);
+  // print(msg, 1);
+  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
 }
 
 /*
  * Rows from 0 - 6
  * Reset screen when printing from row 0
  */
-void print(char* msg, int row){
-    if(row==0){
-        ssd1306_Fill(Black);
-    }
-    ssd1306_SetCursor(0,row*10);
-    ssd1306_WriteString(msg,Font_7x10,White);
-    ssd1306_UpdateScreen();
+void print(char *msg, int row)
+{
+  if (row == 0)
+  {
+    ssd1306_Fill(Black);
+  }
+  ssd1306_SetCursor(0, row * 10);
+  ssd1306_WriteString(msg, Font_7x10, White);
+  ssd1306_UpdateScreen();
 }
 
-PID_t menu(){
-    print("Starting", 0);
-    char msg[20] = "";
-    int pid_select = 0;
-    uint32_t values[3] = {0,0,0};
-    while(1){
-        if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-            sprintf(msg, "%lu", values[pid_select]);
-            print(msg, 0);
-            TIM4->CNT = values[pid_select];
-            while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-                values[pid_select] = TIM4->CNT;
-                sprintf(msg, "%lu", values[pid_select]);
-                print(msg, 0);
-            }
-            ++pid_select;
-        }
-        if(pid_select==3) break;
+PID_t menu()
+{
+  print("Starting", 0);
+  char msg[20] = "";
+  int pid_select = 0;
+  uint32_t values[3] = {0, 0, 0};
+  while (1)
+  {
+    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 0)
+    {
+      sprintf(msg, "%lu", values[pid_select]);
+      print(msg, 0);
+      TIM4->CNT = values[pid_select];
+      while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 0)
+      {
+        values[pid_select] = TIM4->CNT;
+        sprintf(msg, "%lu", values[pid_select]);
+        print(msg, 0);
+      }
+      ++pid_select;
     }
-    while(1){
-        int speed = 400;
-        if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-            if(pid_select==3){
-                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-            }else{
-                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-            }
-            sprintf(msg, "%d", speed);
-            print(msg, 0);
-            TIM4->CNT = speed;
-            while(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
-                speed = TIM4->CNT;
-                sprintf(msg, "%d", speed);
-                print(msg, 0);
-                if(pid_select==3){
-                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
-                    LEFT_SPEED = speed;
-                }else{
-                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
-                    RIGHT_SPEED = speed;
-                }
-            }
-            ++pid_select;
+    if (pid_select == 3)
+      break;
+  }
+  while (1)
+  {
+    int speed = 400;
+    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 0)
+    {
+      if (pid_select == 3)
+      {
+        HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+        HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+      }
+      else
+      {
+        HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+        HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+      }
+      sprintf(msg, "%d", speed);
+      print(msg, 0);
+      TIM4->CNT = speed;
+      while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == 0)
+      {
+        speed = TIM4->CNT;
+        sprintf(msg, "%d", speed);
+        print(msg, 0);
+        if (pid_select == 3)
+        {
+          __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
+          LEFT_SPEED = speed;
         }
-        if(pid_select==5){
-            break;
+        else
+        {
+          __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
+          RIGHT_SPEED = speed;
         }
+      }
+      ++pid_select;
     }
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-    sprintf(msg, "P %lu", values[0]);
-    print(msg, 0);
-    sprintf(msg, "D %lu", values[1]);
-    print(msg, 1);
-    sprintf(msg, "I %lu", values[2]);
-    print(msg, 2);
-    sprintf(msg, "L %d", LEFT_SPEED);
-    print(msg, 3);
-    sprintf(msg, "R %d", RIGHT_SPEED);
-    print(msg, 4);
-    return pid_Init(values[0],values[1],values[2],5,1);
+    if (pid_select == 5)
+    {
+      break;
+    }
+  }
+  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+  sprintf(msg, "P %lu", values[0]);
+  print(msg, 0);
+  sprintf(msg, "D %lu", values[1]);
+  print(msg, 1);
+  sprintf(msg, "I %lu", values[2]);
+  print(msg, 2);
+  sprintf(msg, "L %d", LEFT_SPEED);
+  print(msg, 3);
+  sprintf(msg, "R %d", RIGHT_SPEED);
+  print(msg, 4);
+  return pid_Init(values[0], values[1], values[2], 5, 1);
 }
 
-void do_pid(PID_t *pid_struct){
-    /* Read sensors */
-    uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin)? 0 : 1;
-    uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin)? 0 : 1;
+void do_pid(PID_t *pid_struct)
+{
+  /* Read sensors */
+  uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) ? 0 : 1;
+  uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) ? 0 : 1;
 
-    /* Get error */
-    if(left && right){ pid_struct->err = 0; }
-    else if(left && !right){ pid_struct->err = 1; }
-    else if(!left && right){ pid_struct->err = -1; }
-    else if(!left && !right && (pid_struct->err < 0)){ pid_struct->err = -5; }
-    else if(!left && !right && (pid_struct->err > 0)){ pid_struct->err = 5; }
+  /* Get error */
+  if (left && right)
+  {
+    pid_struct->err = 0;
+  }
+  else if (left && !right)
+  {
+    pid_struct->err = 1;
+  }
+  else if (!left && right)
+  {
+    pid_struct->err = -1;
+  }
+  else if (!left && !right && (pid_struct->err < 0))
+  {
+    pid_struct->err = -5;
+  }
+  else if (!left && !right && (pid_struct->err > 0))
+  {
+    pid_struct->err = 5;
+  }
 
-    /* Get gain */
-    double gain = pid_GetGain(pid_struct, &htim9);
-    int g = (int) gain;
+  /* Get gain */
+  double gain = pid_GetGain(pid_struct, &htim9);
+  int g = (int)gain;
 
-    /* Set Motor Speeds*/
-    if(g<0){
-        LEFT_SPEED -= g;
-    }else if(g>0){
-        RIGHT_SPEED += g;
-    }
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, LEFT_SPEED);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, RIGHT_SPEED);
+  /* Set Motor Speeds*/
+  if (g < 0)
+  {
+    LEFT_SPEED -= g;
+  }
+  else if (g > 0)
+  {
+    RIGHT_SPEED += g;
+  }
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, LEFT_SPEED);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, RIGHT_SPEED);
 }
 
-void update_motor_speed(int m, uint32_t speed[]){
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0]/100.0*MOTOR_SPEED);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1]/100.0*MOTOR_SPEED);
-    char msg[20] = "";
-    sprintf(msg, "L: %lu", speed[0]);
-    print(msg, 0);
-    sprintf(msg, "R: %lu", speed[1]);
-    print(msg, 1);
+void update_motor_speed(int m, uint32_t speed[])
+{
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed[0] / 100.0 * MOTOR_SPEED);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed[1] / 100.0 * MOTOR_SPEED);
+  char msg[20] = "";
+  sprintf(msg, "L: %lu", speed[0]);
+  print(msg, 0);
+  sprintf(msg, "R: %lu", speed[1]);
+  print(msg, 1);
 }
 /* USER CODE END 4 */
 
@@ -378,10 +417,10 @@ void update_motor_speed(int m, uint32_t speed[]){
 void _Error_Handler(char *file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-    /* User can add his own implementation to report the HAL error return state */
-    while(1)
-    {
-    }
+  /* User can add his own implementation to report the HAL error return state */
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -396,7 +435,7 @@ void _Error_Handler(char *file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 { 
   /* USER CODE BEGIN 6 */
-    /* User can add his own implementation to report the file name and line number,
+  /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
