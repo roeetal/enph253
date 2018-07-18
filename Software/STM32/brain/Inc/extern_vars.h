@@ -6,5 +6,4 @@
 #define NOT_FLAGGED 0
 
 extern uint8_t IR_INT_STATE;
-
 #endif

@@ -139,7 +139,7 @@ int main(void)
 
     /* Initialize other stuffs*/
     ssd1306_Init();
-    PID_t pid_s = menu();
+    //PID_t pid_s = menu();
     //ENCODER_t LEFT_ENCODER = encoder_Init();
 
     /* USER CODE END 2 */
@@ -148,8 +148,8 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        do_pid(&pid_s);
-
+        //        do_pid(&pid_s);
+        //
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
@@ -222,9 +222,9 @@ void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin)
 {
     uint16_t offset = GPIO_Pin == IR_1_Pin ? 0 : GPIO_Pin == IR_2_Pin ? 1 : 2;
     HAL_ADC_Start_DMA(&hadc1, adc_buffer, sizeof(adc_buffer)/sizeof(adc_buffer[0]));
-    //calculate time needed to fill first buffer
+    //TODO calculate time needed to fill first buffer
     HAL_Delay(500);
-    //figure out thresholds and what we want to look for
+    //TODO figure out thresholds and what we want to look for
     while(1){
         char msg[20] = "";
         // Sampling frequency: 72e6/(2*3*(480+15))
