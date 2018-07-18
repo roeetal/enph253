@@ -63,8 +63,8 @@
 /* Private variables ---------------------------------------------------------*/
 uint8_t LEFT_SPEED;
 uint8_t RIGHT_SPEED;
-uint32_t adc_buffer[1024];
-uint32_t read_value[1024];
+uint32_t adc_buffer[3072];
+uint32_t read_value[3072];
 
 /* USER CODE END PV */
 
@@ -154,13 +154,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   print("here we go!", 0);
-  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
+  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
 
   HAL_Delay(1000);
   while (1)
   {
     char msg[20] = "";
-    double val = goertzel(read_value, 36400, 1000, 1024);
+    double val = goertzel(read_value, 24242, 1000, 3072, 1);
     int predec = (int)(val / 1);
     int postdec = (int)((val - predec) * 1000);
     sprintf(msg, "%d.%d\n", predec, postdec);
@@ -236,24 +236,24 @@ void SystemClock_Config(void)
 
 void frequency_detection(uint16_t freq1, uint16_t freq2)
 {
-  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
+  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
   // HAL_ADC_Stop_DMA(&hadc1);
   // IR_INT_STATE = NOT_FLAGGED;
   // HAL_Delay(3 * (14 + 10));
   // HAL_ADC_Stop_DMA(&hadc1);
   char msg[20] = "";
-  double val = goertzel(read_value, 12121, freq1, 1024);
+  double val = goertzel(read_value, 12121, freq1, 3072);
   int predec = (int)(val / 1);
   int postdec = (int)((val - predec) * 1000);
   sprintf(msg, "%d.%d", predec, postdec);
   print(msg, 0);
 
-  // val = goertzel(read_value, 24242, freq2, 1024);
+  // val = goertzel(read_value, 24242, freq2, 3072);
   // predec = (int)(val / 1);
   // postdec = (int)((val - predec) * 1000);
   // sprintf(msg, "%d.%d", predec, postdec);
   // print(msg, 1);
-  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 1024);
+  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
 }
 
 /*
