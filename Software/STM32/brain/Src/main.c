@@ -141,30 +141,23 @@ int main(void)
   ssd1306_Init();
 
   /* Initialize other stuffs*/
-  // PID_t pid_s = menu();
-  // HAL_Delay(100);
-  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-  //ENCODER_t LEFT_ENCODER = encoder_Init();
-
-  /* declare external variables for use with interrupts*/
+  PID_t pid_s = menu();
+  ENCODER_t LEFT_ENCODER = encoder_Init();
+  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  print("here we go!", 0);
-  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
-
-  HAL_Delay(1000);
   while (1)
   {
-    char msg[20] = "";
-    double val = goertzel(read_value, 24242, 1000, 3072, 1);
-    int predec = (int)(val / 1);
-    int postdec = (int)((val - predec) * 1000);
-    sprintf(msg, "%d.%d\n", predec, postdec);
-    HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
+    do_pid(&pid_s);
+    // char msg[20] = "";
+    // double val = goertzel(read_value, 24242, 1000, 3072, 1);
+    // int predec = (int)(val / 1);
+    // int postdec = (int)((val - predec) * 1000);
+    // sprintf(msg, "%d.%d\n", predec, postdec);
+    // HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
 
   /* USER CODE END WHILE */
 
@@ -234,27 +227,27 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void frequency_detection(uint16_t freq1, uint16_t freq2)
-{
-  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
-  // HAL_ADC_Stop_DMA(&hadc1);
-  // IR_INT_STATE = NOT_FLAGGED;
-  // HAL_Delay(3 * (14 + 10));
-  // HAL_ADC_Stop_DMA(&hadc1);
-  char msg[20] = "";
-  double val = goertzel(read_value, 12121, freq1, 3072);
-  int predec = (int)(val / 1);
-  int postdec = (int)((val - predec) * 1000);
-  sprintf(msg, "%d.%d", predec, postdec);
-  print(msg, 0);
+// void frequency_detection(uint16_t freq1, uint16_t freq2)
+// {
+//   // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
+//   // HAL_ADC_Stop_DMA(&hadc1);
+//   // IR_INT_STATE = NOT_FLAGGED;
+//   // HAL_Delay(3 * (14 + 10));
+//   // HAL_ADC_Stop_DMA(&hadc1);
+//   char msg[20] = "";
+//   double val = goertzel(read_value, 12121, freq1, 3072, 0);
+//   int predec = (int)(val / 1);
+//   int postdec = (int)((val - predec) * 1000);
+//   sprintf(msg, "%d.%d", predec, postdec);
+//   print(msg, 0);
 
-  // val = goertzel(read_value, 24242, freq2, 3072);
-  // predec = (int)(val / 1);
-  // postdec = (int)((val - predec) * 1000);
-  // sprintf(msg, "%d.%d", predec, postdec);
-  // print(msg, 1);
-  // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
-}
+//   // val = goertzel(read_value, 24242, freq2, 3072);
+//   // predec = (int)(val / 1);
+//   // postdec = (int)((val - predec) * 1000);
+//   // sprintf(msg, "%d.%d", predec, postdec);
+//   // print(msg, 1);
+//   // HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3072);
+// }
 
 /*
  * Rows from 0 - 6
@@ -344,10 +337,13 @@ PID_t menu()
   print(msg, 1);
   sprintf(msg, "I %lu", values[2]);
   print(msg, 2);
-  sprintf(msg, "L %d", LEFT_SPEED);
+  sprintf(msg, "L %u", LEFT_SPEED);
   print(msg, 3);
-  sprintf(msg, "R %d", RIGHT_SPEED);
+  sprintf(msg, "R %u", RIGHT_SPEED);
   print(msg, 4);
+  HAL_Delay(500);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   return pid_Init(values[0], values[1], values[2], 5, 1);
 }
 
@@ -382,18 +378,23 @@ void do_pid(PID_t *pid_struct)
   /* Get gain */
   double gain = pid_GetGain(pid_struct, &htim9);
   int g = (int)gain;
+  char msg[20]="";
+  sprintf(msg, "%d", g);
+  print(msg, 0);
 
   /* Set Motor Speeds*/
+  int lspeed = LEFT_SPEED;
+  int rspeed = RIGHT_SPEED;
   if (g < 0)
   {
-    LEFT_SPEED -= g;
+    lspeed = LEFT_SPEED - g;
   }
   else if (g > 0)
   {
-    RIGHT_SPEED += g;
+    rspeed = RIGHT_SPEED + g;
   }
-  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, LEFT_SPEED);
-  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, RIGHT_SPEED);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
 }
 
 void update_motor_speed(int m, uint32_t speed[])

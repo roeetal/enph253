@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 1
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 1
 
 
    1              		.syntax unified
@@ -38,11 +38,11 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 1
    2:Src/filter.c  **** #include "math.h"
    3:Src/filter.c  **** #include "filter.h"
    4:Src/filter.c  **** 
-   5:Src/filter.c  **** double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t window_size)
+   5:Src/filter.c  **** double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t window_size, uint8_t off
    6:Src/filter.c  **** {
   35              		.loc 1 6 0
   36              		.cfi_startproc
-  37              		@ args = 0, pretend = 0, frame = 8
+  37              		@ args = 4, pretend = 0, frame = 8
   38              		@ frame_needed = 0, uses_anonymous_args = 0
   39              	.LVL0:
   40 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 1
   50              		.cfi_offset 11, -8
   51              		.cfi_offset 14, -4
   52 0004 2DED048B 		fstmfdd	sp!, {d8, d9}
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 2
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 2
 
 
   53              	.LCFI1:
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 1
  103              	.LVL9:
   11:Src/filter.c  **** 
   12:Src/filter.c  ****   // number of frequencies is the same size as the number of
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 3
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 3
 
 
   13:Src/filter.c  ****   // upper and lower bin limits; loop through bin limits (i.e.
@@ -148,174 +148,175 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 1
  122 007a CDE90001 		strd	r0, [sp]
  123              	.LVL14:
   19:Src/filter.c  ****   double d1 = 0, d2 = 0, y = 0, tot_power = 1;
-  20:Src/filter.c  ****   uint16_t n = 1;
+  20:Src/filter.c  ****   uint16_t n = offset;
  124              		.loc 1 20 0
- 125 007e 4FF0010A 		mov	r10, #1
+ 125 007e 9DF840A0 		ldrb	r10, [sp, #64]	@ zero_extendqisi2
+ 126 0082 1FFA8AFA 		uxth	r10, r10
+ 127              	.LVL15:
   19:Src/filter.c  ****   double d1 = 0, d2 = 0, y = 0, tot_power = 1;
- 126              		.loc 1 19 0
- 127 0082 4FF00008 		mov	r8, #0
- 128              	.LVL15:
- 129 0086 DFF8E890 		ldr	r9, .L5+16
- 130 008a 9FED379B 		fldd	d9, .L5+8
- 131 008e B0EE498A 		fcpys	s16, s18
- 132 0092 F0EE698A 		fcpys	s17, s19
- 133 0096 A346     		mov	fp, r4
+ 128              		.loc 1 19 0
+ 129 0086 4FF00008 		mov	r8, #0
+ 130              	.LVL16:
+ 131 008a DFF8E490 		ldr	r9, .L5+16
+ 132 008e 9FED369B 		fldd	d9, .L5+8
+ 133 0092 B0EE498A 		fcpys	s16, s18
+ 134 0096 F0EE698A 		fcpys	s17, s19
+ 135 009a A346     		mov	fp, r4
   21:Src/filter.c  ****   while (n < window_size)
- 134              		.loc 1 21 0
- 135 0098 2CE0     		b	.L2
- 136              	.LVL16:
- 137              	.L3:
+ 136              		.loc 1 21 0
+ 137 009c 2CE0     		b	.L2
+ 138              	.LVL17:
+ 139              	.L3:
   22:Src/filter.c  ****   {
   23:Src/filter.c  ****     y = x[n] + w_real * d1 - d2;
- 138              		.loc 1 23 0
- 139 009a 55F82A40 		ldr	r4, [r5, r10, lsl #2]
- 140 009e DDE90001 		ldrd	r0, [sp]
- 141 00a2 53EC182B 		fmrrd	r2, r3, d8
- 142 00a6 FFF7FEFF 		bl	__aeabi_dmul
- 143              	.LVL17:
- 144 00aa 0646     		mov	r6, r0
- 145 00ac 0F46     		mov	r7, r1
- 146 00ae 2046     		mov	r0, r4
- 147 00b0 FFF7FEFF 		bl	__aeabi_ui2d
- 148              	.LVL18:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 4
+ 140              		.loc 1 23 0
+ 141 009e 55F82A40 		ldr	r4, [r5, r10, lsl #2]
+ 142 00a2 DDE90001 		ldrd	r0, [sp]
+ 143 00a6 53EC182B 		fmrrd	r2, r3, d8
+ 144 00aa FFF7FEFF 		bl	__aeabi_dmul
+ 145              	.LVL18:
+ 146 00ae 0646     		mov	r6, r0
+ 147 00b0 0F46     		mov	r7, r1
+ 148 00b2 2046     		mov	r0, r4
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 4
 
 
- 149 00b4 3246     		mov	r2, r6
- 150 00b6 3B46     		mov	r3, r7
- 151 00b8 FFF7FEFF 		bl	__aeabi_dadd
- 152              	.LVL19:
- 153 00bc 53EC192B 		fmrrd	r2, r3, d9
- 154 00c0 FFF7FEFF 		bl	__aeabi_dsub
- 155              	.LVL20:
- 156 00c4 0646     		mov	r6, r0
- 157 00c6 0F46     		mov	r7, r1
- 158              	.LVL21:
+ 149 00b4 FFF7FEFF 		bl	__aeabi_ui2d
+ 150              	.LVL19:
+ 151 00b8 3246     		mov	r2, r6
+ 152 00ba 3B46     		mov	r3, r7
+ 153 00bc FFF7FEFF 		bl	__aeabi_dadd
+ 154              	.LVL20:
+ 155 00c0 53EC192B 		fmrrd	r2, r3, d9
+ 156 00c4 FFF7FEFF 		bl	__aeabi_dsub
+ 157              	.LVL21:
+ 158 00c8 0646     		mov	r6, r0
+ 159 00ca 0F46     		mov	r7, r1
+ 160              	.LVL22:
   24:Src/filter.c  ****     d2 = d1;
   25:Src/filter.c  ****     d1 = y;
   26:Src/filter.c  ****     tot_power += x[n] * x[n];
- 159              		.loc 1 26 0
- 160 00c8 04FB04F0 		mul	r0, r4, r4
- 161 00cc FFF7FEFF 		bl	__aeabi_ui2d
- 162              	.LVL22:
- 163 00d0 0246     		mov	r2, r0
- 164 00d2 0B46     		mov	r3, r1
- 165 00d4 4046     		mov	r0, r8
- 166 00d6 4946     		mov	r1, r9
- 167 00d8 FFF7FEFF 		bl	__aeabi_dadd
- 168              	.LVL23:
- 169 00dc 8046     		mov	r8, r0
+ 161              		.loc 1 26 0
+ 162 00cc 04FB04F0 		mul	r0, r4, r4
+ 163 00d0 FFF7FEFF 		bl	__aeabi_ui2d
+ 164              	.LVL23:
+ 165 00d4 0246     		mov	r2, r0
+ 166 00d6 0B46     		mov	r3, r1
+ 167 00d8 4046     		mov	r0, r8
+ 168 00da 4946     		mov	r1, r9
+ 169 00dc FFF7FEFF 		bl	__aeabi_dadd
  170              	.LVL24:
- 171 00de 8946     		mov	r9, r1
+ 171 00e0 8046     		mov	r8, r0
  172              	.LVL25:
+ 173 00e2 8946     		mov	r9, r1
+ 174              	.LVL26:
   27:Src/filter.c  ****     n += 3;
- 173              		.loc 1 27 0
- 174 00e0 0AF1030A 		add	r10, r10, #3
- 175              	.LVL26:
- 176 00e4 1FFA8AFA 		uxth	r10, r10
+ 175              		.loc 1 27 0
+ 176 00e4 0AF1030A 		add	r10, r10, #3
  177              	.LVL27:
+ 178 00e8 1FFA8AFA 		uxth	r10, r10
+ 179              	.LVL28:
   24:Src/filter.c  ****     d2 = d1;
- 178              		.loc 1 24 0
- 179 00e8 B0EE489A 		fcpys	s18, s16
- 180 00ec F0EE689A 		fcpys	s19, s17
+ 180              		.loc 1 24 0
+ 181 00ec B0EE489A 		fcpys	s18, s16
+ 182 00f0 F0EE689A 		fcpys	s19, s17
   25:Src/filter.c  ****     tot_power += x[n] * x[n];
- 181              		.loc 1 25 0
- 182 00f0 47EC186B 		fmdrr	d8, r6, r7
- 183              	.LVL28:
- 184              	.L2:
+ 183              		.loc 1 25 0
+ 184 00f4 47EC186B 		fmdrr	d8, r6, r7
+ 185              	.LVL29:
+ 186              	.L2:
   21:Src/filter.c  ****   {
- 185              		.loc 1 21 0
- 186 00f4 DA45     		cmp	r10, fp
- 187 00f6 D0D3     		bcc	.L3
+ 187              		.loc 1 21 0
+ 188 00f8 DA45     		cmp	r10, fp
+ 189 00fa D0D3     		bcc	.L3
   28:Src/filter.c  ****   }
   29:Src/filter.c  **** 
   30:Src/filter.c  ****   return (d2 * d2 + d1 * d1 - w_real * d1 * d2) / tot_power;
- 188              		.loc 1 30 0
- 189 00f8 51EC190B 		fmrrd	r0, r1, d9
- 190 00fc 53EC192B 		fmrrd	r2, r3, d9
- 191 0100 FFF7FEFF 		bl	__aeabi_dmul
- 192              	.LVL29:
- 193 0104 0446     		mov	r4, r0
- 194 0106 0D46     		mov	r5, r1
- 195              	.LVL30:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 5
+ 190              		.loc 1 30 0
+ 191 00fc 51EC190B 		fmrrd	r0, r1, d9
+ 192 0100 53EC192B 		fmrrd	r2, r3, d9
+ 193 0104 FFF7FEFF 		bl	__aeabi_dmul
+ 194              	.LVL30:
+ 195 0108 0446     		mov	r4, r0
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 5
 
 
- 196 0108 51EC180B 		fmrrd	r0, r1, d8
- 197 010c 53EC182B 		fmrrd	r2, r3, d8
- 198 0110 FFF7FEFF 		bl	__aeabi_dmul
- 199              	.LVL31:
- 200 0114 0246     		mov	r2, r0
- 201 0116 0B46     		mov	r3, r1
- 202 0118 2046     		mov	r0, r4
- 203 011a 2946     		mov	r1, r5
- 204 011c FFF7FEFF 		bl	__aeabi_dadd
- 205              	.LVL32:
- 206 0120 0446     		mov	r4, r0
- 207 0122 0D46     		mov	r5, r1
- 208 0124 DDE90001 		ldrd	r0, [sp]
- 209 0128 53EC182B 		fmrrd	r2, r3, d8
- 210 012c FFF7FEFF 		bl	__aeabi_dmul
- 211              	.LVL33:
- 212 0130 53EC192B 		fmrrd	r2, r3, d9
- 213 0134 FFF7FEFF 		bl	__aeabi_dmul
- 214              	.LVL34:
- 215 0138 0246     		mov	r2, r0
- 216 013a 0B46     		mov	r3, r1
- 217 013c 2046     		mov	r0, r4
- 218 013e 2946     		mov	r1, r5
- 219 0140 FFF7FEFF 		bl	__aeabi_dsub
- 220              	.LVL35:
- 221 0144 4246     		mov	r2, r8
- 222 0146 4B46     		mov	r3, r9
- 223 0148 FFF7FEFF 		bl	__aeabi_ddiv
- 224              	.LVL36:
+ 196 010a 0D46     		mov	r5, r1
+ 197              	.LVL31:
+ 198 010c 51EC180B 		fmrrd	r0, r1, d8
+ 199 0110 53EC182B 		fmrrd	r2, r3, d8
+ 200 0114 FFF7FEFF 		bl	__aeabi_dmul
+ 201              	.LVL32:
+ 202 0118 0246     		mov	r2, r0
+ 203 011a 0B46     		mov	r3, r1
+ 204 011c 2046     		mov	r0, r4
+ 205 011e 2946     		mov	r1, r5
+ 206 0120 FFF7FEFF 		bl	__aeabi_dadd
+ 207              	.LVL33:
+ 208 0124 0446     		mov	r4, r0
+ 209 0126 0D46     		mov	r5, r1
+ 210 0128 DDE90001 		ldrd	r0, [sp]
+ 211 012c 53EC182B 		fmrrd	r2, r3, d8
+ 212 0130 FFF7FEFF 		bl	__aeabi_dmul
+ 213              	.LVL34:
+ 214 0134 53EC192B 		fmrrd	r2, r3, d9
+ 215 0138 FFF7FEFF 		bl	__aeabi_dmul
+ 216              	.LVL35:
+ 217 013c 0246     		mov	r2, r0
+ 218 013e 0B46     		mov	r3, r1
+ 219 0140 2046     		mov	r0, r4
+ 220 0142 2946     		mov	r1, r5
+ 221 0144 FFF7FEFF 		bl	__aeabi_dsub
+ 222              	.LVL36:
+ 223 0148 4246     		mov	r2, r8
+ 224 014a 4B46     		mov	r3, r9
+ 225 014c FFF7FEFF 		bl	__aeabi_ddiv
+ 226              	.LVL37:
   31:Src/filter.c  **** }...
- 225              		.loc 1 31 0
- 226 014c 41EC100B 		fmdrr	d0, r0, r1
- 227 0150 03B0     		add	sp, sp, #12
- 228              	.LCFI3:
- 229              		.cfi_def_cfa_offset 52
- 230              	.LVL37:
- 231              		@ sp needed
- 232 0152 BDEC048B 		fldmfdd	sp!, {d8-d9}
- 233              	.LCFI4:
- 234              		.cfi_restore 82
- 235              		.cfi_restore 83
- 236              		.cfi_restore 80
- 237              		.cfi_restore 81
- 238              		.cfi_def_cfa_offset 36
- 239              	.LVL38:
- 240 0156 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 227              		.loc 1 31 0
+ 228 0150 41EC100B 		fmdrr	d0, r0, r1
+ 229 0154 03B0     		add	sp, sp, #12
+ 230              	.LCFI3:
+ 231              		.cfi_def_cfa_offset 52
+ 232              	.LVL38:
+ 233              		@ sp needed
+ 234 0156 BDEC048B 		fldmfdd	sp!, {d8-d9}
+ 235              	.LCFI4:
+ 236              		.cfi_restore 82
+ 237              		.cfi_restore 83
+ 238              		.cfi_restore 80
+ 239              		.cfi_restore 81
+ 240              		.cfi_def_cfa_offset 36
  241              	.LVL39:
- 242              	.L6:
- 243 015a 00BFAFF3 		.align	3
- 243      0080
- 244              	.L5:
- 245 0160 182D4454 		.word	1413754136
- 246 0164 FB211940 		.word	1075388923
- 247 0168 00000000 		.word	0
- 248 016c 00000000 		.word	0
- 249 0170 0000F03F 		.word	1072693248
- 250              		.cfi_endproc
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 6
+ 242 015a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 243              	.LVL40:
+ 244              	.L6:
+ 245 015e 00BF     		.align	3
+ 246              	.L5:
+ 247 0160 182D4454 		.word	1413754136
+ 248 0164 FB211940 		.word	1075388923
+ 249 0168 00000000 		.word	0
+ 250 016c 00000000 		.word	0
+ 251 0170 0000F03F 		.word	1072693248
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 6
 
 
- 251              	.LFE123:
- 253              		.text
- 254              	.Letext0:
- 255              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 256              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 257              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 258              		.file 5 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/math.h"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s 			page 7
+ 252              		.cfi_endproc
+ 253              	.LFE123:
+ 255              		.text
+ 256              	.Letext0:
+ 257              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 258              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 259              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 260              		.file 5 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/math.h"
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 filter.c
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s:27     .text.goertzel:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s:32     .text.goertzel:0000000000000000 goertzel
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccwP1gkt.s:245    .text.goertzel:0000000000000160 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s:27     .text.goertzel:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s:32     .text.goertzel:0000000000000000 goertzel
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccjwSSnm.s:247    .text.goertzel:0000000000000160 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
