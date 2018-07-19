@@ -1,0 +1,296 @@
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv4-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"pid.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.pid_Init,"ax",%progbits
+  21              		.align	2
+  22              		.global	pid_Init
+  23              		.thumb
+  24              		.thumb_func
+  26              	pid_Init:
+  27              	.LFB123:
+  28              		.file 1 "Src/pid.c"
+   1:Src/pid.c     **** 
+   2:Src/pid.c     **** #include"pid.h"
+   3:Src/pid.c     **** #include"stm32f4xx.h"
+   4:Src/pid.c     **** 
+   5:Src/pid.c     **** PID_t pid_Init(int kp, int kd, int ki, int i_max, int g){
+  29              		.loc 1 5 0
+  30              		.cfi_startproc
+  31              		@ args = 8, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LVL0:
+  35 0000 10B4     		push	{r4}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 4, -4
+   6:Src/pid.c     ****     PID_t PID;
+   7:Src/pid.c     ****     PID.kp = kp;
+  39              		.loc 1 7 0
+  40 0002 0160     		str	r1, [r0]
+   8:Src/pid.c     ****     PID.kd = kd;
+  41              		.loc 1 8 0
+  42 0004 4260     		str	r2, [r0, #4]
+   9:Src/pid.c     ****     PID.ki = ki;
+  43              		.loc 1 9 0
+  44 0006 8360     		str	r3, [r0, #8]
+  10:Src/pid.c     ****     PID.i = 0;
+  45              		.loc 1 10 0
+  46 0008 0022     		movs	r2, #0
+  47              	.LVL1:
+  48 000a 0023     		movs	r3, #0
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 2
+
+
+  49              	.LVL2:
+  50 000c C0E90423 		strd	r2, [r0, #16]
+  11:Src/pid.c     ****     PID.i_max = i_max;
+  51              		.loc 1 11 0
+  52 0010 019B     		ldr	r3, [sp, #4]
+  53 0012 8361     		str	r3, [r0, #24]
+  12:Src/pid.c     ****     PID.gain = g;
+  54              		.loc 1 12 0
+  55 0014 029B     		ldr	r3, [sp, #8]
+  56 0016 C361     		str	r3, [r0, #28]
+  13:Src/pid.c     ****     PID.err = 0;
+  57              		.loc 1 13 0
+  58 0018 0023     		movs	r3, #0
+  59 001a 0362     		str	r3, [r0, #32]
+  14:Src/pid.c     ****     PID.count = 0;
+  60              		.loc 1 14 0
+  61 001c 4362     		str	r3, [r0, #36]
+  15:Src/pid.c     **** 
+  16:Src/pid.c     ****     return PID;
+  17:Src/pid.c     **** }
+  62              		.loc 1 17 0
+  63 001e 5DF8044B 		ldr	r4, [sp], #4
+  64              	.LCFI1:
+  65              		.cfi_restore 4
+  66              		.cfi_def_cfa_offset 0
+  67              	.LVL3:
+  68 0022 7047     		bx	lr
+  69              		.cfi_endproc
+  70              	.LFE123:
+  72              		.global	__aeabi_i2d
+  73              		.global	__aeabi_dadd
+  74              		.global	__aeabi_dcmplt
+  75              		.global	__aeabi_dcmpgt
+  76              		.global	__aeabi_dmul
+  77              		.section	.text.pid_GetGain,"ax",%progbits
+  78              		.align	2
+  79              		.global	pid_GetGain
+  80              		.thumb
+  81              		.thumb_func
+  83              	pid_GetGain:
+  84              	.LFB124:
+  18:Src/pid.c     **** 
+  19:Src/pid.c     **** double pid_GetGain(PID_t *PID, TIM_HandleTypeDef *timer){
+  85              		.loc 1 19 0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 16
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              	.LVL4:
+  90 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  91              	.LCFI2:
+  92              		.cfi_def_cfa_offset 36
+  93              		.cfi_offset 4, -36
+  94              		.cfi_offset 5, -32
+  95              		.cfi_offset 6, -28
+  96              		.cfi_offset 7, -24
+  97              		.cfi_offset 8, -20
+  98              		.cfi_offset 9, -16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 3
+
+
+  99              		.cfi_offset 10, -12
+ 100              		.cfi_offset 11, -8
+ 101              		.cfi_offset 14, -4
+ 102 0004 2DED028B 		fstmfdd	sp!, {d8}
+ 103              	.LCFI3:
+ 104              		.cfi_def_cfa_offset 44
+ 105              		.cfi_offset 80, -44
+ 106              		.cfi_offset 81, -40
+ 107 0008 85B0     		sub	sp, sp, #20
+ 108              	.LCFI4:
+ 109              		.cfi_def_cfa_offset 64
+ 110 000a 0446     		mov	r4, r0
+  20:Src/pid.c     ****     /* Get current values for P, I, and D */
+  21:Src/pid.c     ****     PID->count += 10;
+ 111              		.loc 1 21 0
+ 112 000c 466A     		ldr	r6, [r0, #36]
+ 113 000e 0A36     		adds	r6, r6, #10
+ 114 0010 4662     		str	r6, [r0, #36]
+  22:Src/pid.c     ****     double p = PID->kp * PID->err;
+ 115              		.loc 1 22 0
+ 116 0012 0068     		ldr	r0, [r0]
+ 117              	.LVL5:
+ 118 0014 256A     		ldr	r5, [r4, #32]
+ 119 0016 05FB00F0 		mul	r0, r5, r0
+ 120 001a FFF7FEFF 		bl	__aeabi_i2d
+ 121              	.LVL6:
+ 122 001e CDE90001 		strd	r0, [sp]
+ 123              	.LVL7:
+  23:Src/pid.c     ****     double d = PID->kd * PID->err / (PID->count);  // / 1000 to get seconds
+ 124              		.loc 1 23 0
+ 125 0022 6068     		ldr	r0, [r4, #4]
+ 126              	.LVL8:
+ 127 0024 00FB05F0 		mul	r0, r0, r5
+ 128 0028 90FBF6F0 		sdiv	r0, r0, r6
+ 129 002c FFF7FEFF 		bl	__aeabi_i2d
+ 130              	.LVL9:
+ 131 0030 CDE90201 		strd	r0, [sp, #8]
+ 132              	.LVL10:
+  24:Src/pid.c     ****     PID->i = PID->i + PID->ki * PID->err;
+ 133              		.loc 1 24 0
+ 134 0034 D4E904AB 		ldrd	r10, [r4, #16]
+ 135 0038 A068     		ldr	r0, [r4, #8]
+ 136              	.LVL11:
+ 137 003a 00FB05F0 		mul	r0, r0, r5
+ 138 003e FFF7FEFF 		bl	__aeabi_i2d
+ 139              	.LVL12:
+ 140 0042 0246     		mov	r2, r0
+ 141 0044 0B46     		mov	r3, r1
+ 142 0046 5046     		mov	r0, r10
+ 143 0048 5946     		mov	r1, fp
+ 144 004a FFF7FEFF 		bl	__aeabi_dadd
+ 145              	.LVL13:
+ 146 004e 8046     		mov	r8, r0
+ 147 0050 8946     		mov	r9, r1
+ 148 0052 C4E90489 		strd	r8, [r4, #16]
+  25:Src/pid.c     ****     
+  26:Src/pid.c     ****     /* Cap absolute value of integral control to keep it stable */
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 4
+
+
+  27:Src/pid.c     ****     if(PID->i < -1 * PID->i_max){ PID->i = -1 * PID->i_max; }
+ 149              		.loc 1 27 0
+ 150 0056 D4F818A0 		ldr	r10, [r4, #24]
+ 151 005a CAF10000 		rsb	r0, r10, #0
+ 152 005e FFF7FEFF 		bl	__aeabi_i2d
+ 153              	.LVL14:
+ 154 0062 0646     		mov	r6, r0
+ 155 0064 0F46     		mov	r7, r1
+ 156 0066 4046     		mov	r0, r8
+ 157 0068 4946     		mov	r1, r9
+ 158 006a 3246     		mov	r2, r6
+ 159 006c 3B46     		mov	r3, r7
+ 160 006e FFF7FEFF 		bl	__aeabi_dcmplt
+ 161              	.LVL15:
+ 162 0072 08B1     		cbz	r0, .L4
+ 163              		.loc 1 27 0 is_stmt 0 discriminator 1
+ 164 0074 C4E90467 		strd	r6, [r4, #16]
+ 165              	.L4:
+  28:Src/pid.c     ****     if(PID->i > PID->i_max){ PID->i = PID->i_max; }
+ 166              		.loc 1 28 0 is_stmt 1
+ 167 0078 94ED048B 		fldd	d8, [r4, #16]
+ 168 007c 5046     		mov	r0, r10
+ 169 007e FFF7FEFF 		bl	__aeabi_i2d
+ 170              	.LVL16:
+ 171 0082 8246     		mov	r10, r0
+ 172 0084 8B46     		mov	fp, r1
+ 173 0086 51EC180B 		fmrrd	r0, r1, d8
+ 174 008a 5246     		mov	r2, r10
+ 175 008c 5B46     		mov	r3, fp
+ 176 008e FFF7FEFF 		bl	__aeabi_dcmpgt
+ 177              	.LVL17:
+ 178 0092 08B1     		cbz	r0, .L6
+ 179              		.loc 1 28 0 is_stmt 0 discriminator 1
+ 180 0094 C4E904AB 		strd	r10, [r4, #16]
+ 181              	.L6:
+  29:Src/pid.c     **** 
+  30:Src/pid.c     ****     /* Reset derivative term if err returns to 0 */
+  31:Src/pid.c     ****     if(PID->err == 0){ PID->count = 0; }
+ 182              		.loc 1 31 0 is_stmt 1
+ 183 0098 0DB9     		cbnz	r5, .L8
+ 184              		.loc 1 31 0 is_stmt 0 discriminator 1
+ 185 009a 0023     		movs	r3, #0
+ 186 009c 6362     		str	r3, [r4, #36]
+ 187              	.L8:
+  32:Src/pid.c     ****     
+  33:Src/pid.c     ****     return (PID->i + p + d) * PID->gain;
+ 188              		.loc 1 33 0 is_stmt 1
+ 189 009e D4E90401 		ldrd	r0, [r4, #16]
+ 190 00a2 DDE90023 		ldrd	r2, [sp]
+ 191 00a6 FFF7FEFF 		bl	__aeabi_dadd
+ 192              	.LVL18:
+ 193 00aa DDE90223 		ldrd	r2, [sp, #8]
+ 194 00ae FFF7FEFF 		bl	__aeabi_dadd
+ 195              	.LVL19:
+ 196 00b2 0646     		mov	r6, r0
+ 197 00b4 0F46     		mov	r7, r1
+ 198 00b6 E069     		ldr	r0, [r4, #28]
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 5
+
+
+ 199 00b8 FFF7FEFF 		bl	__aeabi_i2d
+ 200              	.LVL20:
+ 201 00bc 0246     		mov	r2, r0
+ 202 00be 0B46     		mov	r3, r1
+ 203 00c0 3046     		mov	r0, r6
+ 204 00c2 3946     		mov	r1, r7
+ 205 00c4 FFF7FEFF 		bl	__aeabi_dmul
+ 206              	.LVL21:
+  34:Src/pid.c     **** }
+ 207              		.loc 1 34 0
+ 208 00c8 41EC100B 		fmdrr	d0, r0, r1
+ 209 00cc 05B0     		add	sp, sp, #20
+ 210              	.LCFI5:
+ 211              		.cfi_def_cfa_offset 44
+ 212              	.LVL22:
+ 213              		@ sp needed
+ 214 00ce BDEC028B 		fldmfdd	sp!, {d8}
+ 215              	.LCFI6:
+ 216              		.cfi_restore 80
+ 217              		.cfi_restore 81
+ 218              		.cfi_def_cfa_offset 36
+ 219 00d2 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 220              		.cfi_endproc
+ 221              	.LFE124:
+ 223              		.comm	last_time,4,4
+ 224 00d6 00BF     		.text
+ 225              	.Letext0:
+ 226              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 227              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 228              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 229              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 230              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 231              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 232              		.file 8 "Inc/pid.h"
+ 233              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pid.c
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s:21     .text.pid_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s:26     .text.pid_Init:0000000000000000 pid_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s:78     .text.pid_GetGain:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccuyNeTG.s:83     .text.pid_GetGain:0000000000000000 pid_GetGain
+                            *COM*:0000000000000004 last_time
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dadd
+__aeabi_dcmplt
+__aeabi_dcmpgt
+__aeabi_dmul

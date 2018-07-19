@@ -95,7 +95,6 @@
 #define ENCODER_LEFT_2_Pin GPIO_PIN_7
 #define ENCODER_LEFT_2_GPIO_Port GPIOB
 
-#define MOTOR_SPEED 1000
 /* ########################## Assert Selection ############################## */
 /**
   * @brief Uncomment the line below to expanse the "assert_param" macro in the 
@@ -104,6 +103,7 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
+#define MOTOR_SPEED 1000
 
 /* USER CODE END Private defines */
 

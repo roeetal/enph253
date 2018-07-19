@@ -254,10 +254,10 @@
 <pad name="1" x="0" y="73.66" drill="0.7" diameter="1.6764"/>
 <pad name="3" x="63.5" y="73.66" drill="0.7" diameter="1.6764"/>
 <pad name="4" x="63.5" y="71.12" drill="0.7" diameter="1.6764"/>
-<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="76.2" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="76.2" x2="5.08" y2="76.2" width="0.127" layer="21"/>
-<wire x1="5.08" y1="76.2" x2="66.04" y2="76.2" width="0.127" layer="21"/>
-<wire x1="66.04" y1="76.2" x2="66.04" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="74.93" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="74.93" x2="5.08" y2="74.93" width="0.127" layer="21"/>
+<wire x1="5.08" y1="74.93" x2="66.04" y2="74.93" width="0.127" layer="21"/>
+<wire x1="66.04" y1="74.93" x2="66.04" y2="-2.54" width="0.127" layer="21"/>
 <wire x1="66.04" y1="-2.54" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
 </package>
 </packages>
@@ -1277,39 +1277,6 @@ part number 2062-2P from STA</description>
 <pad name="2" x="-1.27" y="-5.85" drill="0.8"/>
 <pad name="1" x="1.27" y="-5.85" drill="0.8"/>
 </package>
-<package name="DEANS" urn="urn:adsk.eagle:footprint:37955/1" library_version="1">
-<description>&lt;h3&gt;Deans Connector&lt;/h3&gt;
-&lt;p&gt;Specifications:
-&lt;ul&gt;&lt;li&gt;Pin count:2&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=”http://cdn.sparkfun.com/datasheets/Prototyping/deans_connector_PRT-11864.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Example device(s):
-&lt;ul&gt;&lt;li&gt;BATTERY_CONN&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;</description>
-<pad name="+" x="0" y="0" drill="1.27" diameter="3.556" shape="long"/>
-<pad name="-" x="0.7366" y="-6.9215" drill="1.27" diameter="3.556" shape="long" rot="R90"/>
-<wire x1="-3.81" y1="2.3622" x2="3.81" y2="2.3622" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="-3.9878" x2="-3.81" y2="2.3622" width="0.2032" layer="21"/>
-<wire x1="3.81" y1="-3.9878" x2="3.81" y2="2.3622" width="0.2032" layer="21"/>
-<wire x1="-3.2004" y1="-10.922" x2="3.2004" y2="-10.922" width="0.2032" layer="21"/>
-<wire x1="-3.2004" y1="-10.922" x2="-3.2004" y2="-3.9878" width="0.2032" layer="21"/>
-<wire x1="3.2004" y1="-10.922" x2="3.2004" y2="-3.9878" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="-3.9878" x2="-3.2004" y2="-3.9878" width="0.2032" layer="21"/>
-<wire x1="3.2004" y1="-3.9878" x2="3.81" y2="-3.9878" width="0.2032" layer="21"/>
-<wire x1="-1.778" y1="-2.286" x2="-1.778" y2="-3.302" width="0.127" layer="21"/>
-<wire x1="-2.286" y1="-2.794" x2="-1.27" y2="-2.794" width="0.127" layer="21"/>
-<wire x1="-2.032" y1="-7.62" x2="-2.032" y2="-6.604" width="0.127" layer="21"/>
-<wire x1="0.0508" y1="-9.7536" x2="0.0508" y2="-4.064" width="0.127" layer="20"/>
-<wire x1="0.0508" y1="-4.064" x2="1.4224" y2="-4.064" width="0.127" layer="20"/>
-<wire x1="1.4224" y1="-4.064" x2="1.4224" y2="-9.7536" width="0.127" layer="20"/>
-<wire x1="0.0508" y1="-9.7536" x2="1.4224" y2="-9.7536" width="0.127" layer="20"/>
-<wire x1="2.8448" y1="-0.6858" x2="-2.8448" y2="-0.6858" width="0.127" layer="20"/>
-<wire x1="-2.8448" y1="-0.6858" x2="-2.8448" y2="0.6858" width="0.127" layer="20"/>
-<wire x1="-2.8448" y1="0.6858" x2="2.8448" y2="0.6858" width="0.127" layer="20"/>
-<wire x1="2.8448" y1="-0.6858" x2="2.8448" y2="0.6858" width="0.127" layer="20"/>
-<text x="-3.81" y="2.54" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
-<text x="-3.302" y="-11.811" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
-</package>
 </packages>
 <packages3d>
 <package3d name="1X02" urn="urn:adsk.eagle:package:38039/1" type="box" library_version="1">
@@ -1553,16 +1520,6 @@ part number 2062-2P from STA</description>
 </package3d>
 <package3d name="1X02_RA_PTH_FEMALE" urn="urn:adsk.eagle:package:38062/1" type="box" library_version="1">
 </package3d>
-<package3d name="DEANS" urn="urn:adsk.eagle:package:38281/1" type="box" library_version="1">
-<description>Deans Connector
-Specifications:
-Pin count:2
-
-Datasheet referenced for footprint
-Example device(s):
-BATTERY_CONN
-</description>
-</package3d>
 </packages3d>
 <symbols>
 <symbol name="CONN_02" urn="urn:adsk.eagle:symbol:37653/1" library_version="1">
@@ -1577,20 +1534,6 @@ BATTERY_CONN
 <text x="-2.54" y="5.588" size="1.778" layer="95" font="vector">&gt;NAME</text>
 <pin name="1" x="7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="2" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
-</symbol>
-<symbol name="BATTERY_CONN" urn="urn:adsk.eagle:symbol:37954/1" library_version="1">
-<description>&lt;h3&gt;Battery Connection&lt;/h3&gt;
-&lt;p&gt;&lt;/p&gt;</description>
-<wire x1="-2.54" y1="2.54" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
-<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
-<wire x1="3.81" y1="-5.08" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="3.81" y1="-5.08" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
-<text x="-2.54" y="-7.62" size="1.778" layer="96" font="vector">&gt;VALUE</text>
-<text x="-2.54" y="3.302" size="1.778" layer="95" font="vector">&gt;NAME</text>
-<pin name="+" x="7.62" y="0" length="middle" direction="pas" swaplevel="1" rot="R180"/>
-<pin name="-" x="7.62" y="-2.54" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1930,32 +1873,6 @@ BATTERY_CONN
 <technologies>
 <technology name="">
 <attribute name="PROD_ID" value="CONN-13700"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="BATTERY_CONN" urn="urn:adsk.eagle:component:38389/1" prefix="J" uservalue="yes" library_version="1">
-<description>&lt;h3&gt;Battery Connectors&lt;/h3&gt;
-&lt;p&gt;Various footprints for battery connections&lt;/p&gt;
-&lt;p&gt;SparkFun Products:
-&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/11864"&gt;Deans Connector -M/F Pair&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;</description>
-<gates>
-<gate name="G$1" symbol="BATTERY_CONN" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_DEANS" package="DEANS">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:38281/1"/>
-</package3dinstances>
-<technologies>
-<technology name="">
-<attribute name="SF_ID" value="PRT-11864" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -7578,9 +7495,8 @@ SERVO</description>
 <packages>
 <package name="PI">
 <wire x1="0" y1="0" x2="58.41" y2="0" width="0.127" layer="22"/>
-<wire x1="58.41" y1="0" x2="85" y2="0" width="0.127" layer="22"/>
-<wire x1="85" y1="0" x2="85" y2="56" width="0.127" layer="22"/>
-<wire x1="85" y1="56" x2="63.41" y2="56" width="0.127" layer="22"/>
+<wire x1="58.41" y1="0" x2="63.41" y2="0" width="0.127" layer="22"/>
+<wire x1="63.41" y1="0" x2="63.41" y2="56" width="0.127" layer="22"/>
 <wire x1="63.41" y1="56" x2="0" y2="56" width="0.127" layer="22"/>
 <wire x1="0" y1="56" x2="0" y2="0" width="0.127" layer="22"/>
 <hole x="3.5" y="52.5" drill="2.75"/>
@@ -9029,15 +8945,12 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="U$2" library="diy-modules" deviceset="DC-DC-STEP-DOWN-LM2596" device=""/>
 <part name="GND5" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="" value="GND"/>
 <part name="GND6" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="" value="GND"/>
-<part name="LIPO_B" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="BATTERY_CONN" device="_DEANS" package3d_urn="urn:adsk.eagle:package:38281/1"/>
 <part name="U$3" library="diy-modules" deviceset="DC-DC-STEP-DOWN-LM2596" device=""/>
 <part name="GND7" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="" value="GND"/>
 <part name="LIPO_SMALL_2" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="LIPO_SMALL_1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="C3" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" deviceset="C" device="5/5" package3d_urn="urn:adsk.eagle:package:5428/1" value="1U"/>
 <part name="C4" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" deviceset="C" device="5/5" package3d_urn="urn:adsk.eagle:package:5428/1" value="1U"/>
-<part name="C7" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" deviceset="C" device="5/5" package3d_urn="urn:adsk.eagle:package:5428/1" value="1U"/>
-<part name="C20" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" deviceset="C" device="5/5" package3d_urn="urn:adsk.eagle:package:5428/1" value="1U"/>
 <part name="U$4" library="TO220" deviceset="UA7805" device=""/>
 <part name="M1" library="SparkFun-Electromechanical" library_urn="urn:adsk.eagle:library:516" deviceset="SERVO" device="" package3d_urn="urn:adsk.eagle:package:38562/1"/>
 <part name="M2" library="SparkFun-Electromechanical" library_urn="urn:adsk.eagle:library:516" deviceset="SERVO" device="" package3d_urn="urn:adsk.eagle:package:38562/1"/>
@@ -9123,7 +9036,9 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="GND12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device="" value="GND"/>
 <part name="R37" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-TRIMM" device="T93YA" package3d_urn="urn:adsk.eagle:package:26051/1" value="10k"/>
 <part name="R38" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-TRIMM" device="T93YA" package3d_urn="urn:adsk.eagle:package:26051/1" value="10k"/>
-<part name="FUSE" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="2A"/>
+<part name="PI_FUSE" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="2A"/>
+<part name="STM_FUSE" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="300mA"/>
+<part name="LIPO_BIG" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -9249,15 +9164,12 @@ Small Lipo: ICs via linear regulator</text>
 <instance part="U$2" gate="G$1" x="55.88" y="86.36"/>
 <instance part="GND5" gate="GND" x="53.34" y="10.16"/>
 <instance part="GND6" gate="GND" x="78.74" y="73.66"/>
-<instance part="LIPO_B" gate="G$1" x="12.7" y="129.54"/>
 <instance part="U$3" gate="G$1" x="58.42" y="127"/>
 <instance part="GND7" gate="GND" x="81.28" y="114.3"/>
 <instance part="LIPO_SMALL_2" gate="G$1" x="27.94" y="86.36"/>
 <instance part="LIPO_SMALL_1" gate="G$1" x="106.68" y="33.02" rot="MR0"/>
 <instance part="C3" gate="G$1" x="83.82" y="127"/>
 <instance part="C4" gate="G$1" x="88.9" y="127"/>
-<instance part="C7" gate="G$1" x="93.98" y="127"/>
-<instance part="C20" gate="G$1" x="99.06" y="127"/>
 <instance part="U$4" gate="G$1" x="45.72" y="30.48"/>
 <instance part="M1" gate="G$1" x="162.56" y="83.82"/>
 <instance part="M2" gate="G$1" x="162.56" y="55.88"/>
@@ -9343,7 +9255,9 @@ Small Lipo: ICs via linear regulator</text>
 <instance part="GND12" gate="GND" x="345.44" y="-83.82"/>
 <instance part="R37" gate="G$1" x="350.52" y="-38.1" rot="MR180"/>
 <instance part="R38" gate="G$1" x="254" y="-40.64" rot="MR180"/>
-<instance part="FUSE" gate="G$1" x="109.22" y="129.54" rot="R180"/>
+<instance part="PI_FUSE" gate="G$1" x="101.6" y="134.62" rot="R180"/>
+<instance part="STM_FUSE" gate="G$1" x="101.6" y="127" rot="R180"/>
+<instance part="LIPO_BIG" gate="G$1" x="10.16" y="127"/>
 </instances>
 <busses>
 </busses>
@@ -9504,15 +9418,9 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="GND7" gate="GND" pin="GND"/>
 <wire x1="76.2" y1="121.92" x2="81.28" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="121.92" x2="81.28" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="C20" gate="G$1" pin="2"/>
-<pinref part="C7" gate="G$1" pin="2"/>
-<wire x1="99.06" y1="121.92" x2="93.98" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="2"/>
-<wire x1="93.98" y1="121.92" x2="88.9" y2="121.92" width="0.1524" layer="91"/>
-<junction x="93.98" y="121.92"/>
 <pinref part="C3" gate="G$1" pin="2"/>
 <wire x1="88.9" y1="121.92" x2="83.82" y2="121.92" width="0.1524" layer="91"/>
-<junction x="88.9" y="121.92"/>
 <wire x1="83.82" y1="121.92" x2="81.28" y2="121.92" width="0.1524" layer="91"/>
 <junction x="83.82" y="121.92"/>
 <junction x="81.28" y="121.92"/>
@@ -9598,11 +9506,12 @@ Small Lipo: ICs via linear regulator</text>
 <junction x="393.7" y="167.64"/>
 </segment>
 <segment>
-<pinref part="LIPO_B" gate="G$1" pin="-"/>
 <pinref part="U$3" gate="G$1" pin="IN-"/>
 <wire x1="20.32" y1="127" x2="40.64" y2="127" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="127" x2="40.64" y2="121.92" width="0.1524" layer="91"/>
 <label x="25.4" y="127" size="1.778" layer="95"/>
+<pinref part="LIPO_BIG" gate="G$1" pin="1"/>
+<wire x1="20.32" y1="127" x2="17.78" y2="127" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="A" pin="GND_2"/>
@@ -9826,9 +9735,9 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="538.48" y1="40.64" x2="553.72" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="A" pin="P$37"/>
-<wire x1="93.98" y1="218.44" x2="83.82" y2="218.44" width="0.1524" layer="91"/>
-<label x="83.82" y="218.44" size="1.778" layer="95"/>
+<pinref part="U$1" gate="A" pin="P$50"/>
+<wire x1="93.98" y1="251.46" x2="71.12" y2="251.46" width="0.1524" layer="91"/>
+<label x="71.12" y="251.46" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -9853,7 +9762,7 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="R14" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$28" class="0">
+<net name="TLA" class="0">
 <segment>
 <pinref part="R13" gate="G$1" pin="1"/>
 <pinref part="U3" gate="G$1" pin="C"/>
@@ -9862,6 +9771,12 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="243.84" y1="43.18" x2="243.84" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="43.18" x2="243.84" y2="43.18" width="0.1524" layer="91"/>
 <junction x="243.84" y="43.18"/>
+<label x="243.84" y="40.64" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$2"/>
+<wire x1="35.56" y1="220.98" x2="12.7" y2="220.98" width="0.1524" layer="91"/>
+<label x="12.7" y="220.98" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$29" class="0">
@@ -9883,7 +9798,7 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="R27" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$31" class="0">
+<net name="TRA" class="0">
 <segment>
 <pinref part="R16" gate="G$1" pin="1"/>
 <pinref part="U4" gate="G$1" pin="C"/>
@@ -9892,6 +9807,12 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="340.36" y1="45.72" x2="340.36" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="45.72" x2="340.36" y2="45.72" width="0.1524" layer="91"/>
 <junction x="340.36" y="45.72"/>
+<label x="340.36" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$57"/>
+<wire x1="99.06" y1="223.52" x2="116.84" y2="223.52" width="0.1524" layer="91"/>
+<label x="101.6" y="223.52" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="5V_ANOLOG" class="0">
@@ -9912,22 +9833,16 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="30.48" y1="33.02" x2="63.5" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="477.52" y1="45.72" x2="477.52" y2="43.18" width="0.1524" layer="91"/>
-<pinref part="QSD1" gate="G$1" pin="+"/>
-<wire x1="477.52" y1="43.18" x2="477.52" y2="39.37" width="0.1524" layer="91"/>
-<junction x="477.52" y="43.18"/>
-<label x="477.52" y="45.72" size="1.778" layer="95"/>
 <pinref part="IC1" gate="G3" pin="P$V+"/>
-<wire x1="477.52" y1="43.18" x2="462.28" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="462.28" y1="43.18" x2="462.28" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="462.28" y1="43.18" x2="444.5" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="444.5" y1="43.18" x2="444.5" y2="33.02" width="0.1524" layer="91"/>
-<junction x="462.28" y="43.18"/>
 <pinref part="C6" gate="G$1" pin="1"/>
 <wire x1="444.5" y1="43.18" x2="431.8" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="431.8" y1="43.18" x2="431.8" y2="33.02" width="0.1524" layer="91"/>
 <junction x="444.5" y="43.18"/>
+<label x="449.58" y="43.18" size="1.778" layer="95"/>
 </segment>
 <segment>
 <wire x1="236.22" y1="60.96" x2="236.22" y2="63.5" width="0.1524" layer="91"/>
@@ -9982,12 +9897,6 @@ Small Lipo: ICs via linear regulator</text>
 <junction x="365.76" y="66.04"/>
 <wire x1="368.3" y1="66.04" x2="370.84" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="370.84" y1="66.04" x2="370.84" y2="55.88" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="QSD2" gate="G$1" pin="+"/>
-<wire x1="619.76" y1="45.72" x2="619.76" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="619.76" y1="43.18" x2="619.76" y2="39.37" width="0.1524" layer="91"/>
-<label x="619.76" y="45.72" size="1.778" layer="95"/>
 </segment>
 <segment>
 <wire x1="543.56" y1="60.96" x2="558.8" y2="60.96" width="0.1524" layer="91"/>
@@ -10134,11 +10043,12 @@ Small Lipo: ICs via linear regulator</text>
 </net>
 <net name="LIPO_B_SUPPLY" class="0">
 <segment>
-<pinref part="LIPO_B" gate="G$1" pin="+"/>
 <pinref part="U$3" gate="G$1" pin="IN+"/>
 <wire x1="20.32" y1="129.54" x2="40.64" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="129.54" x2="40.64" y2="132.08" width="0.1524" layer="91"/>
 <label x="25.4" y="129.54" size="1.778" layer="95"/>
+<pinref part="LIPO_BIG" gate="G$1" pin="2"/>
+<wire x1="20.32" y1="129.54" x2="17.78" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="A" pin="V+"/>
@@ -10247,15 +10157,24 @@ Small Lipo: ICs via linear regulator</text>
 </net>
 <net name="5V_DIGITAL" class="0">
 <segment>
-<pinref part="U$1" gate="A" pin="P$35"/>
-<wire x1="40.64" y1="259.08" x2="45.72" y2="259.08" width="0.1524" layer="91"/>
-<label x="43.18" y="259.08" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="FUSE" gate="G$1" pin="1"/>
-<wire x1="114.3" y1="129.54" x2="114.3" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="139.7" x2="111.76" y2="139.7" width="0.1524" layer="91"/>
-<label x="104.14" y="139.7" size="1.778" layer="95"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="81.28" y1="129.54" x2="83.82" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="83.82" y1="129.54" x2="88.9" y2="129.54" width="0.1524" layer="91"/>
+<junction x="83.82" y="129.54"/>
+<wire x1="88.9" y1="129.54" x2="93.98" y2="129.54" width="0.1524" layer="91"/>
+<junction x="88.9" y="129.54"/>
+<wire x1="93.98" y1="129.54" x2="93.98" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="PI_FUSE" gate="G$1" pin="2"/>
+<wire x1="93.98" y1="134.62" x2="96.52" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="OUT+"/>
+<wire x1="76.2" y1="132.08" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="132.08" x2="81.28" y2="129.54" width="0.1524" layer="91"/>
+<label x="76.2" y="132.08" size="1.778" layer="95"/>
+<pinref part="STM_FUSE" gate="G$1" pin="2"/>
+<wire x1="93.98" y1="129.54" x2="93.98" y2="127" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="127" x2="96.52" y2="127" width="0.1524" layer="91"/>
+<junction x="93.98" y="129.54"/>
 </segment>
 <segment>
 <pinref part="U$6" gate="G$1" pin="P$2"/>
@@ -10867,15 +10786,15 @@ Small Lipo: ICs via linear regulator</text>
 </net>
 <net name="EDGE_LEFT" class="0">
 <segment>
-<pinref part="U$1" gate="A" pin="P$2"/>
-<wire x1="35.56" y1="220.98" x2="12.7" y2="220.98" width="0.1524" layer="91"/>
-<label x="12.7" y="220.98" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="IC3" gate="A" pin="OUT"/>
 <wire x1="279.4" y1="-50.8" x2="287.02" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="287.02" y1="-50.8" x2="289.56" y2="-50.8" width="0.1524" layer="91"/>
 <label x="289.56" y="-50.8" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$36"/>
+<wire x1="40.64" y1="261.62" x2="55.88" y2="261.62" width="0.1524" layer="91"/>
+<label x="43.18" y="261.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="EDGE_RIGHT" class="0">
@@ -10901,7 +10820,7 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="R28" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$14" class="0">
+<net name="ELA" class="0">
 <segment>
 <pinref part="R15" gate="G$1" pin="1"/>
 <pinref part="U1" gate="G$1" pin="C"/>
@@ -10910,6 +10829,12 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="243.84" y1="-53.34" x2="243.84" y2="-60.96" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="-53.34" x2="243.84" y2="-53.34" width="0.1524" layer="91"/>
 <junction x="243.84" y="-53.34"/>
+<label x="243.84" y="-55.88" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$71"/>
+<wire x1="99.06" y1="259.08" x2="111.76" y2="259.08" width="0.1524" layer="91"/>
+<label x="101.6" y="259.08" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$15" class="0">
@@ -10931,7 +10856,7 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="R36" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$18" class="0">
+<net name="ERA" class="0">
 <segment>
 <pinref part="R34" gate="G$1" pin="1"/>
 <pinref part="U6" gate="G$1" pin="C"/>
@@ -10940,6 +10865,12 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="340.36" y1="-50.8" x2="340.36" y2="-58.42" width="0.1524" layer="91"/>
 <wire x1="360.68" y1="-50.8" x2="340.36" y2="-50.8" width="0.1524" layer="91"/>
 <junction x="340.36" y="-50.8"/>
+<label x="340.36" y="-53.34" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$62"/>
+<wire x1="99.06" y1="236.22" x2="116.84" y2="236.22" width="0.1524" layer="91"/>
+<label x="101.6" y="236.22" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$19" class="0">
@@ -10950,26 +10881,64 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="360.68" y1="-38.1" x2="360.68" y2="-45.72" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="FUSE" class="0">
+<net name="N$32" class="0">
 <segment>
-<pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="81.28" y1="129.54" x2="83.82" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="C4" gate="G$1" pin="1"/>
-<wire x1="83.82" y1="129.54" x2="88.9" y2="129.54" width="0.1524" layer="91"/>
-<junction x="83.82" y="129.54"/>
-<pinref part="C7" gate="G$1" pin="1"/>
-<wire x1="88.9" y1="129.54" x2="93.98" y2="129.54" width="0.1524" layer="91"/>
-<junction x="88.9" y="129.54"/>
-<pinref part="C20" gate="G$1" pin="1"/>
-<wire x1="93.98" y1="129.54" x2="99.06" y2="129.54" width="0.1524" layer="91"/>
-<junction x="93.98" y="129.54"/>
-<pinref part="FUSE" gate="G$1" pin="2"/>
-<wire x1="99.06" y1="129.54" x2="104.14" y2="129.54" width="0.1524" layer="91"/>
-<junction x="99.06" y="129.54"/>
-<pinref part="U$3" gate="G$1" pin="OUT+"/>
-<wire x1="76.2" y1="132.08" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="81.28" y1="132.08" x2="81.28" y2="129.54" width="0.1524" layer="91"/>
-<label x="76.2" y="132.08" size="1.778" layer="95"/>
+<pinref part="U$1" gate="A" pin="P$105"/>
+<pinref part="U$1" gate="A" pin="P$106"/>
+<wire x1="35.56" y1="279.4" x2="35.56" y2="281.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="U$1" gate="A" pin="P$108"/>
+<pinref part="U$1" gate="A" pin="P$107"/>
+<wire x1="99.06" y1="279.4" x2="99.06" y2="281.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PI_SUPPLY" class="0">
+<segment>
+<pinref part="PI_FUSE" gate="G$1" pin="1"/>
+<wire x1="106.68" y1="134.62" x2="106.68" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="142.24" x2="104.14" y2="142.24" width="0.1524" layer="91"/>
+<label x="96.52" y="142.24" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="P$2"/>
+<pinref part="U$6" gate="G$1" pin="P$4"/>
+<wire x1="182.88" y1="208.28" x2="182.88" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="208.28" x2="167.64" y2="208.28" width="0.1524" layer="91"/>
+<junction x="182.88" y="208.28"/>
+<label x="167.64" y="208.28" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="STM_SUPPLY" class="0">
+<segment>
+<pinref part="STM_FUSE" gate="G$1" pin="1"/>
+<wire x1="106.68" y1="127" x2="111.76" y2="127" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="127" x2="111.76" y2="116.84" width="0.1524" layer="91"/>
+<label x="96.52" y="116.84" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$1" gate="A" pin="P$35"/>
+<wire x1="40.64" y1="259.08" x2="45.72" y2="259.08" width="0.1524" layer="91"/>
+<label x="43.18" y="259.08" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="+3V3" class="0">
+<segment>
+<pinref part="U$1" gate="A" pin="P$30"/>
+<wire x1="40.64" y1="246.38" x2="45.72" y2="246.38" width="0.1524" layer="91"/>
+<label x="43.18" y="246.38" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="QSD1" gate="G$1" pin="+"/>
+<wire x1="477.52" y1="39.37" x2="477.52" y2="43.18" width="0.1524" layer="91"/>
+<label x="477.52" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="QSD2" gate="G$1" pin="+"/>
+<wire x1="619.76" y1="39.37" x2="619.76" y2="43.18" width="0.1524" layer="91"/>
+<label x="619.76" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$32" class="0">
@@ -11008,11 +10977,11 @@ Small Lipo: ICs via linear regulator</text>
 <approved hash="104,1,365.76,-55.88,IC6,V-,GND,,,"/>
 <approved hash="113,1,478.473,35.56,QSD1,,,,,"/>
 <approved hash="113,1,620.712,35.56,QSD2,,,,,"/>
-<approved hash="113,1,17.1027,129.83,LIPO_B,,,,,"/>
 <approved hash="113,1,33.6637,89.0626,LIPO_SMALL_2,,,,,"/>
 <approved hash="113,1,100.956,35.7226,LIPO_SMALL_1,,,,,"/>
 <approved hash="113,1,505.297,258.403,J2,,,,,"/>
 <approved hash="113,1,505.297,154.263,J3,,,,,"/>
+<approved hash="113,1,14.5627,129.703,LIPO_BIG,,,,,"/>
 </errors>
 </schematic>
 </drawing>
