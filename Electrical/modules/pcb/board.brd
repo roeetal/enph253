@@ -2832,8 +2832,8 @@ design rules under a new name.</description>
 <vertex x="0" y="158.75"/>
 <vertex x="0" y="125"/>
 <vertex x="57" y="125"/>
-<vertex x="57" y="104"/>
-<vertex x="0" y="104"/>
+<vertex x="57" y="103"/>
+<vertex x="0" y="103"/>
 <vertex x="0" y="0"/>
 <vertex x="88.9" y="0"/>
 <vertex x="88.9" y="158.75"/>
