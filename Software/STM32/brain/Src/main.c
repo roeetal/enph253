@@ -229,14 +229,23 @@ void pi_navigation(){
     RIGHT_SPEED = 850;
     while(1){
         int32_t heading = calculate_heading(read_value[2]);
+        uint32_t lspeed=LEFT_SPEED;
+        uint32_t rspeed=RIGHT_SPEED;
         if (heading < 0)
-        {
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, LEFT_SPEED-heading);
+        {   
+            lspeed = LEFT_SPEED-heading;
+            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
         }
         else if (heading > 0)
         {
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, RIGHT_SPEED+heading);
+            rspeed = RIGHT_SPEED+heading;
+            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
         }
+        char msg[20] = "";
+        sprintf(msg, "L: %lu", lspeed);
+        print(msg, 0);
+        sprintf(msg, "RL %lu", rspeed);
+        print(msg, 1);
     } 
     HAL_ADC_Stop_DMA(&hadc1);
     PI_INT_STATE = NOT_FLAGGED;
