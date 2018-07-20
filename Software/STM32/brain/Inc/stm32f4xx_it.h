@@ -47,10 +47,6 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
-/* External variables ------------------------------------------------------- */
-// Define/Declare in main.c only
-extern uint8_t PUSH_BUTTON_STATE;
-
 void NMI_Handler(void);
 void HardFault_Handler(void);
 void MemManage_Handler(void);
@@ -64,7 +60,9 @@ void EXTI0_IRQHandler(void);
 void EXTI1_IRQHandler(void);
 void EXTI2_IRQHandler(void);
 void EXTI3_IRQHandler(void);
+void ADC_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
+void DMA2_Stream0_IRQHandler(void);
 
 #ifdef __cplusplus
 }
