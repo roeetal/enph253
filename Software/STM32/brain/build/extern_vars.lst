@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2GNVEy.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s 			page 1
 
 
    1              		.syntax unified
@@ -20,22 +20,28 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2GNVEy.s 			page 1
   17              		.text
   18              	.Ltext0:
   19              		.cfi_sections	.debug_frame
-  20              		.global	IR_INT_STATE
-  21              		.section	.bss.IR_INT_STATE,"aw",%nobits
-  24              	IR_INT_STATE:
-  25 0000 00       		.space	1
-  26              		.text
-  27              	.Letext0:
-  28              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
-  29              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
-  30              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
-  31              		.file 4 "Src/extern_vars.c"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2GNVEy.s 			page 2
+  20              		.global	PI_INT_STATE
+  21              		.global	IR_INT_STATE
+  22              		.section	.bss.IR_INT_STATE,"aw",%nobits
+  25              	IR_INT_STATE:
+  26 0000 00       		.space	1
+  27              		.section	.bss.PI_INT_STATE,"aw",%nobits
+  30              	PI_INT_STATE:
+  31 0000 00       		.space	1
+  32              		.text
+  33              	.Letext0:
+  34              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+  35              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+  36              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+  37              		.file 4 "Src/extern_vars.c"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 extern_vars.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2GNVEy.s:24     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cc2GNVEy.s:25     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:30     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:25     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:26     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:31     .bss.PI_INT_STATE:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS
