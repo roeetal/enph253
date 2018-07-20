@@ -65,10 +65,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-/* pulse_length(degrees) = (MAX - MIN) * degrees / 180 + MIN */
-int pulse_length(uint32_t deg) {
-  return htim1.Init.Period * (0.1 - 0.05) * deg / 180 + htim1.Init.Period * 0.05;
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -115,27 +112,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (0.8 / 20));
-    HAL_Delay(1500);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (0.5 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (0.75 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (1.0 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (1.25 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (1.50 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (1.75 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (2.0 / 20));
-    // HAL_Delay(750);
-    // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (2.25 / 20));
-    // HAL_Delay(750);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period * (2.5 / 20));
-    HAL_Delay(1500);
-
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 2000 * 0.05);
+    HAL_Delay(1000);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 2000 * 0.1);
+    HAL_Delay(1000);
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

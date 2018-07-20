@@ -10176,14 +10176,6 @@ Small Lipo: ICs via linear regulator</text>
 <wire x1="93.98" y1="127" x2="96.52" y2="127" width="0.1524" layer="91"/>
 <junction x="93.98" y="129.54"/>
 </segment>
-<segment>
-<pinref part="U$6" gate="G$1" pin="P$2"/>
-<pinref part="U$6" gate="G$1" pin="P$4"/>
-<wire x1="182.88" y1="208.28" x2="182.88" y2="210.82" width="0.1524" layer="91"/>
-<wire x1="182.88" y1="208.28" x2="167.64" y2="208.28" width="0.1524" layer="91"/>
-<junction x="182.88" y="208.28"/>
-<label x="167.64" y="208.28" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="SERVO_CLAW_2" class="0">
 <segment>
@@ -10939,20 +10931,6 @@ Small Lipo: ICs via linear regulator</text>
 <pinref part="QSD2" gate="G$1" pin="+"/>
 <wire x1="619.76" y1="39.37" x2="619.76" y2="43.18" width="0.1524" layer="91"/>
 <label x="619.76" y="43.18" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$32" class="0">
-<segment>
-<pinref part="U$1" gate="A" pin="P$105"/>
-<pinref part="U$1" gate="A" pin="P$106"/>
-<wire x1="35.56" y1="279.4" x2="35.56" y2="281.94" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$37" class="0">
-<segment>
-<pinref part="U$1" gate="A" pin="P$108"/>
-<pinref part="U$1" gate="A" pin="P$107"/>
-<wire x1="99.06" y1="279.4" x2="99.06" y2="281.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
