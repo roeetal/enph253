@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
   28:Src/main.c    ****  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
   29:Src/main.c    ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/main.c    ****  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 2
 
 
   31:Src/main.c    ****  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
   85:Src/main.c    **** 
   86:Src/main.c    **** /* USER CODE BEGIN 0 */
   87:Src/main.c    **** void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 3
 
 
   88:Src/main.c    **** {
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  110:Src/main.c    **** 
  111:Src/main.c    ****     /* USER CODE END Init */
  112:Src/main.c    **** 
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 4
 
 
  113:Src/main.c    ****     /* Configure the system clock */
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  167:Src/main.c    ****  */
  168:Src/main.c    **** void SystemClock_Config(void)
  169:Src/main.c    **** {
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 5
 
 
  170:Src/main.c    **** 
@@ -298,14 +298,14 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  224:Src/main.c    **** void pi_navigation(){
  225:Src/main.c    ****     HAL_ADC_Start_DMA(&hadc1, adc_buffer, sizeof(adc_buffer)/sizeof(adc_buffer[0]));
  226:Src/main.c    ****     print("Pi Nav", 0);
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 6
 
 
- 227:Src/main.c    ****     HAL_Delay(10);
+ 227:Src/main.c    ****     HAL_Delay(500);
  228:Src/main.c    ****     LEFT_SPEED = 850;
  229:Src/main.c    ****     RIGHT_SPEED = 850;
  230:Src/main.c    ****     while(1){
- 231:Src/main.c    ****         int32_t heading = calculate_heading(read_value[2]);
+ 231:Src/main.c    ****         int32_t heading = calculate_heading(read_value[0]);
  232:Src/main.c    ****         uint32_t lspeed=LEFT_SPEED;
  233:Src/main.c    ****         uint32_t rspeed=RIGHT_SPEED;
  234:Src/main.c    ****         if (heading < 0)
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
   80              	.LFE127:
   82              		.global	__aeabi_d2iz
   83              		.global	__aeabi_i2d
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 7
 
 
   84              		.global	__aeabi_dsub
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  134 0022 4248     		ldr	r0, .L14
  135              	.LVL7:
  136 0024 4249     		ldr	r1, .L14+4
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 8
 
 
  137              	.LVL8:
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  181 0076 FFF7FEFF 		bl	__aeabi_dsub
  182              	.LVL17:
  183 007a 0022     		movs	r2, #0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 9
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 9
 
 
  184 007c 2E4B     		ldr	r3, .L14+12
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  232 00d4 3046     		mov	r0, r6
  233 00d6 3946     		mov	r1, r7
  234 00d8 FFF7FEFF 		bl	__aeabi_dsub
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 10
 
 
  235              	.LVL31:
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  281              	.LCFI3:
  282              		.cfi_def_cfa_offset 36
  283              		@ sp needed
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 11
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 11
 
 
  284 0126 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  303:Src/main.c    ****     }
  304:Src/main.c    ****     ssd1306_SetCursor(0, row * 10);
  330              		.loc 1 304 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 12
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 12
 
 
  331 000e 04EB8404 		add	r4, r4, r4, lsl #2
@@ -711,142 +711,142 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  377              		.cfi_def_cfa_offset 40
  225:Src/main.c    ****     print("Pi Nav", 0);
  378              		.loc 1 225 0
- 379 0004 2048     		ldr	r0, .L26
- 380 0006 2149     		ldr	r1, .L26+4
+ 379 0004 2148     		ldr	r0, .L26
+ 380 0006 2249     		ldr	r1, .L26+4
  381 0008 4FF44062 		mov	r2, #3072
  382 000c FFF7FEFF 		bl	HAL_ADC_Start_DMA
  383              	.LVL50:
- 226:Src/main.c    ****     HAL_Delay(10);
+ 226:Src/main.c    ****     HAL_Delay(500);
  384              		.loc 1 226 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 13
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 13
 
 
- 385 0010 1F48     		ldr	r0, .L26+8
+ 385 0010 2048     		ldr	r0, .L26+8
  386 0012 0021     		movs	r1, #0
  387 0014 FFF7FEFF 		bl	print
  388              	.LVL51:
  227:Src/main.c    ****     LEFT_SPEED = 850;
  389              		.loc 1 227 0
- 390 0018 0A20     		movs	r0, #10
- 391 001a FFF7FEFF 		bl	HAL_Delay
+ 390 0018 4FF4FA70 		mov	r0, #500
+ 391 001c FFF7FEFF 		bl	HAL_Delay
  392              	.LVL52:
  228:Src/main.c    ****     RIGHT_SPEED = 850;
  393              		.loc 1 228 0
- 394 001e 40F25233 		movw	r3, #850
- 395 0022 1C4A     		ldr	r2, .L26+12
- 396 0024 1380     		strh	r3, [r2]	@ movhi
+ 394 0020 40F25233 		movw	r3, #850
+ 395 0024 1C4A     		ldr	r2, .L26+12
+ 396 0026 1380     		strh	r3, [r2]	@ movhi
  229:Src/main.c    ****     while(1){
  397              		.loc 1 229 0
- 398 0026 1C4A     		ldr	r2, .L26+16
- 399 0028 1380     		strh	r3, [r2]	@ movhi
+ 398 0028 1C4A     		ldr	r2, .L26+16
+ 399 002a 1380     		strh	r3, [r2]	@ movhi
  400              	.L24:
  401              	.LBB3:
  231:Src/main.c    ****         uint32_t lspeed=LEFT_SPEED;
  402              		.loc 1 231 0
- 403 002a 1C4B     		ldr	r3, .L26+20
- 404 002c 9868     		ldr	r0, [r3, #8]
- 405 002e FFF7FEFF 		bl	calculate_heading
+ 403 002c 1C4B     		ldr	r3, .L26+20
+ 404 002e 1868     		ldr	r0, [r3]
+ 405 0030 FFF7FEFF 		bl	calculate_heading
  406              	.LVL53:
  232:Src/main.c    ****         uint32_t rspeed=RIGHT_SPEED;
  407              		.loc 1 232 0
- 408 0032 184B     		ldr	r3, .L26+12
- 409 0034 1988     		ldrh	r1, [r3]
- 410 0036 0A46     		mov	r2, r1
+ 408 0034 184B     		ldr	r3, .L26+12
+ 409 0036 1988     		ldrh	r1, [r3]
+ 410 0038 0A46     		mov	r2, r1
  411              	.LVL54:
  233:Src/main.c    ****         if (heading < 0)
  412              		.loc 1 233 0
- 413 0038 174B     		ldr	r3, .L26+16
- 414 003a 1B88     		ldrh	r3, [r3]
- 415 003c 1D46     		mov	r5, r3
+ 413 003a 184B     		ldr	r3, .L26+16
+ 414 003c 1B88     		ldrh	r3, [r3]
+ 415 003e 1D46     		mov	r5, r3
  416              	.LVL55:
  234:Src/main.c    ****         {   
  417              		.loc 1 234 0
- 418 003e 0028     		cmp	r0, #0
- 419 0040 04DA     		bge	.L22
+ 418 0040 0028     		cmp	r0, #0
+ 419 0042 04DA     		bge	.L22
  236:Src/main.c    ****             __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
  420              		.loc 1 236 0
- 421 0042 0A1A     		subs	r2, r1, r0
+ 421 0044 0A1A     		subs	r2, r1, r0
  422              	.LVL56:
  237:Src/main.c    ****         }
  423              		.loc 1 237 0
- 424 0044 164B     		ldr	r3, .L26+24
+ 424 0046 174B     		ldr	r3, .L26+24
  425              	.LVL57:
- 426 0046 1B68     		ldr	r3, [r3]
- 427 0048 5A63     		str	r2, [r3, #52]
- 428 004a 05E0     		b	.L23
+ 426 0048 1B68     		ldr	r3, [r3]
+ 427 004a 5A63     		str	r2, [r3, #52]
+ 428 004c 05E0     		b	.L23
  429              	.LVL58:
  430              	.L22:
  239:Src/main.c    ****         {
  431              		.loc 1 239 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 14
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 14
 
 
- 432 004c 0028     		cmp	r0, #0
- 433 004e 03DD     		ble	.L23
+ 432 004e 0028     		cmp	r0, #0
+ 433 0050 03DD     		ble	.L23
  241:Src/main.c    ****             __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
  434              		.loc 1 241 0
- 435 0050 1D18     		adds	r5, r3, r0
+ 435 0052 1D18     		adds	r5, r3, r0
  436              	.LVL59:
  242:Src/main.c    ****         }
  437              		.loc 1 242 0
- 438 0052 134B     		ldr	r3, .L26+24
- 439 0054 1B68     		ldr	r3, [r3]
- 440 0056 DD63     		str	r5, [r3, #60]
+ 438 0054 134B     		ldr	r3, .L26+24
+ 439 0056 1B68     		ldr	r3, [r3]
+ 440 0058 DD63     		str	r5, [r3, #60]
  441              	.LVL60:
  442              	.L23:
  244:Src/main.c    ****         sprintf(msg, "L: %lu", lspeed);
  443              		.loc 1 244 0
- 444 0058 0024     		movs	r4, #0
- 445 005a 0194     		str	r4, [sp, #4]
- 446 005c 0294     		str	r4, [sp, #8]
- 447 005e 0394     		str	r4, [sp, #12]
- 448 0060 0494     		str	r4, [sp, #16]
- 449 0062 0594     		str	r4, [sp, #20]
+ 444 005a 0024     		movs	r4, #0
+ 445 005c 0194     		str	r4, [sp, #4]
+ 446 005e 0294     		str	r4, [sp, #8]
+ 447 0060 0394     		str	r4, [sp, #12]
+ 448 0062 0494     		str	r4, [sp, #16]
+ 449 0064 0594     		str	r4, [sp, #20]
  245:Src/main.c    ****         print(msg, 0);
  450              		.loc 1 245 0
- 451 0064 01A8     		add	r0, sp, #4
+ 451 0066 01A8     		add	r0, sp, #4
  452              	.LVL61:
- 453 0066 0F49     		ldr	r1, .L26+28
- 454 0068 FFF7FEFF 		bl	sprintf
+ 453 0068 0F49     		ldr	r1, .L26+28
+ 454 006a FFF7FEFF 		bl	sprintf
  455              	.LVL62:
  246:Src/main.c    ****         sprintf(msg, "R: %lu", rspeed);
  456              		.loc 1 246 0
- 457 006c 01A8     		add	r0, sp, #4
- 458 006e 2146     		mov	r1, r4
- 459 0070 FFF7FEFF 		bl	print
+ 457 006e 01A8     		add	r0, sp, #4
+ 458 0070 2146     		mov	r1, r4
+ 459 0072 FFF7FEFF 		bl	print
  460              	.LVL63:
  247:Src/main.c    ****         print(msg, 1);
  461              		.loc 1 247 0
- 462 0074 01A8     		add	r0, sp, #4
- 463 0076 0C49     		ldr	r1, .L26+32
- 464 0078 2A46     		mov	r2, r5
- 465 007a FFF7FEFF 		bl	sprintf
+ 462 0076 01A8     		add	r0, sp, #4
+ 463 0078 0C49     		ldr	r1, .L26+32
+ 464 007a 2A46     		mov	r2, r5
+ 465 007c FFF7FEFF 		bl	sprintf
  466              	.LVL64:
  248:Src/main.c    ****     } 
  467              		.loc 1 248 0
- 468 007e 01A8     		add	r0, sp, #4
- 469 0080 0121     		movs	r1, #1
- 470 0082 FFF7FEFF 		bl	print
+ 468 0080 01A8     		add	r0, sp, #4
+ 469 0082 0121     		movs	r1, #1
+ 470 0084 FFF7FEFF 		bl	print
  471              	.LVL65:
  472              	.LBE3:
  249:Src/main.c    ****     HAL_ADC_Stop_DMA(&hadc1);
  473              		.loc 1 249 0
- 474 0086 D0E7     		b	.L24
+ 474 0088 D0E7     		b	.L24
  475              	.L27:
- 476              		.align	2
+ 476 008a 00BF     		.align	2
  477              	.L26:
- 478 0088 00000000 		.word	hadc1
- 479 008c 00000000 		.word	adc_buffer
- 480 0090 10000000 		.word	.LC2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 15
+ 478 008c 00000000 		.word	hadc1
+ 479 0090 00000000 		.word	adc_buffer
+ 480 0094 10000000 		.word	.LC2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 15
 
 
- 481 0094 00000000 		.word	LEFT_SPEED
- 482 0098 00000000 		.word	RIGHT_SPEED
- 483 009c 00000000 		.word	read_value
- 484 00a0 00000000 		.word	htim1
- 485 00a4 18000000 		.word	.LC3
- 486 00a8 20000000 		.word	.LC4
+ 481 0098 00000000 		.word	LEFT_SPEED
+ 482 009c 00000000 		.word	RIGHT_SPEED
+ 483 00a0 00000000 		.word	read_value
+ 484 00a4 00000000 		.word	htim1
+ 485 00a8 18000000 		.word	.LC3
+ 486 00ac 20000000 		.word	.LC4
  487              		.cfi_endproc
  488              	.LFE126:
  490              		.section	.text.menu,"ax",%progbits
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  314:Src/main.c    ****     uint32_t values[3] = {0, 0, 0};
  530              		.loc 1 314 0
  531 001c 0295     		str	r5, [sp, #8]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 16
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 16
 
 
  532 001e 0395     		str	r5, [sp, #12]
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  574 0066 05A8     		add	r0, sp, #20
  575 0068 0021     		movs	r1, #0
  576 006a FFF7FEFF 		bl	print
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 17
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 17
 
 
  577              	.LVL75:
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  615 00a2 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
  616              	.LVL81:
  617 00a6 08E0     		b	.L35
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 18
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 18
 
 
  618              	.L34:
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  659              	.LVL88:
  355:Src/main.c    ****                 print(msg, 0);
  660              		.loc 1 355 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 19
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 19
 
 
  661 00e6 05A8     		add	r0, sp, #20
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  700              	.LBE4:
  370:Src/main.c    ****         {
  371:Src/main.c    ****             break;
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 20
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 20
 
 
  372:Src/main.c    ****         }
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  745 0164 05A8     		add	r0, sp, #20
  746 0166 0221     		movs	r1, #2
  747 0168 FFF7FEFF 		bl	print
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 21
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 21
 
 
  748              	.LVL101:
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  794 01b8 3A46     		mov	r2, r7
  795 01ba 2B46     		mov	r3, r5
  796 01bc FFF7FEFF 		bl	pid_Init
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 22
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 22
 
 
  797              	.LVL109:
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  394:Src/main.c    ****     /* Read sensors */
  395:Src/main.c    ****     uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) ? 0 : 1;
  849              		.loc 1 395 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 23
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 23
 
 
  850 0006 2D4D     		ldr	r5, .L53
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  890 0040 4FF0FF33 		mov	r3, #-1
  891 0044 3362     		str	r3, [r6, #32]
  892 0046 0FE0     		b	.L46
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 24
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 24
 
 
  893              	.L48:
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  933              	.LVL121:
  934 007c 0194     		str	r4, [sp, #4]
  935 007e 0294     		str	r4, [sp, #8]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 25
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 25
 
 
  936 0080 0394     		str	r4, [sp, #12]
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  975 00ae 084A     		ldr	r2, .L53+20
  976 00b0 1268     		ldr	r2, [r2]
  977 00b2 5163     		str	r1, [r2, #52]
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 26
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 26
 
 
  439:Src/main.c    ****     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
@@ -1558,7 +1558,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1016 0000 FEE7     		b	.L56
  1017              		.cfi_endproc
  1018              	.LFE132:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 27
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 27
 
 
  1020 0002 00BF     		.section	.text.SystemClock_Config,"ax",%progbits
@@ -1618,7 +1618,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1070 003c 0B91     		str	r1, [sp, #44]
  184:Src/main.c    ****     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
  1071              		.loc 1 184 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 28
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 28
 
 
  1072 003e 1021     		movs	r1, #16
@@ -1678,7 +1678,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1113 0076 0793     		str	r3, [sp, #28]
  205:Src/main.c    ****     {
  1114              		.loc 1 205 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 29
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 29
 
 
  1115 0078 03A8     		add	r0, sp, #12
@@ -1738,7 +1738,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1166              	.LFB124:
   99:Src/main.c    ****     /* USER CODE BEGIN 1 */
  1167              		.loc 1 99 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 30
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 30
 
 
  1168              		.cfi_startproc
@@ -1798,7 +1798,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1210              		.loc 1 130 0
  1211 002e FFF7FEFF 		bl	MX_TIM9_Init
  1212              	.LVL150:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 31
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 31
 
 
  131:Src/main.c    ****     /* USER CODE BEGIN 2 */
@@ -1858,7 +1858,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1257 0074 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  1258 0076 012B     		cmp	r3, #1
  1259 0078 FBD1     		bne	.L64
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 32
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 32
 
 
  153:Src/main.c    ****         }
@@ -1918,7 +1918,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1307 003c 5020256C 		.ascii	"P %lu\000"
  1307      7500
  1308 0042 0000     		.space	2
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 33
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 33
 
 
  1309              	.LC9:
@@ -1976,45 +1976,45 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 1
  1353              		.file 27 "Inc/gpio.h"
  1354              		.file 28 "Inc/dma.h"
  1355              		.file 29 "Inc/i2c.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 34
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 34
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:21     .text.HAL_ADC_ConvCpltCallback:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:26     .text.HAL_ADC_ConvCpltCallback:0000000000000000 HAL_ADC_ConvCpltCallback
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:50     .text.HAL_ADC_ConvCpltCallback:0000000000000010 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:21     .text.HAL_ADC_ConvCpltCallback:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:26     .text.HAL_ADC_ConvCpltCallback:0000000000000000 HAL_ADC_ConvCpltCallback
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:50     .text.HAL_ADC_ConvCpltCallback:0000000000000010 $d
                             *COM*:0000000000003000 read_value
                             *COM*:0000000000003000 adc_buffer
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:56     .text.calculate_heading:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:61     .text.calculate_heading:0000000000000000 calculate_heading
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:88     .text.frequency_comparison:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:93     .text.frequency_comparison:0000000000000000 frequency_comparison
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:289    .text.frequency_comparison:000000000000012c $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:301    .text.print:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:306    .text.print:0000000000000000 print
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:353    .text.print:0000000000000034 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:358    .text.pi_navigation:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:363    .text.pi_navigation:0000000000000000 pi_navigation
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:478    .text.pi_navigation:0000000000000088 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:56     .text.calculate_heading:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:61     .text.calculate_heading:0000000000000000 calculate_heading
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:88     .text.frequency_comparison:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:93     .text.frequency_comparison:0000000000000000 frequency_comparison
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:289    .text.frequency_comparison:000000000000012c $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:301    .text.print:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:306    .text.print:0000000000000000 print
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:353    .text.print:0000000000000034 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:358    .text.pi_navigation:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:363    .text.pi_navigation:0000000000000000 pi_navigation
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:478    .text.pi_navigation:000000000000008c $d
                             *COM*:0000000000000002 LEFT_SPEED
                             *COM*:0000000000000002 RIGHT_SPEED
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:491    .text.menu:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:496    .text.menu:0000000000000000 menu
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:809    .text.menu:00000000000001c8 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:826    .text.do_pid:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:831    .text.do_pid:0000000000000000 do_pid
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:990    .text.do_pid:00000000000000bc $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1000   .text._Error_Handler:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1005   .text._Error_Handler:0000000000000000 _Error_Handler
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1021   .text.SystemClock_Config:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1026   .text.SystemClock_Config:0000000000000000 SystemClock_Config
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1152   .text.SystemClock_Config:00000000000000b0 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1160   .text.main:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1165   .text.main:0000000000000000 main
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1266   .text.main:0000000000000080 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:491    .text.menu:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:496    .text.menu:0000000000000000 menu
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:809    .text.menu:00000000000001c8 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:826    .text.do_pid:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:831    .text.do_pid:0000000000000000 do_pid
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:990    .text.do_pid:00000000000000bc $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1000   .text._Error_Handler:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1005   .text._Error_Handler:0000000000000000 _Error_Handler
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1021   .text.SystemClock_Config:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1026   .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1152   .text.SystemClock_Config:00000000000000b0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1160   .text.main:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1165   .text.main:0000000000000000 main
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1266   .text.main:0000000000000080 $d
                             *COM*:0000000000000004 last_time
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s:1282   .rodata.str1.4:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s:1282   .rodata.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -2036,7 +2036,7 @@ IR_INT_STATE
 huart6
 ssd1306_Fill
 ssd1306_SetCursor
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccysoDLx.s 			page 35
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccgLmnLt.s 			page 35
 
 
 ssd1306_WriteString

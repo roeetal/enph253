@@ -224,11 +224,11 @@ void SystemClock_Config(void)
 void pi_navigation(){
     HAL_ADC_Start_DMA(&hadc1, adc_buffer, sizeof(adc_buffer)/sizeof(adc_buffer[0]));
     print("Pi Nav", 0);
-    HAL_Delay(10);
+    HAL_Delay(500);
     LEFT_SPEED = 850;
     RIGHT_SPEED = 850;
     while(1){
-        int32_t heading = calculate_heading(read_value[2]);
+        int32_t heading = calculate_heading(read_value[0]);
         uint32_t lspeed=LEFT_SPEED;
         uint32_t rspeed=RIGHT_SPEED;
         if (heading < 0)
