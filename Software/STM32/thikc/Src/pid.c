@@ -1,5 +1,5 @@
-
 #include"pid.h"
+#include"stm32f1xx.h"
 
 PID_t pid_Init(int kp, int kd, int ki, int i_max, int g){
     PID_t PID;
@@ -15,7 +15,7 @@ PID_t pid_Init(int kp, int kd, int ki, int i_max, int g){
     return PID;
 }
 
-double pid_GetGain(PID_t *PID, TIM_HandleTypeDef *timer){
+double pid_GetGain(PID_t *PID){
     /* Get current values for P, I, and D */
     PID->count += 10;
     double p = PID->kp * PID->err;
