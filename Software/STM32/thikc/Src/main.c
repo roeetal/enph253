@@ -50,6 +50,9 @@
 #include "ssd1306.h" 
 #include "encoder.h"
 #include "pid.h"
+#include "filter.h"
+#include "extern_vars.h"
+#include <String.h>
 
 /* USER CODE END Includes */ 
 
@@ -59,6 +62,8 @@
 /* Private variables ---------------------------------------------------------*/ 
 uint16_t LEFT_SPEED;
 uint16_t RIGHT_SPEED;
+uint32_t dma_buffer[2048];
+uint32_t ir_values[2048];
 /* USER CODE END PV */ 
 
 /* Private function prototypes -----------------------------------------------*/ 
@@ -69,10 +74,20 @@ void SystemClock_Config(void);
 void print(char msg[], int row);
 void do_pid(PID_t *pid_struct);
 PID_t menu();
+void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
 
 /* USER CODE END PFP */ 
 
-/* USER CODE BEGIN 0 */ 
+/* USER CODE BEGIN 0 */
+/**
+ * @brief Circu;ar DMA buffer loading on each full buffer
+ * DMA uses dma_buffer, transfers data to ir_values for us to use
+ * Order of buffer: ir1, ir2, ir1, ir2...
+ */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
+{
+    memcpy(ir_values, dma_buffer, sizeof(dma_buffer));
+}
 
 /* USER CODE END 0 */ 
 
@@ -129,21 +144,14 @@ int main(void)
     ssd1306_Init();
 
     /* Initialize other stuffs*/
-    print("Starting...", 0); 
-    ENCODER_t enc = encoder_Init(TIM4);
+    print("Starting...", 0);
 
     /* USER CODE END 2 */ 
 
     /* Infinite loop */ 
-    /* USER CODE BEGIN WHILE */ 
-    int i=0;
+    /* USER CODE BEGIN WHILE */
     while (1) 
     {
-        char msg[18] = "";
-        float speed = update_encoder(&enc);
-        sprintf(msg, "%d",(int) speed);
-        print(msg, 0);
-        HAL_Delay(1);
         /* USER CODE END WHILE */ 
 
         /* USER CODE BEGIN 3 */
@@ -211,6 +219,37 @@ void SystemClock_Config(void)
 } 
 
 /* USER CODE BEGIN 4 */
+
+void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin)
+{
+    uint16_t offset = GPIO_Pin == IR_1_Pin ? 0 : GPIO_Pin == IR_2_Pin ? 1 : 2;
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer)/sizeof(dma_buffer[0]));
+    //TODO calculate time needed to fill first buffer
+    HAL_Delay(500);
+    //TODO figure out thresholds and what we want to look for
+    while(1){
+        char msg[18] = "";
+        // Sampling frequency: 10.6667e6/(2*(239.5+12))
+        // freq one
+        double val1 = goertzel(ir_values, 21206, freq1, sizeof(dma_buffer)/sizeof(dma_buffer[0]), offset);
+        int predec = (int)(val1 / 1);
+        int postdec = (int)((val1 - predec) * 1000);
+        sprintf(msg, "%d.%d\n", predec, postdec);
+        print(msg, 0);
+        HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
+        //freq2
+        double val2 = goertzel(ir_values, 21206, freq2, sizeof(dma_buffer)/sizeof(dma_buffer[0]), offset);
+        predec = (int)(val2 / 1);
+        postdec = (int)((val2 - predec) * 1000);
+        sprintf(msg, "%d.%d", predec, postdec);
+        HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
+        //compare
+        if(val1>val2){break;}
+    }
+    HAL_ADC_Stop_DMA(&hadc1);
+    IR_INT_STATE = NOT_FLAGGED;
+}
+
 
 /**
  * @brief prints string to row, rows from 0 - 6, resets screen when printing from row 0
