@@ -225,8 +225,8 @@ void SystemClock_Config(void)
 void pi_navigation(){
     HAL_ADC_Start(&hadc2);
     print("Pi nav", 0);
-    LEFT_SPEED = 40000;
-    RIGHT_SPEED = 40000;
+    LEFT_SPEED = 20000;
+    RIGHT_SPEED = 20000;
     while(1){
         if (HAL_ADC_PollForConversion(&hadc2, 1000000) == HAL_OK)
         {
@@ -235,15 +235,15 @@ void pi_navigation(){
             uint32_t rspeed=RIGHT_SPEED;
             if (heading < 0)
             {
-                lspeed = LEFT_SPEED-heading*10000;
-                rspeed = LEFT_SPEED+heading*10000;
+                lspeed = LEFT_SPEED-heading*20000;
+                rspeed = LEFT_SPEED+heading*20000;
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
             }
             else if (heading > 0)
             {
-                rspeed = RIGHT_SPEED+heading*10000;
-                lspeed = RIGHT_SPEED-heading*10000;
+                rspeed = RIGHT_SPEED+heading*20000;
+                lspeed = RIGHT_SPEED-heading*20000;
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
             }else{
