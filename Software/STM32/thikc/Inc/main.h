@@ -117,6 +117,7 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
+#define ENCODER_GOAL 3
 
 /* USER CODE END Private defines */
 
