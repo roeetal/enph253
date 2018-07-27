@@ -169,6 +169,7 @@ int main(void)
         if (CLAW_INT_STATE == FLAGGED)
         {
             actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+            basket_up_up_and_away(&htim2);
             CLAW_INT_STATE = NOT_FLAGGED;
         }
         // encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);

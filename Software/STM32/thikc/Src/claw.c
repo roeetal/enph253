@@ -5,8 +5,8 @@
  */
 void claw_init(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 0);
-    actuate(htim, TIM_CHANNEL_3, 120);
+    open_claw(htim);
+    arm_down(htim);
     HAL_Delay(2000);
 }
 
@@ -23,7 +23,7 @@ uint16_t get_pulse_length(uint16_t degrees)
  */
 void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
 {
-    __HAL_TIM_SET_COMPARE(htim, tim_channel,  get_pulse_length(angle));
+    __HAL_TIM_SET_COMPARE(htim, tim_channel, get_pulse_length(angle));
 }
 
 /*
@@ -32,12 +32,65 @@ void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
  */
 void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm)
 {
-    actuate(htim, channel_claw, 60);
+    actuate(htim, channel_claw, 80);
     HAL_Delay(1000);
     actuate(htim, channel_arm, 0);
     HAL_Delay(1500);
-    actuate(htim, channel_claw, 0);
+    actuate(htim, channel_claw, 20);
+    HAL_Delay(500);
+    slow_actuate(htim, channel_arm, 0, 160);
     HAL_Delay(1000);
-    actuate(htim, channel_arm, 120);
+    open_claw(htim);
+}
+
+void close_claw(TIM_HandleTypeDef *htim)
+{
+    actuate(htim, TIM_CHANNEL_2, 80);
+    HAL_Delay(1000);
+}
+
+void open_claw(TIM_HandleTypeDef *htim)
+{
+    actuate(htim, TIM_CHANNEL_2, 0);
+    HAL_Delay(200);
+    actuate(htim, TIM_CHANNEL_2, 10);
+    HAL_Delay(200);
+}
+
+void arm_down(TIM_HandleTypeDef *htim)
+{
+    actuate(htim, TIM_CHANNEL_3, 100);
+    HAL_Delay(1000);
+}
+
+void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_angle, uint16_t end_angle)
+{
+    uint16_t start = start_angle;
+    uint8_t increment;
+    if (start_angle < end_angle)
+    {
+        increment = 5;
+    }
+    else
+    {
+        increment = -5;
+    }
+
+    while (start < end_angle)
+    {
+        actuate(htim, tim_channel, start);
+        HAL_Delay(100);
+        start = start + increment;
+    }
+}
+
+/*
+ * Raise then lower the basket
+ */
+void basket_up_up_and_away(TIM_HandleTypeDef *htim)
+{
+    slow_actuate(htim, TIM_CHANNEL_1, 0, 100);
+    HAL_Delay(1000);
+    slow_actuate(htim, TIM_CHANNEL_1, 100, 0);
     HAL_Delay(1000);
 }
