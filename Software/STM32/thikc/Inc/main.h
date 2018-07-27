@@ -70,9 +70,9 @@
 #define PI_INT_Pin GPIO_PIN_1
 #define PI_INT_GPIO_Port GPIOB
 #define PI_INT_EXTI_IRQn EXTI1_IRQn
-#define IR_INT_Pin GPIO_PIN_2
-#define IR_INT_GPIO_Port GPIOB
-#define IR_INT_EXTI_IRQn EXTI2_IRQn
+#define QRD_INT_Pin GPIO_PIN_2
+#define QRD_INT_GPIO_Port GPIOB
+#define QRD_INT_EXTI_IRQn EXTI2_IRQn
 #define SERVO_CLAW_ARM_Pin GPIO_PIN_10
 #define SERVO_CLAW_ARM_GPIO_Port GPIOB
 #define CLAW_INT_Pin GPIO_PIN_11
@@ -94,9 +94,9 @@
 #define MOTOR_R_F_GPIO_Port GPIOA
 #define MOTOR_R_B_Pin GPIO_PIN_11
 #define MOTOR_R_B_GPIO_Port GPIOA
-#define QRD_INT_Pin GPIO_PIN_12
-#define QRD_INT_GPIO_Port GPIOA
-#define QRD_INT_EXTI_IRQn EXTI15_10_IRQn
+#define IR_INT_Pin GPIO_PIN_12
+#define IR_INT_GPIO_Port GPIOA
+#define IR_INT_EXTI_IRQn EXTI15_10_IRQn
 #define MENU_Pin GPIO_PIN_13
 #define MENU_GPIO_Port GPIOA
 #define SERVO_BASKET_Pin GPIO_PIN_15
