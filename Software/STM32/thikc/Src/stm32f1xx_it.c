@@ -34,12 +34,9 @@
 #include "stm32f1xx_hal.h"
 #include "stm32f1xx.h"
 #include "stm32f1xx_it.h"
-#include "main.h"
-#include "claw.h"
-#include "gpio.h"
-#include "extern_vars.h"
 
 /* USER CODE BEGIN 0 */
+#include "extern_vars.h"
 
 /* USER CODE END 0 */
 
@@ -49,7 +46,7 @@ extern ADC_HandleTypeDef hadc1;
 extern ADC_HandleTypeDef hadc2;
 
 /******************************************************************************/
-/*            Cortex-M3 Processor Interruption and Exception Handlers         */
+/*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
 
 /**
@@ -204,6 +201,7 @@ void SysTick_Handler(void)
 void EXTI1_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI1_IRQn 0 */
+    PI_INT_STATE = FLAGGED;
 
   /* USER CODE END EXTI1_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
@@ -257,9 +255,6 @@ void ADC1_2_IRQHandler(void)
 
 /**
 * @brief This function handles EXTI line[15:10] interrupts.
-* The IR_INT and CLAW_INT are both on this interrupt line.
-* We will need to check which pin triggered interrupt here.
-* IR Triggers on rising edge, Claw Triggers on falling edge
 */
 void EXTI15_10_IRQHandler(void)
 {
