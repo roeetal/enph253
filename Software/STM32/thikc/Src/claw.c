@@ -24,7 +24,7 @@ uint16_t get_pulse_length(uint16_t degrees)
  */
 void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
 {
-    __HAL_TIM_SET_COMPARE(htim, tim_channel,  get_pulse_length(angle)
+    __HAL_TIM_SET_COMPARE(htim, tim_channel,  get_pulse_length(angle));
 }
 
 /*
