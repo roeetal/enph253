@@ -62,8 +62,8 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint16_t LEFT_SPEED = 20000;
-uint16_t RIGHT_SPEED = 20000;
+uint16_t LEFT_SPEED = 30000;
+uint16_t RIGHT_SPEED = 30000;
 uint32_t dma_buffer[2048];
 uint32_t ir_values[2048];
 /* USER CODE END PV */
@@ -77,7 +77,7 @@ void print(char msg[], int row);
 void do_pid(PID_t *pid_struct);
 PID_t menu();
 void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
-void pi_navigation();
+void pi_turning();
 float calculate_heading(uint32_t adc_val);
 void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
@@ -150,6 +150,7 @@ int main(void)
     ssd1306_Init();
     print("Starting...", 0);
     claw_init(&htim2);
+    HAL_ADC_Start(&hadc2);
 
     /* Initialize other stuffs*/
     /*
@@ -165,17 +166,65 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        print("In While", 0);
-        if (CLAW_INT_STATE == FLAGGED)
+        // if (CLAW_INT_STATE == FLAGGED)
+        // {
+        //     set_motor_speed(TIM_CHANNEL_1, 0);
+        //     set_motor_speed(TIM_CHANNEL_3, 0);
+        //     actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        //     // basket_up_up_and_away(&htim2);
+        //     CLAW_INT_STATE = NOT_FLAGGED;
+        // }
+        // if (IR_INT_STATE == FLAGGED)
+        // {
+        //     set_motor_speed(TIM_CHANNEL_1, 0);
+        //     set_motor_speed(TIM_CHANNEL_3, 0);
+        //     frequency_comparison(1000, 10000, IR_1_Pin);
+        // }
+
+        if (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
         {
-            actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-            basket_up_up_and_away(&htim2);
-            CLAW_INT_STATE = NOT_FLAGGED;
+            if (HAL_ADC_PollForConversion(&hadc2, 1000000) == HAL_OK)
+            {
+                while (1)
+                {
+
+                    int heading = (int)(calculate_heading(HAL_ADC_GetValue(&hadc2)) * 30000);
+                    uint32_t lspeed = LEFT_SPEED;
+                    uint32_t rspeed = RIGHT_SPEED;
+                    if (heading < 0)
+                    {
+                        lspeed = LEFT_SPEED - heading;
+                        rspeed = RIGHT_SPEED + heading;
+                    }
+                    else if (heading > 0)
+                    {
+                        lspeed = LEFT_SPEED - heading;
+                        rspeed = RIGHT_SPEED + heading;
+                    }
+                    set_motor_speed(TIM_CHANNEL_1, lspeed);
+                    set_motor_speed(TIM_CHANNEL_3, rspeed);
+                    char msg[18] = "";
+                    sprintf(msg, "L: %lu", lspeed);
+                    print(msg, 0);
+                    sprintf(msg, "R: %lu", rspeed);
+                    print(msg, 1);
+                }
+            }
+            else
+            {
+                print("No adc", 0);
+            }
         }
-        // encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
-        //do_pid(&pid_struct);
-        if(PI_INT_STATE==FLAGGED){
-            pi_navigation();
+        else
+        {
+            basket_up_up_and_away(&htim2);
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+        }
+
+        if (PI_INT_STATE == FLAGGED)
+        {
+            pi_turning();
         }
 
         /* USER CODE END WHILE */
@@ -183,7 +232,6 @@ int main(void)
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
-
 }
 
 /**
@@ -212,8 +260,7 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-        |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -233,7 +280,7 @@ void SystemClock_Config(void)
 
     /**Configure the Systick interrupt time 
     */
-    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
     /**Configure the Systick 
     */
@@ -245,33 +292,37 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void pi_navigation()
+void pi_turning()
 {
-    HAL_ADC_Start(&hadc2);
+    // HAL_ADC_Start(&hadc2);
+    char* msg = (char*)malloc(sizeof(char)*20);
     print("Pi nav", 0);
     if (HAL_ADC_PollForConversion(&hadc2, 1000000) == HAL_OK)
     {
         float heading = calculate_heading(HAL_ADC_GetValue(&hadc2));
         if (heading < 0)
         {
-            set_motor_speed(TIM_CHANNEL_2, 10000);
-            set_motor_speed(TIM_CHANNEL_3, 10000);
-            heading*=-1;
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 30000);
+            heading *= -1;
         }
         else if (heading > 0)
         {
-            set_motor_speed(TIM_CHANNEL_1, 10000);
-            set_motor_speed(TIM_CHANNEL_4, 10000);
+            set_motor_speed(TIM_CHANNEL_1, 30000);
+            set_motor_speed(TIM_CHANNEL_3, 0);
         }
-        HAL_Delay(2000*heading);
-        set_motor_speed(TIM_CHANNEL_1, 20000);
-        set_motor_speed(TIM_CHANNEL_3, 20000);
+        HAL_Delay(5000 * heading);
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        sprintf(msg, "%d", (int)(heading*100));
+        print(msg, 0);
+        free(msg);
     }
     else
     {
         print("No adc", 0);
     }
-    HAL_ADC_Stop(&hadc2);
+    // HAL_ADC_Stop(&hadc2);
     PI_INT_STATE = NOT_FLAGGED;
 }
 
@@ -296,29 +347,33 @@ void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin)
     //TODO figure out thresholds and what we want to look for
     while (1)
     {
-        char msg[18] = "";
+        // char msg[18] = "";
         // Sampling frequency: 10.6667e6/(2*(239.5+15))
-        // freq one
+
+        // 1 kHz
         double val1 = goertzel(ir_values, 20956, freq1, sizeof(dma_buffer) / sizeof(dma_buffer[0]), offset);
-        int predec = (int)(val1 / 1);
-        int postdec = (int)((val1 - predec) * 1000);
-        sprintf(msg, "%d.%d\n", predec, postdec);
-        print(msg, 0);
-        HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
-        //freq2
-        double val2 = goertzel(ir_values, 20956, freq2, sizeof(dma_buffer) / sizeof(dma_buffer[0]), offset);
-        predec = (int)(val2 / 1);
-        postdec = (int)((val2 - predec) * 1000);
-        sprintf(msg, "%d.%d", predec, postdec);
-        HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
-        //compare
-        if (val1 > val2)
+        // int predec = (int)(val1 / 1);
+        // int postdec = (int)((val1 - predec) * 1000);
+        // sprintf(msg, "%d.%d\n", predec, postdec);
+        // print(msg, 0);
+        // HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
+
+        // 1 kHz
+        // double val2 = goertzel(ir_values, 20956, freq2, sizeof(dma_buffer) / sizeof(dma_buffer[0]), offset);
+        // predec = (int)(val2 / 1);
+        // postdec = (int)((val2 - predec) * 1000);
+        // sprintf(msg, "%d.%d", predec, postdec);
+        // HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
+
+        // If strength of 10 kHz > 1 kHz
+        if (val1 < 2)
         {
             break;
         }
     }
     HAL_ADC_Stop_DMA(&hadc1);
     IR_INT_STATE = NOT_FLAGGED;
+    HAL_Delay(5000);
 }
 
 /**
@@ -468,26 +523,28 @@ void do_pid(PID_t *pid_struct)
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
 }
 
-void set_motor_speed(uint32_t channel, uint32_t speed){
-    switch(channel){
-        case TIM_CHANNEL_1:
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
-        
-        case TIM_CHANNEL_2:
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, speed);
+void set_motor_speed(uint32_t channel, uint32_t speed)
+{
+    switch (channel)
+    {
+    case TIM_CHANNEL_1:
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
 
-        case TIM_CHANNEL_3:
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0);
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
-        
-        case TIM_CHANNEL_4:
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
-            __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, speed);
+    case TIM_CHANNEL_2:
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, speed);
 
-        default:
-            break;
+    case TIM_CHANNEL_3:
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
+
+    case TIM_CHANNEL_4:
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, speed);
+
+    default:
+        break;
     }
 }
 
@@ -531,7 +588,7 @@ void _Error_Handler(char *file, int line)
     /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
  * @brief  Reports the name of the source file and the source line number
  *         where the assert_param error has occurred.
@@ -539,8 +596,8 @@ void _Error_Handler(char *file, int line)
  * @param  line: assert_param error line source number
  * @retval None
  */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
+void assert_failed(uint8_t *file, uint32_t line)
+{
     /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number, 
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
