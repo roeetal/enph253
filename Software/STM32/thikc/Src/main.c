@@ -165,6 +165,13 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
+        print("In While", 0);
+        if (CLAW_INT_STATE == FLAGGED)
+        {
+            actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+            CLAW_INT_STATE = NOT_FLAGGED;
+        }
+        // encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
         //do_pid(&pid_struct);
         if(PI_INT_STATE==FLAGGED){
             pi_navigation();

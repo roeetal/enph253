@@ -5,9 +5,8 @@
  */
 void claw_init(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 41);
-    HAL_Delay(2000);
-    actuate(htim, TIM_CHANNEL_3, 110);
+    actuate(htim, TIM_CHANNEL_2, 0);
+    actuate(htim, TIM_CHANNEL_3, 120);
     HAL_Delay(2000);
 }
 
@@ -33,12 +32,12 @@ void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
  */
 void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm)
 {
-    actuate(htim, channel_claw, 0);
+    actuate(htim, channel_claw, 60);
     HAL_Delay(1000);
     actuate(htim, channel_arm, 0);
+    HAL_Delay(1500);
+    actuate(htim, channel_claw, 0);
     HAL_Delay(1000);
-    actuate(htim, channel_claw, 41);
-    HAL_Delay(1000);
-    actuate(htim, channel_arm, 100);
+    actuate(htim, channel_arm, 120);
     HAL_Delay(1000);
 }
