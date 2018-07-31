@@ -152,12 +152,10 @@ int main(void)
     claw_init(&htim2);
 
     /* Initialize other stuffs*/
-    /*
-       ENCODER_t left_enc = encoder_Init(TIM3);
-       ENCODER_t right_enc = encoder_Init(TIM4);
-       PID_t left_pid = pid_Init(100, 10, 1, 2, 2);
-       PID_t right_pid = pid_Init(100, 10, 1, 2, 2);
-       */
+   ENCODER_t left_enc = encoder_Init(TIM3);
+   ENCODER_t right_enc = encoder_Init(TIM4);
+   PID_t left_pid = pid_Init(2000, 0, 0, 2, 2);
+   PID_t right_pid = pid_Init(2000, 0, 0, 2, 2);
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
@@ -165,18 +163,7 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        print("In While", 0);
-        if (CLAW_INT_STATE == FLAGGED)
-        {
-            actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-            basket_up_up_and_away(&htim2);
-            CLAW_INT_STATE = NOT_FLAGGED;
-        }
-        // encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
-        //do_pid(&pid_struct);
-        if(PI_INT_STATE==FLAGGED){
-            pi_navigation();
-        }
+        encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
 
         /* USER CODE END WHILE */
 
@@ -494,12 +481,12 @@ void set_motor_speed(uint32_t channel, uint32_t speed){
 void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc)
 {
     /* Get error */
-    left_pid->err = update_encoder(left_enc) - ENCODER_GOAL;
-    right_pid->err = update_encoder(right_enc) - ENCODER_GOAL;
+    left_pid->err = ENCODER_GOAL - update_encoder(left_enc);
+    right_pid->err = ENCODER_GOAL - update_encoder(right_enc);
 
     /* Get gain */
-    int16_t left_gain = pid_GetGain(left_pid);
-    int16_t right_gain = pid_GetGain(right_pid);
+    int32_t left_gain = pid_GetGain(left_pid);
+    int32_t right_gain = pid_GetGain(right_pid);
     char msg[18] = "";
     sprintf(msg, "%d", (int)left_gain);
     print(msg, 0);
@@ -507,8 +494,8 @@ void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER
     print(msg, 1);
 
     /* Set Motor Speeds*/
-    int lspeed = LEFT_SPEED - left_gain;
-    int rspeed = RIGHT_SPEED - right_gain;
+    int lspeed = LEFT_SPEED + left_gain;
+    int rspeed = RIGHT_SPEED + right_gain;
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
 }
