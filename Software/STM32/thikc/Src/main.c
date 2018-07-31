@@ -62,7 +62,7 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint16_t LEFT_SPEED = 20000;
-uint16_t RIGHT_SPEED = 20000;
+uint16_t RIGHT_SPEED = 21000;
 uint32_t dma_buffer[2048];
 uint32_t ir_values[2048];
 /* USER CODE END PV */
@@ -156,8 +156,8 @@ int main(void)
     // 3 * gain * kp = 20,000
     ENCODER_t left_enc = encoder_Init(TIM3);
     ENCODER_t right_enc = encoder_Init(TIM4);
-    PID_t left_pid = pid_Init(5000, 0, 0, 2, 2);
-    PID_t right_pid = pid_Init(5000, 0, 0, 2, 2);
+    PID_t left_pid = pid_Init(6000, 500, 0, 2, 2);
+    PID_t right_pid = pid_Init(6000, 500, 0, 2, 2);
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
@@ -166,11 +166,20 @@ int main(void)
     while (1)
     {
         // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
-        if (PI_INT_STATE == FLAGGED)
-        {
-            print("in pi int", 0);
-            turn();
-        }
+        // if (PI_INT_STATE == FLAGGED)
+        // {
+        //     print("in pi int", 0);
+        //     turn();
+
+            int start = HAL_GetTick();
+            while (HAL_GetTick() - start < 6000)
+            {
+                encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+            }
+        //     set_motor_speed(TIM_CHANNEL_1, 0);
+        //     set_motor_speed(TIM_CHANNEL_3, 0);
+        //     PI_INT_STATE = NOT_FLAGGED;
+        // }
         // if (IR_INT_STATE == FLAGGED)
         // {
         //     alarm_detect();
@@ -280,11 +289,12 @@ void turn()
         }
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);
-    } else {
+    }
+    else
+    {
         print("Shits fucked yo", 0);
     }
     HAL_ADC_Stop(&hadc2);
-    PI_INT_STATE = NOT_FLAGGED;
 }
 
 void pi_navigation()
