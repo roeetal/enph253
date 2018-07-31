@@ -1,4 +1,3 @@
-
 /**
  ******************************************************************************
  * @file           : main.c
@@ -82,6 +81,7 @@ float calculate_heading(uint32_t adc_val);
 void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
+void alarm_detect();
 
 /* USER CODE END PFP */
 
@@ -169,6 +169,9 @@ int main(void)
         //encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
         if(PI_INT_STATE==FLAGGED){
             turn();
+        }
+        if(IR_INT_STATE==FLAGGED){
+            alarm_detect();
         }
 
         /* USER CODE END WHILE */
@@ -308,6 +311,32 @@ void pi_navigation()
 float calculate_heading(uint32_t adc_val)
 {
     return adc_val / 4096.0 - 0.5;
+}
+
+void alarm_detect()
+{
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
+    //TODO calculate time needed to fill first buffer
+    HAL_Delay(500);
+    while (1)
+    {
+        char msg[18] = "";
+        // Sampling frequency: 10.6667e6/(2*(239.5+15))
+        // freq one
+        double val = goertzel(ir_values, 20956, 10000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0);
+        int predec = (int)(val / 1);
+        int postdec = (int)((val - predec) * 1000);
+        sprintf(msg, "%d.%d\n", predec, postdec);
+        print(msg, 0);
+        //compare
+        if (val > 10)
+        {
+            break;
+        }
+    }
+    print("Go",0);
+    HAL_ADC_Stop_DMA(&hadc1);
+    IR_INT_STATE = NOT_FLAGGED;
 }
 
 void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin)
