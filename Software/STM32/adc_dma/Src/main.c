@@ -134,6 +134,7 @@ int main(void)
     int predec = (int)(val / 1);
     int postdec = (int)((val - predec) * 1000);
     sprintf(msg, "%d.%d\n", predec, postdec);
+    print(msg, 0);
     HAL_UART_Transmit(&huart2, (uint8_t *)msg, strlen(msg), 0xFFFF);
 
     /* USER CODE END WHILE */
