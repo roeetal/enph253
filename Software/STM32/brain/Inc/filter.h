@@ -1,3 +1,6 @@
+#include "math.h"
+#include "stm32f4xx_hal.h"
+
 #ifndef FILTER_H
 #define FILTER_H
 
