@@ -81,6 +81,7 @@ void pi_navigation();
 float calculate_heading(uint32_t adc_val);
 void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
+void turn();
 
 /* USER CODE END PFP */
 
@@ -149,13 +150,15 @@ int main(void)
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
     ssd1306_Init();
     print("Starting...", 0);
-    claw_init(&htim2);
+    //claw_init(&htim2);
 
     /* Initialize other stuffs*/
+    /*
    ENCODER_t left_enc = encoder_Init(TIM3);
    ENCODER_t right_enc = encoder_Init(TIM4);
    PID_t left_pid = pid_Init(2000, 0, 0, 2, 2);
    PID_t right_pid = pid_Init(2000, 0, 0, 2, 2);
+   */
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
@@ -163,7 +166,10 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
+        //encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
+        if(PI_INT_STATE==FLAGGED){
+            turn();
+        }
 
         /* USER CODE END WHILE */
 
@@ -231,6 +237,36 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+/*
+ * Assume motors are not on.
+ * Reads adc, turns left or right based on voltage. Left max= 0 , no turn = 1.65 V, right max = 3.3V.
+ */
+void turn(){
+    HAL_ADC_Start(&hadc2);
+    if (HAL_ADC_PollForConversion(&hadc2, 100) == HAL_OK)
+    {
+        float volts = calculate_heading(HAL_ADC_GetValue(&hadc2));
+        uint8_t counts = 300*(fabs(volts)-1.65)/1.65;
+        TIM3->CNT = 0;
+        TIM4->CNT = 0;
+        if(volts>1.65){
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 20000);
+            while(TIM4->CNT<counts){
+            }
+            TIM4->CNT = 0;
+        }else if(volts<1.65){
+            set_motor_speed(TIM_CHANNEL_1, 20000);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+            while(TIM3->CNT<counts){
+            }
+            TIM4->CNT = 0;
+        }
+    }
+    HAL_ADC_Stop(&hadc2);
+    PI_INT_STATE = NOT_FLAGGED;
+}
 
 void pi_navigation()
 {
