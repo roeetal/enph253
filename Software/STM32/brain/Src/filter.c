@@ -22,7 +22,7 @@ double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t windo
     d2 = d1;
     d1 = y;
     tot_power += x[n] * x[n];
-    n += 2;
+    n += 3;
   }
 
   return (d2 * d2 + d1 * d1 - w_real * d1 * d2) / tot_power;
