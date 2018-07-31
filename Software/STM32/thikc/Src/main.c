@@ -153,12 +153,10 @@ int main(void)
     //claw_init(&htim2);
 
     /* Initialize other stuffs*/
-    /*
    ENCODER_t left_enc = encoder_Init(TIM3);
    ENCODER_t right_enc = encoder_Init(TIM4);
    PID_t left_pid = pid_Init(2000, 0, 0, 2, 2);
    PID_t right_pid = pid_Init(2000, 0, 0, 2, 2);
-   */
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
@@ -166,14 +164,15 @@ int main(void)
     /* USER CODE BEGIN WHILE */
     while (1)
     {
-        //encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
+        encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
+        /*
         if(PI_INT_STATE==FLAGGED){
             turn();
         }
         if(IR_INT_STATE==FLAGGED){
             alarm_detect();
         }
-
+        */
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
