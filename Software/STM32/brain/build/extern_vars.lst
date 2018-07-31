@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s 			page 1
 
 
    1              		.syntax unified
@@ -20,28 +20,46 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s 			page 1
   17              		.text
   18              	.Ltext0:
   19              		.cfi_sections	.debug_frame
-  20              		.global	PI_INT_STATE
-  21              		.global	IR_INT_STATE
-  22              		.section	.bss.IR_INT_STATE,"aw",%nobits
-  25              	IR_INT_STATE:
-  26 0000 00       		.space	1
-  27              		.section	.bss.PI_INT_STATE,"aw",%nobits
-  30              	PI_INT_STATE:
-  31 0000 00       		.space	1
-  32              		.text
-  33              	.Letext0:
-  34              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
-  35              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
-  36              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
-  37              		.file 4 "Src/extern_vars.c"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s 			page 2
+  20              		.global	EDGE_RIGHT_STATE
+  21              		.global	EDGE_LEFT_STATE
+  22              		.global	CLAW_INT_STATE
+  23              		.global	PI_INT_STATE
+  24              		.global	IR_INT_STATE
+  25              		.section	.bss.IR_INT_STATE,"aw",%nobits
+  28              	IR_INT_STATE:
+  29 0000 00       		.space	1
+  30              		.section	.bss.PI_INT_STATE,"aw",%nobits
+  33              	PI_INT_STATE:
+  34 0000 00       		.space	1
+  35              		.section	.bss.EDGE_LEFT_STATE,"aw",%nobits
+  38              	EDGE_LEFT_STATE:
+  39 0000 00       		.space	1
+  40              		.section	.bss.CLAW_INT_STATE,"aw",%nobits
+  43              	CLAW_INT_STATE:
+  44 0000 00       		.space	1
+  45              		.section	.bss.EDGE_RIGHT_STATE,"aw",%nobits
+  48              	EDGE_RIGHT_STATE:
+  49 0000 00       		.space	1
+  50              		.text
+  51              	.Letext0:
+  52              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+  53              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+  54              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+  55              		.file 4 "Src/extern_vars.c"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 extern_vars.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:30     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:25     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:26     .bss.IR_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cchWxYoE.s:31     .bss.PI_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:48     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:38     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:43     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:33     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:28     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:29     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:34     .bss.PI_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:39     .bss.EDGE_LEFT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:44     .bss.CLAW_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWnmH7X.s:49     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS

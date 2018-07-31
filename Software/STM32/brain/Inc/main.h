@@ -121,7 +121,8 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
-#define MOTOR_SPEED 1000
+#define ENCODER_GOAL 3
+#define TURN_CONST 300
 
 /* USER CODE END Private defines */
 

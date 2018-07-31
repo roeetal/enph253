@@ -4,19 +4,17 @@
 #define pid
 
 typedef struct{
-    int kp;
-    int kd;
-    int ki;
-    double i;
-    int i_max;
-    int gain;
-    int err;
-    int count;
+    uint16_t kp;
+    uint16_t kd;
+    uint16_t ki;
+    int32_t i;
+    int16_t i_max;
+    uint16_t gain;
+    int32_t err;
+    uint32_t count;
 } PID_t;
 
-int last_time;
-
-PID_t pid_Init(int kp, int kd, int ki, int i_max, int g);
-double pid_GetGain(PID_t *PID, TIM_HandleTypeDef *timer);
+PID_t pid_Init(uint16_t kp, uint16_t kd, uint16_t ki, int16_t i_max, uint16_t g);
+int32_t pid_GetGain(PID_t *PID);
 
 #endif
