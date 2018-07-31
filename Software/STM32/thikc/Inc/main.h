@@ -111,6 +111,8 @@
 #define ENCODER_RIGHT_1_GPIO_Port GPIOB
 #define ENCODER_RIGHT_2_Pin GPIO_PIN_7
 #define ENCODER_RIGHT_2_GPIO_Port GPIOB
+#define ENCODER_GOAL 3
+#define TURN_CONST 300
 
 /* ########################## Assert Selection ############################## */
 /**
@@ -120,7 +122,6 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
-#define ENCODER_GOAL 3
 
 /* USER CODE END Private defines */
 
