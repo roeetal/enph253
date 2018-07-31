@@ -153,19 +153,20 @@ int main(void)
     //claw_init(&htim2);
 
     /* Initialize other stuffs*/
+    // 3 * gain * kp = 20,000
    ENCODER_t left_enc = encoder_Init(TIM3);
    ENCODER_t right_enc = encoder_Init(TIM4);
-   PID_t left_pid = pid_Init(2000, 0, 0, 2, 2);
-   PID_t right_pid = pid_Init(2000, 0, 0, 2, 2);
-    //PID_t pid_struct = menu();
-    /* USER CODE END 2 */
+   PID_t left_pid = pid_Init(3300, 0, 0, 2, 2);
+   PID_t right_pid = pid_Init(3300, 0, 0, 2, 2);
+   //PID_t pid_struct = menu();
+   /* USER CODE END 2 */
 
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
-    while (1)
-    {
-        encoder_pid(&left_pid, &left_enc, &right_pid,  &right_enc);
-        /*
+   /* Infinite loop */
+   /* USER CODE BEGIN WHILE */
+   while (1)
+   {
+       encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+       /*
         if(PI_INT_STATE==FLAGGED){
             turn();
         }
@@ -173,9 +174,9 @@ int main(void)
             alarm_detect();
         }
         */
-        /* USER CODE END WHILE */
+       /* USER CODE END WHILE */
 
-        /* USER CODE BEGIN 3 */
+       /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
 
