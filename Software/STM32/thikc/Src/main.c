@@ -167,42 +167,45 @@ int main(void)
     while (1)
     {
         // // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
-        // print("in whiel", 0);
-        if (CLAW_INT_STATE == FLAGGED)
-        {
-            print("CLAW INT", 0);
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-            HAL_Delay(1000);
-            CLAW_INT_STATE = NOT_FLAGGED;
-        }
-        // if (PI_INT_STATE == FLAGGED)
+        print("in whiel", 0);
+        // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        // if (CLAW_INT_STATE == FLAGGED)
         // {
-        //     print("in pi int", 0);
-        //     turn();
-
-        //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        //     int start = HAL_GetTick();
-        //     while (HAL_GetTick() - start < 4000)
-        //     {
-        //         // encoder_dist_pid(&left_pid);
-        //         // HAL_Delay(4000);
-        //         // set_motor_speed(TIM_CHANNEL_1, 0);
-        //         // set_motor_speed(TIM_CHANNEL_3, 0);
-        //         if (CLAW_INT_STATE == FLAGGED)
-        //         {
-        //             set_motor_speed(TIM_CHANNEL_1, 0);
-        //             set_motor_speed(TIM_CHANNEL_3, 0);
-        //             actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-        //             break;
-        //         }
-        //     }
-        //     PI_INT_STATE = NOT_FLAGGED;
+        //     print("CLAW INT", 0);
         //     set_motor_speed(TIM_CHANNEL_1, 0);
         //     set_motor_speed(TIM_CHANNEL_3, 0);
+        //     actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        //     HAL_Delay(1000);
+        //     CLAW_INT_STATE = NOT_FLAGGED;
         // }
+        if (PI_INT_STATE == FLAGGED)
+        {
+            print("in pi int", 0);
+            turn();
+
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            int start = HAL_GetTick();
+            while (HAL_GetTick() - start < 4000)
+            {
+                // encoder_dist_pid(&left_pid);
+                // HAL_Delay(4000);
+                // set_motor_speed(TIM_CHANNEL_1, 0);
+                // set_motor_speed(TIM_CHANNEL_3, 0);
+                if (CLAW_INT_STATE == FLAGGED)
+                {
+                    set_motor_speed(TIM_CHANNEL_1, 0);
+                    set_motor_speed(TIM_CHANNEL_3, 0);
+                    actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+                    CLAW_INT_STATE = NOT_FLAGGED;
+                    break;
+                }
+            }
+            PI_INT_STATE = NOT_FLAGGED;
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+        }
         // if (IR_INT_STATE == FLAGGED)
         // {
         //     alarm_detect();
@@ -291,7 +294,7 @@ void turn()
         int pre_dec = (int)(volts / 1);
         int post_dec = (int)((volts - pre_dec) * 1000);
         sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
-        print(msg, 0);
+        print(msg, 2);
         if (volts < 0)
         {
             set_motor_speed(TIM_CHANNEL_1, 0);

@@ -69,7 +69,7 @@ void open_claw(TIM_HandleTypeDef *htim)
 
 void arm_down(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_3, 140);
+    actuate(htim, TIM_CHANNEL_3, 160);
     HAL_Delay(1000);
 }
 
