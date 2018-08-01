@@ -12,7 +12,7 @@ void claw_init(TIM_HandleTypeDef *htim)
 
 void basket_init(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_1, 10);
+    actuate(htim, TIM_CHANNEL_3, 10);
 }
 
 /*
@@ -55,21 +55,21 @@ void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel
 
 void close_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 80);
+    actuate(htim, TIM_CHANNEL_1, 80);
     HAL_Delay(1000);
 }
 
 void open_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 0);
+    actuate(htim, TIM_CHANNEL_1, 0);
     HAL_Delay(200);
-    actuate(htim, TIM_CHANNEL_2, 10);
+    actuate(htim, TIM_CHANNEL_1, 10);
     HAL_Delay(200);
 }
 
 void arm_down(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_3, 100);
+    actuate(htim, TIM_CHANNEL_2, 100);
     HAL_Delay(1000);
 }
 
@@ -99,8 +99,8 @@ void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_
  */
 void basket_up_up_and_away(TIM_HandleTypeDef *htim)
 {
-    slow_actuate(htim, TIM_CHANNEL_1, 10, 180);
+    slow_actuate(htim, TIM_CHANNEL_3, 10, 180);
     HAL_Delay(1000);
-    actuate(htim, TIM_CHANNEL_1, 10);
+    actuate(htim, TIM_CHANNEL_3, 10);
     HAL_Delay(1000);
 }

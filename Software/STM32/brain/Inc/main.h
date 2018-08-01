@@ -124,6 +124,9 @@
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 3
 #define TURN_CONST 300
+#define CLAW_CH TIM_CHANNEL_1
+#define ARM_CH TIM_CHANNEL_2
+#define BASKET_CH TIM_CHANNEL_3
 
 /* USER CODE END Private defines */
 

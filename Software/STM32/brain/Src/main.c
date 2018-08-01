@@ -1,41 +1,41 @@
 
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  ** This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
-  *
-  * COPYRIGHT(c) 2018 STMicroelectronics
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ ** This notice applies to any and all portions of this file
+ * that are not between comment pairs USER CODE BEGIN and
+ * USER CODE END. Other portions of this file, whether 
+ * inserted by the user or by software development tools
+ * are owned by their respective copyright owners.
+ *
+ * COPYRIGHT(c) 2018 STMicroelectronics
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *   1. Redistributions of source code must retain the above copyright notice,
+ *      this list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *   3. Neither the name of STMicroelectronics nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
@@ -63,8 +63,8 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 //TODO: Drive system, signed int32, giving forward backward, encoders, coordinate system.
-uint16_t LEFT_SPEED = 20000;
-uint16_t RIGHT_SPEED = 20000;
+uint16_t LEFT_SPEED = 40000;
+uint16_t RIGHT_SPEED = 45000;
 uint32_t dma_buffer[3072];
 uint32_t adc_values[3072];
 
@@ -101,47 +101,60 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  *
-  * @retval None
-  */
+ * @brief  The application entry point.
+ *
+ * @retval None
+ */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+    /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+    /* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* USER CODE BEGIN Init */
+    /* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+    /* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+    /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+    /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_TIM3_Init();
-  MX_TIM1_Init();
-  MX_TIM2_Init();
-  MX_USART6_UART_Init();
-  MX_ADC1_Init();
-  MX_I2C1_Init();
-  MX_TIM4_Init();
-  MX_TIM9_Init();
-  MX_TIM5_Init();
-  /* USER CODE BEGIN 2 */
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_DMA_Init();
+    MX_TIM3_Init();
+    MX_TIM1_Init();
+    MX_TIM2_Init();
+    MX_USART6_UART_Init();
+    MX_ADC1_Init();
+    MX_I2C1_Init();
+    MX_TIM4_Init();
+    MX_TIM9_Init();
+    MX_TIM5_Init();
+    /* USER CODE BEGIN 2 */
 
     /* Initialize peripherals */
+    /* 
+     * Claw jaw: TIM3 CH1
+     * Claw arm: TIM3 CH2
+     * Basket: TIM3 CH3
+     * left forward: TIM1 CH1
+     * left backward: TIM1 CH2
+     * right forward: TIM1 CH3
+     * right backward: TIM1 CH4
+     * left encoder: TIM4
+     * right encoderL TIM5
+     * spare clocks: TIM2, TIM9
+     */
+
     HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
     HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -151,146 +164,145 @@ int main(void)
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-    ssd1306_Init();
-    print("Starting...", 0);
-    //claw_init(&htim3);
-    //basket_init(&htim3);
 
-    /* Initialize other stuffs*/
+    /* Initialize other stuffs */
+    print("Starting", 0);
+    ssd1306_Init();
+    claw_init(&htim3);
+    ///basket_init(&htim3);
+
     // 3 * gain * kp = 20,000
     /*
-    ENCODER_t left_enc = encoder_Init(TIM4);
-    ENCODER_t right_enc = encoder_Init(TIM5);
-    PID_t left_pid = pid_Init(5000, 0, 0, 2, 2);
-    PID_t right_pid = pid_Init(5000, 0, 0, 2, 2);
-    */
+       ENCODER_t left_enc = encoder_Init(TIM4);
+       ENCODER_t right_enc = encoder_Init(TIM5);
+       PID_t left_pid = pid_Init(5000, 0, 0, 2, 2);
+       PID_t right_pid = pid_Init(5000, 0, 0, 2, 2);
+       */
     //PID_t pid_struct = menu();
-  /* USER CODE END 2 */
+    /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
     while (1)
     {
 
         /*
          * Servo Stuff
-         *
-        
          */
 
 
         /*
          * Drive Straight
          *
-        encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
-        */
+         encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+         */
 
         /*
          * Pi Turning
          *
-        if (PI_INT_STATE == FLAGGED)
-        {
-            print("in pi int", 0);
-            turn();
-        }
-        */
+         if (PI_INT_STATE == FLAGGED)
+         {
+         print("in pi int", 0);
+         turn();
+         }
+         */
 
         /*
          * EDGE and Object detection
          *
-        if(EDGE_RIGHT_STATE == FLAGGED){
-            print("ER",0);
-            EDGE_RIGHT_STATE = NOT_FLAGGED;
-        }
-        if(TAPE_RIGHT_STATE == FLAGGED){
-            print("TR",0);
-            TAPE_RIGHT_STATE = NOT_FLAGGED;
-        }
-        if(EDGE_LEFT_STATE == FLAGGED){
-            print("EL",0);
-            EDGE_LEFT_STATE = NOT_FLAGGED;
-        }
-        
-        if(TAPE_LEFT_STATE == FLAGGED){
-            print("TL",0);
-            TAPE_LEFT_STATE = NOT_FLAGGED;
-        }
-        */
+         if(EDGE_RIGHT_STATE == FLAGGED){
+         print("ER",0);
+         EDGE_RIGHT_STATE = NOT_FLAGGED;
+         }
+         if(TAPE_RIGHT_STATE == FLAGGED){
+         print("TR",0);
+         TAPE_RIGHT_STATE = NOT_FLAGGED;
+         }
+         if(EDGE_LEFT_STATE == FLAGGED){
+         print("EL",0);
+         EDGE_LEFT_STATE = NOT_FLAGGED;
+         }
+
+         if(TAPE_LEFT_STATE == FLAGGED){
+         print("TL",0);
+         TAPE_LEFT_STATE = NOT_FLAGGED;
+         }
+         */
 
         /*
          * IR DETECTION
          *
-        if (IR_INT_STATE == FLAGGED)
-        {
-            alarm_detect();
-            //drive past sensor, enough so as to not trigger interrupt again
-            HAL_Delay(2000);
+         if (IR_INT_STATE == FLAGGED)
+         {
+         alarm_detect();
+        //drive past sensor, enough so as to not trigger interrupt again
+        HAL_Delay(2000);
         }*/
 
-  /* USER CODE END WHILE */
+        /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
+        /* USER CODE BEGIN 3 */
     }
-  /* USER CODE END 3 */
+    /* USER CODE END 3 */
 
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
+    RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
     /**Configure the main internal regulator output voltage 
     */
-  __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
 
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 72;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+    RCC_OscInitStruct.HSICalibrationValue = 16;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    RCC_OscInitStruct.PLL.PLLM = 8;
+    RCC_OscInitStruct.PLL.PLLN = 72;
+    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+    RCC_OscInitStruct.PLL.PLLQ = 4;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    /**Initializes the CPU, AHB and APB busses clocks 
+    */
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+        |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
     /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
     /**Configure the Systick 
     */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+    /* SysTick_IRQn interrupt configuration */
+    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /* USER CODE BEGIN 4 */
@@ -389,11 +401,11 @@ void alarm_detect()
         // offset 0 : IR1
         double val = goertzel(adc_values, 24242, 9850, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0);
         /*
-        int predec = (int)(val / 1);
-        int postdec = (int)((val - predec) * 1000);
-        sprintf(msg, "%d.%d\n", predec, postdec);
-        HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
-        */
+           int predec = (int)(val / 1);
+           int postdec = (int)((val - predec) * 1000);
+           sprintf(msg, "%d.%d\n", predec, postdec);
+           HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
+           */
 
         //compare
         // 1000 Hz: ranges to about 60, 9850 Hz: ranges to 20
@@ -646,44 +658,44 @@ void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  file: The file name as string.
-  * @param  line: The line in file as a number.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @param  file: The file name as string.
+ * @param  line: The line in file as a number.
+ * @retval None
+ */
 void _Error_Handler(char *file, int line)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
+    /* USER CODE BEGIN Error_Handler_Debug */
     /* User can add his own implementation to report the HAL error return state */
     while (1)
     {
     }
-  /* USER CODE END Error_Handler_Debug */
+    /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef  USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t* file, uint32_t line)
 { 
-  /* USER CODE BEGIN 6 */
+    /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
