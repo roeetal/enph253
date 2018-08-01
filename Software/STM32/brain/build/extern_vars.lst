@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s 			page 1
 
 
    1              		.syntax unified
@@ -20,46 +20,58 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s 			page 1
   17              		.text
   18              	.Ltext0:
   19              		.cfi_sections	.debug_frame
-  20              		.global	EDGE_RIGHT_STATE
-  21              		.global	EDGE_LEFT_STATE
-  22              		.global	CLAW_INT_STATE
-  23              		.global	PI_INT_STATE
-  24              		.global	IR_INT_STATE
-  25              		.section	.bss.IR_INT_STATE,"aw",%nobits
-  28              	IR_INT_STATE:
-  29 0000 00       		.space	1
-  30              		.section	.bss.PI_INT_STATE,"aw",%nobits
-  33              	PI_INT_STATE:
-  34 0000 00       		.space	1
-  35              		.section	.bss.EDGE_LEFT_STATE,"aw",%nobits
-  38              	EDGE_LEFT_STATE:
-  39 0000 00       		.space	1
-  40              		.section	.bss.CLAW_INT_STATE,"aw",%nobits
-  43              	CLAW_INT_STATE:
-  44 0000 00       		.space	1
-  45              		.section	.bss.EDGE_RIGHT_STATE,"aw",%nobits
-  48              	EDGE_RIGHT_STATE:
-  49 0000 00       		.space	1
-  50              		.text
-  51              	.Letext0:
-  52              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
-  53              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
-  54              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
-  55              		.file 4 "Src/extern_vars.c"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s 			page 2
+  20              		.global	TAPE_RIGHT_STATE
+  21              		.global	TAPE_LEFT_STATE
+  22              		.global	EDGE_RIGHT_STATE
+  23              		.global	EDGE_LEFT_STATE
+  24              		.global	CLAW_INT_STATE
+  25              		.global	PI_INT_STATE
+  26              		.global	IR_INT_STATE
+  27              		.section	.bss.TAPE_RIGHT_STATE,"aw",%nobits
+  30              	TAPE_RIGHT_STATE:
+  31 0000 00       		.space	1
+  32              		.section	.bss.IR_INT_STATE,"aw",%nobits
+  35              	IR_INT_STATE:
+  36 0000 00       		.space	1
+  37              		.section	.bss.PI_INT_STATE,"aw",%nobits
+  40              	PI_INT_STATE:
+  41 0000 00       		.space	1
+  42              		.section	.bss.EDGE_LEFT_STATE,"aw",%nobits
+  45              	EDGE_LEFT_STATE:
+  46 0000 00       		.space	1
+  47              		.section	.bss.CLAW_INT_STATE,"aw",%nobits
+  50              	CLAW_INT_STATE:
+  51 0000 00       		.space	1
+  52              		.section	.bss.EDGE_RIGHT_STATE,"aw",%nobits
+  55              	EDGE_RIGHT_STATE:
+  56 0000 00       		.space	1
+  57              		.section	.bss.TAPE_LEFT_STATE,"aw",%nobits
+  60              	TAPE_LEFT_STATE:
+  61 0000 00       		.space	1
+  62              		.text
+  63              	.Letext0:
+  64              		.file 1 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+  65              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+  66              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+  67              		.file 4 "Src/extern_vars.c"
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 extern_vars.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:48     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:38     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:43     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:33     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:28     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:29     .bss.IR_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:34     .bss.PI_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:39     .bss.EDGE_LEFT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:44     .bss.CLAW_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:49     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:30     .bss.TAPE_RIGHT_STATE:0000000000000000 TAPE_RIGHT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:60     .bss.TAPE_LEFT_STATE:0000000000000000 TAPE_LEFT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:55     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:45     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:50     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:40     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:35     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:31     .bss.TAPE_RIGHT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:36     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:41     .bss.PI_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:46     .bss.EDGE_LEFT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:51     .bss.CLAW_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:56     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cch4tvrd.s:61     .bss.TAPE_LEFT_STATE:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS

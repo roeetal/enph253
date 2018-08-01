@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
   52 0004 2DED048B 		fstmfdd	sp!, {d8, d9}
   53              	.LCFI1:
   54              		.cfi_def_cfa_offset 52
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 2
 
 
   55              		.cfi_offset 80, -52
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
   10:Src/filter.c  ****   // number of frequencies is the same size as the number of
   11:Src/filter.c  ****   // upper and lower bin limits; loop through bin limits (i.e.
   12:Src/filter.c  ****   // k_start and k_end pairs, and evaluate goertzel from there)
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 3
 
 
   13:Src/filter.c  ****   double normalizedfreq, w_real;
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
  148 00b2 2046     		mov	r0, r4
  149 00b4 FFF7FEFF 		bl	__aeabi_ui2d
  150              	.LVL19:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 4
 
 
  151 00b8 3246     		mov	r2, r6
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
  195 0108 0446     		mov	r4, r0
  196 010a 0D46     		mov	r5, r1
  197              	.LVL31:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 5
 
 
  198 010c 51EC180B 		fmrrd	r0, r1, d8
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
  251 0170 0000F03F 		.word	1072693248
  252              		.cfi_endproc
  253              	.LFE123:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 6
 
 
  255              		.text
@@ -307,14 +307,14 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 1
  258              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
  259              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
  260              		.file 5 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/math.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 filter.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s:27     .text.goertzel:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s:32     .text.goertzel:0000000000000000 goertzel
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccBydk7X.s:247    .text.goertzel:0000000000000160 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s:27     .text.goertzel:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s:32     .text.goertzel:0000000000000000 goertzel
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccHprBbr.s:247    .text.goertzel:0000000000000160 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

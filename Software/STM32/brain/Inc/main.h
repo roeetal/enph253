@@ -52,7 +52,6 @@
 
 #define MENU_Pin GPIO_PIN_13
 #define MENU_GPIO_Port GPIOC
-#define MENU_EXTI_IRQn EXTI15_10_IRQn
 #define PI_INT_Pin GPIO_PIN_0
 #define PI_INT_GPIO_Port GPIOC
 #define PI_INT_EXTI_IRQn EXTI0_IRQn
@@ -88,8 +87,10 @@
 #define ER_GPIO_Port GPIOB
 #define TAPE_LEFT_Pin GPIO_PIN_14
 #define TAPE_LEFT_GPIO_Port GPIOB
+#define TAPE_LEFT_EXTI_IRQn EXTI15_10_IRQn
 #define TAPE_RIGHT_Pin GPIO_PIN_15
 #define TAPE_RIGHT_GPIO_Port GPIOB
+#define TAPE_RIGHT_EXTI_IRQn EXTI15_10_IRQn
 #define STM_TX_Pin GPIO_PIN_6
 #define STM_TX_GPIO_Port GPIOC
 #define STM_RX_Pin GPIO_PIN_7

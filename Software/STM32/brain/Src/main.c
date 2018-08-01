@@ -179,7 +179,21 @@ int main(void)
         }
         */
         if(EDGE_RIGHT_STATE == FLAGGED){
-            print("Works",0);
+            print("ER",0);
+            EDGE_RIGHT_STATE = NOT_FLAGGED;
+        }
+        if(TAPE_RIGHT_STATE == FLAGGED){
+            print("TR",0);
+            TAPE_RIGHT_STATE = NOT_FLAGGED;
+        }
+        if(EDGE_LEFT_STATE == FLAGGED){
+            print("EL",0);
+            EDGE_LEFT_STATE = NOT_FLAGGED;
+        }
+        
+        if(TAPE_LEFT_STATE == FLAGGED){
+            print("TL",0);
+            TAPE_LEFT_STATE = NOT_FLAGGED;
         }
             /*
         if (IR_INT_STATE == FLAGGED)
