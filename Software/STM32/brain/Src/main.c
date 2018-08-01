@@ -178,7 +178,9 @@ int main(void)
             turn();
         }
         */
-            alarm_detect();
+        if(EDGE_RIGHT_STATE == FLAGGED){
+            print("Works",0);
+        }
             /*
         if (IR_INT_STATE == FLAGGED)
         {
