@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s 			page 1
 
 
    1              		.syntax unified
@@ -46,20 +46,20 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s 			page 1
   53              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
   54              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
   55              		.file 4 "Src/extern_vars.c"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 extern_vars.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:48     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:38     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:43     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:33     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:28     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:29     .bss.IR_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:34     .bss.PI_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:39     .bss.EDGE_LEFT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:44     .bss.CLAW_INT_STATE:0000000000000000 $d
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccQSjXxg.s:49     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:48     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:38     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:43     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:33     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:28     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:29     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:34     .bss.PI_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:39     .bss.EDGE_LEFT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:44     .bss.CLAW_INT_STATE:0000000000000000 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccYZxazo.s:49     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS
