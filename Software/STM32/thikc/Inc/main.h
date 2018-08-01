@@ -120,7 +120,7 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
-#define ENCODER_GOAL 3
+#define ENCODER_GOAL 2
 #define TURN_CONST 300
 
 /* USER CODE END Private defines */

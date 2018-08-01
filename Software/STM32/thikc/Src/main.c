@@ -61,8 +61,8 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint16_t LEFT_SPEED = 20000;
-uint16_t RIGHT_SPEED = 20000;
+uint16_t LEFT_SPEED = 40000;
+uint16_t RIGHT_SPEED = 45000;
 uint32_t dma_buffer[2048];
 uint32_t ir_values[2048];
 /* USER CODE END PV */
@@ -150,26 +150,61 @@ int main(void)
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
     ssd1306_Init();
     print("Starting...", 0);
-    //claw_init(&htim2);
+    claw_init(&htim2);
 
     /* Initialize other stuffs*/
     // 3 * gain * kp = 20,000
     ENCODER_t left_enc = encoder_Init(TIM3);
     ENCODER_t right_enc = encoder_Init(TIM4);
-    PID_t left_pid = pid_Init(5000, 0, 0, 2, 2);
-    PID_t right_pid = pid_Init(5000, 0, 0, 2, 2);
+    PID_t left_pid = pid_Init(1000, 250, 0, 2, 2);
+    PID_t right_pid = pid_Init(6000, 500, 0, 2, 2);
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+
     while (1)
     {
-        // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+        // // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+        print("in whiel", 0);
+        // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        // if (CLAW_INT_STATE == FLAGGED)
+        // {
+        //     print("CLAW INT", 0);
+        //     set_motor_speed(TIM_CHANNEL_1, 0);
+        //     set_motor_speed(TIM_CHANNEL_3, 0);
+        //     actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        //     HAL_Delay(1000);
+        //     CLAW_INT_STATE = NOT_FLAGGED;
+        // }
         if (PI_INT_STATE == FLAGGED)
         {
             print("in pi int", 0);
             turn();
+
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            int start = HAL_GetTick();
+            while (HAL_GetTick() - start < 4000)
+            {
+                // encoder_dist_pid(&left_pid);
+                // HAL_Delay(4000);
+                // set_motor_speed(TIM_CHANNEL_1, 0);
+                // set_motor_speed(TIM_CHANNEL_3, 0);
+                if (CLAW_INT_STATE == FLAGGED)
+                {
+                    set_motor_speed(TIM_CHANNEL_1, 0);
+                    set_motor_speed(TIM_CHANNEL_3, 0);
+                    actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+                    CLAW_INT_STATE = NOT_FLAGGED;
+                    break;
+                }
+            }
+            PI_INT_STATE = NOT_FLAGGED;
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
         }
         // if (IR_INT_STATE == FLAGGED)
         // {
@@ -259,7 +294,7 @@ void turn()
         int pre_dec = (int)(volts / 1);
         int post_dec = (int)((volts - pre_dec) * 1000);
         sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
-        print(msg, 0);
+        print(msg, 2);
         if (volts < 0)
         {
             set_motor_speed(TIM_CHANNEL_1, 0);
@@ -280,11 +315,12 @@ void turn()
         }
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);
-    } else {
+    }
+    else
+    {
         print("Shits fucked yo", 0);
     }
     HAL_ADC_Stop(&hadc2);
-    PI_INT_STATE = NOT_FLAGGED;
 }
 
 void pi_navigation()
@@ -593,6 +629,48 @@ void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER
     // set_motor_speed
     set_motor_speed(TIM_CHANNEL_1, lspeed);
     set_motor_speed(TIM_CHANNEL_3, rspeed);
+}
+
+void encoder_dist_pid(PID_t *pid_obj)
+{
+    /* Get error */
+    uint32_t l_enc = TIM3->CNT;
+    uint32_t r_enc = TIM4->CNT;
+    pid_obj->err = l_enc - r_enc;
+
+    /* Get gain */
+    int32_t gain = pid_GetGain(pid_obj);
+
+    // Print
+    int l_predec = (int)(l_enc / 1);
+    int l_postdec = (int)((l_enc - l_predec) * 1000);
+    int r_predec = (int)(r_enc / 1);
+    int r_postdec = (int)((r_enc - r_predec) * 1000);
+    char msg[18] = "";
+    sprintf(msg, "LG: %d.%d", l_predec, l_postdec);
+    print(msg, 0);
+    sprintf(msg, "RG: %d.%d", r_predec, r_postdec);
+    print(msg, 1);
+    // Print
+
+    /* Set Motor Speeds*/
+    int lspeed = LEFT_SPEED - gain;
+    int rspeed = RIGHT_SPEED + gain;
+
+    // Print
+    sprintf(msg, "err: %d", (int)pid_obj->err);
+    print(msg, 3);
+    sprintf(msg, "gain: %d", (int)gain);
+    print(msg, 4);
+    // Print
+
+    // set_motor_speed
+    set_motor_speed(TIM_CHANNEL_1, lspeed);
+    set_motor_speed(TIM_CHANNEL_3, rspeed);
+
+    // Reset CNTs for overflows
+    TIM4->CNT = 0;
+    TIM3->CNT = 0;
 }
 
 /* USER CODE END 4 */
