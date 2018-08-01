@@ -148,12 +148,13 @@ int main(void)
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
     ssd1306_Init();
     print("Starting...", 0);
-    //claw_init(&htim2);
+    //claw_init(&htim3);
+    //basket_init(&htim3);
 
     /* Initialize other stuffs*/
     // 3 * gain * kp = 20,000
@@ -170,14 +171,33 @@ int main(void)
   /* USER CODE BEGIN WHILE */
     while (1)
     {
-        // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+
         /*
+         * Servo Stuff
+         *
+        
+         */
+
+
+        /*
+         * Drive Straight
+         *
+        encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+        */
+
+        /*
+         * Pi Turning
+         *
         if (PI_INT_STATE == FLAGGED)
         {
             print("in pi int", 0);
             turn();
         }
         */
+
+        /*
+         * EDGE and Object detection
+         *
         if(EDGE_RIGHT_STATE == FLAGGED){
             print("ER",0);
             EDGE_RIGHT_STATE = NOT_FLAGGED;
@@ -195,13 +215,18 @@ int main(void)
             print("TL",0);
             TAPE_LEFT_STATE = NOT_FLAGGED;
         }
-            /*
+        */
+
+        /*
+         * IR DETECTION
+         *
         if (IR_INT_STATE == FLAGGED)
         {
             alarm_detect();
             //drive past sensor, enough so as to not trigger interrupt again
             HAL_Delay(2000);
         }*/
+
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
