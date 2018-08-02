@@ -262,7 +262,7 @@ void _Error_Handler(char *, int);
 
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 2
-#define TURN_CONST 180
+#define TURN_CONST 100
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -187,12 +187,9 @@ int main(void)
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             int start = HAL_GetTick();
-            while (HAL_GetTick() - start < 4000)
+            while (HAL_GetTick() - start < 2000)
             {
                 // encoder_dist_pid(&left_pid);
-                // HAL_Delay(4000);
-                // set_motor_speed(TIM_CHANNEL_1, 0);
-                // set_motor_speed(TIM_CHANNEL_3, 0);
                 if (CLAW_INT_STATE == FLAGGED)
                 {
                     set_motor_speed(TIM_CHANNEL_1, 0);
@@ -202,6 +199,8 @@ int main(void)
                     break;
                 }
             }
+            uint8_t pic_plz = 1;
+            HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
             PI_INT_STATE = NOT_FLAGGED;
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
@@ -288,6 +287,7 @@ void turn()
         uint16_t counts = TURN_CONST * fabs(volts);
         TIM3->CNT = 0;
         TIM4->CNT = 0;
+
         char msg[18] = "";
         sprintf(msg, "cnts: %d", counts);
         print(msg, 0);
@@ -295,23 +295,32 @@ void turn()
         int post_dec = (int)((volts - pre_dec) * 1000);
         sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
         print(msg, 2);
-        if (volts < 0)
+
+        if (volts < -0.07)  // FIXME: Ben changed this
         {
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 30000);
             while (TIM4->CNT < counts)
             {
+                sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+                print(msg, 4);
             }
+            sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+            print(msg, 4);
             TIM4->CNT = 0;
         }
-        else if (volts > 0)
+        else if (volts > 0.07)  // FIXME: Ben changed this
         {
             set_motor_speed(TIM_CHANNEL_1, 30000);
             set_motor_speed(TIM_CHANNEL_3, 0);
             while (TIM3->CNT < counts)
             {
+                sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+                print(msg, 4);
             }
-            TIM4->CNT = 0;
+            sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+            print(msg, 4);
+            TIM3->CNT = 0;
         }
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);
