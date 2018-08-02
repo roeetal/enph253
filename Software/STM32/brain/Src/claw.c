@@ -58,9 +58,9 @@ void close_claw(TIM_HandleTypeDef *htim)
 
 void open_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_1, 20);
-    HAL_Delay(200);
     actuate(htim, TIM_CHANNEL_1, 30);
+    HAL_Delay(200);
+    actuate(htim, TIM_CHANNEL_1, 40);
     HAL_Delay(200);
 }
 
