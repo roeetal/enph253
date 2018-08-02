@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
   43              		.loc 1 13 0
   44 000a 8160     		str	r1, [r0, #8]
   14:Src/encoder.c ****     return enc;    
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 2
 
 
   15:Src/encoder.c **** }
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
   79              		.loc 1 36 0
   80 0006 FFF7FEFF 		bl	HAL_GetTick
   81              	.LVL2:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 3
 
 
   82 000a 1FFA80F9 		uxth	r9, r0
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
  127 0056 9845     		cmp	r8, r3
  128 0058 08D9     		bls	.L8
  129              		.loc 1 45 0 is_stmt 0 discriminator 1
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 4
 
 
  130 005a 2388     		ldrh	r3, [r4]
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
  177 00aa 2846     		mov	r0, r5
  178 00ac FFF7FEFF 		bl	__aeabi_i2d
  179              	.LVL17:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 5
 
 
  180 00b0 0022     		movs	r2, #0
@@ -293,16 +293,16 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 1
  226              		.file 5 "Inc/encoder.h"
  227              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
  228              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 encoder.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s:21     .text.encoder_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s:26     .text.encoder_Init:0000000000000000 encoder_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s:55     .text.update_encoder:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s:60     .text.update_encoder:0000000000000000 update_encoder
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccWs37FW.s:212    .text.update_encoder:00000000000000f0 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s:21     .text.encoder_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s:26     .text.encoder_Init:0000000000000000 encoder_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s:55     .text.update_encoder:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s:60     .text.update_encoder:0000000000000000 update_encoder
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccbLv5bD.s:212    .text.update_encoder:00000000000000f0 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
