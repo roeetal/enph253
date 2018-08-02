@@ -81,6 +81,7 @@ float calculate_heading(uint32_t adc_val);
 void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
+void turn_deg(uint8_t);
 void alarm_detect();
 
 /* USER CODE END PFP */
@@ -158,12 +159,20 @@ int main(void)
     ENCODER_t right_enc = encoder_Init(TIM4);
     PID_t left_pid = pid_Init(1000, 250, 0, 2, 2);
     PID_t right_pid = pid_Init(6000, 500, 0, 2, 2);
+    uint8_t ewok_cnt = 0;
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-
+    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    HAL_Delay(5000);
+    set_motor_speed(TIM_CHANNEL_1, 0);
+    set_motor_speed(TIM_CHANNEL_3, 0);
+    HAL_Delay(1000);
+    CLAW_INT_STATE = NOT_FLAGGED;
+    PI_INT_STATE = NOT_FLAGGED;
     while (1)
     {
         // // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
@@ -190,18 +199,31 @@ int main(void)
             while (HAL_GetTick() - start < 4000)
             {
                 // encoder_dist_pid(&left_pid);
-                // HAL_Delay(4000);
-                // set_motor_speed(TIM_CHANNEL_1, 0);
-                // set_motor_speed(TIM_CHANNEL_3, 0);
                 if (CLAW_INT_STATE == FLAGGED)
                 {
+                    HAL_Delay(200);
                     set_motor_speed(TIM_CHANNEL_1, 0);
                     set_motor_speed(TIM_CHANNEL_3, 0);
                     actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
                     CLAW_INT_STATE = NOT_FLAGGED;
+                    ++ewok_cnt;
+                    char msg[18] = "";
+                    sprintf(msg, "wok_cnt: %d", ewok_cnt);
+                    print(msg, 0);
+                    if (ewok_cnt == 1)
+                    {
+                        turn_deg(-120);
+                        arm_up_to_deg(&htim2, 80);
+                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                        HAL_Delay(3000);
+                        CLAW_INT_STATE = NOT_FLAGGED;
+                    }
                     break;
                 }
             }
+            // char pic_plz = "1";
+            // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
             PI_INT_STATE = NOT_FLAGGED;
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
@@ -288,6 +310,7 @@ void turn()
         uint16_t counts = TURN_CONST * fabs(volts);
         TIM3->CNT = 0;
         TIM4->CNT = 0;
+
         char msg[18] = "";
         sprintf(msg, "cnts: %d", counts);
         print(msg, 0);
@@ -295,23 +318,83 @@ void turn()
         int post_dec = (int)((volts - pre_dec) * 1000);
         sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
         print(msg, 2);
-        if (volts < 0)
+
+        if (volts < -TURN_TOLERANCE)  // FIXME: Ben changed this
+        {
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            while (TIM4->CNT < counts)
+            {
+                sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+                print(msg, 4);
+            }
+            sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+            print(msg, 4);
+            TIM4->CNT = 0;
+        }
+        else if (volts > TURN_TOLERANCE) // FIXME: Ben changed this
+        {
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+            while (TIM3->CNT < counts)
+            {
+                sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+                print(msg, 4);
+            }
+            sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+            print(msg, 4);
+            TIM3->CNT = 0;
+        }
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+    }
+    else
+    {
+        print("Shits fucked yo", 0);
+    }
+    HAL_ADC_Stop(&hadc2);
+}
+
+/*
+ * Assume motors are not on.
+ * Reads adc, turns left or right based on voltage. Left max= 0 , no turn = 1.65 V, right max = 3.3V.
+ */
+void turn_deg(uint8_t deg)
+{
+    HAL_ADC_Start(&hadc2);
+    if (HAL_ADC_PollForConversion(&hadc2, 100) == HAL_OK)
+    {
+        uint16_t counts = 50.0 / 90.0 * (deg-90) + 50;
+        TIM3->CNT = 0;
+        TIM4->CNT = 0;
+
+        char msg[18] = "";
+
+        if (deg > 0) // FIXME: Ben changed this
         {
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 30000);
             while (TIM4->CNT < counts)
             {
+                sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+                print(msg, 4);
             }
+            sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+            print(msg, 4);
             TIM4->CNT = 0;
         }
-        else if (volts > 0)
+        else if (deg < 0) // FIXME: Ben changed this
         {
             set_motor_speed(TIM_CHANNEL_1, 30000);
             set_motor_speed(TIM_CHANNEL_3, 0);
             while (TIM3->CNT < counts)
             {
+                sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+                print(msg, 4);
             }
-            TIM4->CNT = 0;
+            sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+            print(msg, 4);
+            TIM3->CNT = 0;
         }
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);

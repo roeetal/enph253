@@ -15,6 +15,8 @@ void basket_up_up_and_away(TIM_HandleTypeDef *htim);
 void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_angle, uint16_t end_angle);
 void basket_init();
 void arm_down(TIM_HandleTypeDef *htim);
+void arm_up (TIM_HandleTypeDef *htim);
+void arm_up_to_deg(TIM_HandleTypeDef *htim, uint8_t deg);
 void close_claw(TIM_HandleTypeDef *htim);
 void open_claw(TIM_HandleTypeDef *htim);
 

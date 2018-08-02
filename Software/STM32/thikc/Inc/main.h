@@ -121,8 +121,8 @@
 
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 2
-#define TURN_CONST 300
-
+#define TURN_CONST 100
+#define TURN_TOLERANCE 0.04
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
