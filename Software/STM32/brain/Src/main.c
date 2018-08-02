@@ -63,8 +63,8 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 //TODO: Drive system, signed int32, giving forward backward, encoders, coordinate system.
-uint16_t LEFT_SPEED = 40000;
-uint16_t RIGHT_SPEED = 45000;
+uint16_t LEFT_SPEED = 0.61*MOTOR_SPEED;
+uint16_t RIGHT_SPEED = 0.69*MOTOR_SPEED;
 uint32_t dma_buffer[3072];
 uint32_t adc_values[3072];
 
@@ -166,17 +166,19 @@ int main(void)
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
 
     /* Initialize other stuffs */
-    print("Starting", 0);
     ssd1306_Init();
+    print("Starting", 0);
     claw_init(&htim3);
+
+    set_motor_speed(TIM_CHANNEL_1, 300);
     ///basket_init(&htim3);
 
     // 3 * gain * kp = 20,000
     /*
        ENCODER_t left_enc = encoder_Init(TIM4);
        ENCODER_t right_enc = encoder_Init(TIM5);
-       PID_t left_pid = pid_Init(5000, 0, 0, 2, 2);
-       PID_t right_pid = pid_Init(5000, 0, 0, 2, 2);
+       PID_t left_pid = pid_Init(5, 0, 0, 2, 2);
+       PID_t right_pid = pid_Init(5, 0, 0, 2, 2);
        */
     //PID_t pid_struct = menu();
   /* USER CODE END 2 */
@@ -315,7 +317,7 @@ void turn()
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
-    HAL_Delay(500);
+    HAL_Delay(50);
     float volts = calculate_heading(adc_values[5]);
     uint16_t counts = TURN_CONST * fabs(volts);
     TIM3->CNT = 0;
@@ -330,7 +332,7 @@ void turn()
     if (volts < 0)
     {
         set_motor_speed(TIM_CHANNEL_1, 0);
-        set_motor_speed(TIM_CHANNEL_3, 30000);
+        set_motor_speed(TIM_CHANNEL_3, 0.5*MOTOR_SPEED);
         while (TIM4->CNT < counts)
         {
         }
@@ -338,7 +340,7 @@ void turn()
     }
     else if (volts > 0)
     {
-        set_motor_speed(TIM_CHANNEL_1, 30000);
+        set_motor_speed(TIM_CHANNEL_1, 0.5*MOTOR_SPEED);
         set_motor_speed(TIM_CHANNEL_3, 0);
         while (TIM3->CNT < counts)
         {
@@ -360,18 +362,18 @@ void pi_navigation()
     float heading = calculate_heading(adc_values[5]);
     if (heading < 0)
     {
-        set_motor_speed(TIM_CHANNEL_2, 10000);
-        set_motor_speed(TIM_CHANNEL_3, 10000);
+        set_motor_speed(TIM_CHANNEL_2, 0.3*MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
         heading *= -1;
     }
     else if (heading > 0)
     {
-        set_motor_speed(TIM_CHANNEL_1, 10000);
-        set_motor_speed(TIM_CHANNEL_4, 10000);
+        set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_4, 0.3*MOTOR_SPEED);
     }
     HAL_Delay(2000 * heading);
-    set_motor_speed(TIM_CHANNEL_1, 20000);
-    set_motor_speed(TIM_CHANNEL_3, 20000);
+    set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
+    set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
     HAL_ADC_Stop_DMA(&hadc1);
     PI_INT_STATE = NOT_FLAGGED;
 }
@@ -495,7 +497,7 @@ PID_t menu()
     }
     while (1)
     {
-        int speed = 20000;
+        int speed = 0.3*MOTOR_SPEED;
         if (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
         {
             if (pid_select == 3)
@@ -518,12 +520,12 @@ PID_t menu()
                 print(msg, 0);
                 if (pid_select == 3)
                 {
-                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
+                    set_motor_speed(TIM_CHANNEL_1, speed);
                     LEFT_SPEED = speed;
                 }
                 else
                 {
-                    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
+                    set_motor_speed(TIM_CHANNEL_3, speed);
                     RIGHT_SPEED = speed;
                 }
             }
@@ -596,8 +598,8 @@ void do_pid(PID_t *pid_struct)
     {
         rspeed = RIGHT_SPEED + gain;
     }
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, lspeed);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, rspeed);
+    set_motor_speed(TIM_CHANNEL_1, lspeed);
+    set_motor_speed(TIM_CHANNEL_3, rspeed);
 }
 
 void set_motor_speed(uint32_t channel, uint32_t speed)
