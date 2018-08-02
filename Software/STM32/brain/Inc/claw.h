@@ -4,9 +4,8 @@
 #include "stm32f4xx_hal.h"
 #include "main.h"
 
-//TODO 338 - 2140, 1264 middle http://extremeelectronics.co.in/avr-tutorials/servo-motor-control-by-using-avr-atmega32-microcontroller/
-#define MAX 300.0
-#define MIN 80.0
+#define MAX 2400.0
+#define MIN 450.0
 
 uint16_t get_pulse_length(uint16_t degrees);
 void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle);
