@@ -169,9 +169,10 @@ int main(void)
     ssd1306_Init();
     print("Starting", 0);
     claw_init(&htim3);
-
-    set_motor_speed(TIM_CHANNEL_1, 300);
     ///basket_init(&htim3);
+    //
+    set_motor_speed(TIM_CHANNEL_1, 300);
+    
 
     // 3 * gain * kp = 20,000
     /*
