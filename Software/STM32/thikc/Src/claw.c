@@ -1,4 +1,5 @@
 #include "claw.h"
+#include "extern_vars.h"
 
 /*
  * Initialize claw positions
@@ -38,11 +39,8 @@ void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
 void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm)
 {
     // Close claw
-    actuate(htim, channel_claw, 80);
-    HAL_Delay(1000);
-    // Arm up
-    actuate(htim, channel_arm, 0);
-    HAL_Delay(1500);
+    close_claw(htim);
+    arm_up(htim);
     // Open Claw
     actuate(htim, channel_claw, 30);
     HAL_Delay(500);
@@ -55,7 +53,7 @@ void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel
 
 void close_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 80);
+    actuate(htim, TIM_CHANNEL_2, 100);
     HAL_Delay(1000);
 }
 
@@ -71,6 +69,22 @@ void arm_down(TIM_HandleTypeDef *htim)
 {
     actuate(htim, TIM_CHANNEL_3, 160);
     HAL_Delay(1000);
+}
+
+void arm_up(TIM_HandleTypeDef *htim)
+{
+    actuate(htim, TIM_CHANNEL_3, 0);
+    HAL_Delay(1500);
+}
+
+/*
+ * deg == 0   is up
+ * deg == 160 is dn
+ */
+void arm_up_to_deg(TIM_HandleTypeDef *htim, uint8_t deg)
+{
+    actuate(htim, TIM_CHANNEL_3, deg);
+    HAL_Delay(1500);
 }
 
 void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_angle, uint16_t end_angle)
