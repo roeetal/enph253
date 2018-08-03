@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
   28:Src/stm32f4xx_it.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
   29:Src/stm32f4xx_it.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   30:Src/stm32f4xx_it.c ****   *
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 2
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 2
 
 
   31:Src/stm32f4xx_it.c ****   ******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
   47              		.cfi_startproc
   48              		@ Volatile: function does not return.
   49              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 3
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 3
 
 
   50              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
   81              		.thumb
   82              		.thumb_func
   84              	BusFault_Handler:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 4
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 4
 
 
   85              	.LFB126:
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  123:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN UsageFault_IRQn 0 */
  124:Src/stm32f4xx_it.c **** 
  125:Src/stm32f4xx_it.c ****   /* USER CODE END UsageFault_IRQn 0 */
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 5
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 5
 
 
  126:Src/stm32f4xx_it.c ****   while (1)
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  143              		.loc 1 153 0
  144              		.cfi_startproc
  145              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 6
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 6
 
 
  146              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  178              		.cfi_startproc
  179              		@ args = 0, pretend = 0, frame = 0
  180              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 7
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 7
 
 
  181              		.loc 1 179 0
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  203:Src/stm32f4xx_it.c ****     PI_INT_STATE = FLAGGED;
  214              		.loc 1 203 0
  215 0002 0120     		movs	r0, #1
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 8
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 8
 
 
  216 0004 024B     		ldr	r3, .L17
@@ -436,12 +436,12 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  225 0010 00000000 		.word	PI_INT_STATE
  226              		.cfi_endproc
  227              	.LFE132:
- 229              		.section	.text.EXTI2_IRQHandler,"ax",%progbits
+ 229              		.section	.text.EXTI1_IRQHandler,"ax",%progbits
  230              		.align	2
- 231              		.global	EXTI2_IRQHandler
+ 231              		.global	EXTI1_IRQHandler
  232              		.thumb
  233              		.thumb_func
- 235              	EXTI2_IRQHandler:
+ 235              	EXTI1_IRQHandler:
  236              	.LFB133:
  207:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI0_IRQn 1 */
  208:Src/stm32f4xx_it.c **** 
@@ -451,24 +451,9 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  212:Src/stm32f4xx_it.c **** /**
  213:Src/stm32f4xx_it.c **** * @brief This function handles EXTI line1 interrupt.
  214:Src/stm32f4xx_it.c **** */
- 215:Src/stm32f4xx_it.c **** // void EXTI1_IRQHandler(void)
- 216:Src/stm32f4xx_it.c **** // {
- 217:Src/stm32f4xx_it.c **** //   /* USER CODE BEGIN EXTI1_IRQn 0 */
- 218:Src/stm32f4xx_it.c **** //     IR_INT_STATE = FLAGGED;
- 219:Src/stm32f4xx_it.c **** 
- 220:Src/stm32f4xx_it.c **** //   /* USER CODE END EXTI1_IRQn 0 */
- 221:Src/stm32f4xx_it.c **** //   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
- 222:Src/stm32f4xx_it.c **** //   /* USER CODE BEGIN EXTI1_IRQn 1 */
- 223:Src/stm32f4xx_it.c **** 
- 224:Src/stm32f4xx_it.c **** //   /* USER CODE END EXTI1_IRQn 1 */
- 225:Src/stm32f4xx_it.c **** // }
- 226:Src/stm32f4xx_it.c **** 
- 227:Src/stm32f4xx_it.c **** /**
- 228:Src/stm32f4xx_it.c **** * @brief This function handles EXTI line2 interrupt.
- 229:Src/stm32f4xx_it.c **** */
- 230:Src/stm32f4xx_it.c **** void EXTI2_IRQHandler(void)
- 231:Src/stm32f4xx_it.c **** {
- 237              		.loc 1 231 0
+ 215:Src/stm32f4xx_it.c **** void EXTI1_IRQHandler(void)
+ 216:Src/stm32f4xx_it.c **** {
+ 237              		.loc 1 216 0
  238              		.cfi_startproc
  239              		@ args = 0, pretend = 0, frame = 0
  240              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -477,35 +462,73 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  243              		.cfi_def_cfa_offset 8
  244              		.cfi_offset 3, -8
  245              		.cfi_offset 14, -4
+ 217:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI1_IRQn 0 */
+ 218:Src/stm32f4xx_it.c **** //     IR_INT_STATE = FLAGGED;
+ 219:Src/stm32f4xx_it.c **** 
+ 220:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI1_IRQn 0 */
+ 221:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
+ 246              		.loc 1 221 0
+ 247 0002 0220     		movs	r0, #2
+ 248 0004 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 249              	.LVL3:
+ 250 0008 08BD     		pop	{r3, pc}
+ 251              		.cfi_endproc
+ 252              	.LFE133:
+ 254 000a 00BF     		.section	.text.EXTI2_IRQHandler,"ax",%progbits
+ 255              		.align	2
+ 256              		.global	EXTI2_IRQHandler
+ 257              		.thumb
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 9
+
+
+ 258              		.thumb_func
+ 260              	EXTI2_IRQHandler:
+ 261              	.LFB134:
+ 222:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI1_IRQn 1 */
+ 223:Src/stm32f4xx_it.c **** 
+ 224:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI1_IRQn 1 */
+ 225:Src/stm32f4xx_it.c **** }
+ 226:Src/stm32f4xx_it.c **** 
+ 227:Src/stm32f4xx_it.c **** /**
+ 228:Src/stm32f4xx_it.c **** * @brief This function handles EXTI line2 interrupt.
+ 229:Src/stm32f4xx_it.c **** */
+ 230:Src/stm32f4xx_it.c **** void EXTI2_IRQHandler(void)
+ 231:Src/stm32f4xx_it.c **** {
+ 262              		.loc 1 231 0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266 0000 08B5     		push	{r3, lr}
+ 267              	.LCFI3:
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 3, -8
+ 270              		.cfi_offset 14, -4
  232:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI2_IRQn 0 */
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 9
-
-
  233:Src/stm32f4xx_it.c ****     EDGE_LEFT_STATE = FLAGGED;
- 246              		.loc 1 233 0
- 247 0002 0122     		movs	r2, #1
- 248 0004 024B     		ldr	r3, .L21
- 249 0006 1A70     		strb	r2, [r3]
+ 271              		.loc 1 233 0
+ 272 0002 0122     		movs	r2, #1
+ 273 0004 024B     		ldr	r3, .L23
+ 274 0006 1A70     		strb	r2, [r3]
  234:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI2_IRQn 0 */
  235:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
- 250              		.loc 1 235 0
- 251 0008 0420     		movs	r0, #4
- 252 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
- 253              	.LVL3:
- 254 000e 08BD     		pop	{r3, pc}
- 255              	.L22:
- 256              		.align	2
- 257              	.L21:
- 258 0010 00000000 		.word	EDGE_LEFT_STATE
- 259              		.cfi_endproc
- 260              	.LFE133:
- 262              		.section	.text.EXTI3_IRQHandler,"ax",%progbits
- 263              		.align	2
- 264              		.global	EXTI3_IRQHandler
- 265              		.thumb
- 266              		.thumb_func
- 268              	EXTI3_IRQHandler:
- 269              	.LFB134:
+ 275              		.loc 1 235 0
+ 276 0008 0420     		movs	r0, #4
+ 277 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 278              	.LVL4:
+ 279 000e 08BD     		pop	{r3, pc}
+ 280              	.L24:
+ 281              		.align	2
+ 282              	.L23:
+ 283 0010 00000000 		.word	EDGE_LEFT_STATE
+ 284              		.cfi_endproc
+ 285              	.LFE134:
+ 287              		.section	.text.EXTI3_IRQHandler,"ax",%progbits
+ 288              		.align	2
+ 289              		.global	EXTI3_IRQHandler
+ 290              		.thumb
+ 291              		.thumb_func
+ 293              	EXTI3_IRQHandler:
+ 294              	.LFB135:
  236:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI2_IRQn 1 */
  237:Src/stm32f4xx_it.c **** 
  238:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI2_IRQn 1 */
@@ -515,46 +538,46 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  242:Src/stm32f4xx_it.c **** * @brief This function handles EXTI line3 interrupt.
  243:Src/stm32f4xx_it.c **** */
  244:Src/stm32f4xx_it.c **** void EXTI3_IRQHandler(void)
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 10
+
+
  245:Src/stm32f4xx_it.c **** {
- 270              		.loc 1 245 0
- 271              		.cfi_startproc
- 272              		@ args = 0, pretend = 0, frame = 0
- 273              		@ frame_needed = 0, uses_anonymous_args = 0
- 274 0000 08B5     		push	{r3, lr}
- 275              	.LCFI3:
- 276              		.cfi_def_cfa_offset 8
- 277              		.cfi_offset 3, -8
- 278              		.cfi_offset 14, -4
+ 295              		.loc 1 245 0
+ 296              		.cfi_startproc
+ 297              		@ args = 0, pretend = 0, frame = 0
+ 298              		@ frame_needed = 0, uses_anonymous_args = 0
+ 299 0000 08B5     		push	{r3, lr}
+ 300              	.LCFI4:
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 3, -8
+ 303              		.cfi_offset 14, -4
  246:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI3_IRQn 0 */
  247:Src/stm32f4xx_it.c ****     EDGE_RIGHT_STATE = FLAGGED;
- 279              		.loc 1 247 0
- 280 0002 0122     		movs	r2, #1
- 281 0004 024B     		ldr	r3, .L25
- 282 0006 1A70     		strb	r2, [r3]
+ 304              		.loc 1 247 0
+ 305 0002 0122     		movs	r2, #1
+ 306 0004 024B     		ldr	r3, .L27
+ 307 0006 1A70     		strb	r2, [r3]
  248:Src/stm32f4xx_it.c **** 
  249:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI3_IRQn 0 */
  250:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
- 283              		.loc 1 250 0
- 284 0008 0820     		movs	r0, #8
- 285 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
- 286              	.LVL4:
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 10
-
-
- 287 000e 08BD     		pop	{r3, pc}
- 288              	.L26:
- 289              		.align	2
- 290              	.L25:
- 291 0010 00000000 		.word	EDGE_RIGHT_STATE
- 292              		.cfi_endproc
- 293              	.LFE134:
- 295              		.section	.text.EXTI4_IRQHandler,"ax",%progbits
- 296              		.align	2
- 297              		.global	EXTI4_IRQHandler
- 298              		.thumb
- 299              		.thumb_func
- 301              	EXTI4_IRQHandler:
- 302              	.LFB135:
+ 308              		.loc 1 250 0
+ 309 0008 0820     		movs	r0, #8
+ 310 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 311              	.LVL5:
+ 312 000e 08BD     		pop	{r3, pc}
+ 313              	.L28:
+ 314              		.align	2
+ 315              	.L27:
+ 316 0010 00000000 		.word	EDGE_RIGHT_STATE
+ 317              		.cfi_endproc
+ 318              	.LFE135:
+ 320              		.section	.text.EXTI4_IRQHandler,"ax",%progbits
+ 321              		.align	2
+ 322              		.global	EXTI4_IRQHandler
+ 323              		.thumb
+ 324              		.thumb_func
+ 326              	EXTI4_IRQHandler:
+ 327              	.LFB136:
  251:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI3_IRQn 1 */
  252:Src/stm32f4xx_it.c **** 
  253:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI3_IRQn 1 */
@@ -565,45 +588,45 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  258:Src/stm32f4xx_it.c **** */
  259:Src/stm32f4xx_it.c **** void EXTI4_IRQHandler(void)
  260:Src/stm32f4xx_it.c **** {
- 303              		.loc 1 260 0
- 304              		.cfi_startproc
- 305              		@ args = 0, pretend = 0, frame = 0
- 306              		@ frame_needed = 0, uses_anonymous_args = 0
- 307 0000 08B5     		push	{r3, lr}
- 308              	.LCFI4:
- 309              		.cfi_def_cfa_offset 8
- 310              		.cfi_offset 3, -8
- 311              		.cfi_offset 14, -4
+ 328              		.loc 1 260 0
+ 329              		.cfi_startproc
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332 0000 08B5     		push	{r3, lr}
+ 333              	.LCFI5:
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 3, -8
+ 336              		.cfi_offset 14, -4
  261:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI4_IRQn 0 */
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 11
+
+
  262:Src/stm32f4xx_it.c ****     CLAW_INT_STATE = FLAGGED;
- 312              		.loc 1 262 0
- 313 0002 0122     		movs	r2, #1
- 314 0004 024B     		ldr	r3, .L29
- 315 0006 1A70     		strb	r2, [r3]
+ 337              		.loc 1 262 0
+ 338 0002 0122     		movs	r2, #1
+ 339 0004 024B     		ldr	r3, .L31
+ 340 0006 1A70     		strb	r2, [r3]
  263:Src/stm32f4xx_it.c ****     
  264:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI4_IRQn 0 */
  265:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
- 316              		.loc 1 265 0
- 317 0008 1020     		movs	r0, #16
- 318 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
- 319              	.LVL5:
- 320 000e 08BD     		pop	{r3, pc}
- 321              	.L30:
- 322              		.align	2
- 323              	.L29:
- 324 0010 00000000 		.word	CLAW_INT_STATE
- 325              		.cfi_endproc
- 326              	.LFE135:
- 328              		.section	.text.ADC_IRQHandler,"ax",%progbits
- 329              		.align	2
- 330              		.global	ADC_IRQHandler
- 331              		.thumb
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 11
-
-
- 332              		.thumb_func
- 334              	ADC_IRQHandler:
- 335              	.LFB136:
+ 341              		.loc 1 265 0
+ 342 0008 1020     		movs	r0, #16
+ 343 000a FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 344              	.LVL6:
+ 345 000e 08BD     		pop	{r3, pc}
+ 346              	.L32:
+ 347              		.align	2
+ 348              	.L31:
+ 349 0010 00000000 		.word	CLAW_INT_STATE
+ 350              		.cfi_endproc
+ 351              	.LFE136:
+ 353              		.section	.text.ADC_IRQHandler,"ax",%progbits
+ 354              		.align	2
+ 355              		.global	ADC_IRQHandler
+ 356              		.thumb
+ 357              		.thumb_func
+ 359              	ADC_IRQHandler:
+ 360              	.LFB137:
  266:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI4_IRQn 1 */
  267:Src/stm32f4xx_it.c **** 
  268:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI4_IRQn 1 */
@@ -614,37 +637,40 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  273:Src/stm32f4xx_it.c **** */
  274:Src/stm32f4xx_it.c **** void ADC_IRQHandler(void)
  275:Src/stm32f4xx_it.c **** {
- 336              		.loc 1 275 0
- 337              		.cfi_startproc
- 338              		@ args = 0, pretend = 0, frame = 0
- 339              		@ frame_needed = 0, uses_anonymous_args = 0
- 340 0000 08B5     		push	{r3, lr}
- 341              	.LCFI5:
- 342              		.cfi_def_cfa_offset 8
- 343              		.cfi_offset 3, -8
- 344              		.cfi_offset 14, -4
+ 361              		.loc 1 275 0
+ 362              		.cfi_startproc
+ 363              		@ args = 0, pretend = 0, frame = 0
+ 364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 365 0000 08B5     		push	{r3, lr}
+ 366              	.LCFI6:
+ 367              		.cfi_def_cfa_offset 8
+ 368              		.cfi_offset 3, -8
+ 369              		.cfi_offset 14, -4
  276:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN ADC_IRQn 0 */
  277:Src/stm32f4xx_it.c **** 
  278:Src/stm32f4xx_it.c ****   /* USER CODE END ADC_IRQn 0 */
  279:Src/stm32f4xx_it.c ****   HAL_ADC_IRQHandler(&hadc1);
- 345              		.loc 1 279 0
- 346 0002 0248     		ldr	r0, .L33
- 347 0004 FFF7FEFF 		bl	HAL_ADC_IRQHandler
- 348              	.LVL6:
- 349 0008 08BD     		pop	{r3, pc}
- 350              	.L34:
- 351 000a 00BF     		.align	2
- 352              	.L33:
- 353 000c 00000000 		.word	hadc1
- 354              		.cfi_endproc
- 355              	.LFE136:
- 357              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
- 358              		.align	2
- 359              		.global	EXTI15_10_IRQHandler
- 360              		.thumb
- 361              		.thumb_func
- 363              	EXTI15_10_IRQHandler:
- 364              	.LFB137:
+ 370              		.loc 1 279 0
+ 371 0002 0248     		ldr	r0, .L35
+ 372 0004 FFF7FEFF 		bl	HAL_ADC_IRQHandler
+ 373              	.LVL7:
+ 374 0008 08BD     		pop	{r3, pc}
+ 375              	.L36:
+ 376 000a 00BF     		.align	2
+ 377              	.L35:
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 12
+
+
+ 378 000c 00000000 		.word	hadc1
+ 379              		.cfi_endproc
+ 380              	.LFE137:
+ 382              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+ 383              		.align	2
+ 384              		.global	EXTI15_10_IRQHandler
+ 385              		.thumb
+ 386              		.thumb_func
+ 388              	EXTI15_10_IRQHandler:
+ 389              	.LFB138:
  280:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN ADC_IRQn 1 */
  281:Src/stm32f4xx_it.c **** 
  282:Src/stm32f4xx_it.c ****   /* USER CODE END ADC_IRQn 1 */
@@ -655,78 +681,75 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  287:Src/stm32f4xx_it.c **** */
  288:Src/stm32f4xx_it.c **** void EXTI15_10_IRQHandler(void)
  289:Src/stm32f4xx_it.c **** {
- 365              		.loc 1 289 0
- 366              		.cfi_startproc
- 367              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 12
-
-
- 368              		@ frame_needed = 0, uses_anonymous_args = 0
- 369 0000 08B5     		push	{r3, lr}
- 370              	.LCFI6:
- 371              		.cfi_def_cfa_offset 8
- 372              		.cfi_offset 3, -8
- 373              		.cfi_offset 14, -4
+ 390              		.loc 1 289 0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394 0000 08B5     		push	{r3, lr}
+ 395              	.LCFI7:
+ 396              		.cfi_def_cfa_offset 8
+ 397              		.cfi_offset 3, -8
+ 398              		.cfi_offset 14, -4
  290:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
  291:Src/stm32f4xx_it.c ****     if(HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin)){
- 374              		.loc 1 291 0
- 375 0002 0E48     		ldr	r0, .L39
- 376 0004 4FF48041 		mov	r1, #16384
- 377 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 378              	.LVL7:
- 379 000c 18B1     		cbz	r0, .L36
+ 399              		.loc 1 291 0
+ 400 0002 0E48     		ldr	r0, .L41
+ 401 0004 4FF48041 		mov	r1, #16384
+ 402 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 403              	.LVL8:
+ 404 000c 18B1     		cbz	r0, .L38
  292:Src/stm32f4xx_it.c ****         TAPE_LEFT_STATE = FLAGGED;
- 380              		.loc 1 292 0
- 381 000e 0122     		movs	r2, #1
- 382 0010 0B4B     		ldr	r3, .L39+4
- 383 0012 1A70     		strb	r2, [r3]
- 384 0014 08E0     		b	.L37
- 385              	.L36:
+ 405              		.loc 1 292 0
+ 406 000e 0122     		movs	r2, #1
+ 407 0010 0B4B     		ldr	r3, .L41+4
+ 408 0012 1A70     		strb	r2, [r3]
+ 409 0014 08E0     		b	.L39
+ 410              	.L38:
  293:Src/stm32f4xx_it.c ****     }else if(HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin)){
- 386              		.loc 1 293 0
- 387 0016 0948     		ldr	r0, .L39
- 388 0018 4FF40041 		mov	r1, #32768
- 389 001c FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 390              	.LVL8:
- 391 0020 10B1     		cbz	r0, .L37
+ 411              		.loc 1 293 0
+ 412 0016 0948     		ldr	r0, .L41
+ 413 0018 4FF40041 		mov	r1, #32768
+ 414 001c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 415              	.LVL9:
+ 416 0020 10B1     		cbz	r0, .L39
  294:Src/stm32f4xx_it.c ****         TAPE_RIGHT_STATE = FLAGGED;
- 392              		.loc 1 294 0
- 393 0022 0122     		movs	r2, #1
- 394 0024 074B     		ldr	r3, .L39+8
- 395 0026 1A70     		strb	r2, [r3]
- 396              	.L37:
+ 417              		.loc 1 294 0
+ 418 0022 0122     		movs	r2, #1
+ 419 0024 074B     		ldr	r3, .L41+8
+ 420 0026 1A70     		strb	r2, [r3]
+ 421              	.L39:
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 13
+
+
  295:Src/stm32f4xx_it.c ****     }
  296:Src/stm32f4xx_it.c **** 
  297:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 0 */
  298:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
- 397              		.loc 1 298 0
- 398 0028 4FF48040 		mov	r0, #16384
- 399 002c FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
- 400              	.LVL9:
+ 422              		.loc 1 298 0
+ 423 0028 4FF48040 		mov	r0, #16384
+ 424 002c FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 425              	.LVL10:
  299:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
- 401              		.loc 1 299 0
- 402 0030 4FF40040 		mov	r0, #32768
- 403 0034 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
- 404              	.LVL10:
- 405 0038 08BD     		pop	{r3, pc}
- 406              	.L40:
- 407 003a 00BF     		.align	2
- 408              	.L39:
- 409 003c 00040240 		.word	1073873920
- 410 0040 00000000 		.word	TAPE_LEFT_STATE
- 411 0044 00000000 		.word	TAPE_RIGHT_STATE
- 412              		.cfi_endproc
- 413              	.LFE137:
- 415              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 13
-
-
- 416              		.align	2
- 417              		.global	DMA2_Stream0_IRQHandler
- 418              		.thumb
- 419              		.thumb_func
- 421              	DMA2_Stream0_IRQHandler:
- 422              	.LFB138:
+ 426              		.loc 1 299 0
+ 427 0030 4FF40040 		mov	r0, #32768
+ 428 0034 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
+ 429              	.LVL11:
+ 430 0038 08BD     		pop	{r3, pc}
+ 431              	.L42:
+ 432 003a 00BF     		.align	2
+ 433              	.L41:
+ 434 003c 00040240 		.word	1073873920
+ 435 0040 00000000 		.word	TAPE_LEFT_STATE
+ 436 0044 00000000 		.word	TAPE_RIGHT_STATE
+ 437              		.cfi_endproc
+ 438              	.LFE138:
+ 440              		.section	.text.DMA2_Stream0_IRQHandler,"ax",%progbits
+ 441              		.align	2
+ 442              		.global	DMA2_Stream0_IRQHandler
+ 443              		.thumb
+ 444              		.thumb_func
+ 446              	DMA2_Stream0_IRQHandler:
+ 447              	.LFB139:
  300:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
  301:Src/stm32f4xx_it.c **** 
  302:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 1 */
@@ -737,87 +760,92 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 1
  307:Src/stm32f4xx_it.c **** */
  308:Src/stm32f4xx_it.c **** void DMA2_Stream0_IRQHandler(void)
  309:Src/stm32f4xx_it.c **** {
- 423              		.loc 1 309 0
- 424              		.cfi_startproc
- 425              		@ args = 0, pretend = 0, frame = 0
- 426              		@ frame_needed = 0, uses_anonymous_args = 0
- 427 0000 08B5     		push	{r3, lr}
- 428              	.LCFI7:
- 429              		.cfi_def_cfa_offset 8
- 430              		.cfi_offset 3, -8
- 431              		.cfi_offset 14, -4
+ 448              		.loc 1 309 0
+ 449              		.cfi_startproc
+ 450              		@ args = 0, pretend = 0, frame = 0
+ 451              		@ frame_needed = 0, uses_anonymous_args = 0
+ 452 0000 08B5     		push	{r3, lr}
+ 453              	.LCFI8:
+ 454              		.cfi_def_cfa_offset 8
+ 455              		.cfi_offset 3, -8
+ 456              		.cfi_offset 14, -4
  310:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream0_IRQn 0 */
  311:Src/stm32f4xx_it.c **** 
  312:Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream0_IRQn 0 */
  313:Src/stm32f4xx_it.c ****   HAL_DMA_IRQHandler(&hdma_adc1);
- 432              		.loc 1 313 0
- 433 0002 0248     		ldr	r0, .L43
- 434 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
- 435              	.LVL11:
- 436 0008 08BD     		pop	{r3, pc}
- 437              	.L44:
- 438 000a 00BF     		.align	2
- 439              	.L43:
- 440 000c 00000000 		.word	hdma_adc1
- 441              		.cfi_endproc
- 442              	.LFE138:
- 444              		.text
- 445              	.Letext0:
- 446              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
- 447              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
- 448              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 449              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 450              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 451              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 452              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
- 453              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
- 454              		.file 10 "Inc/extern_vars.h"
- 455              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 456              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 14
+ 457              		.loc 1 313 0
+ 458 0002 0248     		ldr	r0, .L45
+ 459 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
+ 460              	.LVL12:
+ 461 0008 08BD     		pop	{r3, pc}
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 14
+
+
+ 462              	.L46:
+ 463 000a 00BF     		.align	2
+ 464              	.L45:
+ 465 000c 00000000 		.word	hdma_adc1
+ 466              		.cfi_endproc
+ 467              	.LFE139:
+ 469              		.text
+ 470              	.Letext0:
+ 471              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/machine/_default_types
+ 472              		.file 3 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
+ 473              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 474              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 475              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 476              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 477              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
+ 478              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 479              		.file 10 "Inc/extern_vars.h"
+ 480              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 481              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_it.c
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:21     .text.NMI_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:39     .text.HardFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:44     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:59     .text.MemManage_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:79     .text.BusFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:84     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:99     .text.UsageFault_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:104    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:119    .text.SVC_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:124    .text.SVC_Handler:0000000000000000 SVC_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:136    .text.DebugMon_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:141    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:153    .text.PendSV_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:158    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:170    .text.SysTick_Handler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:175    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:198    .text.EXTI0_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:203    .text.EXTI0_IRQHandler:0000000000000000 EXTI0_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:225    .text.EXTI0_IRQHandler:0000000000000010 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:230    .text.EXTI2_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:235    .text.EXTI2_IRQHandler:0000000000000000 EXTI2_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:258    .text.EXTI2_IRQHandler:0000000000000010 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:263    .text.EXTI3_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:268    .text.EXTI3_IRQHandler:0000000000000000 EXTI3_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:291    .text.EXTI3_IRQHandler:0000000000000010 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:296    .text.EXTI4_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:301    .text.EXTI4_IRQHandler:0000000000000000 EXTI4_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:324    .text.EXTI4_IRQHandler:0000000000000010 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:329    .text.ADC_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:334    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:353    .text.ADC_IRQHandler:000000000000000c $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:358    .text.EXTI15_10_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:363    .text.EXTI15_10_IRQHandler:0000000000000000 EXTI15_10_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:409    .text.EXTI15_10_IRQHandler:000000000000003c $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:416    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:421    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s:440    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:21     .text.NMI_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:39     .text.HardFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:44     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:59     .text.MemManage_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:79     .text.BusFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:84     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:99     .text.UsageFault_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:104    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:119    .text.SVC_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:124    .text.SVC_Handler:0000000000000000 SVC_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:136    .text.DebugMon_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:141    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:153    .text.PendSV_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:158    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:170    .text.SysTick_Handler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:175    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:198    .text.EXTI0_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:203    .text.EXTI0_IRQHandler:0000000000000000 EXTI0_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:225    .text.EXTI0_IRQHandler:0000000000000010 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:230    .text.EXTI1_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:235    .text.EXTI1_IRQHandler:0000000000000000 EXTI1_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:255    .text.EXTI2_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:260    .text.EXTI2_IRQHandler:0000000000000000 EXTI2_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:283    .text.EXTI2_IRQHandler:0000000000000010 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:288    .text.EXTI3_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:293    .text.EXTI3_IRQHandler:0000000000000000 EXTI3_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:316    .text.EXTI3_IRQHandler:0000000000000010 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:321    .text.EXTI4_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:326    .text.EXTI4_IRQHandler:0000000000000000 EXTI4_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:349    .text.EXTI4_IRQHandler:0000000000000010 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:354    .text.ADC_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:359    .text.ADC_IRQHandler:0000000000000000 ADC_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:378    .text.ADC_IRQHandler:000000000000000c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:383    .text.EXTI15_10_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:388    .text.EXTI15_10_IRQHandler:0000000000000000 EXTI15_10_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:434    .text.EXTI15_10_IRQHandler:000000000000003c $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:441    .text.DMA2_Stream0_IRQHandler:0000000000000000 $t
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:446    .text.DMA2_Stream0_IRQHandler:0000000000000000 DMA2_Stream0_IRQHandler
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s:465    .text.DMA2_Stream0_IRQHandler:000000000000000c $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -832,9 +860,9 @@ HAL_ADC_IRQHandler
 hadc1
 HAL_GPIO_ReadPin
 TAPE_LEFT_STATE
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccGFDiDD.s 			page 16
+
+
 TAPE_RIGHT_STATE
 HAL_DMA_IRQHandler
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccxS7mNG.s 			page 15
-
-
 hdma_adc1

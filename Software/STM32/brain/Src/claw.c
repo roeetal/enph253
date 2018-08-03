@@ -39,11 +39,12 @@ void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel
 {
     // Close claw
     close_claw(htim);
-    arm_up(htim);
+    actuate(htim, channel_arm, 0);
+    HAL_Delay(1000);
     // Open Claw
     open_claw(htim);
     // Lower arm gently
-    slow_actuate(htim, channel_arm, 0, 160);
+    slow_actuate(htim, channel_arm, 0, 180);
     HAL_Delay(1000);
     // Open claw again
     open_claw(htim);
@@ -51,7 +52,7 @@ void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel
 
 void close_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_1, 100);
+    actuate(htim, TIM_CHANNEL_1, 140);
     HAL_Delay(1000);
 }
 
@@ -81,7 +82,7 @@ void arm_up(TIM_HandleTypeDef *htim)
  */
 void arm_up_to_deg(TIM_HandleTypeDef *htim, uint8_t deg)
 {
-    actuate(htim, TIM_CHANNEL_3, deg);
+    actuate(htim, TIM_CHANNEL_2, deg);
     HAL_Delay(1500);
 }
 

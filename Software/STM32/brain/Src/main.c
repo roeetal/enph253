@@ -64,8 +64,8 @@
 /* Private variables ---------------------------------------------------------*/
 uint16_t LEFT_SPEED = 0.55 * MOTOR_SPEED;
 uint16_t RIGHT_SPEED = 0.60 * MOTOR_SPEED;
-uint32_t dma_buffer[3072];
-uint32_t adc_values[3072];
+uint32_t dma_buffer[1];
+uint32_t adc_values[1];
 
 /* USER CODE END PV */
 
@@ -189,6 +189,7 @@ int main(void)
     HAL_NVIC_EnableIRQ(EXTI4_IRQn);
     // HAL_NVIC_EnableIRQ(EXTI1_IRQn); IR INT
     HAL_Delay(500);
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -198,65 +199,71 @@ int main(void)
         /*
          * Servo Stuff
          */
-
+        // actuatengo(&htim3, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        // HAL_Delay(500);
         /*
          * Drive Straight
          *
          encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
          */
+        char msg[15] = "";
+        HAL_UART_Receive(&huart6, (uint8_t *)msg, sizeof(msg), HAL_MAX_DELAY);
+        print(msg, 0);
+        HAL_Delay(1000);
+        print("refresh", 0);
 
         /*
          * Pi Turning
-         */
-        if (PI_INT_STATE == FLAGGED)
-        {
-            print("in pi int", 0);
-            turn();
+        //  */
+        // if (PI_INT_STATE == FLAGGED)
+        // {
+        //     print("in pi int", 0);
+        //     turn();
 
-            // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            // int start = HAL_GetTick();
-            // while (HAL_GetTick() - start < 4000)
-            // {
-            //     // encoder_dist_pid(&left_pid);
-            //     if (CLAW_INT_STATE == FLAGGED)
-            //     {
-            //         HAL_Delay(200);
-            //         set_motor_speed(TIM_CHANNEL_1, 0);
-            //         set_motor_speed(TIM_CHANNEL_3, 0);
-            //         actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-            //         CLAW_INT_STATE = NOT_FLAGGED;
-            //         ++ewok_cnt;
-            //         char msg[18] = "";
-            //         sprintf(msg, "wok_cnt: %d", ewok_cnt);
-            //         print(msg, 0);
-            //         if (ewok_cnt == 1)
-            //         {
-            //             turn_deg(-120);
-            //             arm_up_to_deg(&htim2, 80);
-            //             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            //             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            //             HAL_Delay(3000);
-            //             CLAW_INT_STATE = NOT_FLAGGED;
-            //         }
-            //         if (ewok_cnt == 2)
-            //         {
-            //             close_claw(&htim2);
-            //             arm_up_to_deg(&htim2, 80);
-            //             turn_deg(-120);
-            //             alarm_detect();
-            //             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            //             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            //             HAL_Delay(1000);
-            //             CLAW_INT_STATE = NOT_FLAGGED;
-            //         }
-            //         break;
-            //     }
-            // }
-            PI_INT_STATE = NOT_FLAGGED;
+        //     // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //     // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //     // int start = HAL_GetTick();
+        //     // while (HAL_GetTick() - start < 4000)
+        //     // {
+        //     //     // encoder_dist_pid(&left_pid);
+        //     //     if (CLAW_INT_STATE == FLAGGED)
+        //     //     {
+        //     //         HAL_Delay(200);
+        //     //         set_motor_speed(TIM_CHANNEL_1, 0);
+        //     //         set_motor_speed(TIM_CHANNEL_3, 0);
+        //     //         actuatengo(&htim3, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        //     //         CLAW_INT_STATE = NOT_FLAGGED;
+        //     //         ++ewok_cnt;
+        //     //         char msg[18] = "";
+        //     //         sprintf(msg, "wok_cnt: %d", ewok_cnt);
+        //     //         print(msg, 0);
+        //     //         // if (ewok_cnt == 1)
+        //     //         // {
+        //     //         //     turn_deg(-120);
+        //     //         //     arm_up_to_deg(&htim3, 80);
+        //     //         //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //     //         //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //     //         //     HAL_Delay(3000);
+        //     //         //     CLAW_INT_STATE = NOT_FLAGGED;
+        //     //         // }
+        //     //         // if (ewok_cnt == 2)
+        //     //         // {
+        //     //         //     close_claw(&htim3);
+        //     //         //     arm_up_to_deg(&htim3, 80);
+        //     //         //     turn_deg(-120);
+        //     //         //     alarm_detect();
+        //     //         //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //     //         //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //     //         //     HAL_Delay(1000);
+        //     //         //     CLAW_INT_STATE = NOT_FLAGGED;
+        //     //         // }
+        //     //         break;
+        //     //     }
+        //     // }
+        //     PI_INT_STATE = NOT_FLAGGED;
             // set_motor_speed(TIM_CHANNEL_1, 0);
             // set_motor_speed(TIM_CHANNEL_3, 0);
-        }
+        //}
 
         /*
          * EDGE and Object detection
@@ -369,7 +376,7 @@ void turn()
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
     HAL_Delay(50);
-    float volts = calculate_heading(adc_values[5]);
+    float volts = calculate_heading(adc_values[0]);
     uint16_t counts = TURN_CONST * fabs(volts);
     TIM4->CNT = 0;
     TIM5->CNT = 0;
@@ -381,8 +388,8 @@ void turn()
     int post_dec = (int)((volts - pre_dec) * 1000);
     sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
     print(msg, 2);
-    sprintf(msg, "adc_val: %d", adc_values[5]);
-    print(msg,3);
+    sprintf(msg, "adc_val: %d", adc_values[0]);
+    print(msg, 3);
 
     if (volts < -TURN_TOLERANCE)
     {
