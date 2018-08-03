@@ -62,8 +62,8 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint16_t LEFT_SPEED = 0.61*MOTOR_SPEED;
-uint16_t RIGHT_SPEED = 0.69*MOTOR_SPEED;
+uint16_t LEFT_SPEED = 0.55 * MOTOR_SPEED;
+uint16_t RIGHT_SPEED = 0.60 * MOTOR_SPEED;
 uint32_t dma_buffer[3072];
 uint32_t adc_values[3072];
 
@@ -107,39 +107,39 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+    /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+    /* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* USER CODE BEGIN Init */
+    /* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+    /* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+    /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+    /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_TIM3_Init();
-  MX_TIM1_Init();
-  MX_TIM2_Init();
-  MX_USART6_UART_Init();
-  MX_ADC1_Init();
-  MX_I2C1_Init();
-  MX_TIM4_Init();
-  MX_TIM9_Init();
-  MX_TIM5_Init();
-  /* USER CODE BEGIN 2 */
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_DMA_Init();
+    MX_TIM3_Init();
+    MX_TIM1_Init();
+    MX_TIM2_Init();
+    MX_USART6_UART_Init();
+    MX_ADC1_Init();
+    MX_I2C1_Init();
+    MX_TIM4_Init();
+    MX_TIM9_Init();
+    MX_TIM5_Init();
+    /* USER CODE BEGIN 2 */
 
     /* Initialize peripherals */
     /* 
@@ -170,11 +170,6 @@ int main(void)
     print("Starting", 0);
     claw_init(&htim3);
     ///basket_init(&htim3);
-    
-    set_motor_speed(TIM_CHANNEL_1, 100);
-    set_motor_speed(TIM_CHANNEL_2, 100);
-    set_motor_speed(TIM_CHANNEL_3, 100);
-    set_motor_speed(TIM_CHANNEL_4, 100);
 
     /*
     ENCODER_t left_enc = encoder_Init(TIM4);
@@ -183,29 +178,26 @@ int main(void)
     PID_t right_pid = pid_Init(30, 25, 0, 2, 2);
     */
     uint8_t ewok_cnt = 0;
-    
-    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    HAL_Delay(5000);
-    set_motor_speed(TIM_CHANNEL_1, 0);
-    set_motor_speed(TIM_CHANNEL_3, 0);
-    HAL_Delay(1000);
+
+    // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+    // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    // HAL_Delay(5000);
+    // set_motor_speed(TIM_CHANNEL_1, 0);
+    // set_motor_speed(TIM_CHANNEL_3, 0);
     /* Initially disabled IR, PI and Claw INT*/
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-    HAL_NVIC_EnableIRQ(EXTI1_IRQn);
     HAL_NVIC_EnableIRQ(EXTI4_IRQn);
-  /* USER CODE END 2 */
+    // HAL_NVIC_EnableIRQ(EXTI1_IRQn); IR INT
+    HAL_Delay(500);
+    /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
     while (1)
     {
-        //print("in whiel", 0);
-
         /*
          * Servo Stuff
          */
-
 
         /*
          * Drive Straight
@@ -216,48 +208,55 @@ int main(void)
         /*
          * Pi Turning
          */
-        /*
-         if (PI_INT_STATE == FLAGGED)
-         {
-         print("in pi int", 0);
-         turn();
-         
-         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-         int start = HAL_GetTick();
-         while (HAL_GetTick() - start < 4000)
-         {
-         // encoder_dist_pid(&left_pid);
-         if (CLAW_INT_STATE == FLAGGED)
-         {
-         HAL_Delay(200);
-         set_motor_speed(TIM_CHANNEL_1, 0);
-         set_motor_speed(TIM_CHANNEL_3, 0);
-         actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-         CLAW_INT_STATE = NOT_FLAGGED;
-         ++ewok_cnt;
-         char msg[18] = "";
-         sprintf(msg, "wok_cnt: %d", ewok_cnt);
-         print(msg, 0);
-         if (ewok_cnt == 1)
-         {
-         turn_deg(-120);
-         arm_up_to_deg(&htim2, 80);
-         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-         HAL_Delay(3000);
-         CLAW_INT_STATE = NOT_FLAGGED;
-         }
-         break;
-         }
-         }
-         // char pic_plz = "1";
-         // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
-         PI_INT_STATE = NOT_FLAGGED;
-         set_motor_speed(TIM_CHANNEL_1, 0);
-         set_motor_speed(TIM_CHANNEL_3, 0);
-         }
-         */
+        if (PI_INT_STATE == FLAGGED)
+        {
+            print("in pi int", 0);
+            turn();
+
+            // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            // int start = HAL_GetTick();
+            // while (HAL_GetTick() - start < 4000)
+            // {
+            //     // encoder_dist_pid(&left_pid);
+            //     if (CLAW_INT_STATE == FLAGGED)
+            //     {
+            //         HAL_Delay(200);
+            //         set_motor_speed(TIM_CHANNEL_1, 0);
+            //         set_motor_speed(TIM_CHANNEL_3, 0);
+            //         actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+            //         CLAW_INT_STATE = NOT_FLAGGED;
+            //         ++ewok_cnt;
+            //         char msg[18] = "";
+            //         sprintf(msg, "wok_cnt: %d", ewok_cnt);
+            //         print(msg, 0);
+            //         if (ewok_cnt == 1)
+            //         {
+            //             turn_deg(-120);
+            //             arm_up_to_deg(&htim2, 80);
+            //             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            //             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            //             HAL_Delay(3000);
+            //             CLAW_INT_STATE = NOT_FLAGGED;
+            //         }
+            //         if (ewok_cnt == 2)
+            //         {
+            //             close_claw(&htim2);
+            //             arm_up_to_deg(&htim2, 80);
+            //             turn_deg(-120);
+            //             alarm_detect();
+            //             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            //             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            //             HAL_Delay(1000);
+            //             CLAW_INT_STATE = NOT_FLAGGED;
+            //         }
+            //         break;
+            //     }
+            // }
+            PI_INT_STATE = NOT_FLAGGED;
+            // set_motor_speed(TIM_CHANNEL_1, 0);
+            // set_motor_speed(TIM_CHANNEL_3, 0);
+        }
 
         /*
          * EDGE and Object detection
@@ -283,20 +282,23 @@ int main(void)
 
         /*
          * IR DETECTION
-         *
-         if (IR_INT_STATE == FLAGGED)
-         {
-         alarm_detect();
-        //drive past sensor, enough so as to not trigger interrupt again
-        HAL_Delay(2000);
-        }*/
+         */
+        // print("preprint", 0);
+        // if (IR_INT_STATE == FLAGGED)
+        // {
+        //     print("in ir int", 0);
+        //     alarm_detect();
+        //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //     //drive past sensor, enough so as to not trigger interrupt again
+        //     HAL_Delay(2000);
+        // }
 
-  /* USER CODE END WHILE */
+        /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
+        /* USER CODE BEGIN 3 */
     }
-  /* USER CODE END 3 */
-
+    /* USER CODE END 3 */
 }
 
 /**
@@ -306,55 +308,54 @@ int main(void)
 void SystemClock_Config(void)
 {
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
+    RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
     /**Configure the main internal regulator output voltage 
     */
-  __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
 
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 72;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+    RCC_OscInitStruct.HSICalibrationValue = 16;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    RCC_OscInitStruct.PLL.PLLM = 8;
+    RCC_OscInitStruct.PLL.PLLN = 72;
+    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+    RCC_OscInitStruct.PLL.PLLQ = 4;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    /**Initializes the CPU, AHB and APB busses clocks 
+    */
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
     /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
     /**Configure the Systick 
     */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+    /* SysTick_IRQn interrupt configuration */
+    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /* USER CODE BEGIN 4 */
@@ -372,7 +373,7 @@ void turn()
     uint16_t counts = TURN_CONST * fabs(volts);
     TIM4->CNT = 0;
     TIM5->CNT = 0;
-    
+
     char msg[18] = "";
     sprintf(msg, "cnts: %d", counts);
     print(msg, 0);
@@ -380,11 +381,13 @@ void turn()
     int post_dec = (int)((volts - pre_dec) * 1000);
     sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
     print(msg, 2);
-    
-    if (volts < -TURN_TOLERANCE)  // FIXME: Ben changed this
+    sprintf(msg, "adc_val: %d", adc_values[5]);
+    print(msg,3);
+
+    if (volts < -TURN_TOLERANCE)
     {
         set_motor_speed(TIM_CHANNEL_1, 0);
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_3, 500);
         while (TIM5->CNT < counts)
         {
             sprintf(msg, "TIM5->CNT: %lu", TIM5->CNT);
@@ -394,9 +397,9 @@ void turn()
         print(msg, 4);
         TIM5->CNT = 0;
     }
-    else if (volts > TURN_TOLERANCE) // FIXME: Ben changed this
+    else if (volts > TURN_TOLERANCE)
     {
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, 500);
         set_motor_speed(TIM_CHANNEL_3, 0);
         while (TIM4->CNT < counts)
         {
@@ -419,41 +422,41 @@ void turn()
 void turn_deg(uint8_t deg)
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-        uint16_t counts = 50.0 / 90.0 * (deg-90) + 50;
-        TIM4->CNT = 0;
-        TIM5->CNT = 0;
-        
-        char msg[18] = "";
-        
-        if (deg > 0) // FIXME: Ben changed this
+    uint16_t counts = 50.0 / 90.0 * (deg - 90) + 50;
+    TIM4->CNT = 0;
+    TIM5->CNT = 0;
+
+    char msg[18] = "";
+
+    if (deg > 0) // FIXME: Ben changed this
+    {
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 30000);
+        while (TIM5->CNT < counts)
         {
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 30000);
-            while (TIM5->CNT < counts)
-            {
-                sprintf(msg, "TIM5->CNT: %lu", TIM5->CNT);
-                print(msg, 4);
-            }
             sprintf(msg, "TIM5->CNT: %lu", TIM5->CNT);
             print(msg, 4);
-            TIM5->CNT = 0;
         }
-        else if (deg < 0) // FIXME: Ben changed this
+        sprintf(msg, "TIM5->CNT: %lu", TIM5->CNT);
+        print(msg, 4);
+        TIM5->CNT = 0;
+    }
+    else if (deg < 0) // FIXME: Ben changed this
+    {
+        set_motor_speed(TIM_CHANNEL_1, 30000);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        while (TIM4->CNT < counts)
         {
-            set_motor_speed(TIM_CHANNEL_1, 30000);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            while (TIM4->CNT < counts)
-            {
-                sprintf(msg, "TIM4->CNT: %lu", TIM4->CNT);
-                print(msg, 4);
-            }
             sprintf(msg, "TIM4->CNT: %lu", TIM4->CNT);
             print(msg, 4);
-            TIM4->CNT = 0;
         }
-        set_motor_speed(TIM_CHANNEL_1, 0);
-        set_motor_speed(TIM_CHANNEL_3, 0);
-        HAL_ADC_Stop_DMA(&hadc1);
+        sprintf(msg, "TIM4->CNT: %lu", TIM4->CNT);
+        print(msg, 4);
+        TIM4->CNT = 0;
+    }
+    set_motor_speed(TIM_CHANNEL_1, 0);
+    set_motor_speed(TIM_CHANNEL_3, 0);
+    HAL_ADC_Stop_DMA(&hadc1);
 }
 
 void pi_navigation()
@@ -465,18 +468,18 @@ void pi_navigation()
     float heading = calculate_heading(adc_values[5]);
     if (heading < 0)
     {
-        set_motor_speed(TIM_CHANNEL_2, 0.3*MOTOR_SPEED);
-        set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_2, 0.3 * MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_3, 0.3 * MOTOR_SPEED);
         heading *= -1;
     }
     else if (heading > 0)
     {
-        set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
-        set_motor_speed(TIM_CHANNEL_4, 0.3*MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, 0.3 * MOTOR_SPEED);
+        set_motor_speed(TIM_CHANNEL_4, 0.3 * MOTOR_SPEED);
     }
     HAL_Delay(2000 * heading);
-    set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
+    set_motor_speed(TIM_CHANNEL_1, 0.3 * MOTOR_SPEED);
+    set_motor_speed(TIM_CHANNEL_3, 0.3 * MOTOR_SPEED);
     HAL_ADC_Stop_DMA(&hadc1);
     PI_INT_STATE = NOT_FLAGGED;
 }
@@ -500,27 +503,32 @@ void alarm_detect()
     //HAL_NVIC_DisableIRQ (IRQn_Type IRQn) disbale ir interrupt
     //char msg[20] = "";
     HAL_Delay(500);
-    while (1)
-    {
-        //
-        // Sampling frequency: 72e6/2/(495*3)
-        // offset 0 : IR1
-        double val = goertzel(adc_values, 24242, 9850, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0);
-        /*
-           int predec = (int)(val / 1);
-           int postdec = (int)((val - predec) * 1000);
-           sprintf(msg, "%d.%d\n", predec, postdec);
-           HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
-           */
+    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 30)
+        ;
+    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 30)
+        ;
+    // {
+    //     //
+    //     // Sampling frequency: 72e6/2/(495*3)
+    //     // offset 0 : IR1
+    //     val = goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0);
+    //     /*
+    //        int predec = (int)(val / 1);
+    //        int postdec = (int)((val - predec) * 1000);
+    //        sprintf(msg, "%d.%d\n", predec, postdec);
+    //        HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
+    //        */
 
-        //compare
-        // 1000 Hz: ranges to about 60, 9850 Hz: ranges to 20
-        if (val > 15)
-        {
-            break;
-        }
-    }
+    //     //compare
+    //     // 1000 Hz: ranges to about 60, 9850 Hz: ranges to 20
+    //     if (val < 30)
+    //     {
+    //         break;
+    //     }
+    // }
+
     HAL_ADC_Stop_DMA(&hadc1);
+    HAL_NVIC_DisableIRQ(EXTI1_IRQn);
     IR_INT_STATE = NOT_FLAGGED;
 }
 
@@ -600,7 +608,7 @@ PID_t menu()
     }
     while (1)
     {
-        int speed = 0.3*MOTOR_SPEED;
+        int speed = 0.3 * MOTOR_SPEED;
         if (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
         {
             if (pid_select == 3)
@@ -771,15 +779,15 @@ void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER
   */
 void _Error_Handler(char *file, int line)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
+    /* USER CODE BEGIN Error_Handler_Debug */
     /* User can add his own implementation to report the HAL error return state */
     while (1)
     {
     }
-  /* USER CODE END Error_Handler_Debug */
+    /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -787,12 +795,12 @@ void _Error_Handler(char *file, int line)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* USER CODE BEGIN 6 */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+    /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
 

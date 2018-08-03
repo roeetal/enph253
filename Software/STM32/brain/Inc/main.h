@@ -123,7 +123,7 @@
 
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 2
-#define TURN_CONST 100
+#define TURN_CONST 70
 #define TURN_TOLERANCE 0.04
 #define MOTOR_SPEED 1000
 #define CLAW_CH TIM_CHANNEL_1
