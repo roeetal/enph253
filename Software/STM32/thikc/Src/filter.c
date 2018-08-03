@@ -1,6 +1,6 @@
 #include "filter.h"
 
-double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t window_size, uint8_t offset)
+double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t window_size)
 {
   // Set up initial parameters
   double f_step = sample_rate / (double)window_size;
@@ -15,14 +15,14 @@ double goertzel(uint32_t *x, uint32_t sample_rate, uint16_t freq, uint16_t windo
   normalizedfreq = k * f_step_normalized;
   w_real = 2.0 * cos(2.0 * PI * normalizedfreq);
   double d1 = 0, d2 = 0, y = 0, tot_power = 1;
-  uint16_t n = offset;
+  uint16_t n = 0;
   while (n < window_size)
   {
     y = x[n] + w_real * d1 - d2;
     d2 = d1;
     d1 = y;
     tot_power += x[n] * x[n];
-    n += 2;
+    ++n;
   }
 
   return (d2 * d2 + d1 * d1 - w_real * d1 * d2) / tot_power;

@@ -51,8 +51,9 @@
 
 #define IR_1_Pin GPIO_PIN_0
 #define IR_1_GPIO_Port GPIOA
-#define IR_2_Pin GPIO_PIN_1
-#define IR_2_GPIO_Port GPIOA
+#define PI_INT_Pin GPIO_PIN_1
+#define PI_INT_GPIO_Port GPIOA
+#define PI_INT_EXTI_IRQn EXTI1_IRQn
 #define STM_TX_Pin GPIO_PIN_2
 #define STM_TX_GPIO_Port GPIOA
 #define STM_RX_Pin GPIO_PIN_3
@@ -67,12 +68,8 @@
 #define TL_GPIO_Port GPIOA
 #define TR_Pin GPIO_PIN_0
 #define TR_GPIO_Port GPIOB
-#define PI_INT_Pin GPIO_PIN_1
-#define PI_INT_GPIO_Port GPIOB
-#define PI_INT_EXTI_IRQn EXTI1_IRQn
-#define QRD_INT_Pin GPIO_PIN_2
-#define QRD_INT_GPIO_Port GPIOB
-#define QRD_INT_EXTI_IRQn EXTI2_IRQn
+#define EWOK_Pin GPIO_PIN_1
+#define EWOK_GPIO_Port GPIOB
 #define SERVO_CLAW_ARM_Pin GPIO_PIN_10
 #define SERVO_CLAW_ARM_GPIO_Port GPIOB
 #define CLAW_INT_Pin GPIO_PIN_11
@@ -80,12 +77,16 @@
 #define CLAW_INT_EXTI_IRQn EXTI15_10_IRQn
 #define EDGE_RIGHT_Pin GPIO_PIN_12
 #define EDGE_RIGHT_GPIO_Port GPIOB
+#define EDGE_RIGHT_EXTI_IRQn EXTI15_10_IRQn
 #define EDGE_LEFT_Pin GPIO_PIN_13
 #define EDGE_LEFT_GPIO_Port GPIOB
+#define EDGE_LEFT_EXTI_IRQn EXTI15_10_IRQn
 #define TAPE_RIGHT_Pin GPIO_PIN_14
 #define TAPE_RIGHT_GPIO_Port GPIOB
+#define TAPE_RIGHT_EXTI_IRQn EXTI15_10_IRQn
 #define TAPE_LEFT_Pin GPIO_PIN_15
 #define TAPE_LEFT_GPIO_Port GPIOB
+#define TAPE_LEFT_EXTI_IRQn EXTI15_10_IRQn
 #define MOTOR_L_F_Pin GPIO_PIN_8
 #define MOTOR_L_F_GPIO_Port GPIOA
 #define MOTOR_L_B_Pin GPIO_PIN_9
@@ -94,9 +95,6 @@
 #define MOTOR_R_F_GPIO_Port GPIOA
 #define MOTOR_R_B_Pin GPIO_PIN_11
 #define MOTOR_R_B_GPIO_Port GPIOA
-#define IR_INT_Pin GPIO_PIN_12
-#define IR_INT_GPIO_Port GPIOA
-#define IR_INT_EXTI_IRQn EXTI15_10_IRQn
 #define MENU_Pin GPIO_PIN_13
 #define MENU_GPIO_Port GPIOA
 #define SERVO_BASKET_Pin GPIO_PIN_15
@@ -126,7 +124,7 @@
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
- extern "C" {£
+ extern "C" {
 #endif
 void _Error_Handler(char *, int);
 
