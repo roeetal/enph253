@@ -194,12 +194,27 @@ int main(void)
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
     HAL_NVIC_EnableIRQ(EXTI1_IRQn);
     HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1)
     {
+        int ch5 = adc_values[3];
+        int ch4 = adc_values[4];
+        int ch3 = adc_values[5];
+
+        char msg1[18] = "";
+        char msg2[18] = "";
+        char msg3[18] = "";
+        sprintf(msg1, "ch5: %d", ch5);
+        sprintf(msg2, "ch4: %d", ch4);
+        sprintf(msg3, "ch3: %d", ch3);
+        print(msg1, 0);
+        print(msg2, 1);
+        print(msg3, 2);
+
         //print("in whiel", 0);
 
         /*
