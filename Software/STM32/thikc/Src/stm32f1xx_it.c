@@ -264,14 +264,8 @@ void EXTI15_10_IRQHandler(void)
   // {
   //   IR_INT_STATE = FLAGGED;
   // } else
-  if (!HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin))
-  {
-    CLAW_INT_STATE = FLAGGED;
-  }
-  else
-  {
-    // throw error
-  }
+  CLAW_INT_STATE = FLAGGED;
+  
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);

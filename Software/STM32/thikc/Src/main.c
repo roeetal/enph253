@@ -159,24 +159,23 @@ int main(void)
     ENCODER_t right_enc = encoder_Init(TIM4);
     PID_t left_pid = pid_Init(1000, 250, 0, 2, 2);
     PID_t right_pid = pid_Init(6000, 500, 0, 2, 2);
-    uint8_t ewok_cnt = 0;
     //PID_t pid_struct = menu();
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    HAL_Delay(5000);
-    set_motor_speed(TIM_CHANNEL_1, 0);
-    set_motor_speed(TIM_CHANNEL_3, 0);
-    HAL_Delay(1000);
+    uint8_t ewok_cnt = 0;
+    // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+    // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    // HAL_Delay(5000);
+    // set_motor_speed(TIM_CHANNEL_1, 0);
+    // set_motor_speed(TIM_CHANNEL_3, 0);
+    // HAL_Delay(1000);
     CLAW_INT_STATE = NOT_FLAGGED;
     PI_INT_STATE = NOT_FLAGGED;
     while (1)
     {
         // // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
-        print("in whiel", 0);
         // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
         // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
         // if (CLAW_INT_STATE == FLAGGED)
@@ -188,46 +187,46 @@ int main(void)
         //     HAL_Delay(1000);
         //     CLAW_INT_STATE = NOT_FLAGGED;
         // }
-        if (PI_INT_STATE == FLAGGED)
-        {
-            print("in pi int", 0);
-            turn();
+        actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
 
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            int start = HAL_GetTick();
-            while (HAL_GetTick() - start < 4000)
-            {
-                // encoder_dist_pid(&left_pid);
-                if (CLAW_INT_STATE == FLAGGED)
-                {
-                    HAL_Delay(200);
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-                    CLAW_INT_STATE = NOT_FLAGGED;
-                    ++ewok_cnt;
-                    char msg[18] = "";
-                    sprintf(msg, "wok_cnt: %d", ewok_cnt);
-                    print(msg, 0);
-                    if (ewok_cnt == 1)
-                    {
-                        turn_deg(-120);
-                        arm_up_to_deg(&htim2, 80);
-                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                        HAL_Delay(3000);
-                        CLAW_INT_STATE = NOT_FLAGGED;
-                    }
-                    break;
-                }
-            }
-            // char pic_plz = "1";
-            // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
-            PI_INT_STATE = NOT_FLAGGED;
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-        }
+        // if (PI_INT_STATE == FLAGGED)
+        // {
+        //     turn();
+
+        //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //     int start = HAL_GetTick();
+        //     while (HAL_GetTick() - start < 4000)
+        //     {
+        //         // encoder_dist_pid(&left_pid);
+        //         if (CLAW_INT_STATE == FLAGGED)
+        //         {
+        //             HAL_Delay(200);
+        //             set_motor_speed(TIM_CHANNEL_1, 0);
+        //             set_motor_speed(TIM_CHANNEL_3, 0);
+        //             actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+        //             CLAW_INT_STATE = NOT_FLAGGED;
+        //             ++ewok_cnt;
+        //             char msg[18] = "";
+        //             sprintf(msg, "wok_cnt: %d", ewok_cnt);
+        //             if (ewok_cnt == 1)
+        //             {
+        //                 turn_deg(-120);
+        //                 arm_up_to_deg(&htim2, 80);
+        //                 set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        //                 set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        //                 HAL_Delay(3000);
+        //                 CLAW_INT_STATE = NOT_FLAGGED;
+        //             }
+        //             break;
+        //         }
+        //     }
+        //     // char pic_plz = "1";
+        //     // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
+        //     PI_INT_STATE = NOT_FLAGGED;
+        //     set_motor_speed(TIM_CHANNEL_1, 0);
+        //     set_motor_speed(TIM_CHANNEL_3, 0);
+        // }
         // if (IR_INT_STATE == FLAGGED)
         // {
         //     alarm_detect();
