@@ -32,10 +32,6 @@ void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle)
     __HAL_TIM_SET_COMPARE(htim, tim_channel, get_pulse_length(angle));
 }
 
-/*
- * assuming timCH1 is at 0 degrees initially,
- *          timCH2 is at 0 degrees initially
- */
 void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm)
 {
     // Close claw
@@ -51,6 +47,16 @@ void actuatengo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel
     open_claw(htim);
 }
 
+void actuatenNo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm)
+{
+    // Close claw
+    close_claw(htim);
+    arm_up(htim);
+    // Open Claw
+    actuate(htim, channel_claw, 30);
+    HAL_Delay(500);
+}
+
 void close_claw(TIM_HandleTypeDef *htim)
 {
     actuate(htim, TIM_CHANNEL_2, 100);
@@ -59,9 +65,9 @@ void close_claw(TIM_HandleTypeDef *htim)
 
 void open_claw(TIM_HandleTypeDef *htim)
 {
-    actuate(htim, TIM_CHANNEL_2, 20);
+    actuate(htim, TIM_CHANNEL_2, 0);
     HAL_Delay(200);
-    actuate(htim, TIM_CHANNEL_2, 30);
+    actuate(htim, TIM_CHANNEL_2, 10);
     HAL_Delay(200);
 }
 

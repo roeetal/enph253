@@ -10,6 +10,7 @@
 uint16_t get_pulse_length(uint16_t degrees);
 void actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t angle);
 void actuatengo(TIM_HandleTypeDef *htim, uint16_t tim_channel1, uint16_t tim_channel2);
+void actuatenNo(TIM_HandleTypeDef *htim, uint16_t channel_claw, uint16_t channel_arm);
 void claw_init();
 void basket_up_up_and_away(TIM_HandleTypeDef *htim);
 void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_angle, uint16_t end_angle);

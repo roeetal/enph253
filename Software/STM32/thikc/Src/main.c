@@ -62,7 +62,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint16_t LEFT_SPEED = 40000;
+uint16_t LEFT_SPEED = 41000;
 uint16_t RIGHT_SPEED = 45000;
 uint32_t dma_buffer[1024];
 uint32_t ir_values[1024];
@@ -79,7 +79,7 @@ PID_t menu();
 void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
 void pi_navigation();
 float calculate_heading(uint32_t adc_val);
-void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
+void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
 void turn_deg(uint8_t);
@@ -107,38 +107,38 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+    /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+    /* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* USER CODE BEGIN Init */
+    /* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+    /* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+    /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+    /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_TIM4_Init();
-  MX_TIM3_Init();
-  MX_TIM1_Init();
-  MX_ADC1_Init();
-  MX_TIM2_Init();
-  MX_USART2_UART_Init();
-  MX_ADC2_Init();
-  MX_I2C1_Init();
-  /* USER CODE BEGIN 2 */
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_DMA_Init();
+    MX_TIM4_Init();
+    MX_TIM3_Init();
+    MX_TIM1_Init();
+    MX_ADC1_Init();
+    MX_TIM2_Init();
+    MX_USART2_UART_Init();
+    MX_ADC2_Init();
+    MX_I2C1_Init();
+    /* USER CODE BEGIN 2 */
 
     /* Initialize peripherals */
     HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
@@ -152,7 +152,6 @@ int main(void)
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
     ssd1306_Init();
     print("Starting...", 0);
-    claw_init(&htim2);
 
     /* Initialize other stuffs*/
     // 3 * gain * kp = 20,000
@@ -160,84 +159,102 @@ int main(void)
     ENCODER_t right_enc = encoder_Init(TIM4);
     PID_t left_pid = pid_Init(1000, 250, 0, 2, 2);
     PID_t right_pid = pid_Init(6000, 500, 0, 2, 2);
-    //PID_t pid_struct = menu();
-  /* USER CODE END 2 */
+    char msg[18] = "";
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-    uint8_t ewok_cnt = 0;
-    // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    // HAL_Delay(5000);
-    // set_motor_speed(TIM_CHANNEL_1, 0);
-    // set_motor_speed(TIM_CHANNEL_3, 0);
-    // HAL_Delay(1000);
-    CLAW_INT_STATE = NOT_FLAGGED;
-    PI_INT_STATE = NOT_FLAGGED;
+    //PID_t pid_struct = menu();
+    /* USER CODE END 2 */
+
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+
     while (1)
     {
-        alarm_detect();
-        // // encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
-        // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        // if (CLAW_INT_STATE == FLAGGED)
-        // {
-        //     print("CLAW INT", 0);
-        //     set_motor_speed(TIM_CHANNEL_1, 0);
-        //     set_motor_speed(TIM_CHANNEL_3, 0);
-        //     actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-        //     HAL_Delay(1000);
-        //     CLAW_INT_STATE = NOT_FLAGGED;
-        // }
+        print("set to I to go", 0);
+        while (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == GPIO_PIN_RESET)
+            ;
+        print("set to 0 to stop", 0);
 
-        // if (PI_INT_STATE == FLAGGED)
-        // {
-        //     turn();
+        claw_init(&htim2);
+        uint8_t ewok_cnt = 0;
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
 
-        //     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        //     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        //     int start = HAL_GetTick();
-        //     while (HAL_GetTick() - start < 4000)
-        //     {
-        //         // encoder_dist_pid(&left_pid);
-        //         if (CLAW_INT_STATE == FLAGGED)
-        //         {
-        //             HAL_Delay(200);
-        //             set_motor_speed(TIM_CHANNEL_1, 0);
-        //             set_motor_speed(TIM_CHANNEL_3, 0);
-        //             actuatengo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
-        //             CLAW_INT_STATE = NOT_FLAGGED;
-        //             ++ewok_cnt;
-        //             char msg[18] = "";
-        //             sprintf(msg, "wok_cnt: %d", ewok_cnt);
-        //             if (ewok_cnt == 1)
-        //             {
-        //                 turn_deg(-120);
-        //                 arm_up_to_deg(&htim2, 80);
-        //                 set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        //                 set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        //                 HAL_Delay(3000);
-        //                 CLAW_INT_STATE = NOT_FLAGGED;
-        //             }
-        //             break;
-        //         }
-        //     }
-        //     // char pic_plz = "1";
-        //     // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
-        //     PI_INT_STATE = NOT_FLAGGED;
-        //     set_motor_speed(TIM_CHANNEL_1, 0);
-        //     set_motor_speed(TIM_CHANNEL_3, 0);
-        // }
-        // if (IR_INT_STATE == FLAGGED)
-        // {
-        //     alarm_detect();
-        // }
-  /* USER CODE END WHILE */
+        int start = HAL_GetTick();
+        while (HAL_GetTick() - start < 6000)
+        {
+            sprintf(msg, "TIM3->CNT: %d", TIM3->CNT);
+            print(msg, 0);
+            sprintf(msg, "TIM4->CNT: %d", TIM4->CNT);
+            print(msg, 3);
+            HAL_Delay(50);
+        }
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        HAL_Delay(1000);
+        CLAW_INT_STATE = NOT_FLAGGED;
+        PI_INT_STATE = NOT_FLAGGED;
 
-  /* USER CODE BEGIN 3 */
+        while (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == GPIO_PIN_SET)
+        {
+
+            if (PI_INT_STATE == FLAGGED)
+            {
+                print("in pi int", 0);
+                turn();
+                CLAW_INT_STATE = NOT_FLAGGED;
+
+                set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                int start = HAL_GetTick();
+                while (HAL_GetTick() - start < 4000)
+                {
+                    // encoder_dist_pid(&left_pid);
+                    if (CLAW_INT_STATE == FLAGGED)
+                    {
+                        HAL_Delay(300);
+                        set_motor_speed(TIM_CHANNEL_1, 0);
+                        set_motor_speed(TIM_CHANNEL_3, 0);
+                        actuatenNo(&htim2, TIM_CHANNEL_2, TIM_CHANNEL_3);
+                        ++ewok_cnt;
+                        msg[18] = "";
+                        sprintf(msg, "wok_cnt: %d", ewok_cnt);
+                        print(msg, 0);
+                        if (ewok_cnt == 1)
+                        {
+                            arm_up_to_deg(&htim2, 80);
+                            turn_deg(-150);
+                            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                            HAL_Delay(2500);
+                            arm_down(&htim2);
+                        }
+                        if (ewok_cnt == 2)
+                        {
+                            arm_up_to_deg(&htim2, 80);
+                            turn_deg(-120);
+                            alarm_detect();
+                            print("haha yes", 0);
+                            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED + 5000);
+                            HAL_Delay(1500);
+                        }
+                        CLAW_INT_STATE = NOT_FLAGGED;
+                        break;
+                    }
+                }
+                // char pic_plz = "1";
+                // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
+                PI_INT_STATE = NOT_FLAGGED;
+                set_motor_speed(TIM_CHANNEL_1, 0);
+                set_motor_speed(TIM_CHANNEL_3, 0);
+            }
+        }
+
+        /* USER CODE END WHILE */
+
+        /* USER CODE BEGIN 3 */
     }
-  /* USER CODE END 3 */
-
+    /* USER CODE END 3 */
 }
 
 /**
@@ -247,54 +264,53 @@ int main(void)
 void SystemClock_Config(void)
 {
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_PeriphCLKInitTypeDef PeriphClkInit;
+    RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_ClkInitTypeDef RCC_ClkInitStruct;
+    RCC_PeriphCLKInitTypeDef PeriphClkInit;
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+    RCC_OscInitStruct.HSICalibrationValue = 16;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI_DIV2;
+    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+    PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
     /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
     /**Configure the Systick 
     */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+    /* SysTick_IRQn interrupt configuration */
+    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /* USER CODE BEGIN 4 */
@@ -321,7 +337,7 @@ void turn()
         sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
         print(msg, 2);
 
-        if (volts < -TURN_TOLERANCE)  // FIXME: Ben changed this
+        if (volts < -TURN_TOLERANCE) // FIXME: Ben changed this
         {
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
@@ -366,7 +382,7 @@ void turn_deg(uint8_t deg)
     HAL_ADC_Start(&hadc2);
     if (HAL_ADC_PollForConversion(&hadc2, 100) == HAL_OK)
     {
-        uint16_t counts = 50.0 / 90.0 * (deg-90) + 50;
+        uint16_t counts = 50.0 / 90.0 * (deg - 90) + 50;
         TIM3->CNT = 0;
         TIM4->CNT = 0;
 
@@ -454,25 +470,11 @@ void alarm_detect()
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
-    HAL_Delay(500);
-    while (1)
-    {
-        char msg[18] = "";
-        // Sampling frequency: 10.6667e6/(239.5+15)
-        // freq one
-        double val = goertzel(ir_values, 41912, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-        int predec = (int)(val / 1);
-        int postdec = (int)((val - predec) * 1000);
-        sprintf(msg, "%d.%d\n", predec, postdec);
-        print(msg, 0);
-        //compare
-        // if (val > 10)
-        // {
-        //     break;
-        // }
-    }
-    print("Go", 0);
+    HAL_Delay(100);
+    while (goertzel(ir_values, 41912, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0])) < 10);
+    while (goertzel(ir_values, 41912, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0])) > 100);
     HAL_ADC_Stop_DMA(&hadc1);
+    print("Go", 0);
     IR_INT_STATE = NOT_FLAGGED;
 }
 
@@ -628,58 +630,56 @@ void set_motor_speed(uint32_t channel, uint32_t speed)
     if (channel == TIM_CHANNEL_1)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, speed);
     }
     else if (channel == TIM_CHANNEL_2)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, speed);
     }
     else if (channel == TIM_CHANNEL_3)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, speed);
     }
     else if (channel == TIM_CHANNEL_4)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
-        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, speed);
     }
+    __HAL_TIM_SET_COMPARE(&htim1, channel, speed>65535?65535:speed);
 }
 
-void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc)
+void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc)
 {
     /* Get error */
-    float l_enc = update_encoder(left_enc);
-    float r_enc = update_encoder(right_enc);
-    left_pid->err = ENCODER_GOAL - l_enc;
-    right_pid->err = ENCODER_GOAL - r_enc;
+    uint32_t lcnt = TIM3->CNT;
+    uint32_t rcnt = TIM4->CNT;
+    enc_pid->err = lcnt - rcnt;
 
     /* Get gain */
-    int32_t left_gain = pid_GetGain(left_pid);
-    int32_t right_gain = pid_GetGain(right_pid);
-
-    int l_predec = (int)(l_enc / 1);
-    int l_postdec = (int)((l_enc - l_predec) * 1000);
-    int r_predec = (int)(r_enc / 1);
-    int r_postdec = (int)((r_enc - r_predec) * 1000);
+    int gain = pid_GetGain(enc_pid);
     char msg[18] = "";
-    sprintf(msg, "LG: %d.%d", l_predec, l_postdec);
+    sprintf(msg, "ENC G: %d", gain);
     print(msg, 0);
-    sprintf(msg, "RG: %d.%d", r_predec, r_postdec);
-    print(msg, 1);
 
     /* Set Motor Speeds*/
-    int lspeed = LEFT_SPEED + left_gain;
-    int rspeed = RIGHT_SPEED + right_gain;
+    int lspeed = LEFT_SPEED - gain;
+    int rspeed = RIGHT_SPEED + gain;
 
-    sprintf(msg, "LS: %d", (int)lspeed);
-    print(msg, 3);
-    sprintf(msg, "RS: %d", (int)rspeed);
-    print(msg, 4);
-    // set_motor_speed
+    if(update_encoder(left_enc)==0 && update_encoder(right_enc)==0){
+        lspeed += 10000;
+        rspeed += 10000;
+    }
+
+    sprintf(msg, "LS: %d", lspeed);
+    print(msg, 1);
+    sprintf(msg, "RS: %d", rspeed);
+    print(msg, 2);
     set_motor_speed(TIM_CHANNEL_1, lspeed);
     set_motor_speed(TIM_CHANNEL_3, rspeed);
+
+    /* Prevent weird overflow shit */
+    if(lcnt>60000 || rcnt>60000){
+        TIM3->CNT -= 50000;
+        TIM3->CNT -= 50000;
+    }
 }
 
 void encoder_dist_pid(PID_t *pid_obj)
@@ -734,15 +734,15 @@ void encoder_dist_pid(PID_t *pid_obj)
   */
 void _Error_Handler(char *file, int line)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
+    /* USER CODE BEGIN Error_Handler_Debug */
     /* User can add his own implementation to report the HAL error return state */
     while (1)
     {
     }
-  /* USER CODE END Error_Handler_Debug */
+    /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -750,12 +750,12 @@ void _Error_Handler(char *file, int line)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* USER CODE BEGIN 6 */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+    /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number, 
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
 

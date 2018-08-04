@@ -51,9 +51,6 @@
 
 #define IR_1_Pin GPIO_PIN_0
 #define IR_1_GPIO_Port GPIOA
-#define PI_INT_Pin GPIO_PIN_1
-#define PI_INT_GPIO_Port GPIOA
-#define PI_INT_EXTI_IRQn EXTI1_IRQn
 #define STM_TX_Pin GPIO_PIN_2
 #define STM_TX_GPIO_Port GPIOA
 #define STM_RX_Pin GPIO_PIN_3
@@ -68,7 +65,10 @@
 #define TL_GPIO_Port GPIOA
 #define TR_Pin GPIO_PIN_0
 #define TR_GPIO_Port GPIOB
-#define EWOK_Pin GPIO_PIN_1
+#define IR_INT_Pin GPIO_PIN_1
+#define IR_INT_GPIO_Port GPIOB
+#define IR_INT_EXTI_IRQn EXTI1_IRQn
+#define EWOK_Pin GPIO_PIN_2
 #define EWOK_GPIO_Port GPIOB
 #define SERVO_CLAW_ARM_Pin GPIO_PIN_10
 #define SERVO_CLAW_ARM_GPIO_Port GPIOB
@@ -119,7 +119,7 @@
 
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 2
-#define TURN_CONST 100
+#define TURN_CONST 80
 #define TURN_TOLERANCE 0.04
 /* USER CODE END Private defines */
 
