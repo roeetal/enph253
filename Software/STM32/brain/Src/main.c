@@ -80,7 +80,7 @@ PID_t menu();
 void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
 void pi_navigation();
 float calculate_heading(uint32_t adc_val);
-void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc);
+void encoder_pid(PID_t *enc_pid);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
 void turn_deg(uint8_t);
@@ -171,9 +171,7 @@ int main(void)
     //claw_init(&htim3);
     ///basket_init(&htim3);
 
-    ENCODER_t left_enc = encoder_Init(TIM4);
-    ENCODER_t right_enc = encoder_Init(TIM5);
-    PID_t enc_pid = menu();
+    PID_t enc_pid = pid_Init(1,0,0,1,1);
     
     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
@@ -188,9 +186,26 @@ int main(void)
   /* USER CODE BEGIN WHILE */
     while (1)
     {
-
-        encoder_pid(&enc_pid, &left_enc, &right_enc);
-        HAL_Delay(10);
+        encoder_pid(&enc_pid);
+        if(EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED){
+            if(EDGE_LEFT_STATE== FLAGGED){
+                set_motor_speed(TIM_CHANNEL_1, 0);
+            }if(EDGE_RIGHT_STATE == FLAGGED){
+                set_motor_speed(TIM_CHANNEL_3, 0);
+            }
+        
+        }else if(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == FLAGGED){
+            set_motor_speed(TIM_CHANNEL_2, 500);
+            set_motor_speed(TIM_CHANNEL_4, 500);
+            uint32_t t = HAL_GetTick();
+            while (HAL_GetTick() - t < 500){
+                TIM4->CNT=30000;
+                TIM5->CNT=30000;
+                encoder_pid(&enc_pid);
+                HAL_Delay(10);
+            }
+            turn(-150);
+        }
         /*
          * Servo Stuff
          */
@@ -199,7 +214,8 @@ int main(void)
         /*
          * Drive Straight
          *
-         encoder_pid(&left_pid, &left_enc, &right_pid, &right_enc);
+                encoder_pid(&enc_pid);
+                HAL_Delay(10);
          */
 
         /*
@@ -659,7 +675,7 @@ void set_motor_speed(uint32_t channel, uint32_t speed)
     __HAL_TIM_SET_COMPARE(&htim1, channel, speed>1000?1000:speed);
 }
 
-void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc)
+void encoder_pid(PID_t *enc_pid)
 {
     /* Get error */
     uint32_t lcnt = TIM4->CNT;
@@ -680,9 +696,9 @@ void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc)
     }
 
     char msg[18] = "";
-    sprintf(msg, "LS: %lu", lcnt);
+    sprintf(msg, "LS: %lu", lspeed);
     print(msg, 0);
-    sprintf(msg, "RS: %lu", rcnt);
+    sprintf(msg, "RS: %lu", rspeed);
     print(msg, 1);
     set_motor_speed(TIM_CHANNEL_1, lspeed);
     set_motor_speed(TIM_CHANNEL_3, rspeed);
