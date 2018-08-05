@@ -126,6 +126,9 @@
 #define TURN_CONST 100
 #define TURN_TOLERANCE 0.04
 #define MOTOR_SPEED 1000
+// Add to right side
+#define SPEED_DIFF 50
+#define BASE_SPEED 600
 #define CLAW_CH TIM_CHANNEL_1
 #define ARM_CH TIM_CHANNEL_2
 #define BASKET_CH TIM_CHANNEL_3
