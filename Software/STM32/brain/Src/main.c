@@ -62,8 +62,8 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint16_t LEFT_SPEED = 0.61*MOTOR_SPEED;
-uint16_t RIGHT_SPEED = 0.69*MOTOR_SPEED;
+uint16_t LEFT_SPEED = BASE_SPEED;
+uint16_t RIGHT_SPEED = BASE_SPEED;
 uint32_t dma_buffer[3072];
 uint32_t adc_values[3072];
 
@@ -80,7 +80,7 @@ PID_t menu();
 void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
 void pi_navigation();
 float calculate_heading(uint32_t adc_val);
-void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc);
+void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
 void turn_deg(uint8_t);
@@ -168,40 +168,29 @@ int main(void)
     /* Initialize other stuffs */
     ssd1306_Init();
     print("Starting", 0);
-    claw_init(&htim3);
+    //claw_init(&htim3);
     ///basket_init(&htim3);
-    
-    set_motor_speed(TIM_CHANNEL_1, 100);
-    set_motor_speed(TIM_CHANNEL_2, 100);
-    set_motor_speed(TIM_CHANNEL_3, 100);
-    set_motor_speed(TIM_CHANNEL_4, 100);
 
-    /*
     ENCODER_t left_enc = encoder_Init(TIM4);
     ENCODER_t right_enc = encoder_Init(TIM5);
-    PID_t left_pid = pid_Init(5, 12, 0, 2, 2);
-    PID_t right_pid = pid_Init(30, 25, 0, 2, 2);
-    */
-    uint8_t ewok_cnt = 0;
+    PID_t enc_pid = menu();
     
     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    HAL_Delay(5000);
-    set_motor_speed(TIM_CHANNEL_1, 0);
-    set_motor_speed(TIM_CHANNEL_3, 0);
-    HAL_Delay(1000);
+
     /* Initially disabled IR, PI and Claw INT*/
-    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-    HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-    HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+    HAL_NVIC_DisableIRQ(EXTI0_IRQn);
+    HAL_NVIC_DisableIRQ(EXTI1_IRQn);
+    HAL_NVIC_DisableIRQ(EXTI4_IRQn);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     while (1)
     {
-        //print("in whiel", 0);
 
+        encoder_pid(&enc_pid, &left_enc, &right_enc);
+        HAL_Delay(10);
         /*
          * Servo Stuff
          */
@@ -579,82 +568,26 @@ PID_t menu()
     print("Starting", 0);
     char msg[20] = "";
     int pid_select = 0;
-    uint32_t values[3] = {0, 0, 0};
+    uint32_t values[2] = {0, 0};
     while (1)
     {
         if (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
         {
             sprintf(msg, "%lu", values[pid_select]);
             print(msg, 0);
-            TIM4->CNT = values[pid_select];
             while (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
             {
-                values[pid_select] = TIM4->CNT;
+                values[pid_select]++;
                 sprintf(msg, "%lu", values[pid_select]);
                 print(msg, 0);
+                HAL_Delay(500);
             }
             ++pid_select;
         }
-        if (pid_select == 3)
+        if (pid_select == 2)
             break;
     }
-    while (1)
-    {
-        int speed = 0.3*MOTOR_SPEED;
-        if (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
-        {
-            if (pid_select == 3)
-            {
-                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-            }
-            else
-            {
-                HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-                HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-            }
-            sprintf(msg, "%d", speed);
-            print(msg, 0);
-            TIM4->CNT = speed;
-            while (HAL_GPIO_ReadPin(MENU_GPIO_Port, MENU_Pin) == 0)
-            {
-                speed = TIM4->CNT;
-                sprintf(msg, "%d", speed);
-                print(msg, 0);
-                if (pid_select == 3)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, speed);
-                    LEFT_SPEED = speed;
-                }
-                else
-                {
-                    set_motor_speed(TIM_CHANNEL_3, speed);
-                    RIGHT_SPEED = speed;
-                }
-            }
-            ++pid_select;
-        }
-        if (pid_select == 5)
-        {
-            break;
-        }
-    }
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-    sprintf(msg, "P %lu", values[0]);
-    print(msg, 0);
-    sprintf(msg, "D %lu", values[1]);
-    print(msg, 1);
-    sprintf(msg, "I %lu", values[2]);
-    print(msg, 2);
-    sprintf(msg, "L %u", LEFT_SPEED);
-    print(msg, 3);
-    sprintf(msg, "R %u", RIGHT_SPEED);
-    print(msg, 4);
-    HAL_Delay(1000);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    return pid_Init(values[0], values[1], values[2], 5, 100);
+    return pid_Init(values[0], values[1], 1, 1, 1);
 }
 
 void do_pid(PID_t *pid_struct)
@@ -723,42 +656,42 @@ void set_motor_speed(uint32_t channel, uint32_t speed)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
     }
-    __HAL_TIM_SET_COMPARE(&htim1, channel, speed);
+    __HAL_TIM_SET_COMPARE(&htim1, channel, speed>1000?1000:speed);
 }
 
-void encoder_pid(PID_t *left_pid, ENCODER_t *left_enc, PID_t *right_pid, ENCODER_t *right_enc)
+void encoder_pid(PID_t *enc_pid, ENCODER_t *left_enc, ENCODER_t *right_enc)
 {
     /* Get error */
-    float l_enc = update_encoder(left_enc);
-    float r_enc = update_encoder(right_enc);
-    left_pid->err = ENCODER_GOAL - l_enc;
-    right_pid->err = ENCODER_GOAL - r_enc;
-
+    uint32_t lcnt = TIM4->CNT;
+    uint32_t rcnt = TIM5->CNT;
+    enc_pid->err = lcnt - rcnt;
+    
     /* Get gain */
-    int32_t left_gain = pid_GetGain(left_pid);
-    int32_t right_gain = pid_GetGain(right_pid);
-
-    int l_predec = (int)(l_enc / 1);
-    int l_postdec = (int)((l_enc - l_predec) * 1000);
-    int r_predec = (int)(r_enc / 1);
-    int r_postdec = (int)((r_enc - r_predec) * 1000);
-    char msg[18] = "";
-    sprintf(msg, "LG: %d.%d", l_predec, l_postdec);
-    print(msg, 0);
-    sprintf(msg, "RG: %d.%d", r_predec, r_postdec);
-    print(msg, 1);
-
+    // Gain <0 for ride side faster
+    int gain = pid_GetGain(enc_pid);
+    
     /* Set Motor Speeds*/
-    int lspeed = LEFT_SPEED + left_gain;
-    int rspeed = RIGHT_SPEED + right_gain;
+    uint32_t lspeed = LEFT_SPEED;
+    uint32_t rspeed = RIGHT_SPEED;
+    if(gain<0){
+        lspeed -= gain;
+    }else if(gain>0){
+        rspeed += gain;
+    }
 
-    sprintf(msg, "LS: %d", (int)lspeed);
-    print(msg, 3);
-    sprintf(msg, "RS: %d", (int)rspeed);
-    print(msg, 4);
-    // set_motor_speed
+    char msg[18] = "";
+    sprintf(msg, "LS: %lu", lcnt);
+    print(msg, 0);
+    sprintf(msg, "RS: %lu", rcnt);
+    print(msg, 1);
     set_motor_speed(TIM_CHANNEL_1, lspeed);
     set_motor_speed(TIM_CHANNEL_3, rspeed);
+    
+    /* Prevent weird overflow shit */
+    if(lcnt>60000 || rcnt>60000){
+        TIM4->CNT -= 50000;
+        TIM5->CNT -= 50000;
+    }
 }
 
 /* USER CODE END 4 */

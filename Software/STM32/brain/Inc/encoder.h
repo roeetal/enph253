@@ -5,7 +5,7 @@
 #define encoder 
 
 #define ENCODER_N 100
-#define ENCODER_R 0.6
+#define ENCODER_R 1000
 
 typedef struct{
     uint16_t cnt;

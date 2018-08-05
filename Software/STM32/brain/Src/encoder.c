@@ -49,7 +49,7 @@ float update_encoder(ENCODER_t *enc){
     }else{
         d_cnt = temp_cnt - enc->cnt;
     }
-    enc->speed = 2*3.14159265359*d_cnt/(ENCODER_N*(d_t/1000.0))*ENCODER_R;
+    enc->speed = d_cnt/(ENCODER_N*d_t)*ENCODER_R;
     enc->cnt = temp_cnt;
     enc->time = temp_time; 
     return enc->speed;
