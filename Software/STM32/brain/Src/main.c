@@ -84,6 +84,9 @@ void turn_deg(uint8_t);
 void alarm_detect();
 void drive_straight(PID_t *enc_pid);
 void square_edge(PID_t *enc_pid);
+void test_All();
+void test_PWM_htim1();
+void test_PWM_htim3();
 
 /* USER CODE END PFP */
 
@@ -170,13 +173,14 @@ int main(void)
     claw_init(&htim3);
     ///basket_init(&htim3);
 
-    uint8_t ewok_cnt=0;
-    PID_t enc_pid = pid_Init(1,0,0,1,1);
+    uint8_t ewok_cnt = 0;
+    PID_t enc_pid = pid_Init(1, 0, 0, 1, 1);
 
     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
     uint32_t temp_time = HAL_GetTick();
-    while((HAL_GetTick() - temp_time) < 4000){
+    while ((HAL_GetTick() - temp_time) < 4000)
+    {
         drive_straight(&enc_pid);
     }
     set_motor_speed(TIM_CHANNEL_1, 0);
@@ -223,7 +227,8 @@ int main(void)
                         open_claw(&htim3);
                         square_edge(&enc_pid);
                         start = HAL_GetTick();
-                        while((HAL_GetTick() - start) < 2000){
+                        while ((HAL_GetTick() - start) < 2000)
+                        {
                             drive_straight(&enc_pid);
                         }
                         arm_down(&htim3);
@@ -236,18 +241,21 @@ int main(void)
             PI_INT_STATE = NOT_FLAGGED;
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
-        }else{
-        /*
+        }
+        else
+        {
+            /*
          * Look for Ewok
          */
-        temp_time = HAL_GetTick();
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        while((HAL_GetTick() - temp_time) < 200){
-            drive_straight(&enc_pid);
-        }
-        set_motor_speed(TIM_CHANNEL_1, 0);
-        set_motor_speed(TIM_CHANNEL_3, 0);
+            temp_time = HAL_GetTick();
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            while ((HAL_GetTick() - temp_time) < 200)
+            {
+                drive_straight(&enc_pid);
+            }
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
         }
 
         /*
@@ -260,12 +268,11 @@ int main(void)
         HAL_Delay(2000);
         }*/
 
-        /* USER CODE END WHILE */
+    //     /* USER CODE END WHILE */
 
-        /* USER CODE BEGIN 3 */
+    //     /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
-
 }
 
 /**
@@ -302,8 +309,7 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-        |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -316,7 +322,7 @@ void SystemClock_Config(void)
 
     /**Configure the Systick interrupt time 
     */
-    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
     /**Configure the Systick 
     */
@@ -328,23 +334,31 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void square_edge(PID_t *enc_pid){
-    while(1){
+void square_edge(PID_t *enc_pid)
+{
+    while (1)
+    {
         drive_straight(enc_pid);
-        if(EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED){
-            if(EDGE_LEFT_STATE== FLAGGED){
+        if (EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED)
+        {
+            if (EDGE_LEFT_STATE == FLAGGED)
+            {
                 set_motor_speed(TIM_CHANNEL_1, 0);
             }
-            if(EDGE_RIGHT_STATE == FLAGGED){
+            if (EDGE_RIGHT_STATE == FLAGGED)
+            {
                 set_motor_speed(TIM_CHANNEL_3, 0);
             }
-        }else if(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == FLAGGED){
+        }
+        else if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == FLAGGED)
+        {
             break;
         }
     }
 }
 
-void drive_straight(PID_t *enc_pid){
+void drive_straight(PID_t *enc_pid)
+{
     encoder_pid(enc_pid);
     HAL_Delay(10);
 }
@@ -371,7 +385,7 @@ void turn()
     sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
     print(msg, 2);
 
-    if (volts < -TURN_TOLERANCE)  // FIXME: Ben changed this
+    if (volts < -TURN_TOLERANCE) // FIXME: Ben changed this
     {
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
@@ -409,7 +423,7 @@ void turn()
 void turn_deg(uint8_t deg)
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-    uint16_t counts = 50.0 / 90.0 * (deg-90) + 50;
+    uint16_t counts = 50.0 / 90.0 * (deg - 90) + 50;
     TIM4->CNT = 0;
     TIM5->CNT = 0;
 
@@ -446,7 +460,6 @@ void turn_deg(uint8_t deg)
     HAL_ADC_Stop_DMA(&hadc1);
 }
 
-
 /**
  * Resistor ladder: 8-bit, 0->3.3v.
  * ADC: 12-bit, 0->3.3V
@@ -465,12 +478,13 @@ void alarm_detect()
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
     HAL_Delay(500);
-    while(goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 100);
-    while(goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 100);
+    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 100)
+        ;
+    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 100)
+        ;
     HAL_ADC_Stop_DMA(&hadc1);
     IR_INT_STATE = NOT_FLAGGED;
 }
-
 
 /**
  * @brief prints string to row, rows from 0 - 6, resets screen when printing from row 0
@@ -515,7 +529,6 @@ PID_t menu()
     return pid_Init(values[0], values[1], 1, 1, 1);
 }
 
-
 void set_motor_speed(uint32_t channel, uint32_t speed)
 {
     if (channel == TIM_CHANNEL_1)
@@ -534,7 +547,7 @@ void set_motor_speed(uint32_t channel, uint32_t speed)
     {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
     }
-    __HAL_TIM_SET_COMPARE(&htim1, channel, speed>1000?1000:speed);
+    __HAL_TIM_SET_COMPARE(&htim1, channel, speed > 1000 ? 1000 : speed);
 }
 
 void encoder_pid(PID_t *enc_pid)
@@ -551,9 +564,12 @@ void encoder_pid(PID_t *enc_pid)
     /* Set Motor Speeds*/
     uint32_t lspeed = LEFT_SPEED;
     uint32_t rspeed = RIGHT_SPEED;
-    if(gain<0){
+    if (gain < 0)
+    {
         lspeed -= gain;
-    }else if(gain>0){
+    }
+    else if (gain > 0)
+    {
         rspeed += gain;
     }
 
@@ -566,11 +582,95 @@ void encoder_pid(PID_t *enc_pid)
     set_motor_speed(TIM_CHANNEL_3, rspeed);
 
     /* Prevent weird overflow shit */
-    if(lcnt>60000 || rcnt>60000){
+    if (lcnt > 60000 || rcnt > 60000)
+    {
         TIM4->CNT -= 50000;
         TIM5->CNT -= 50000;
     }
 }
+
+// ******
+// TESTS
+// ******
+
+/*
+ * Instructions:
+ *      Run test_All() before the main while loop
+ *      - Put a pull up resistor on htim3 PWM waves, measure voltage on pin
+ *      - Measure voltage on pin of htim1
+ *      - Give ADC pins values and read off of screen
+ */
+
+/*
+ * Test PWM
+ * Output: htim1 channel 1 through 4, PWM wave. Confirm these
+ *         PWM waves via an oscilliscope.
+ */
+void test_PWM_htim1()
+{
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 500);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 500);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
+}
+
+/*
+ * Test PWM
+ * Output: htim3 channel 1 through 3, PWM wave. Confirm these
+ *         PWM waves via an oscilliscope.
+ */
+void test_PWM_htim3()
+{
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 500);
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, 500);
+}
+
+void test_ADC()
+{
+    char msg[18] = "";
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
+
+    while (1)
+    {
+        int ch_5 = adc_values[0];
+        int ch_4 = adc_values[1];
+
+        sprintf(msg, "ch_5: %d", ch_5);
+        print(msg, 0);
+
+        sprintf(msg, "ch_4: %d", ch_4);
+        print(msg, 2);
+
+        HAL_Delay(100);
+    }
+}
+
+/**
+ * Test all PWM and ADC - Read PWM waves, input ADC voltages 
+ * and read values on OLED
+ *      htim1 -> CH1, CH2, CH3, CH4
+ *      htim3 -> CH1, CH2, CH3
+ *      ADC   -> CH5, CH4
+ */
+void test_All()
+{
+    test_PWM_htim1();
+    test_PWM_htim3();
+    test_ADC();
+}
+// ******
+// END TESTS
+// ******
 
 /* USER CODE END 4 */
 
@@ -590,7 +690,7 @@ void _Error_Handler(char *file, int line)
     /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
  * @brief  Reports the name of the source file and the source line number
  *         where the assert_param error has occurred.
@@ -598,8 +698,8 @@ void _Error_Handler(char *file, int line)
  * @param  line: assert_param error line source number
  * @retval None
  */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
+void assert_failed(uint8_t *file, uint32_t line)
+{
     /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
