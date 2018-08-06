@@ -173,109 +173,106 @@ int main(void)
     claw_init(&htim3);
     ///basket_init(&htim3);
 
-    test_All();
+    uint8_t ewok_cnt = 0;
+    PID_t enc_pid = pid_Init(1, 0, 0, 1, 1);
 
-    // uint8_t ewok_cnt = 0;
-    // PID_t enc_pid = pid_Init(1, 0, 0, 1, 1);
+    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    uint32_t temp_time = HAL_GetTick();
+    while ((HAL_GetTick() - temp_time) < 4000)
+    {
+        drive_straight(&enc_pid);
+    }
+    set_motor_speed(TIM_CHANNEL_1, 0);
+    set_motor_speed(TIM_CHANNEL_3, 0);
 
-    // set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    // set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    // uint32_t temp_time = HAL_GetTick();
-    // while ((HAL_GetTick() - temp_time) < 4000)
-    // {
-    //     drive_straight(&enc_pid);
-    // }
-    // set_motor_speed(TIM_CHANNEL_1, 0);
-    // set_motor_speed(TIM_CHANNEL_3, 0);
+    /* Initially disabled interrupts */
+    HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
+    /* USER CODE END 2 */
 
-    // /* Initially disabled interrupts */
-    // HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
-    // /* USER CODE END 2 */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1)
+    {
+        /*
+         * Pi Turning
+         */
+        if (PI_INT_STATE == FLAGGED)
+        {
+            print("in pi int", 0);
+            turn();
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            uint32_t start = HAL_GetTick();
+            HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
+            while ((HAL_GetTick() - start) < 4000)
+            {
+                drive_straight(&enc_pid);
+                if (CLAW_INT_STATE == FLAGGED)
+                {
+                    HAL_Delay(200);
+                    set_motor_speed(TIM_CHANNEL_1, 0);
+                    set_motor_speed(TIM_CHANNEL_3, 0);
+                    close_claw(&htim3);
+                    arm_up(&htim3);
+                    HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
+                    CLAW_INT_STATE = NOT_FLAGGED;
+                    ++ewok_cnt;
+                    char msg[18] = "";
+                    sprintf(msg, "wok_cnt: %d", ewok_cnt);
+                    print(msg, 0);
+                    if (ewok_cnt == 1)
+                    {
+                        turn_deg(-120);
+                        open_claw(&htim3);
+                        square_edge(&enc_pid);
+                        start = HAL_GetTick();
+                        while ((HAL_GetTick() - start) < 2000)
+                        {
+                            drive_straight(&enc_pid);
+                        }
+                        arm_down(&htim3);
+                    }
+                    break;
+                }
+            }
+            // char pic_plz = "1";
+            // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
+            PI_INT_STATE = NOT_FLAGGED;
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+        }
+        else
+        {
+            /*
+         * Look for Ewok
+         */
+            temp_time = HAL_GetTick();
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            while ((HAL_GetTick() - temp_time) < 200)
+            {
+                drive_straight(&enc_pid);
+            }
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+        }
 
-    // /* Infinite loop */
-    // /* USER CODE BEGIN WHILE */
-    // while (1)
-    // {
-    //     /*
-    //      * Pi Turning
-    //      */
-    //     if (PI_INT_STATE == FLAGGED)
-    //     {
-    //         print("in pi int", 0);
-    //         turn();
-    //         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    //         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    //         uint32_t start = HAL_GetTick();
-    //         HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
-    //         while ((HAL_GetTick() - start) < 4000)
-    //         {
-    //             drive_straight(&enc_pid);
-    //             if (CLAW_INT_STATE == FLAGGED)
-    //             {
-    //                 HAL_Delay(200);
-    //                 set_motor_speed(TIM_CHANNEL_1, 0);
-    //                 set_motor_speed(TIM_CHANNEL_3, 0);
-    //                 close_claw(&htim3);
-    //                 arm_up(&htim3);
-    //                 HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
-    //                 CLAW_INT_STATE = NOT_FLAGGED;
-    //                 ++ewok_cnt;
-    //                 char msg[18] = "";
-    //                 sprintf(msg, "wok_cnt: %d", ewok_cnt);
-    //                 print(msg, 0);
-    //                 if (ewok_cnt == 1)
-    //                 {
-    //                     turn_deg(-120);
-    //                     open_claw(&htim3);
-    //                     square_edge(&enc_pid);
-    //                     start = HAL_GetTick();
-    //                     while ((HAL_GetTick() - start) < 2000)
-    //                     {
-    //                         drive_straight(&enc_pid);
-    //                     }
-    //                     arm_down(&htim3);
-    //                 }
-    //                 break;
-    //             }
-    //         }
-    //         // char pic_plz = "1";
-    //         // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
-    //         PI_INT_STATE = NOT_FLAGGED;
-    //         set_motor_speed(TIM_CHANNEL_1, 0);
-    //         set_motor_speed(TIM_CHANNEL_3, 0);
-    //     }
-    //     else
-    //     {
-    //         /*
-    //      * Look for Ewok
-    //      */
-    //         temp_time = HAL_GetTick();
-    //         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    //         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    //         while ((HAL_GetTick() - temp_time) < 200)
-    //         {
-    //             drive_straight(&enc_pid);
-    //         }
-    //         set_motor_speed(TIM_CHANNEL_1, 0);
-    //         set_motor_speed(TIM_CHANNEL_3, 0);
-    //     }
-
-    //     /*
-    //      * IR DETECTION
-    //      *
-    //      if (IR_INT_STATE == FLAGGED)
-    //      {
-    //      alarm_detect();
-    //     //drive past sensor, enough so as to not trigger interrupt again
-    //     HAL_Delay(2000);
-    //     }*/
+        /*
+         * IR DETECTION
+         *
+         if (IR_INT_STATE == FLAGGED)
+         {
+         alarm_detect();
+        //drive past sensor, enough so as to not trigger interrupt again
+        HAL_Delay(2000);
+        }*/
 
     //     /* USER CODE END WHILE */
 
     //     /* USER CODE BEGIN 3 */
-    // }
+    }
     /* USER CODE END 3 */
-    return 0;
 }
 
 /**
@@ -592,6 +589,18 @@ void encoder_pid(PID_t *enc_pid)
     }
 }
 
+// ******
+// TESTS
+// ******
+
+/*
+ * Instructions:
+ *      Run test_All() before the main while loop
+ *      - Put a pull up resistor on htim3 PWM waves, measure voltage on pin
+ *      - Measure voltage on pin of htim1
+ *      - Give ADC pins values and read off of screen
+ */
+
 /*
  * Test PWM
  * Output: htim1 channel 1 through 4, PWM wave. Confirm these
@@ -610,9 +619,6 @@ void test_PWM_htim1()
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
 }
 
-// ******
-// TESTS
-// ******
 /*
  * Test PWM
  * Output: htim3 channel 1 through 3, PWM wave. Confirm these
@@ -638,16 +644,12 @@ void test_ADC()
     {
         int ch_5 = adc_values[0];
         int ch_4 = adc_values[1];
-        int ch_2 = adc_values[2];
 
         sprintf(msg, "ch_5: %d", ch_5);
         print(msg, 0);
 
         sprintf(msg, "ch_4: %d", ch_4);
         print(msg, 2);
-
-        sprintf(msg, "ch_2: %d", ch_2);
-        print(msg, 4);
 
         HAL_Delay(100);
     }
@@ -658,7 +660,7 @@ void test_ADC()
  * and read values on OLED
  *      htim1 -> CH1, CH2, CH3, CH4
  *      htim3 -> CH1, CH2, CH3
- *      ADC   -> CH5, CH4, CH2
+ *      ADC   -> CH5, CH4
  */
 void test_All()
 {
