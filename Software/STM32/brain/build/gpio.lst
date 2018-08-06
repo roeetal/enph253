@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
   28:Src/gpio.c    ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
   29:Src/gpio.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
   30:Src/gpio.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 2
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 2
 
 
   31:Src/gpio.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
   66:Src/gpio.c    **** 
   67:Src/gpio.c    ****   /* GPIO Ports Clock Enable */
   68:Src/gpio.c    ****   __HAL_RCC_GPIOC_CLK_ENABLE();
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 3
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 3
 
 
   48              		.loc 1 68 0
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
   98 0062 1A63     		str	r2, [r3, #48]
   99 0064 1B6B     		ldr	r3, [r3, #48]
  100 0066 03F00803 		and	r3, r3, #8
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 4
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 4
 
 
  101 006a 0493     		str	r3, [sp, #16]
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
   92:Src/gpio.c    ****   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
  136              		.loc 1 92 0
  137 009c 4048     		ldr	r0, .L3+8
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 5
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 5
 
 
  138 009e 05A9     		add	r1, sp, #20
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  173 00dc 0794     		str	r4, [sp, #28]
  112:Src/gpio.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
  174              		.loc 1 112 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 6
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 6
 
 
  175 00de 3148     		ldr	r0, .L3+12
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  210 0116 0796     		str	r6, [sp, #28]
  132:Src/gpio.c    ****   HAL_GPIO_Init(EDGE_LEFT_GPIO_Port, &GPIO_InitStruct);
  211              		.loc 1 132 0
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 7
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 7
 
 
  212 0118 2448     		ldr	r0, .L3+20
@@ -392,10 +392,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  231 0136 2246     		mov	r2, r4
  232 0138 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  233              	.LVL10:
- 142:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+ 142:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI0_IRQn);
  234              		.loc 1 142 0
  235 013c 0620     		movs	r0, #6
- 236 013e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 236 013e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  237              	.LVL11:
  143:Src/gpio.c    **** 
  144:Src/gpio.c    ****   HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
@@ -405,10 +405,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  241 0146 2246     		mov	r2, r4
  242 0148 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  243              	.LVL12:
- 145:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+ 145:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI1_IRQn);
  244              		.loc 1 145 0
  245 014c 0720     		movs	r0, #7
- 246 014e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 246 014e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  247              	.LVL13:
  146:Src/gpio.c    **** 
  147:Src/gpio.c    ****   HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
@@ -418,13 +418,13 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  251 0156 2246     		mov	r2, r4
  252 0158 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  253              	.LVL14:
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 8
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 8
 
 
- 148:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI2_IRQn);
+ 148:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI2_IRQn);
  254              		.loc 1 148 0
  255 015c 0820     		movs	r0, #8
- 256 015e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 256 015e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  257              	.LVL15:
  149:Src/gpio.c    **** 
  150:Src/gpio.c    ****   HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
@@ -434,10 +434,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  261 0166 2246     		mov	r2, r4
  262 0168 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  263              	.LVL16:
- 151:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+ 151:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI3_IRQn);
  264              		.loc 1 151 0
  265 016c 0920     		movs	r0, #9
- 266 016e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 266 016e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  267              	.LVL17:
  152:Src/gpio.c    **** 
  153:Src/gpio.c    ****   HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
@@ -447,10 +447,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  271 0176 2246     		mov	r2, r4
  272 0178 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  273              	.LVL18:
- 154:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+ 154:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI4_IRQn);
  274              		.loc 1 154 0
  275 017c 4046     		mov	r0, r8
- 276 017e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 276 017e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  277              	.LVL19:
  155:Src/gpio.c    **** 
  156:Src/gpio.c    ****   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
@@ -460,10 +460,10 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  281 0186 2246     		mov	r2, r4
  282 0188 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  283              	.LVL20:
- 157:Src/gpio.c    ****   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+ 157:Src/gpio.c    ****   HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
  284              		.loc 1 157 0
  285 018c 2820     		movs	r0, #40
- 286 018e FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 286 018e FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
  287              	.LVL21:
  158:Src/gpio.c    **** 
  159:Src/gpio.c    **** }
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  296              	.L3:
  297 0198 00380240 		.word	1073887232
  298 019c 00080240 		.word	1073874944
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 9
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 9
 
 
  299 01a0 001C0240 		.word	1073880064
@@ -497,17 +497,17 @@ ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 1
  313              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
  314              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
  315              		.file 7 "Drivers/CMSIS/Include/core_cm4.h"
-ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s 			page 10
+ARM GAS  /var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s:21     .text.MX_GPIO_Init:0000000000000000 $t
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s:26     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//cczVaaWn.s:297    .text.MX_GPIO_Init:0000000000000198 $d
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s:21     .text.MX_GPIO_Init:0000000000000000 $t
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s:26     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+/var/folders/68/n33lqcg953z5y1x0pvkj58xc0000gn/T//ccKJj10m.s:297    .text.MX_GPIO_Init:0000000000000198 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
-HAL_NVIC_EnableIRQ
+HAL_NVIC_DisableIRQ

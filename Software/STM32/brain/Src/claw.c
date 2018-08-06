@@ -61,19 +61,16 @@ void open_claw(TIM_HandleTypeDef *htim)
     actuate(htim, TIM_CHANNEL_1, 30);
     HAL_Delay(200);
     actuate(htim, TIM_CHANNEL_1, 40);
-    HAL_Delay(200);
 }
 
 void arm_down(TIM_HandleTypeDef *htim)
 {
     actuate(htim, TIM_CHANNEL_2, 160);
-    HAL_Delay(1000);
 }
 
 void arm_up(TIM_HandleTypeDef *htim)
 {
     actuate(htim, TIM_CHANNEL_2, 0);
-    HAL_Delay(1500);
 }
 
 /*
