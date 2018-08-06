@@ -1,18 +1,24 @@
 #include"encoder.h"
-#include"stm32f4xx.h"
 
-ENCODER_t encoder_Init(){
+/**
+ * @brief structure use to store and calculate rotating speed of encoder
+ * @param htim, internal timer used for counting encoder
+ * @retval initialized struct
+ */
+ENCODER_t encoder_Init(TIM_TypeDef *htim){
     ENCODER_t enc;
     enc.cnt = 0;
     enc.time = 0;
     enc.speed = 0.0;
+    enc.tim = htim;
     return enc;    
 }
 
 /**
+ * @brief
  * 16 bit uint for 16 bit timer
  * 16 bit uint for 16 bit count value
- * Speed of TIM9: 72MHz/65535
+ * GetTick returns milliseconds
  * Angular velocity w = 2*pi*n/(N*t)*R
  * n: number of encoder counts
  * N: number of encoder counts in revolution
@@ -24,13 +30,13 @@ ENCODER_t encoder_Init(){
  * @param   pointer to encoder struct
  * @param   pointer to encoder timer handle
  * @modifies    speed stored in struct
- * @returns    speed
+ * @retval    speed
  **/
-float update_encoder(ENCODER_t *enc, TIM_HandleTypeDef *htim){
-    uint16_t temp_time = TIM9->CNT;
-    uint16_t temp_cnt = __HAL_TIM_GetCounter(htim);
+float update_encoder(ENCODER_t *enc){
+    uint16_t temp_time = HAL_GetTick();
+    uint16_t temp_cnt = (enc->tim)->CNT;
     int16_t d_cnt;
-    uint16_t d_t = temp_time<enc->time? temp_time+1+(enc->time^65535): temp_time - enc->time;
+    uint16_t d_t = temp_time - enc->time;
     //uint8_t dt = temp_time - time;
     if(enc->speed>0 && temp_cnt<enc->cnt){
         d_cnt = temp_cnt+1+(enc->cnt^65535);
@@ -43,7 +49,7 @@ float update_encoder(ENCODER_t *enc, TIM_HandleTypeDef *htim){
     }else{
         d_cnt = temp_cnt - enc->cnt;
     }
-    enc->speed = 2*3.14159265359*d_cnt/(ENCODER_N*d_t/(72000000.0/65535))*ENCODER_R;
+    enc->speed = d_cnt/(ENCODER_N*d_t)*ENCODER_R;
     enc->cnt = temp_cnt;
     enc->time = temp_time; 
     return enc->speed;

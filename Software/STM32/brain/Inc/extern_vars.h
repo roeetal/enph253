@@ -7,5 +7,10 @@
 
 extern uint8_t IR_INT_STATE;
 extern uint8_t PI_INT_STATE;
+extern uint8_t CLAW_INT_STATE;
+extern uint8_t EDGE_LEFT_STATE;
+extern uint8_t EDGE_RIGHT_STATE;
+extern uint8_t TAPE_LEFT_STATE;
+extern uint8_t TAPE_RIGHT_STATE;
 
 #endif

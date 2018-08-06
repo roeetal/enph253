@@ -47,10 +47,11 @@ Src/stm32f4xx_it.c \
 Src/stm32f4xx_hal_msp.c \
 Src/fonts.c \
 Src/ssd1306.c \
-Src/pid.c \
 Src/encoder.c \
+Src/pid.c \
 Src/filter.c \
 Src/extern_vars.c \
+Src/claw.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \

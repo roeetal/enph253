@@ -37,6 +37,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "extern_vars.h"
+#include "main.h"
 
 /* USER CODE END 0 */
 
@@ -259,11 +260,11 @@ void ADC1_2_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-  if (HAL_GPIO_ReadPin(IR_INT_GPIO_Port, IR_INT_Pin))
-  {
-    IR_INT_STATE = FLAGGED;
-  }
-  else if (!HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin))
+  // if (HAL_GPIO_ReadPin(IR_INT_GPIO_Port, IR_INT_Pin))
+  // {
+  //   IR_INT_STATE = FLAGGED;
+  // } else
+  if (!HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin))
   {
     CLAW_INT_STATE = FLAGGED;
   }
