@@ -64,8 +64,8 @@
 /* Private variables ---------------------------------------------------------*/
 uint16_t LEFT_SPEED = BASE_SPEED;
 uint16_t RIGHT_SPEED = BASE_SPEED;
-uint32_t dma_buffer[3072];
-uint32_t adc_values[3072];
+uint32_t dma_buffer[2048];
+uint32_t adc_values[2048];
 
 /* USER CODE END PV */
 
@@ -75,16 +75,14 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
 void print(char msg[], int row);
-void do_pid(PID_t *pid_struct);
 PID_t menu();
-void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin);
-void pi_navigation();
 float calculate_heading(uint32_t adc_val);
 void encoder_pid(PID_t *enc_pid);
 void set_motor_speed(uint32_t channel, uint32_t speed);
 void turn();
 void turn_deg(uint8_t);
 void alarm_detect();
+void drive_straight(PID_t *enc_pid);
 
 /* USER CODE END PFP */
 
@@ -92,7 +90,7 @@ void alarm_detect();
 /**
  * @brief Circu;ar DMA buffer loading on each full buffer
  * DMA uses dma_buffer, transfers data to adc_values for us to use
- * Order of buffer: ir1, ir2, pi, ir1, ir2...
+ * Order of buffer: ir1, pi, ir1, ...
  */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
@@ -186,6 +184,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
     while (1)
     {
+        /*
+         * Drive Straight
+         */
+        drive_straight(&enc_pid);
+
+        /*
+         * Square Edge
         encoder_pid(&enc_pid);
         if(EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED){
             if(EDGE_LEFT_STATE== FLAGGED){
@@ -206,22 +211,13 @@ int main(void)
             }
             turn(-150);
         }
-        /*
-         * Servo Stuff
-         */
+        */
 
 
-        /*
-         * Drive Straight
-         *
-                encoder_pid(&enc_pid);
-                HAL_Delay(10);
-         */
 
         /*
          * Pi Turning
          */
-        /*
          if (PI_INT_STATE == FLAGGED)
          {
          print("in pi int", 0);
@@ -262,7 +258,6 @@ int main(void)
          set_motor_speed(TIM_CHANNEL_1, 0);
          set_motor_speed(TIM_CHANNEL_3, 0);
          }
-         */
 
         /*
          * EDGE and Object detection
@@ -364,6 +359,11 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void drive_straight(PID_t *enc_pid){
+    encoder_pid(enc_pid);
+    HAL_Delay(10);
+}
+
 /*
  * Assume motors are not on.
  * Reads adc, turns left or right based on voltage. Left max= 0 , no turn = 1.65 V, right max = 3.3V.
@@ -461,30 +461,6 @@ void turn_deg(uint8_t deg)
         HAL_ADC_Stop_DMA(&hadc1);
 }
 
-void pi_navigation()
-{
-    print("Pi nav", 0);
-    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-    //TODO calculate time needed to fill first buffer
-    HAL_Delay(500);
-    float heading = calculate_heading(adc_values[5]);
-    if (heading < 0)
-    {
-        set_motor_speed(TIM_CHANNEL_2, 0.3*MOTOR_SPEED);
-        set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
-        heading *= -1;
-    }
-    else if (heading > 0)
-    {
-        set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
-        set_motor_speed(TIM_CHANNEL_4, 0.3*MOTOR_SPEED);
-    }
-    HAL_Delay(2000 * heading);
-    set_motor_speed(TIM_CHANNEL_1, 0.3*MOTOR_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, 0.3*MOTOR_SPEED);
-    HAL_ADC_Stop_DMA(&hadc1);
-    PI_INT_STATE = NOT_FLAGGED;
-}
 
 /**
  * Resistor ladder: 8-bit, 0->3.3v.
@@ -498,70 +474,18 @@ float calculate_heading(uint32_t adc_val)
     return adc_val / 4096.0 - 0.5;
 }
 
+// Sampling frequency: 72e6/2/(495*3)
 void alarm_detect()
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
-    //HAL_NVIC_DisableIRQ (IRQn_Type IRQn) disbale ir interrupt
-    //char msg[20] = "";
     HAL_Delay(500);
-    while (1)
-    {
-        //
-        // Sampling frequency: 72e6/2/(495*3)
-        // offset 0 : IR1
-        double val = goertzel(adc_values, 24242, 9850, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0);
-        /*
-           int predec = (int)(val / 1);
-           int postdec = (int)((val - predec) * 1000);
-           sprintf(msg, "%d.%d\n", predec, postdec);
-           HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
-           */
-
-        //compare
-        // 1000 Hz: ranges to about 60, 9850 Hz: ranges to 20
-        if (val > 15)
-        {
-            break;
-        }
-    }
+    while(goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 100);
+    while(goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 100);
     HAL_ADC_Stop_DMA(&hadc1);
     IR_INT_STATE = NOT_FLAGGED;
 }
 
-void frequency_comparison(uint16_t freq1, uint16_t freq2, uint16_t GPIO_Pin)
-{
-    uint16_t offset = GPIO_Pin == IR_1_Pin ? 0 : GPIO_Pin == IR_2_Pin ? 1 : 2;
-    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-    //TODO calculate time needed to fill first buffer
-    HAL_Delay(500);
-    //TODO figure out thresholds and what we want to look for
-    while (1)
-    {
-        char msg[18] = "";
-        // Sampling frequency: 10.6667e6/(2*(239.5+15))
-        // freq one
-        double val1 = goertzel(adc_values, 20956, freq1, sizeof(dma_buffer) / sizeof(dma_buffer[0]), offset);
-        int predec = (int)(val1 / 1);
-        int postdec = (int)((val1 - predec) * 1000);
-        sprintf(msg, "%d.%d\n", predec, postdec);
-        print(msg, 0);
-        HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
-        //freq2
-        double val2 = goertzel(adc_values, 20956, freq2, sizeof(dma_buffer) / sizeof(dma_buffer[0]), offset);
-        predec = (int)(val2 / 1);
-        postdec = (int)((val2 - predec) * 1000);
-        sprintf(msg, "%d.%d", predec, postdec);
-        HAL_UART_Transmit(&huart6, (uint8_t *)msg, strlen(msg), 0xFFFF);
-        //compare
-        if (val1 > val2)
-        {
-            break;
-        }
-    }
-    HAL_ADC_Stop_DMA(&hadc1);
-    IR_INT_STATE = NOT_FLAGGED;
-}
 
 /**
  * @brief prints string to row, rows from 0 - 6, resets screen when printing from row 0
@@ -606,53 +530,6 @@ PID_t menu()
     return pid_Init(values[0], values[1], 1, 1, 1);
 }
 
-void do_pid(PID_t *pid_struct)
-{
-    /* Read sensors */
-    uint8_t left = HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) ? 0 : 1;
-    uint8_t right = HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) ? 0 : 1;
-
-    /* Get error */
-    if (left && right)
-    {
-        pid_struct->err = 0;
-    }
-    else if (left && !right)
-    {
-        pid_struct->err = 1;
-    }
-    else if (!left && right)
-    {
-        pid_struct->err = -1;
-    }
-    else if (!left && !right && (pid_struct->err < 0))
-    {
-        pid_struct->err = -5;
-    }
-    else if (!left && !right && (pid_struct->err > 0))
-    {
-        pid_struct->err = 5;
-    }
-
-    /* Get gain */
-    int16_t gain = pid_GetGain(pid_struct);
-    char msg[20] = "";
-    sprintf(msg, "%d", (int)gain);
-    print(msg, 0);
-    /* Set Motor Speeds*/
-    int lspeed = LEFT_SPEED;
-    int rspeed = RIGHT_SPEED;
-    if (gain < 0)
-    {
-        lspeed = LEFT_SPEED - gain;
-    }
-    else if (gain > 0)
-    {
-        rspeed = RIGHT_SPEED + gain;
-    }
-    set_motor_speed(TIM_CHANNEL_1, lspeed);
-    set_motor_speed(TIM_CHANNEL_3, rspeed);
-}
 
 void set_motor_speed(uint32_t channel, uint32_t speed)
 {
