@@ -82,6 +82,7 @@ void turn();
 void turn_deg(uint8_t);
 void alarm_detect();
 void drive_straight(PID_t *enc_pid);
+void drive_straight_time(PID_t *enc_pid, uint32_t millis);
 void square_edge(PID_t *enc_pid);
 void test_All();
 void test_PWM_htim1();
@@ -174,24 +175,17 @@ int main(void)
     uint8_t ewok_cnt = 0;
     PID_t enc_pid = pid_Init(1, 0, 0, 1, 1);
 
-    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-    uint32_t temp_time = HAL_GetTick();
-    while ((HAL_GetTick() - temp_time) < 4000)
-    {
-        drive_straight(&enc_pid);
-    }
-    set_motor_speed(TIM_CHANNEL_1, 0);
-    set_motor_speed(TIM_CHANNEL_3, 0);
+    drive_straight_time(&enc_pid, 8 * 1000);
 
     /* Initially disabled interrupts and ADC */
     HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
-    HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
-    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    PI_INT_STATE = NOT_FLAGGED;
+    CLAW_INT_STATE = NOT_FLAGGED;
+    HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_SET);
 
     while (1)
     {
@@ -205,14 +199,26 @@ int main(void)
             turn();
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            uint32_t start = HAL_GetTick();
             HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
-            while ((HAL_GetTick() - start) < 4000)
+            uint32_t start = HAL_GetTick();
+            while ((HAL_GetTick() - start) < 7000)
             {
                 drive_straight(&enc_pid);
                 if (CLAW_INT_STATE == FLAGGED)
                 {
-                    HAL_Delay(200);
+                    uint32_t timeee = HAL_GetTick();
+                    while (HAL_GetTick() - timeee < 20)
+                    {
+                        HAL_Delay(5);
+                        if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
+                        {
+                            CLAW_INT_STATE = NOT_FLAGGED;
+                        }
+                    }
+                    if(CLAW_INT_STATE == NOT_FLAGGED){
+                        break;
+                    }
+                    HAL_Delay(400);
                     set_motor_speed(TIM_CHANNEL_1, 0);
                     set_motor_speed(TIM_CHANNEL_3, 0);
                     close_claw(&htim3);
@@ -220,20 +226,28 @@ int main(void)
                     HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
                     CLAW_INT_STATE = NOT_FLAGGED;
                     ++ewok_cnt;
-                    char msg[18] = "";
-                    sprintf(msg, "wok_cnt: %d", ewok_cnt);
-                    print(msg, 0);
+                    // char msg[18] = "";
+                    // sprintf(msg, "wok_cnt: %d", ewok_cnt);
+                    // print(msg, 0);
+                    /*
+                    * Claw is up and close
+                    * Ewok Count incremented
+                    * Motors not powered
+                    * CLAW_INT_STATE not FLAGGED
+                    */
                     if (ewok_cnt == 1)
                     {
-                        turn_deg(-120);
+                        turn_deg(-95);
                         open_claw(&htim3);
-                        square_edge(&enc_pid);
-                        start = HAL_GetTick();
-                        while ((HAL_GetTick() - start) < 2000)
-                        {
-                            drive_straight(&enc_pid);
-                        }
+                        // square_edge(&enc_pid);
+                        drive_straight_time(&enc_pid, 5000);
                         arm_down(&htim3);
+                    }
+                    if (ewok_cnt == 2)
+                    {
+                        turn_deg(-110); //  Prolly have to change this
+                        alarm_detect();
+                        drive_straight_time(&enc_pid, 5000);
                     }
                     break;
                 }
@@ -246,23 +260,23 @@ int main(void)
         }
         else
         {
-        /*
-         * Look for Ewok
-         */
-            temp_time = HAL_GetTick();
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            while ((HAL_GetTick() - temp_time) < 200)
-            {
-                drive_straight(&enc_pid);
-            }
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
+            /*
+             * Look for Ewok
+             */
+            drive_straight_time(&enc_pid, 500);
 
-            temp_time = HAL_GetTick();
-            while ((HAL_GetTick() - temp_time) < 200 && PI_INT_STATE == NOT_FLAGGED)
+            uint32_t temp_time = HAL_GetTick();
+            while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED)
                 ;
         }
+
+        /*
+        * Edge detected
+        */
+        //    if(EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED){
+        //        set_motor_speed(TIM_CHANNEL_1, 0);
+        //        set_motor_speed(TIM_CHANNEL_3, 0);
+        //    }
 
         /*
          * IR DETECTION
@@ -363,6 +377,19 @@ void square_edge(PID_t *enc_pid)
     }
 }
 
+void drive_straight_time(PID_t *enc_pid, uint32_t millis)
+{
+    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    uint32_t temp_time = HAL_GetTick();
+    while ((HAL_GetTick() - temp_time) < millis)
+    {
+        drive_straight(enc_pid);
+    }
+    set_motor_speed(TIM_CHANNEL_1, 0);
+    set_motor_speed(TIM_CHANNEL_3, 0);
+}
+
 void drive_straight(PID_t *enc_pid)
 {
     encoder_pid(enc_pid);
@@ -377,7 +404,7 @@ void turn()
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
-    HAL_Delay(50);
+    HAL_Delay(100);
     float volts = calculate_heading(2 * adc_values[5]);
     uint16_t counts = TURN_CONST * fabs(volts);
     TIM4->CNT = 0;
@@ -391,7 +418,7 @@ void turn()
     sprintf(msg, "vlts: %d.%d", pre_dec, post_dec);
     print(msg, 2);
 
-    if (volts < -TURN_TOLERANCE) // FIXME: Ben changed this
+    if (volts < -TURN_TOLERANCE)
     {
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
@@ -404,7 +431,7 @@ void turn()
         print(msg, 4);
         TIM5->CNT = 0;
     }
-    else if (volts > TURN_TOLERANCE) // FIXME: Ben changed this
+    else if (volts > TURN_TOLERANCE)
     {
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
         set_motor_speed(TIM_CHANNEL_3, 0);
@@ -579,13 +606,13 @@ void encoder_pid(PID_t *enc_pid)
         rspeed += gain;
     }
 
-    char msg[18] = "";
-    sprintf(msg, "LS: %lu", lspeed);
-    print(msg, 0);
-    sprintf(msg, "RS: %lu", rspeed);
-    print(msg, 1);
-    set_motor_speed(TIM_CHANNEL_1, lspeed);
-    set_motor_speed(TIM_CHANNEL_3, rspeed);
+    // char msg[18] = "";
+    // sprintf(msg, "LS: %lu", lspeed);
+    // print(msg, 0);
+    // sprintf(msg, "RS: %lu", rspeed);
+    // print(msg, 1);
+    // set_motor_speed(TIM_CHANNEL_1, lspeed);
+    // set_motor_speed(TIM_CHANNEL_3, rspeed);
 
     /* Prevent weird overflow shit */
     if (lcnt > 60000 || rcnt > 60000)
