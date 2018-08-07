@@ -1,41 +1,41 @@
 
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  ** This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
-  *
-  * COPYRIGHT(c) 2018 STMicroelectronics
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ ** This notice applies to any and all portions of this file
+ * that are not between comment pairs USER CODE BEGIN and
+ * USER CODE END. Other portions of this file, whether 
+ * inserted by the user or by software development tools
+ * are owned by their respective copyright owners.
+ *
+ * COPYRIGHT(c) 2018 STMicroelectronics
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *   1. Redistributions of source code must retain the above copyright notice,
+ *      this list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *   3. Neither the name of STMicroelectronics nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
@@ -82,7 +82,7 @@ void turn();
 void turn_deg(uint8_t);
 void alarm_detect();
 void drive_straight(PID_t *enc_pid);
-void drive_straight_time(PID_t *enc_pid, uint32_t millis);
+void drive_straight_time(PID_t *enc_pid, uint32_t lspeed, uint32_t rspeed, uint32_t millis);
 void square_edge(PID_t *enc_pid);
 void test_All();
 void test_PWM_htim1();
@@ -103,10 +103,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  *
-  * @retval None
-  */
+ * @brief  The application entry point.
+ *
+ * @retval None
+ */
 int main(void)
 {
     /* USER CODE BEGIN 1 */
@@ -170,22 +170,23 @@ int main(void)
     ssd1306_Init();
     print("Starting", 0);
     claw_init(&htim3);
-    ///basket_init(&htim3);
+    basket_init(&htim3);
 
     uint8_t ewok_cnt = 0;
     PID_t enc_pid = pid_Init(1, 0, 0, 1, 1);
 
-    drive_straight_time(&enc_pid, 8 * 1000);
+    drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 8 * 1000);
 
     /* Initially disabled interrupts and ADC */
     HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
+    PI_INT_STATE = NOT_FLAGGED;
+    CLAW_INT_STATE = NOT_FLAGGED;
+
+    HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_SET);
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-    PI_INT_STATE = NOT_FLAGGED;
-    CLAW_INT_STATE = NOT_FLAGGED;
-    HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_SET);
 
     while (1)
     {
@@ -201,7 +202,7 @@ int main(void)
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
             uint32_t start = HAL_GetTick();
-            while ((HAL_GetTick() - start) < 7000)
+            while ((HAL_GetTick() - start) < 2500)
             {
                 drive_straight(&enc_pid);
                 if (CLAW_INT_STATE == FLAGGED)
@@ -230,25 +231,85 @@ int main(void)
                     // sprintf(msg, "wok_cnt: %d", ewok_cnt);
                     // print(msg, 0);
                     /*
-                    * Claw is up and close
-                    * Ewok Count incremented
-                    * Motors not powered
-                    * CLAW_INT_STATE not FLAGGED
-                    */
+                     * Claw is up and close
+                     * Ewok Count incremented
+                     * Motors not powered
+                     * CLAW_INT_STATE not FLAGGED
+                     */
                     if (ewok_cnt == 1)
                     {
                         turn_deg(-95);
                         open_claw(&htim3);
                         // square_edge(&enc_pid);
-                        drive_straight_time(&enc_pid, 5000);
+                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 5000);
                         arm_down(&htim3);
                     }
                     if (ewok_cnt == 2)
                     {
                         turn_deg(-110); //  Prolly have to change this
                         alarm_detect();
-                        drive_straight_time(&enc_pid, 5000);
+                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                        open_claw(&htim3);
+                        timeee = HAL_GetTick();
+                        while(HAL_GetTick()-timeee < 7000){
+                            if((TAPE_LEFT_STATE == FLAGGED || TAPE_RIGHT_STATE == FLAGGED) && !(TAPE_LEFT_STATE == FLAGGED && TAPE_RIGHT_STATE == FLAGGED)){
+                                if(TAPE_LEFT_STATE == FLAGGED){
+                                    set_motor_speed(TIM_CHANNEL_3, 0);
+                                    while(HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) == GPIO_PIN_SET);
+                                    TAPE_LEFT_STATE = NOT_FLAGGED;
+                                    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                                }
+                                if(TAPE_RIGHT_STATE == FLAGGED){
+                                    set_motor_speed(TIM_CHANNEL_1, 0);
+                                    while(HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) == GPIO_PIN_SET);
+                                    TAPE_RIGHT_STATE = NOT_FLAGGED;
+                                    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                                }
+                            }
+                        }
+                        arm_down(&htim3);
                     }
+                    if(ewok_cnt == 3){
+                        turn_deg(110);
+                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                        open_claw(&htim3);
+                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 2000);
+                        drive_straight_time(&enc_pid, 700, 700, 2000);
+                        arm_down(&htim3);
+                    }
+                    if(ewok_cnt == 4){
+                        turn_deg(150);
+                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                        open_claw(&htim3);
+                        while(HAL_GetTick()-timeee < 8000){
+                            if((EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED) && !(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == FLAGGED)){
+                                if(EDGE_LEFT_STATE == FLAGGED){
+                                    set_motor_speed(TIM_CHANNEL_3, 0);
+                                    while(HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET);
+                                    EDGE_LEFT_STATE = NOT_FLAGGED;
+                                    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                                }
+                                if(EDGE_RIGHT_STATE == FLAGGED){
+                                    set_motor_speed(TIM_CHANNEL_1, 0);
+                                    while(HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET);
+                                    EDGE_RIGHT_STATE = NOT_FLAGGED;
+                                    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                                }
+                            }
+                        }
+                        arm_down(&htim3);
+                    }
+                   if(ewok_cnt == 5){
+                        turn_deg(70);
+                        HAL_Delay(500);
+                        open_claw(&htim3);
+                        arm_down(&htim3);
+                        slow_actuate(&htim3, BASKET_CH, 10, 180);
+                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
+                   } 
                     break;
                 }
             }
@@ -263,7 +324,7 @@ int main(void)
             /*
              * Look for Ewok
              */
-            drive_straight_time(&enc_pid, 500);
+            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 500);
 
             uint32_t temp_time = HAL_GetTick();
             while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED)
@@ -271,8 +332,8 @@ int main(void)
         }
 
         /*
-        * Edge detected
-        */
+         * Edge detected
+         */
         //    if(EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED){
         //        set_motor_speed(TIM_CHANNEL_1, 0);
         //        set_motor_speed(TIM_CHANNEL_3, 0);
@@ -296,9 +357,9 @@ int main(void)
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
 
@@ -377,10 +438,10 @@ void square_edge(PID_t *enc_pid)
     }
 }
 
-void drive_straight_time(PID_t *enc_pid, uint32_t millis)
+void drive_straight_time(PID_t *enc_pid, uint32_t lspeed, uint32_t rspeed, uint32_t millis)
 {
-    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+    set_motor_speed(TIM_CHANNEL_1, lspeed);
+    set_motor_speed(TIM_CHANNEL_3, rspeed);
     uint32_t temp_time = HAL_GetTick();
     while ((HAL_GetTick() - temp_time) < millis)
     {
@@ -719,11 +780,11 @@ void test_All()
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  file: The file name as string.
-  * @param  line: The line in file as a number.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @param  file: The file name as string.
+ * @param  line: The line in file as a number.
+ * @retval None
+ */
 void _Error_Handler(char *file, int line)
 {
     /* USER CODE BEGIN Error_Handler_Debug */
@@ -736,12 +797,12 @@ void _Error_Handler(char *file, int line)
 
 #ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
     /* USER CODE BEGIN 6 */
@@ -752,11 +813,11 @@ tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 #endif /* USE_FULL_ASSERT */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
