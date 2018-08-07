@@ -42,7 +42,6 @@ Src/dma.c \
 Src/adc.c \
 Src/i2c.c \
 Src/tim.c \
-Src/usart.c \
 Src/stm32f4xx_it.c \
 Src/stm32f4xx_hal_msp.c \
 Src/fonts.c \

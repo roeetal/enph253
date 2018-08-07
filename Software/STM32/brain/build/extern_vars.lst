@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s 			page 1
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s 			page 1
 
 
    1              		.syntax unified
@@ -54,24 +54,24 @@ ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s 			page 1
   65              		.file 2 "/usr/local/Cellar/arm-none-eabi-gcc/20150921/arm-none-eabi/include/sys/_stdint.h"
   66              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
   67              		.file 4 "Src/extern_vars.c"
-ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s 			page 2
+ARM GAS  /var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 extern_vars.c
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:30     .bss.TAPE_RIGHT_STATE:0000000000000000 TAPE_RIGHT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:60     .bss.TAPE_LEFT_STATE:0000000000000000 TAPE_LEFT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:55     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:45     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:50     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:40     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:35     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:31     .bss.TAPE_RIGHT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:36     .bss.IR_INT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:41     .bss.PI_INT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:46     .bss.EDGE_LEFT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:51     .bss.CLAW_INT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:56     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
-/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccMAX0YU.s:61     .bss.TAPE_LEFT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:30     .bss.TAPE_RIGHT_STATE:0000000000000000 TAPE_RIGHT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:60     .bss.TAPE_LEFT_STATE:0000000000000000 TAPE_LEFT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:55     .bss.EDGE_RIGHT_STATE:0000000000000000 EDGE_RIGHT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:45     .bss.EDGE_LEFT_STATE:0000000000000000 EDGE_LEFT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:50     .bss.CLAW_INT_STATE:0000000000000000 CLAW_INT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:40     .bss.PI_INT_STATE:0000000000000000 PI_INT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:35     .bss.IR_INT_STATE:0000000000000000 IR_INT_STATE
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:31     .bss.TAPE_RIGHT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:36     .bss.IR_INT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:41     .bss.PI_INT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:46     .bss.EDGE_LEFT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:51     .bss.CLAW_INT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:56     .bss.EDGE_RIGHT_STATE:0000000000000000 $d
+/var/folders/ck/4xtm3skj1ssb0w4rn7_4q_gw0000gn/T//ccIDnlmI.s:61     .bss.TAPE_LEFT_STATE:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS
