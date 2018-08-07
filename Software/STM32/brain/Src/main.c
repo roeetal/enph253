@@ -1,41 +1,41 @@
 
 /**
- ******************************************************************************
- * @file           : main.c
- * @brief          : Main program body
- ******************************************************************************
- ** This notice applies to any and all portions of this file
- * that are not between comment pairs USER CODE BEGIN and
- * USER CODE END. Other portions of this file, whether 
- * inserted by the user or by software development tools
- * are owned by their respective copyright owners.
- *
- * COPYRIGHT(c) 2018 STMicroelectronics
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *   1. Redistributions of source code must retain the above copyright notice,
- *      this list of conditions and the following disclaimer.
- *   2. Redistributions in binary form must reproduce the above copyright notice,
- *      this list of conditions and the following disclaimer in the documentation
- *      and/or other materials provided with the distribution.
- *   3. Neither the name of STMicroelectronics nor the names of its contributors
- *      may be used to endorse or promote products derived from this software
- *      without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  ** This notice applies to any and all portions of this file
+  * that are not between comment pairs USER CODE BEGIN and
+  * USER CODE END. Other portions of this file, whether 
+  * inserted by the user or by software development tools
+  * are owned by their respective copyright owners.
+  *
+  * COPYRIGHT(c) 2018 STMicroelectronics
+  *
+  * Redistribution and use in source and binary forms, with or without modification,
+  * are permitted provided that the following conditions are met:
+  *   1. Redistributions of source code must retain the above copyright notice,
+  *      this list of conditions and the following disclaimer.
+  *   2. Redistributions in binary form must reproduce the above copyright notice,
+  *      this list of conditions and the following disclaimer in the documentation
+  *      and/or other materials provided with the distribution.
+  *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  *      may be used to endorse or promote products derived from this software
+  *      without specific prior written permission.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
+  ******************************************************************************
+  */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
@@ -43,7 +43,6 @@
 #include "dma.h"
 #include "i2c.h"
 #include "tim.h"
-#include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
@@ -103,10 +102,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- *
- * @retval None
- */
+  * @brief  The application entry point.
+  *
+  * @retval None
+  */
 int main(void)
 {
     /* USER CODE BEGIN 1 */
@@ -135,7 +134,6 @@ int main(void)
     MX_TIM3_Init();
     MX_TIM1_Init();
     MX_TIM2_Init();
-    MX_USART6_UART_Init();
     MX_ADC1_Init();
     MX_I2C1_Init();
     MX_TIM4_Init();
@@ -186,12 +184,15 @@ int main(void)
     set_motor_speed(TIM_CHANNEL_1, 0);
     set_motor_speed(TIM_CHANNEL_3, 0);
 
-    /* Initially disabled interrupts */
+    /* Initially disabled interrupts and ADC */
     HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
+    HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
+    HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+
     while (1)
     {
         /*
@@ -199,6 +200,7 @@ int main(void)
          */
         if (PI_INT_STATE == FLAGGED)
         {
+            HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_RESET);
             print("in pi int", 0);
             turn();
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
@@ -236,15 +238,15 @@ int main(void)
                     break;
                 }
             }
-            // char pic_plz = "1";
-            // HAL_UART_Transmit(&huart2, pic_plz, sizeof(pic_plz), 10000);
+
             PI_INT_STATE = NOT_FLAGGED;
+            HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_SET);
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
         }
         else
         {
-            /*
+        /*
          * Look for Ewok
          */
             temp_time = HAL_GetTick();
@@ -256,6 +258,10 @@ int main(void)
             }
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
+
+            temp_time = HAL_GetTick();
+            while ((HAL_GetTick() - temp_time) < 200 && PI_INT_STATE == NOT_FLAGGED)
+                ;
         }
 
         /*
@@ -268,17 +274,17 @@ int main(void)
         HAL_Delay(2000);
         }*/
 
-    //     /* USER CODE END WHILE */
+        /* USER CODE END WHILE */
 
-    //     /* USER CODE BEGIN 3 */
+        /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
 }
 
 /**
- * @brief System Clock Configuration
- * @retval None
- */
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
 
@@ -372,7 +378,7 @@ void turn()
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
     HAL_Delay(50);
-    float volts = calculate_heading(adc_values[5]);
+    float volts = calculate_heading(2 * adc_values[5]);
     uint16_t counts = TURN_CONST * fabs(volts);
     TIM4->CNT = 0;
     TIM5->CNT = 0;
@@ -609,14 +615,19 @@ void encoder_pid(PID_t *enc_pid)
 void test_PWM_htim1()
 {
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+    // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 500);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 500);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
+    // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+    int s = 0;
+    while (s < 1000)
+    {
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, s);
+        // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 500);
+        __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, s);
+        // __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 500);
+        s += 100;
+        HAL_Delay(1000);
+    }
 }
 
 /*
@@ -630,9 +641,15 @@ void test_PWM_htim3()
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
 
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 500);
-    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, 500);
+    int s = 500;
+    while (s < 2400)
+    {
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, s);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, s);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, s);
+        s += 100;
+        HAL_Delay(500);
+    }
 }
 
 void test_ADC()
@@ -675,11 +692,11 @@ void test_All()
 /* USER CODE END 4 */
 
 /**
- * @brief  This function is executed in case of error occurrence.
- * @param  file: The file name as string.
- * @param  line: The line in file as a number.
- * @retval None
- */
+  * @brief  This function is executed in case of error occurrence.
+  * @param  file: The file name as string.
+  * @param  line: The line in file as a number.
+  * @retval None
+  */
 void _Error_Handler(char *file, int line)
 {
     /* USER CODE BEGIN Error_Handler_Debug */
@@ -692,12 +709,12 @@ void _Error_Handler(char *file, int line)
 
 #ifdef USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t *file, uint32_t line)
 {
     /* USER CODE BEGIN 6 */
@@ -708,11 +725,11 @@ tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 #endif /* USE_FULL_ASSERT */
 
 /**
- * @}
- */
+  * @}
+  */
 
 /**
- * @}
- */
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
