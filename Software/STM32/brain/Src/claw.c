@@ -109,8 +109,8 @@ void slow_actuate(TIM_HandleTypeDef *htim, uint16_t tim_channel, uint16_t start_
  */
 void basket_up_up_and_away(TIM_HandleTypeDef *htim)
 {
-    slow_actuate(htim, TIM_CHANNEL_3, 10, 180);
+    slow_actuate(htim, TIM_CHANNEL_3, 50, 180);
     HAL_Delay(1000);
-    actuate(htim, TIM_CHANNEL_3, 10);
+    actuate(htim, TIM_CHANNEL_3, 50);
     HAL_Delay(1000);
 }
