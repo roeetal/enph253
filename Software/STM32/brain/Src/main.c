@@ -202,133 +202,151 @@ int main(void)
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             HAL_NVIC_EnableIRQ(CLAW_INT_EXTI_IRQn);
             uint32_t start = HAL_GetTick();
+
             while ((HAL_GetTick() - start) < 2500)
             {
                 drive_straight(&enc_pid);
                 if (CLAW_INT_STATE == FLAGGED)
                 {
                     uint32_t timeee = HAL_GetTick();
-                    while (HAL_GetTick() - timeee < 20)
+                    while (HAL_GetTick() - timeee < 10)
                     {
-                        HAL_Delay(5);
+                        HAL_Delay(2);
                         if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
                         {
                             CLAW_INT_STATE = NOT_FLAGGED;
                         }
                     }
-                    if(CLAW_INT_STATE == NOT_FLAGGED){
-                        break;
-                    }
-                    HAL_Delay(400);
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    close_claw(&htim3);
-                    arm_up(&htim3);
-                    HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
-                    CLAW_INT_STATE = NOT_FLAGGED;
-                    ++ewok_cnt;
-                    // char msg[18] = "";
-                    // sprintf(msg, "wok_cnt: %d", ewok_cnt);
-                    // print(msg, 0);
-                    /*
-                     * Claw is up and close
-                     * Ewok Count incremented
-                     * Motors not powered
-                     * CLAW_INT_STATE not FLAGGED
-                     */
-                    if (ewok_cnt == 1)
-                    {
-                        turn_deg(-95);
-                        open_claw(&htim3);
-                        // square_edge(&enc_pid);
-                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 5000);
-                        arm_down(&htim3);
-                    }
-                    if (ewok_cnt == 2)
-                    {
-                        turn_deg(-110); //  Prolly have to change this
-                        alarm_detect();
-                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                        open_claw(&htim3);
-                        timeee = HAL_GetTick();
-                        while(HAL_GetTick()-timeee < 7000){
-                            if((TAPE_LEFT_STATE == FLAGGED || TAPE_RIGHT_STATE == FLAGGED) && !(TAPE_LEFT_STATE == FLAGGED && TAPE_RIGHT_STATE == FLAGGED)){
-                                if(TAPE_LEFT_STATE == FLAGGED){
+
+                    if(CLAW_INT_STATE == FLAGGED){
+                        HAL_Delay(400);
+                        set_motor_speed(TIM_CHANNEL_1, 0);
+                        set_motor_speed(TIM_CHANNEL_3, 0);
+                        close_claw(&htim3);
+                        arm_up(&htim3);
+                        HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
+                        CLAW_INT_STATE = NOT_FLAGGED;
+                        ++ewok_cnt;
+                        // char msg[18] = "";
+                        // sprintf(msg, "wok_cnt: %d", ewok_cnt);
+                        // print(msg, 0);
+                        /*
+                         * Claw is up and closed
+                         * Ewok Count incremented
+                         * Motors not powered
+                         * CLAW_INT_STATE not FLAGGED, interrupt disabled
+                         */
+
+                        if (ewok_cnt == 1)
+                        {
+                            turn_deg(-95);
+                            open_claw(&htim3);
+                            square_edge(&enc_pid);
+                            drive_straight_time(&enc_pid, LEFT_SPEED+50, RIGHT_SPEED+50, 3000);
+                            arm_down(&htim3);
+                        }
+
+                        if (ewok_cnt == 2)
+                        {
+                            turn_deg(-110); //  Prolly have to change this
+                            alarm_detect();
+                            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                            open_claw(&htim3);
+                            timeee = HAL_GetTick();
+                            while(HAL_GetTick()-timeee < 7000){
+                                if(TAPE_LEFT_STATE == FLAGGED && TAPE_RIGHT_STATE != FLAGGED){
                                     set_motor_speed(TIM_CHANNEL_3, 0);
+                                    // Tape detects object when high
                                     while(HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) == GPIO_PIN_SET);
+                                    HAL_Delay(100);
                                     TAPE_LEFT_STATE = NOT_FLAGGED;
                                     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                                }
-                                if(TAPE_RIGHT_STATE == FLAGGED){
+                                }else if(TAPE_RIGHT_STATE == FLAGGED && TAPE_LEFT_STATE != FLAGGED){
                                     set_motor_speed(TIM_CHANNEL_1, 0);
                                     while(HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) == GPIO_PIN_SET);
+                                    HAL_Delay(100);
                                     TAPE_RIGHT_STATE = NOT_FLAGGED;
                                     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
                                 }
                             }
+                            arm_down(&htim3);
                         }
-                        arm_down(&htim3);
-                    }
-                    if(ewok_cnt == 3){
-                        turn_deg(110);
-                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                        open_claw(&htim3);
-                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 2000);
-                        drive_straight_time(&enc_pid, 700, 700, 2000);
-                        arm_down(&htim3);
-                    }
-                    if(ewok_cnt == 4){
-                        turn_deg(150);
-                        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                        open_claw(&htim3);
-                        while(HAL_GetTick()-timeee < 8000){
-                            if((EDGE_LEFT_STATE == FLAGGED || EDGE_RIGHT_STATE == FLAGGED) && !(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == FLAGGED)){
-                                if(EDGE_LEFT_STATE == FLAGGED){
+
+                        if(ewok_cnt == 3){
+                            turn_deg(110);
+                            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                            open_claw(&htim3);
+                            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 1500);
+                            drive_straight_time(&enc_pid, 600, 600, 1500);
+                            arm_down(&htim3);
+                        }
+
+                        if(ewok_cnt == 4){
+                            turn_deg(150);
+                            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                            open_claw(&htim3);
+                            while(HAL_GetTick()-timeee < 8000){
+                                if(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED){
                                     set_motor_speed(TIM_CHANNEL_3, 0);
+                                    // Edge detected when LOW
                                     while(HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET);
+                                    HAL_Delay(200);
                                     EDGE_LEFT_STATE = NOT_FLAGGED;
                                     set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
                                 }
                                 if(EDGE_RIGHT_STATE == FLAGGED){
                                     set_motor_speed(TIM_CHANNEL_1, 0);
                                     while(HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET);
+                                    HAL_Delay(200);
                                     EDGE_RIGHT_STATE = NOT_FLAGGED;
                                     set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
                                 }
                             }
+                            arm_down(&htim3);
                         }
-                        arm_down(&htim3);
+
+                        if(ewok_cnt == 5){
+                            turn_deg(50);
+                            open_claw(&htim3);
+                            HAL_Delay(750);
+                            arm_down(&htim3);
+                            slow_actuate(&htim3, BASKET_CH, 10, 180);
+                            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
+                            slow_actuate(&htim3, BASKET_CH, 180, 20);
+                        } 
+                        break;
                     }
-                   if(ewok_cnt == 5){
-                        turn_deg(70);
-                        HAL_Delay(500);
-                        open_claw(&htim3);
-                        arm_down(&htim3);
-                        slow_actuate(&htim3, BASKET_CH, 10, 180);
-                        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
-                   } 
-                    break;
                 }
             }
 
+            HAL_NVIC_DisableIRQ(CLAW_INT_EXTI_IRQn);
             PI_INT_STATE = NOT_FLAGGED;
             HAL_GPIO_WritePin(STM_TX_GPIO_Port, STM_TX_Pin, GPIO_PIN_SET);
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
-        }
-        else
+            HAL_Delay(3000);
+        }else
         {
             /*
              * Look for Ewok
              */
-            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 500);
-
+            if(ewok_cnt == 4 || ewok_cnt == 5){
+                if(EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED){
+                    drive_straight_time(&enc_pid, 0, RIGHT_SPEED-100, 400);
+                    uint32_t temp_time = HAL_GetTick();
+                    while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
+                }else if(EDGE_LEFT_STATE == NOT_FLAGGED && EDGE_RIGHT_STATE == FLAGGED){
+                    drive_straight_time(&enc_pid, LEFT_SPEED-100, 0, 400);
+                    uint32_t temp_time = HAL_GetTick();
+                    while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
+                }
+            }
+            drive_straight_time(&enc_pid, LEFT_SPEED-100, RIGHT_SPEED-100, 500);
             uint32_t temp_time = HAL_GetTick();
-            while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED)
-                ;
+            while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
         }
 
         /*
