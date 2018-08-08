@@ -91,6 +91,8 @@
 #define TAPE_RIGHT_EXTI_IRQn EXTI15_10_IRQn
 #define STM_TX_Pin GPIO_PIN_6
 #define STM_TX_GPIO_Port GPIOC
+#define STM_RX_Pin GPIO_PIN_7
+#define STM_RX_GPIO_Port GPIOC
 #define MOTOR_L_F_Pin GPIO_PIN_8
 #define MOTOR_L_F_GPIO_Port GPIOA
 #define MOTOR_L_B_Pin GPIO_PIN_9
