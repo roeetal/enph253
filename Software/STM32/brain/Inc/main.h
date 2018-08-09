@@ -121,7 +121,7 @@
 
 /* USER CODE BEGIN Private defines */
 #define ENCODER_GOAL 2
-#define TURN_CONST 110
+#define TURN_CONST 130
 #define TURN_TOLERANCE 0.04
 #define MOTOR_SPEED 1000
 // Add to right side
