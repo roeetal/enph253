@@ -190,6 +190,7 @@ int main(void)
     PI_INT_STATE = NOT_FLAGGED;
     CLAW_INT_STATE = NOT_FLAGGED;
 
+    alarm_detect();
     drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 5000);
     print("ewok\n", 0);
 
@@ -234,9 +235,17 @@ int main(void)
         set_motor_speed(TIM_CHANNEL_1, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);
         uint32_t time = HAL_GetTick();
-        while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED);
+        while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED)
+        {
+                if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
+                {
+                    print("Claw interrupt\n", 0);
+                    debounce_and_grab(&enc_pid);
+                    break;
+                }
+        }
         if(PI_INT_STATE != FLAGGED){
-            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 1000);
+            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 750);
             print("ewok\n", 0);
         }
        /* 
@@ -404,13 +413,17 @@ void square_edge(PID_t *enc_pid)
     while (1)
     {
         char msg[50] = "";
-        sprintf(msg, "SQUARE_EDGE | EL: %d\n", EDGE_LEFT_STATE == FLAGGED ? 1 : 0);
+        sprintf(msg, "SQUARE_EDGE | EL: %d\n", HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin)? 1 : 0);
         print(msg, 0);
-        sprintf(msg, "SQUARE_EDGE | ER: %d\n", EDGE_RIGHT_STATE == FLAGGED ? 1 : 0);
+        sprintf(msg, "SQUARE_EDGE | ER: %d\n", HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin)? 1 : 0);
         print(msg, 0);
         print("\n", 0);
         drive_straight(enc_pid);
-        if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
+        if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
+        {
+            break;
+        }
+        else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
         {
             
             if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
@@ -421,10 +434,6 @@ void square_edge(PID_t *enc_pid)
             {
                 set_motor_speed(TIM_CHANNEL_3, 0);
             }
-        }
-        else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
-        {
-            break;
         }
     }
 }
@@ -596,8 +605,10 @@ void alarm_detect()
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
     HAL_Delay(100);
+    char msg[20]="";
     while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 100){
-        print("GOERT %d", (int) goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
+        sprintf(msg, "GOERT %d\n", (int) goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
+        print(msg, 0);
     }
     while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 100);
     HAL_ADC_Stop_DMA(&hadc1);
@@ -759,7 +770,9 @@ int debounce_and_grab(PID_t *enc_pid)
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
             square_edge(enc_pid);
             uint32_t time = HAL_GetTick();
-            while(HAL_GetTick()-time < 3000){
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            while(HAL_GetTick()-time < 2000){
             drive_straight(enc_pid);
             }
             arm_down(&htim3);
@@ -778,7 +791,7 @@ int debounce_and_grab(PID_t *enc_pid)
         if (ewok_cnt == 2)
         {
             print("Second ewok captured\n",0);
-            turn_deg(-180); //  Prolly have to change this
+            turn_deg(-170); //  Prolly have to change this
             alarm_detect();
             open_claw(&htim3);
             uint32_t time = HAL_GetTick();
@@ -792,7 +805,6 @@ int debounce_and_grab(PID_t *enc_pid)
             while(HAL_GetTick()-time < 3000){
             drive_straight(enc_pid);
             }
-            arm_down(&htim3);
             set_motor_speed(TIM_CHANNEL_3, 0);
             set_motor_speed(TIM_CHANNEL_1, 0);
             /*
@@ -823,13 +835,17 @@ int debounce_and_grab(PID_t *enc_pid)
         if (ewok_cnt == 3)
         {
             print("Third ewok captured\n", 0);
-            turn_deg(110);
+            turn_deg(170);
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            square_edge(enc_pid);
             open_claw(&htim3);
-            drive_straight_time(enc_pid, LEFT_SPEED, RIGHT_SPEED, 1500);
-            drive_straight_time(enc_pid, 600, 600, 1500);
+            drive_straight_time(enc_pid, LEFT_SPEED+100, RIGHT_SPEED+100, 2000);
             arm_down(&htim3);
+            while(PI_INT_STATE != FLAGGED){
+               turn_deg(-10);
+
+            }
             // todo delete below
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
