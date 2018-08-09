@@ -1,4 +1,3 @@
-
 /**
  ******************************************************************************
  * @file           : main.c
@@ -250,14 +249,13 @@ int main(void)
             set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             time = HAL_GetTick();
             while(HAL_GetTick()-time<thresh){
-                drive_straight(&enc_pid);
-                // If we trip claw interrupt, debounce and grab it
                 if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
                 {
                     print("Claw interrupt\n", 0);
                     debounce_and_grab(&enc_pid);
                     break;
                 }
+                drive_straight(&enc_pid);
             }
             set_motor_speed(TIM_CHANNEL_1, 0);
             set_motor_speed(TIM_CHANNEL_3, 0);
@@ -435,7 +433,6 @@ void square_edge(PID_t *enc_pid)
         }
         else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
         {
-
             if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
             {
                 set_motor_speed(TIM_CHANNEL_1, 0);
@@ -502,7 +499,7 @@ void turn()
 {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
     //TODO calculate time needed to fill first buffer
-    HAL_Delay(100);
+    HAL_Delay(500);
     float volts = calculate_heading(2 * adc_values[5]);
     //double r = atan(1.57*tan()/())
     uint16_t counts = TURN_CONST * fabs(volts);
@@ -510,13 +507,13 @@ void turn()
     TIM5->CNT = 0;
 
     char msg[18] = "";
-    sprintf(msg, "TURN | cnts: %d\n", counts);
+    sprintf(msg, "TURN | cnts: %d\n", (int)counts);
     print(msg, 0);
     int pre_dec = (int)(volts / 1);
     int post_dec = (int)((volts - pre_dec) * 1000);
     sprintf(msg, "TURN | vlts: %d.%d\n", pre_dec, post_dec);
     print(msg, 2);
-    sprintf(msg, "TURN | ADC_VAL: %d\n", 2 * adc_values[5]);
+    sprintf(msg, "TURN | ADC_VAL: %lu\n", 2 * adc_values[5]);
     print(msg, 0);
 
     if (volts < -TURN_TOLERANCE)
@@ -615,28 +612,9 @@ void alarm_detect() {
     HAL_Delay(500);
     char msg[20]="";
     int count = 0;
-    while(1){
-        if(count%50==0){
-        sprintf(msg, "A %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
-        print(msg, 0);
-        }
-        ++count;
-    }
-    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 50){
-        if(count%50==0){
-        sprintf(msg, "A %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
-        print(msg, 0);
-        }
-        ++count;
-    }
+    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 10);
     HAL_Delay(100);
-    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 50){
-        if(count%100==0){
-        sprintf(msg, "B %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
-        print(msg, 0);
-        }
-        ++count;
-    }
+    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 10);
     HAL_Delay(100);
     print("worcs", 0);
     HAL_ADC_Stop_DMA(&hadc1);
@@ -768,7 +746,7 @@ int debounce_and_grab(PID_t *enc_pid)
     // If claw is still high, we have an ewok. Stop, grab it, continue on
     // hardcoded procedure
     print("CLAW_GRAB | grabbing ewok\n", 0);
-    HAL_Delay(700);
+    HAL_Delay(500);
     set_motor_speed(TIM_CHANNEL_1, 0);
     set_motor_speed(TIM_CHANNEL_3, 0);
     close_claw(&htim3);
@@ -791,25 +769,23 @@ int debounce_and_grab(PID_t *enc_pid)
     if (ewok_cnt == 1)
     {
         print("First ewok captured\n", 0);
-        turn_deg(-160);
+        turn_deg(-170);
         open_claw(&htim3);
         LEFT_SPEED+=100;
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        square_edge(enc_pid);
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED-50);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED-50);
         uint32_t time = HAL_GetTick();
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        while(HAL_GetTick()-time < 2000){
-            drive_straight(enc_pid);
-        }
-        arm_down(&htim3);
-        time = HAL_GetTick();
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
         while(HAL_GetTick()-time < 1000){
             drive_straight(enc_pid);
         }
+        square_edge(enc_pid);
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        time = HAL_GetTick();
+        while(HAL_GetTick()-time < 2500){
+            drive_straight(enc_pid);
+        }
+        arm_down(&htim3);
         set_motor_speed(TIM_CHANNEL_3, 0);
         set_motor_speed(TIM_CHANNEL_1, 0);
         // square_edge(&enc_pid);
@@ -821,31 +797,19 @@ int debounce_and_grab(PID_t *enc_pid)
         print("Second ewok captured\n",0);
         if(ewok_cnt==2 && searches == 3){
         turn_deg(-200); //  Prolly have to change this
+        }else{
+        turn_deg(-180); //  Prolly have to change this
         }
-        turn_deg(-190); //  Prolly have to change this
-        //alarm_detect();
+        HAL_Delay(10);
+        alarm_detect();
+        HAL_Delay(10);
         open_claw(&htim3);
+        HAL_Delay(10);
         uint32_t time = HAL_GetTick();
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        while(HAL_GetTick()-time < 1500){
+        while(HAL_GetTick()-time < 8000){
             drive_straight(enc_pid);
-            char msg[20] = "";
-            sprintf(msg, "TL %d", HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin));
-            print(msg, 0);
-            sprintf(msg, "TR %d", HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin));
-            print(msg, 0);
-        }
-        time = HAL_GetTick();
-        set_motor_speed(TIM_CHANNEL_3, 800);
-        set_motor_speed(TIM_CHANNEL_1, 900);
-        while(HAL_GetTick()-time < 2000){
-            drive_straight(enc_pid);
-            char msg[20] = "";
-            sprintf(msg, "TL %d", HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin));
-            print(msg, 0);
-            sprintf(msg, "TR %d", HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin));
-            print(msg, 0);
         }
         arm_down(&htim3);
         set_motor_speed(TIM_CHANNEL_3, 0);
@@ -883,15 +847,24 @@ int debounce_and_grab(PID_t *enc_pid)
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
         square_edge(enc_pid);
         open_claw(&htim3);
-        drive_straight_time(enc_pid, LEFT_SPEED+150, RIGHT_SPEED+150, 2000);
+        uint32_t time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        while(HAL_GetTick()-time < 2000){
+            drive_straight(enc_pid);
+        }
         arm_down(&htim3);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        set_motor_speed(TIM_CHANNEL_1, 0);
         uint8_t deg = 0;
         while(PI_INT_STATE != FLAGGED){
-            if(deg>6){turn_deg(20);}else{
+            if(deg>6){
+                turn_deg(15);
+            }else{
                 turn_deg(-20);
             }
             ++deg;
-            uint32_t time = HAL_GetTick();
+            time = HAL_GetTick();
             while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED);
         }
     }
@@ -899,29 +872,27 @@ int debounce_and_grab(PID_t *enc_pid)
     if (ewok_cnt == 4)
     {
         print("Fourth ewok captured\n", 0);
-        turn_deg(150);
+        turn_deg(180);
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
         open_claw(&htim3);
+        LEFT_SPEED -= 100;
+        timeee = HAL_GetTick();
         while (HAL_GetTick() - timeee < 8000)
         {
-            if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED)
+            if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_SET)
             {
-                set_motor_speed(TIM_CHANNEL_3, 0);
-                // Edge detected when LOW
-                while (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET);
-                HAL_Delay(200);
-                EDGE_LEFT_STATE = NOT_FLAGGED;
+                    set_motor_speed(TIM_CHANNEL_3, 0);
+            }else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_SET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
+                    set_motor_speed(TIM_CHANNEL_1, 0);
+            }else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
+                    set_motor_speed(TIM_CHANNEL_1, 0);
+                    set_motor_speed(TIM_CHANNEL_3, 0);
+            }else{
                 set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            }
-            if (EDGE_RIGHT_STATE == FLAGGED)
-            {
-                set_motor_speed(TIM_CHANNEL_1, 0);
-                while (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET);
-                HAL_Delay(200);
-                EDGE_RIGHT_STATE = NOT_FLAGGED;
                 set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
             }
+            drive_straight(enc_pid);
         }
         arm_down(&htim3);
     }
@@ -934,7 +905,12 @@ int debounce_and_grab(PID_t *enc_pid)
         HAL_Delay(750);
         arm_down(&htim3);
         slow_actuate(&htim3, BASKET_CH, 10, 180);
-        drive_straight_time(enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
+        uint32_t time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        while(HAL_GetTick()-time < 5000){
+            drive_straight(enc_pid);
+        }
         slow_actuate(&htim3, BASKET_CH, 180, 20);
     }
     searches = 0;
