@@ -242,24 +242,24 @@ int main(void)
             else if(searches == 8 && ewok_cnt == 2){
                 debounce_and_grab(&encoder_pid);
             }else{
-            uint32_t time = HAL_GetTick();
-            while(HAL_GetTick()-time<2800 && PI_INT_STATE == NOT_FLAGGED);
-            int thresh = ewok_cnt==1? 500:750;
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            time = HAL_GetTick();
-            while(HAL_GetTick()-time<thresh){
-                if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
-                {
-                    print("Claw interrupt\n", 0);
-                    debounce_and_grab(&enc_pid);
-                    break;
+                uint32_t time = HAL_GetTick();
+                while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED);
+                int thresh = ewok_cnt==1? 500:750;
+                set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+                set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+                time = HAL_GetTick();
+                while(HAL_GetTick()-time<thresh){
+                    if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
+                    {
+                        print("Claw interrupt\n", 0);
+                        debounce_and_grab(&enc_pid);
+                        break;
+                    }
+                    drive_straight(&enc_pid);
                 }
-                drive_straight(&enc_pid);
-            }
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            print("ewok\n", 0);
+                set_motor_speed(TIM_CHANNEL_1, 0);
+                set_motor_speed(TIM_CHANNEL_3, 0);
+                print("ewok\n", 0);
             }
         }
         /* 
@@ -796,9 +796,9 @@ int debounce_and_grab(PID_t *enc_pid)
     {
         print("Second ewok captured\n",0);
         if(ewok_cnt==2 && searches == 3){
-        turn_deg(-200); //  Prolly have to change this
+            turn_deg(-200); //  Prolly have to change this
         }else{
-        turn_deg(-180); //  Prolly have to change this
+            turn_deg(-180); //  Prolly have to change this
         }
         HAL_Delay(10);
         alarm_detect();
@@ -839,35 +839,33 @@ int debounce_and_grab(PID_t *enc_pid)
         */
     }
 
+
     if (ewok_cnt == 3)
     {
         print("Third ewok captured\n", 0);
         turn_deg(170);
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        uint32_t time = HAL_GetTick();
+        while(HAL_GetTick()-time < 1500){
+            drive_straight(enc_pid);
+        }
         square_edge(enc_pid);
         open_claw(&htim3);
-        uint32_t time = HAL_GetTick();
-        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED+100);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED+100);
         while(HAL_GetTick()-time < 2000){
             drive_straight(enc_pid);
         }
-        arm_down(&htim3);
         set_motor_speed(TIM_CHANNEL_3, 0);
         set_motor_speed(TIM_CHANNEL_1, 0);
-        uint8_t deg = 0;
-        while(PI_INT_STATE != FLAGGED){
-            if(deg>6){
-                turn_deg(15);
-            }else{
-                turn_deg(-20);
-            }
-            ++deg;
-            time = HAL_GetTick();
-            while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED);
-        }
+        HAL_Delay(700);
+        arm_down(&htim3);
+        HAL_Delay(700);
+        print("ewok\n", 0);
     }
+
 
     if (ewok_cnt == 4)
     {
@@ -882,12 +880,12 @@ int debounce_and_grab(PID_t *enc_pid)
         {
             if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_SET)
             {
-                    set_motor_speed(TIM_CHANNEL_3, 0);
+                set_motor_speed(TIM_CHANNEL_3, 0);
             }else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_SET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
-                    set_motor_speed(TIM_CHANNEL_1, 0);
+                set_motor_speed(TIM_CHANNEL_1, 0);
             }else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
+                set_motor_speed(TIM_CHANNEL_1, 0);
+                set_motor_speed(TIM_CHANNEL_3, 0);
             }else{
                 set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
                 set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
