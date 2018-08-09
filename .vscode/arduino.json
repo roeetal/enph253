@@ -1,5 +1,6 @@
 {
-    "board": "TINAH_hardware:avr:TINAH",
+    "board": "AZ3166:stm32f4:MXCHIP_AZ3166",
     "port": "/dev/cu.usbserial-A20022bM",
-    "sketch": "Software/PWMOut/PWMOut.ino"
+    "sketch": "Software/PWMOut/PWMOut.ino",
+    "configuration": "upload_method=OpenOCDMethod"
 }

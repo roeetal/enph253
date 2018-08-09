@@ -1,36 +1,42 @@
 {
-    "configurations": [{
-        "name": "Mac",
-        "includePath": [
-            "/Users/axeljacobsen/Documents/Arduino/hardware/TINAH_hardware/avr/cores/Arduino",
-            "/Users/axeljacobsen/Documents/Arduino/libraries/TINAH_libraries",
-            "/Applications/Arduino.app/Contents/Java/libraries/LiquidCrystal/src",
-            "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
-            "/Users/axeljacobsen/Documents/Arduino/hardware/TINAH_hardware/avr/cores/Arduino",
-            "/Users/axeljacobsen/Documents/Arduino/hardware/TINAH_hardware/avr/cores/Arduino/avr-libc",
-            "/Users/axeljacobsen/Documents/Arduino/hardware/TINAH_hardware/avr/variants/TINAHvariant",
-            "/usr/include",
-            "usr/local/include"
-        ],
-        "defines": [
-            "UBRRH"
-        ],
-        "browse": {
-            "limitSymbolsToIncludedHeaders": false,
-            "path": [
-                "/Users/axeljacobsen/Documents/Arduino/hardware/TINAH_hardware/avr/cores/Arduino",
-                "/Users/axeljacobsen/Documents/Arduino/libraries/TINAH_libraries",
-                "/Users/axeljacobsen/Documents/Arduino/libraries"
-            ]
-        },
-        "macFrameworkPath": [
-            "/System/Library/Frameworks",
-            "/Library/Frameworks"
-        ],
-        "intelliSenseMode": "clang-x64",
-        "compilerPath": "/usr/bin/clang",
-        "cStandard": "c11",
-        "cppStandard": "c++17"
-    }],
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Users/ben/Library/Arduino15/packages/AZ3166/tools/**",
+                "/Users/ben/Library/Arduino15/packages/AZ3166/hardware/stm32f4/1.4.1/**",
+                "${workspaceFolder}",
+                "${workspaceFolder}/Software/STM32/Brain/Inc",
+                "${workspaceFolder}/Software/STM32/brain/Inc",
+                "${workspaceFolder}/STM32/Brain/Inc",
+                "${workspaceFolder}/Brain/Inc",
+                "${workspaceFolder}/Inc",
+                "${workspaceFolder}/Software/STM32/Brain/Drivers/STM32F4xx_HAL_Driver/Inc",
+                "${workspaceFolder}/Software/STM32/Brain/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+            ],
+            "defines": [
+                "UBRRH"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "${workspaceFolder}",
+                    "${workspaceFolder}/Software/STM32/Brain/Inc",
+                    "${workspaceFolder}/Software/STM32/brain/Inc",
+                    "${workspaceFolder}/STM32/Brain/Inc",
+                    "${workspaceFolder}/Brain/Inc",
+                    "${workspaceFolder}/Inc"
+                ]
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
     "version": 4
 }
