@@ -1,41 +1,41 @@
- 
+
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  ** This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
-  *
-  * COPYRIGHT(c) 2018 STMicroelectronics
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ ** This notice applies to any and all portions of this file
+ * that are not between comment pairs USER CODE BEGIN and
+ * USER CODE END. Other portions of this file, whether 
+ * inserted by the user or by software development tools
+ * are owned by their respective copyright owners.
+ *
+ * COPYRIGHT(c) 2018 STMicroelectronics
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *   1. Redistributions of source code must retain the above copyright notice,
+ *      this list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *   3. Neither the name of STMicroelectronics nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
@@ -68,6 +68,7 @@ uint16_t RIGHT_SPEED = BASE_SPEED;
 uint32_t dma_buffer[2048];
 uint32_t adc_values[2048];
 int ewok_cnt = 0;
+int searches = 0;
 
 /* USER CODE END PV */
 
@@ -107,45 +108,45 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  *
-  * @retval None
-  */
+ * @brief  The application entry point.
+ *
+ * @retval None
+ */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+    /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+    /* MCU Configuration----------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* USER CODE BEGIN Init */
+    /* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+    /* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+    /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+    /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_TIM3_Init();
-  MX_TIM1_Init();
-  MX_TIM2_Init();
-  MX_ADC1_Init();
-  MX_TIM4_Init();
-  MX_TIM9_Init();
-  MX_TIM5_Init();
-  MX_I2C1_Init();
-  MX_USART6_UART_Init();
-  /* USER CODE BEGIN 2 */
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_DMA_Init();
+    MX_TIM3_Init();
+    MX_TIM1_Init();
+    MX_TIM2_Init();
+    MX_ADC1_Init();
+    MX_TIM4_Init();
+    MX_TIM9_Init();
+    MX_TIM5_Init();
+    MX_I2C1_Init();
+    MX_USART6_UART_Init();
+    /* USER CODE BEGIN 2 */
 
     /* Initialize peripherals */
     /* 
@@ -182,7 +183,7 @@ int main(void)
     EDGE_LEFT_STATE = NOT_FLAGGED;
     EDGE_RIGHT_STATE = NOT_FLAGGED;
 
-    drive_straight_time(&enc_pid, LEFT_SPEED+100, RIGHT_SPEED, 2000);
+    drive_straight_time(&enc_pid, LEFT_SPEED+80, RIGHT_SPEED, 2000);
 
     /* Initially disabled interrupts and ADC */
     HAL_NVIC_EnableIRQ(PI_INT_EXTI_IRQn);
@@ -190,19 +191,19 @@ int main(void)
     PI_INT_STATE = NOT_FLAGGED;
     CLAW_INT_STATE = NOT_FLAGGED;
 
-    alarm_detect();
-    drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 5000);
+    drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED+10, 5000);
     print("ewok\n", 0);
 
-  /* USER CODE END 2 */
+    /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
     while (1)
     {
         // /*
         //  * Pi Turning
         //  */
+
         if (PI_INT_STATE == FLAGGED)
         {
             // Stop Requesting Images
@@ -211,14 +212,12 @@ int main(void)
             turn();
 
             // Drive forward w/ PID for 2.5 s, enable claw interrupt
-        //    uint32_t start = HAL_GetTick();
+            //    uint32_t start = HAL_GetTick();
             uint32_t time = HAL_GetTick();
-            while(HAL_GetTick()-time<3000){
-                set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            while(HAL_GetTick()-time<2800){
                 drive_straight(&enc_pid);
-                set_motor_speed(TIM_CHANNEL_1, 0);
-                set_motor_speed(TIM_CHANNEL_3, 0);
                 // If we trip claw interrupt, debounce and grab it
                 if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
                 {
@@ -227,183 +226,200 @@ int main(void)
                     break;
                 }
             }
-
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
             print("ewok\n", 0);
             PI_INT_STATE = NOT_FLAGGED;
-        }
-        
-        set_motor_speed(TIM_CHANNEL_1, 0);
-        set_motor_speed(TIM_CHANNEL_3, 0);
-        uint32_t time = HAL_GetTick();
-        while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED)
-        {
+
+        }else{
+
+            ++searches;
+            if(searches == 4 && ewok_cnt == 0){
+                debounce_and_grab(&encoder_pid);
+            }
+            else if(searches == 3 && ewok_cnt == 1){
+                debounce_and_grab(&encoder_pid);
+            }
+            else if(searches == 8 && ewok_cnt == 2){
+                debounce_and_grab(&encoder_pid);
+            }else{
+            uint32_t time = HAL_GetTick();
+            while(HAL_GetTick()-time<2800 && PI_INT_STATE == NOT_FLAGGED);
+            int thresh = ewok_cnt==1? 500:750;
+            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+            time = HAL_GetTick();
+            while(HAL_GetTick()-time<thresh){
+                drive_straight(&enc_pid);
+                // If we trip claw interrupt, debounce and grab it
                 if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == GPIO_PIN_SET)
                 {
                     print("Claw interrupt\n", 0);
                     debounce_and_grab(&enc_pid);
                     break;
                 }
-        }
-        if(PI_INT_STATE != FLAGGED){
-            drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 750);
-            print("ewok\n", 0);
-        }
-       /* 
-            // Reset Claw Interrupt before driving forward
-            print("MAIN | CLAW_INT UNFLAGGED\n", 0);
-            while (HAL_GetTick()-start<3000)
-            {
-                drive_straight(&enc_pid);
-                // If we trip claw interrupt, debounce and grab it
-                if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == SET)
-                {
-                    print("Claw interrupt\n", 0);
-                    if(debounce_and_grab(ewok_cnt, enc_pid)) break;
-                }
-                else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == RESET)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    print("Edge left triggered", 0);
-                    turn_deg(30);
-                }
-                else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == RESET){
-                    print("Edge right triggered", 0);
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    turn_deg(-30);
-                }
             }
+            set_motor_speed(TIM_CHANNEL_1, 0);
+            set_motor_speed(TIM_CHANNEL_3, 0);
+            print("ewok\n", 0);
+            }
+        }
+        /* 
+        // Reset Claw Interrupt before driving forward
+        print("MAIN | CLAW_INT UNFLAGGED\n", 0);
+        while (HAL_GetTick()-start<3000)
+        {
+        drive_straight(&enc_pid);
+        // If we trip claw interrupt, debounce and grab it
+        if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == SET)
+        {
+        print("Claw interrupt\n", 0);
+        if(debounce_and_grab(ewok_cnt, enc_pid)) break;
+        }
+        else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == RESET)
+        {
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        print("Edge left triggered", 0);
+        turn_deg(30);
+        }
+        else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == RESET){
+        print("Edge right triggered", 0);
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        turn_deg(-30);
+        }
+        }
 
         }
         else
         {
 
-        */
-            /*
-             * Look for Ewok
-             */
-            // CLAW_INT_STATE = NOT_FLAGGED;
+*/
+        /*
+         * Look for Ewok
+         */
+        // CLAW_INT_STATE = NOT_FLAGGED;
 
-            // if (ewok_cnt == 4 || ewok_cnt == 5)
-            // {
-            //     if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED)
-            //     {
-            //         drive_straight_time(&enc_pid, 0, RIGHT_SPEED - 100, 400);
-            //         uint32_t temp_time = HAL_GetTick();
-            //         while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
-            //     }
-            //     else if (EDGE_LEFT_STATE == NOT_FLAGGED && EDGE_RIGHT_STATE == FLAGGED)
-            //     {
-            //         drive_straight_time(&enc_pid, LEFT_SPEED - 100, 0, 400);
-            //         uint32_t temp_time = HAL_GetTick();
-            //         while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
-            //     }
-            // }
-            /*
-            
-            drive_straight_time(&enc_pid, LEFT_SPEED - 100, RIGHT_SPEED - 100, 500);
-            print("ewok\n", 0);
-            if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == SET)
-                {
-                    print("Claw interrupt\n", 0);
-                    if(debounce_and_grab(ewok_cnt, enc_pid)) break;
-                }
-                else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == RESET)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    print("Edge left triggered", 0);
-                    turn_deg(30);
-                }
-                else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == RESET){
-                    print("Edge right triggered", 0);
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    turn_deg(-30);
-                }
-            uint32_t temp_time = HAL_GetTick();
-        */
-                /*
-                else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    print("Edge left triggered", 0);
-                    turn_deg(30);
-                }
-                else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
-                    print("Edge right triggered", 0);
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    turn_deg(-30);
-                }
-                */
+        // if (ewok_cnt == 4 || ewok_cnt == 5)
+        // {
+        //     if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED)
+        //     {
+        //         drive_straight_time(&enc_pid, 0, RIGHT_SPEED - 100, 400);
+        //         uint32_t temp_time = HAL_GetTick();
+        //         while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
+        //     }
+        //     else if (EDGE_LEFT_STATE == NOT_FLAGGED && EDGE_RIGHT_STATE == FLAGGED)
+        //     {
+        //         drive_straight_time(&enc_pid, LEFT_SPEED - 100, 0, 400);
+        //         uint32_t temp_time = HAL_GetTick();
+        //         while ((HAL_GetTick() - temp_time) < 3000 && PI_INT_STATE == NOT_FLAGGED);
+        //     }
+        // }
+        /*
 
-  /* USER CODE END WHILE */
+           drive_straight_time(&enc_pid, LEFT_SPEED - 100, RIGHT_SPEED - 100, 500);
+           print("ewok\n", 0);
+           if (HAL_GPIO_ReadPin(CLAW_INT_GPIO_Port, CLAW_INT_Pin) == SET)
+           {
+           print("Claw interrupt\n", 0);
+           if(debounce_and_grab(ewok_cnt, enc_pid)) break;
+           }
+           else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == RESET)
+           {
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           print("Edge left triggered", 0);
+           turn_deg(30);
+           }
+           else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == RESET){
+           print("Edge right triggered", 0);
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           turn_deg(-30);
+           }
+           uint32_t temp_time = HAL_GetTick();
+           */
+        /*
+           else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
+           {
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           print("Edge left triggered", 0);
+           turn_deg(30);
+           }
+           else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
+           print("Edge right triggered", 0);
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           turn_deg(-30);
+           }
+           */
 
-  /* USER CODE BEGIN 3 */
+        /* USER CODE END WHILE */
+
+        /* USER CODE BEGIN 3 */
     }
-  /* USER CODE END 3 */
+    /* USER CODE END 3 */
 
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
+    RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_ClkInitTypeDef RCC_ClkInitStruct;
 
     /**Configure the main internal regulator output voltage 
     */
-  __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
 
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 72;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+    RCC_OscInitStruct.HSICalibrationValue = 16;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    RCC_OscInitStruct.PLL.PLLM = 8;
+    RCC_OscInitStruct.PLL.PLLN = 72;
+    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+    RCC_OscInitStruct.PLL.PLLQ = 4;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+    /**Initializes the CPU, AHB and APB busses clocks 
+    */
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+        |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
 
     /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
     /**Configure the Systick 
     */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+    /* SysTick_IRQn interrupt configuration */
+    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /* USER CODE BEGIN 4 */
@@ -412,12 +428,6 @@ void square_edge(PID_t *enc_pid)
 {
     while (1)
     {
-        char msg[50] = "";
-        sprintf(msg, "SQUARE_EDGE | EL: %d\n", HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin)? 1 : 0);
-        print(msg, 0);
-        sprintf(msg, "SQUARE_EDGE | ER: %d\n", HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin)? 1 : 0);
-        print(msg, 0);
-        print("\n", 0);
         drive_straight(enc_pid);
         if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
         {
@@ -425,7 +435,7 @@ void square_edge(PID_t *enc_pid)
         }
         else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET)
         {
-            
+
             if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
             {
                 set_motor_speed(TIM_CHANNEL_1, 0);
@@ -451,20 +461,20 @@ void drive_straight_time(PID_t *enc_pid, uint32_t lspeed, uint32_t rspeed, uint3
             if(debounce_and_grab(enc_pid)) break;
         }
         /*
-        else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
-        {
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            print("Edge left triggered", 0);
-            turn_deg(30);
-        }
-        else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
-            print("Edge right triggered", 0);
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            turn_deg(-30);
-        }
-        */
+           else if (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET)
+           {
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           print("Edge left triggered", 0);
+           turn_deg(30);
+           }
+           else if (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET){
+           print("Edge right triggered", 0);
+           set_motor_speed(TIM_CHANNEL_1, 0);
+           set_motor_speed(TIM_CHANNEL_3, 0);
+           turn_deg(-30);
+           }
+           */
         else 
         {
             set_motor_speed(TIM_CHANNEL_1, lspeed);
@@ -481,7 +491,7 @@ void drive_straight(PID_t *enc_pid)
 {
     encoder_pid(enc_pid);
     HAL_Delay(10);
-    
+
 }
 
 /*
@@ -599,18 +609,36 @@ float calculate_heading(uint32_t adc_val)
     return adc_val / 4096.0 - 0.5;
 }
 
-// Sampling frequency: 72e6/2/(495*3)
-void alarm_detect()
-{
+// Sampling frequency: 72e6/2/(495*2)
+void alarm_detect() {
     HAL_ADC_Start_DMA(&hadc1, dma_buffer, sizeof(dma_buffer) / sizeof(dma_buffer[0]));
-    //TODO calculate time needed to fill first buffer
-    HAL_Delay(100);
+    HAL_Delay(500);
     char msg[20]="";
-    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 100){
-        sprintf(msg, "GOERT %d\n", (int) goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
+    int count = 0;
+    while(1){
+        if(count%50==0){
+        sprintf(msg, "A %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
         print(msg, 0);
+        }
+        ++count;
     }
-    while (goertzel(adc_values, 24242, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 100);
+    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) < 50){
+        if(count%50==0){
+        sprintf(msg, "A %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
+        print(msg, 0);
+        }
+        ++count;
+    }
+    HAL_Delay(100);
+    while (goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0) > 50){
+        if(count%100==0){
+        sprintf(msg, "B %d\n", (int) goertzel(adc_values, 36363, 1000, sizeof(dma_buffer) / sizeof(dma_buffer[0]), 0));
+        print(msg, 0);
+        }
+        ++count;
+    }
+    HAL_Delay(100);
+    print("worcs", 0);
     HAL_ADC_Stop_DMA(&hadc1);
     IR_INT_STATE = NOT_FLAGGED;
 }
@@ -739,161 +767,179 @@ int debounce_and_grab(PID_t *enc_pid)
     // print(msg, 0);
     // If claw is still high, we have an ewok. Stop, grab it, continue on
     // hardcoded procedure
-        print("CLAW_GRAB | grabbing ewok\n", 0);
-        HAL_Delay(700);
-        set_motor_speed(TIM_CHANNEL_1, 0);
+    print("CLAW_GRAB | grabbing ewok\n", 0);
+    HAL_Delay(700);
+    set_motor_speed(TIM_CHANNEL_1, 0);
+    set_motor_speed(TIM_CHANNEL_3, 0);
+    close_claw(&htim3);
+    arm_up(&htim3);
+    // TODO: delete next line, there for testing!!!
+    HAL_Delay(100);
+    ++ewok_cnt;
+    // char msg[18] = "";
+    // sprintf(msg, "wok_cnt: %d\n", ewok_cnt);
+    // print(msg, 0);
+    /*
+     * Claw is up and closed
+     * Ewok Count incremented
+     * Motors not powered
+     * CLAW_INT_STATE not FLAGGED, interrupt disabled
+     */
+
+    // For the first ewok, turn left, arm up, square robot w/ edge,
+    // drive straight for 3 s, bring arm down
+    if (ewok_cnt == 1)
+    {
+        print("First ewok captured\n", 0);
+        turn_deg(-160);
+        open_claw(&htim3);
+        LEFT_SPEED+=100;
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        square_edge(enc_pid);
+        uint32_t time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        while(HAL_GetTick()-time < 2000){
+            drive_straight(enc_pid);
+        }
+        arm_down(&htim3);
+        time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        while(HAL_GetTick()-time < 1000){
+            drive_straight(enc_pid);
+        }
         set_motor_speed(TIM_CHANNEL_3, 0);
-        close_claw(&htim3);
-        arm_up(&htim3);
-        // TODO: delete next line, there for testing!!!
-        HAL_Delay(100);
-        ++ewok_cnt;
-        // char msg[18] = "";
-        // sprintf(msg, "wok_cnt: %d\n", ewok_cnt);
-        // print(msg, 0);
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        // square_edge(&enc_pid);
+        //        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 10000);
+    }
+
+    if (ewok_cnt == 2)
+    {
+        print("Second ewok captured\n",0);
+        if(ewok_cnt==2 && searches == 3){
+        turn_deg(-200); //  Prolly have to change this
+        }
+        turn_deg(-190); //  Prolly have to change this
+        //alarm_detect();
+        open_claw(&htim3);
+        uint32_t time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        while(HAL_GetTick()-time < 1500){
+            drive_straight(enc_pid);
+            char msg[20] = "";
+            sprintf(msg, "TL %d", HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin));
+            print(msg, 0);
+            sprintf(msg, "TR %d", HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin));
+            print(msg, 0);
+        }
+        time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, 800);
+        set_motor_speed(TIM_CHANNEL_1, 900);
+        while(HAL_GetTick()-time < 2000){
+            drive_straight(enc_pid);
+            char msg[20] = "";
+            sprintf(msg, "TL %d", HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin));
+            print(msg, 0);
+            sprintf(msg, "TR %d", HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin));
+            print(msg, 0);
+        }
+        arm_down(&htim3);
+        set_motor_speed(TIM_CHANNEL_3, 0);
+        set_motor_speed(TIM_CHANNEL_1, 0);
         /*
-            * Claw is up and closed
-            * Ewok Count incremented
-            * Motors not powered
-            * CLAW_INT_STATE not FLAGGED, interrupt disabled
-            */
-
-        // For the first ewok, turn left, arm up, square robot w/ edge,
-        // drive straight for 3 s, bring arm down
-        if (ewok_cnt == 1)
+           timeee = HAL_GetTick();
+           while (HAL_GetTick() - timeee < 7000)
+           {
+           if (TAPE_LEFT_STATE == FLAGGED && TAPE_RIGHT_STATE != FLAGGED)
+           {
+           set_motor_speed(TIM_CHANNEL_3, 0);
+        // Tape detects object when high
+        while (HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) == GPIO_PIN_SET);
+        HAL_Delay(100);
+        TAPE_LEFT_STATE = NOT_FLAGGED;
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        }
+        else if (TAPE_RIGHT_STATE == FLAGGED && TAPE_LEFT_STATE != FLAGGED)
         {
-            print("First ewok captured\n", 0);
-            turn_deg(-160);
-            open_claw(&htim3);
-            LEFT_SPEED+=100;
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            square_edge(enc_pid);
+        set_motor_speed(TIM_CHANNEL_1, 0);
+        while (HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) == GPIO_PIN_SET);
+        HAL_Delay(100);
+        TAPE_RIGHT_STATE = NOT_FLAGGED;
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        }
+        }
+        */
+    }
+
+    if (ewok_cnt == 3)
+    {
+        print("Third ewok captured\n", 0);
+        turn_deg(170);
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        square_edge(enc_pid);
+        open_claw(&htim3);
+        drive_straight_time(enc_pid, LEFT_SPEED+150, RIGHT_SPEED+150, 2000);
+        arm_down(&htim3);
+        uint8_t deg = 0;
+        while(PI_INT_STATE != FLAGGED){
+            if(deg>6){turn_deg(20);}else{
+                turn_deg(-20);
+            }
+            ++deg;
             uint32_t time = HAL_GetTick();
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            while(HAL_GetTick()-time < 2000){
-            drive_straight(enc_pid);
-            }
-            arm_down(&htim3);
-            time = HAL_GetTick();
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            while(HAL_GetTick()-time < 1000){
-            drive_straight(enc_pid);
-            }
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            // square_edge(&enc_pid);
-    //        drive_straight_time(&enc_pid, LEFT_SPEED, RIGHT_SPEED, 10000);
+            while(HAL_GetTick()-time<3000 && PI_INT_STATE == NOT_FLAGGED);
         }
+    }
 
-        if (ewok_cnt == 2)
+    if (ewok_cnt == 4)
+    {
+        print("Fourth ewok captured\n", 0);
+        turn_deg(150);
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
+        open_claw(&htim3);
+        while (HAL_GetTick() - timeee < 8000)
         {
-            print("Second ewok captured\n",0);
-            turn_deg(-170); //  Prolly have to change this
-            alarm_detect();
-            open_claw(&htim3);
-            uint32_t time = HAL_GetTick();
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            while(HAL_GetTick()-time < 3000){
-            drive_straight(enc_pid);
-            }
-            arm_down(&htim3);
-            time = HAL_GetTick();
-            while(HAL_GetTick()-time < 3000){
-            drive_straight(enc_pid);
-            }
-            set_motor_speed(TIM_CHANNEL_3, 0);
-            set_motor_speed(TIM_CHANNEL_1, 0);
-            /*
-            timeee = HAL_GetTick();
-            while (HAL_GetTick() - timeee < 7000)
+            if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED)
             {
-                if (TAPE_LEFT_STATE == FLAGGED && TAPE_RIGHT_STATE != FLAGGED)
-                {
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    // Tape detects object when high
-                    while (HAL_GPIO_ReadPin(TAPE_LEFT_GPIO_Port, TAPE_LEFT_Pin) == GPIO_PIN_SET);
-                    HAL_Delay(100);
-                    TAPE_LEFT_STATE = NOT_FLAGGED;
-                    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                }
-                else if (TAPE_RIGHT_STATE == FLAGGED && TAPE_LEFT_STATE != FLAGGED)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    while (HAL_GPIO_ReadPin(TAPE_RIGHT_GPIO_Port, TAPE_RIGHT_Pin) == GPIO_PIN_SET);
-                    HAL_Delay(100);
-                    TAPE_RIGHT_STATE = NOT_FLAGGED;
-                    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                }
+                set_motor_speed(TIM_CHANNEL_3, 0);
+                // Edge detected when LOW
+                while (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET);
+                HAL_Delay(200);
+                EDGE_LEFT_STATE = NOT_FLAGGED;
+                set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
             }
-            */
-        }
-
-        if (ewok_cnt == 3)
-        {
-            print("Third ewok captured\n", 0);
-            turn_deg(170);
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            square_edge(enc_pid);
-            open_claw(&htim3);
-            drive_straight_time(enc_pid, LEFT_SPEED+100, RIGHT_SPEED+100, 2000);
-            arm_down(&htim3);
-            while(PI_INT_STATE != FLAGGED){
-               turn_deg(-10);
-
-            }
-            // todo delete below
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        }
-
-        if (ewok_cnt == 4)
-        {
-            print("Fourth ewok captured\n", 0);
-            turn_deg(150);
-            set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-            set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-            open_claw(&htim3);
-            while (HAL_GetTick() - timeee < 8000)
+            if (EDGE_RIGHT_STATE == FLAGGED)
             {
-                if (EDGE_LEFT_STATE == FLAGGED && EDGE_RIGHT_STATE == NOT_FLAGGED)
-                {
-                    set_motor_speed(TIM_CHANNEL_3, 0);
-                    // Edge detected when LOW
-                    while (HAL_GPIO_ReadPin(EDGE_LEFT_GPIO_Port, EDGE_LEFT_Pin) == GPIO_PIN_RESET);
-                    HAL_Delay(200);
-                    EDGE_LEFT_STATE = NOT_FLAGGED;
-                    set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
-                }
-                if (EDGE_RIGHT_STATE == FLAGGED)
-                {
-                    set_motor_speed(TIM_CHANNEL_1, 0);
-                    while (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET);
-                    HAL_Delay(200);
-                    EDGE_RIGHT_STATE = NOT_FLAGGED;
-                    set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-                }
+                set_motor_speed(TIM_CHANNEL_1, 0);
+                while (HAL_GPIO_ReadPin(EDGE_RIGHT_GPIO_Port, EDGE_RIGHT_Pin) == GPIO_PIN_RESET);
+                HAL_Delay(200);
+                EDGE_RIGHT_STATE = NOT_FLAGGED;
+                set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
             }
-            arm_down(&htim3);
         }
+        arm_down(&htim3);
+    }
 
-        if (ewok_cnt == 5)
-        {
-            print("Chewie captured\n", 0);
-            turn_deg(50);
-            open_claw(&htim3);
-            HAL_Delay(750);
-            arm_down(&htim3);
-            slow_actuate(&htim3, BASKET_CH, 10, 180);
-            drive_straight_time(enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
-            slow_actuate(&htim3, BASKET_CH, 180, 20);
-        }
-        CLAW_INT_STATE = NOT_FLAGGED;
-        return TRUE;
+    if (ewok_cnt == 5)
+    {
+        print("Chewie captured\n", 0);
+        turn_deg(50);
+        open_claw(&htim3);
+        HAL_Delay(750);
+        arm_down(&htim3);
+        slow_actuate(&htim3, BASKET_CH, 10, 180);
+        drive_straight_time(enc_pid, LEFT_SPEED, RIGHT_SPEED, 3000);
+        slow_actuate(&htim3, BASKET_CH, 180, 20);
+    }
+    searches = 0;
+    CLAW_INT_STATE = NOT_FLAGGED;
+    return TRUE;
 }
 
 // ******
@@ -993,44 +1039,44 @@ void test_All()
 /* USER CODE END 4 */
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  file: The file name as string.
-  * @param  line: The line in file as a number.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @param  file: The file name as string.
+ * @param  line: The line in file as a number.
+ * @retval None
+ */
 void _Error_Handler(char *file, int line)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
+    /* USER CODE BEGIN Error_Handler_Debug */
     /* User can add his own implementation to report the HAL error return state */
     while (1)
     {
     }
-  /* USER CODE END Error_Handler_Debug */
+    /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef  USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t* file, uint32_t line)
 { 
-  /* USER CODE BEGIN 6 */
+    /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line number,
 tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
