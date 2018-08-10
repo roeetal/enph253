@@ -239,7 +239,7 @@ int main(void)
             else if(searches == 3 && ewok_cnt == 1){
                 debounce_and_grab(&encoder_pid);
             }
-            else if(searches == 8 && ewok_cnt == 2){
+            else if(searches == 4 && ewok_cnt == 2){
                 debounce_and_grab(&encoder_pid);
             }else{
                 uint32_t time = HAL_GetTick();
@@ -808,10 +808,24 @@ int debounce_and_grab(PID_t *enc_pid)
         uint32_t time = HAL_GetTick();
         set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED);
         set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED);
-        while(HAL_GetTick()-time < 8000){
+        while(HAL_GetTick()-time < 3000){
             drive_straight(enc_pid);
         }
         arm_down(&htim3);
+        HAL_Delay(500);
+        slow_actuate(&htim3, TIM_CHANNEL_3, 50, 180);
+        HAL_Delay(1000);
+        arm_up(&htim3);
+        turn(-20);
+        time = HAL_GetTick();
+        set_motor_speed(TIM_CHANNEL_3, RIGHT_SPEED+150);
+        set_motor_speed(TIM_CHANNEL_1, LEFT_SPEED+150);
+        while(HAL_GetTick()-time < 5000){
+            drive_straight(enc_pid);
+        }
+        slow_actuate(&htim3, TIM_CHANNEL_3, 50, 180);
+        HAL_Delay(500);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, 0);
         set_motor_speed(TIM_CHANNEL_3, 0);
         set_motor_speed(TIM_CHANNEL_1, 0);
         /*
